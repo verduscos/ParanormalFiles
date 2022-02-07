@@ -10,9 +10,9 @@ class Story(db.Model):
     created_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
     updated_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
 
-    user = db.relationship("User", back_populates="stories")
+    users = db.relationship("User", back_populates="stories")
     comments = db.relationship("Comment", back_populates="story")
-    
+
 
     def to_dict(self):
         return {
