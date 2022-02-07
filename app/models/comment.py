@@ -1,17 +1,17 @@
 from .db import db
-from flask_login import UserMixin
 
-class Comment(db.Model, UserMixin):
+class Comment(db.Model):
     __tablename__ = "comments"
 
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    story_id = db.Column(db.Integer, db.ForeignKey("stories.id"), nullable=False)
     comment = db.Column(db.String(1000))
     created_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
     updated_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
 
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    story_id = db.Column(db.Column, db.ForeignKey("stories.id"))
-
+    user = db.relationship("User", back_populates="comments")
+    story = db.relationship("Story", back_populates="comments")
 
     def to_dict(self):
         return {

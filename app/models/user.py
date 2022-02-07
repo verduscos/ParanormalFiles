@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
     updated_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
 
-    stories = db.relationship("Story", back_populates="user")
+    stories = db.relationship("Story", back_populates="users")
     comments = db.relationship("Comment", back_populates="user")
 
 
