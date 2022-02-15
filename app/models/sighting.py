@@ -6,7 +6,7 @@ class Sighting(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     date = db.Column(db.String(15), nullable=False)
-    location = db.Column(db.String(50), nullable=False)
+    location = db.Column(db.String(50), nullable=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(2000), nullable=False)
     category = db.Column(db.String(50), nullable=False)
@@ -14,9 +14,9 @@ class Sighting(db.Model):
     updated_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
 
     user = db.relationship("User", back_populates="sightings")
-    comments = db.relationship("Comment", back_populates="sightings")
-    images = db.relationship("SightingImage", back_populates="sightings")
-    likes = db.relationship("Like", back_populates="sightings")
+    comments = db.relationship("Comment", back_populates="sighting")
+    sighting_images = db.relationship("SightingImage", back_populates="sighting")
+    likes = db.relationship("Like", back_populates="sighting")
 
 
     def to_dict(self):

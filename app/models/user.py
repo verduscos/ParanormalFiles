@@ -14,8 +14,9 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
     updated_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
 
-    stories = db.relationship("Story", back_populates="users")
+    sightings = db.relationship("Sighting", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
+    likes = db.relationship("Like", back_populates="user")
 
 
     @property

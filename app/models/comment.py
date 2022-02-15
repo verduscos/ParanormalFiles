@@ -18,6 +18,6 @@ class Comment(db.Model):
             "id": self.id,
             "comment": self.comment,
             "user_id": self.user_id,
-            "story_id": self.story_id,
+            "sighting_id": self.sighting_id,
             "updated_at": self.updated_at,
         }
