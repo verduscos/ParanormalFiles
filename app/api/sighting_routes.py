@@ -1,5 +1,5 @@
 from flask import Blueprint
-from app.models import Sighting, db
+from app.models import Sighting, SightingImage, db
 
 sighting_routes = Blueprint("sightings", __name__)
 
@@ -22,4 +22,10 @@ def get_sighting_by_id(id):
     return sighting.to_dict()
 
 
-@sighting_routes.route("")
+@sighting_routes.route("/<int:id>/images")
+def get_sighting_images(id):
+    """
+    Return images associated with sighting
+    """
+    images = SightingImage.query.filter(SightingImage.sighting_id == id).all()
+    return {"images": [image.to_dict() for image in images]}

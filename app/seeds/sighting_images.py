@@ -12,7 +12,7 @@ def seed_sighting_images():
     )
 
     image3 = SightingImage(
-        sighting_id=1,
+        sighting_id=2,
         image_url="imageUrlHere"
     )
 
