@@ -13,8 +13,9 @@ class Sighting(db.Model):
     created_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
     updated_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
 
-    users = db.relationship("User", back_populates="sightings")
+    user = db.relationship("User", back_populates="sightings")
     comments = db.relationship("Comment", back_populates="sightings")
+    images = db.relationship("SightingImage", back_populates="sightings")
 
 
     def to_dict(self):
