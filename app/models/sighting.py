@@ -16,6 +16,7 @@ class Sighting(db.Model):
     user = db.relationship("User", back_populates="sightings")
     comments = db.relationship("Comment", back_populates="sightings")
     images = db.relationship("SightingImage", back_populates="sightings")
+    likes = db.relationship("Like", back_populates="sightings")
 
 
     def to_dict(self):
