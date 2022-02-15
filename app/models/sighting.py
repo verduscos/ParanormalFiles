@@ -22,11 +22,12 @@ class Sighting(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
+            "user_id": self.user_id,
             "date" : self.date,
             "location": self.location,
             "title": self.title,
             "description": self.description,
             "category": self.category,
+            "created_at": self.created_at,
             "updated_at": self.updated_at,
-            "user_id": self.user_id,
         }
