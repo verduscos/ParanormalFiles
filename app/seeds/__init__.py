@@ -1,6 +1,6 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
-from .stories import seed_stories, undo_stories
+from .sightings import seed_sighting, undo_sightings
 from .comments import seed_comments, undo_comments
 
 # Creates a seed group to hold our commands

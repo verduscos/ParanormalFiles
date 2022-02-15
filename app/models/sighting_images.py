@@ -1,10 +1,10 @@
-from.db import db
+from .db import db
 
-class SightingImage(db.model):
+class SightingImage(db.Model):
     __tablename__ = "sighting_images"
 
     id = db.Column(db.Integer, primary_key=True)
-    sighting_id = db.Column(db.Interger, db.ForeignKey("sightings.id"), nullable=False)
+    sighting_id = db.Column(db.Integer, db.ForeignKey("sightings.id"), nullable=False)
     image_url = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
     updated_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)

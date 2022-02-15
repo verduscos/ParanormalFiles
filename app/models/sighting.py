@@ -23,7 +23,7 @@ class Sighting(db.Model):
         return {
             "id": self.id,
             "date" : self.date,
-            "location", self.location,
+            "location": self.location,
             "title": self.title,
             "description": self.description,
             "category": self.category,
