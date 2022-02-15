@@ -10,6 +10,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(1000), nullable=False)
+    profile_picture_url = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
     updated_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
 
