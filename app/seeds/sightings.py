@@ -55,5 +55,5 @@ def seed_sightings():
     db.session.commit()
 
 def undo_sightings():
-    db.session.execute('TRUNCATE stories RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE sightings RESTART IDENTITY CASCADE;')
     db.session.commit()

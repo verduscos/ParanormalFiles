@@ -27,7 +27,7 @@ def seed_comments():
 
     comment5 = Comment(
         user_id=3,
-        sighting_id=5,
+        sighting_id=1,
         comment="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed",
     )
 
