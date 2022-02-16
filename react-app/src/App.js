@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import Sightings from './components/sightings/Sightings';
 import SingleSighting from './components/SingleSighting/SingleSighting';
+import CreateForm from './components/CreateForm/CreateForm';
 import { authenticate } from './store/session';
 
 function App() {
@@ -49,8 +50,8 @@ function App() {
         <Route path='/sightings/:sightingId' exact={true} >
           <SingleSighting />
         </Route>
-        <Route path='/sightings/new' exact={true} >
-          <SingleSighting />
+        <Route path='/report' exact={true} >
+          <CreateForm />
         </Route>
       </Switch>
     </BrowserRouter>

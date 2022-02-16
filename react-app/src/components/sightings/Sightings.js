@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from 'react-router-dom'
 import * as sessionActions from "../../store/sighting"
@@ -6,30 +6,8 @@ import "./sightings.css"
 
 const Sightings = () => {
   const dispatch = useDispatch()
-  let currentUser = useSelector(state => state.session.user)
   let sightings = useSelector(state => state.sightings);
   let sightingsArray = Object.values(sightings);
-
-
-  const [date, setDate] = useState("")
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
-  const [category, setCategory] = useState("")
-
-  const createSighting = (e) => {
-    e.preventDefault()
-
-    const payload = {
-      user_id: currentUser.id,
-      date: date,
-      location: "testing",
-      title: title,
-      description: description,
-      category: category
-    }
-
-    dispatch(sessionActions.createASighting(payload))
-  }
 
 
   useEffect(() => {
@@ -41,7 +19,7 @@ const Sightings = () => {
     <>
       <h1>Hello, World!</h1>
       {sightingsArray.map((sighting, i) => (
-        <Link to={`/sightings/${sighting?.id}`}  key={`link-${i}`}>
+        <Link to={`/sightings/${sighting?.id}`} key={`link-${i}`}>
           <ul id="sighting-card" key={sighting?.id}>
             {/* <li key={sighting.id}>{sighting.location}</li> */}
             <li key={`date-${sighting?.id}`}>{sighting?.date}</li>
@@ -51,35 +29,6 @@ const Sightings = () => {
           </ul>
         </Link>
       ))}
-
-      <form onSubmit={createSighting} id="sighting-form">
-        <input
-          onChange={(e) => {
-            setDate(e.target.value)
-          }}
-          type="date" value={date} />
-        <input
-          onChange={(e) => {
-            setTitle(e.target.value)
-          }}
-          type="text" value={title} placeholder="Title" />
-        <textarea
-          onChange={(e) => {
-            setDescription(e.target.value)
-          }}
-          type="text" value={description} placeholder="description" />
-        <select
-          onChange={(e) => {
-            setCategory(e.target.value)
-          }}
-          value={category}>
-          <option value="categories">Select Category</option>
-          <option value="UFOs">UFOs</option>
-          <option value="Ghosts">Ghosts</option>
-          <option value="Demons">Demons</option>
-        </select>
-        <button>Report</button>
-      </form>
     </>
   )
 }
