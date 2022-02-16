@@ -53,3 +53,31 @@ def create_sighting():
 
         return sighting.to_dict()
     return {"erros": form.errors}, 400
+
+
+@sighting_routes.route("/<int:id>", methods=["PUT"])
+def update_sighting(id):
+    """
+    Update an existing sighting.
+    """
+    form = SightingForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    sighting = Sighting.query.get(id)
+
+    if form.validate_on_submit():
+        updated_sighting = Sighting.update(
+            sighting=sighting,
+            user_id=request.json["user_id"],
+            date=request.json["date"],
+            location=request.json["location"],
+            title=request.json["title"],
+            description=request.json["description"],
+            category=request.json["category"]
+        )
+        print(sighting.title)
+
+        db.session.add(updated_sighting)
+        db.session.commit()
+
+        return sighting.to_dict()
+    return {"erros": form.errors}, 400

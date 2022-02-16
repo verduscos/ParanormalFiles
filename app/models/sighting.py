@@ -31,3 +31,10 @@ class Sighting(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
+
+    @staticmethod
+    def update(sighting, **kwargs):
+        for key, value in kwargs.items():
+            setattr(sighting, key, value)
+
+        return sighting
