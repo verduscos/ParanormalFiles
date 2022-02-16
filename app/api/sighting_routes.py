@@ -1,4 +1,5 @@
-from flask import Blueprint
+from flask import Blueprint, session, request
+from app.forms import SightingForm
 from app.models import Sighting, SightingImage, db
 
 sighting_routes = Blueprint("sightings", __name__)
@@ -29,3 +30,26 @@ def get_sighting_images(id):
     """
     images = SightingImage.query.filter(SightingImage.sighting_id == id).all()
     return {"images": [image.to_dict() for image in images]}
+
+
+@sighting_routes.route("/", methods=["POST"])
+def create_sighting():
+    """
+    Create a sighting.
+    """
+    form = SightingForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        sighting = Sighting(
+            user_id=request.json["user_id"],
+            date=request.json["date"],
+            location=request.json["location"],
+            title=request.json["title"],
+            description=request.json["description"],
+            category=request.json["category"]
+        )
+        db.session.add(sighting)
+        db.session.commit()
+
+        return sighting.to_dict()
+    return {"erros": form.errors}, 400
