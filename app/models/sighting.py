@@ -14,9 +14,9 @@ class Sighting(db.Model):
     updated_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
 
     user = db.relationship("User", back_populates="sightings")
-    comments = db.relationship("Comment", back_populates="sighting")
-    sighting_images = db.relationship("SightingImage", back_populates="sighting")
-    likes = db.relationship("Like", back_populates="sighting")
+    comments = db.relationship("Comment", cascade="all, delete", passive_deletes=True, back_populates="sighting")
+    sighting_images = db.relationship("SightingImage",  cascade="all, delete", passive_deletes=True, back_populates="sighting")
+    likes = db.relationship("Like", cascade="all, delete", passive_deletes=True, back_populates="sighting")
 
 
     def to_dict(self):
