@@ -87,11 +87,13 @@ def delete_sighting(id):
     """
     Delete a specific sighting.
     """
+
+    print("DELETE ROUTE HRERHERHEHRHERR")
     sighting = Sighting.query.get(id)
     if sighting:
 
         db.session.delete(sighting)
         db.session.commit()
 
-        return {"found": f"sighting {id} deleted"}
+        return {"found": f"{id}"}
     return {errors: "Sighting not found."}, 400

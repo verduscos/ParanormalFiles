@@ -1,14 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 
 
 const SingleSighting = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
     const params = useParams()
     const { sightingId } = params
     let sighting = useSelector(state => state.sightings["singleSighting"])
+    let currentUser = useSelector(state => state.session.user)
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+        dispatch(sessionActions.deleteASighting(sightingId))
+
+        history.push("/")
+    }
 
 
     useEffect(() => {
@@ -17,6 +26,11 @@ const SingleSighting = () => {
 
     return (
         <>
+        { currentUser && currentUser?.id === sighting?.user_id ?
+        <button onClick={handleDelete}>Delete</button> :
+        null
+        }
+
         <h1>{sighting?.title}</h1>
         <p>{sighting?.date}</p>
         <p>{sighting?.category}</p>

@@ -1,6 +1,7 @@
 const GET_SIGHTINGS = "session/GET_SIGHTING";
 const CREATE_SIGHTING = "session/CREATE_SIGHTING"
 const GET_SINGLE_SIGHTING = "session/GET_SINGLE_SIGHTING"
+const DELETE_SIGHTING = "session/DELETE_SIGHTING"
 
 const getSightings = (sightings) => ({
     type: GET_SIGHTINGS,
@@ -15,6 +16,11 @@ const getSingleSighting = (sighting) => ({
 const createSighting = (sighting) => ({
   type: CREATE_SIGHTING,
   payload: sighting
+})
+
+const deleteSighting = (sightingId) => ({
+  type: DELETE_SIGHTING,
+  payload: sightingId
 })
 
 export const getAllSightings = () => async (dispatch) => {
@@ -68,6 +74,18 @@ export const createASighting = (payload) => async (dispatch) => {
 }
 
 
+export const deleteASighting = (sightingId) => async (dispatch) => {
+  const response = await fetch(`/api/sightings/${sightingId}`, {
+    method: "DELETE"
+  })
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(deleteSighting(data))
+    return
+  }
+}
+
+
 const sightingReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_SIGHTINGS:
@@ -79,10 +97,17 @@ const sightingReducer = (state = {}, action) => {
 
           return { ...state, ...sightings }
         case GET_SINGLE_SIGHTING:
-            return {...state , singleSighting: action.payload}
+            return {singleSighting: action.payload}
         case CREATE_SIGHTING:
           state[action.payload.id] = action.payload
           return {...state}
+        case DELETE_SIGHTING:
+          let updatedSightings = { ...state}
+
+          let id = (action.payload["found"])
+          delete updatedSightings[id];
+
+          return updatedSightings
         default:
             return state
     }
