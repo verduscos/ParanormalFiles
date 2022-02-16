@@ -52,7 +52,7 @@ def create_sighting():
         db.session.commit()
 
         return sighting.to_dict()
-    return {"erros": form.errors}, 400
+    return {"errors": form.errors}, 400
 
 
 @sighting_routes.route("/<int:id>", methods=["PUT"])
@@ -80,4 +80,20 @@ def update_sighting(id):
         db.session.commit()
 
         return sighting.to_dict()
-    return {"erros": form.errors}, 400
+    return {"errors": form.errors}, 400
+
+
+@sighting_routes.route("/<int:id>", methods=["DELETE"])
+def delete_sighting(id):
+    """
+    Delete a specific sighting.
+    """
+    sighting = Sighting.query.get(id)
+    if sighting:
+
+        db.session.delete(sighting)
+        db.session.commit()
+        print(sighting)
+
+        return {"found": f"sighting {id} deleted"}
+    return {errors: "Sighting not found."}, 400
