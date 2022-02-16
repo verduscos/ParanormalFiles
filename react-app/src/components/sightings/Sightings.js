@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from 'react-router-dom'
 import * as sessionActions from "../../store/sighting"
 import "./sightings.css"
 
 const Sightings = () => {
   const dispatch = useDispatch()
   let sightings = useSelector(state => state.sightings);
-  console.log("SIGHTINGS", sightings)
   let sightingsArray = Object.values(sightings);
 
   const [date, setDate] = useState("")
@@ -29,11 +29,7 @@ const Sightings = () => {
     }
 
     dispatch(sessionActions.createASighting(payload))
-    console.log("inside createSighig")
-    console.log(payload)
   }
-
-  console.log("INSIDE COMPONENT")
 
 
   useEffect(() => {
@@ -44,37 +40,39 @@ const Sightings = () => {
   return (
     <>
       <h1>Hello, World!</h1>
-      {sightingsArray.map(sighting => (
-        <ul id="sighting-card" key={sighting.id}>
-          {/* <li key={sighting.id}>{sighting.location}</li> */}
-          <li key={`date-${sighting.id}`}>{sighting.date}</li>
-          <li key={`title-${sighting.id}`}>{sighting.title}</li>
-          <li key={`description-${sighting.id}`}>{sighting.description}</li>
-          <li key={`category-${sighting.id}`}>{sighting.category}</li>
-        </ul>
+      {sightingsArray.map((sighting, i) => (
+        <Link to={`/sightings/${sighting?.id}`}  key={`link-${i}`}>
+          <ul id="sighting-card" key={sighting?.id}>
+            {/* <li key={sighting.id}>{sighting.location}</li> */}
+            <li key={`date-${sighting?.id}`}>{sighting?.date}</li>
+            <li key={`title-${sighting?.id}`}>{sighting?.title}</li>
+            {/* <li key={`description-${sighting.id}`}>{sighting.description}</li> */}
+            <li key={`category-${sighting?.id}`}>{sighting?.category}</li>
+          </ul>
+        </Link>
       ))}
 
       <form onSubmit={createSighting} id="sighting-form">
         <input
-        onChange={(e) => {
-          setDate(e.target.value)
-        }}
-        type="date" value={date}/>
+          onChange={(e) => {
+            setDate(e.target.value)
+          }}
+          type="date" value={date} />
         <input
-        onChange={(e) => {
-          setTitle(e.target.value)
-        }}
-        type="text" value={title} placeholder="Title"/>
+          onChange={(e) => {
+            setTitle(e.target.value)
+          }}
+          type="text" value={title} placeholder="Title" />
         <textarea
-        onChange={(e) => {
-          setDescription(e.target.value)
-        }}
-        type="text" value={description} placeholder="description" />
+          onChange={(e) => {
+            setDescription(e.target.value)
+          }}
+          type="text" value={description} placeholder="description" />
         <select
-        onChange={(e) => {
-          setCategory(e.target.value)
-        }}
-        value={category}>
+          onChange={(e) => {
+            setCategory(e.target.value)
+          }}
+          value={category}>
           <option value="categories">Select Category</option>
           <option value="UFOs">UFOs</option>
           <option value="Ghosts">Ghosts</option>

@@ -52,8 +52,6 @@ def create_sighting():
         db.session.commit()
 
         return sighting.to_dict()
-    print(form.errors)
-    print(request.json)
     return {"errors": form.errors}, 400
 
 
@@ -76,7 +74,6 @@ def update_sighting(id):
             description=request.json["description"],
             category=request.json["category"]
         )
-        print(sighting.title)
 
         db.session.add(updated_sighting)
         db.session.commit()
@@ -95,7 +92,6 @@ def delete_sighting(id):
 
         db.session.delete(sighting)
         db.session.commit()
-        print(sighting)
 
         return {"found": f"sighting {id} deleted"}
     return {errors: "Sighting not found."}, 400

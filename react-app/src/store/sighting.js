@@ -1,9 +1,15 @@
-const GET_SIGHTING = "session/GET_SIGHTING";
+const GET_SIGHTINGS = "session/GET_SIGHTING";
 const CREATE_SIGHTING = "session/CREATE_SIGHTING"
+const GET_SINGLE_SIGHTING = "session/GET_SINGLE_SIGHTING"
 
 const getSightings = (sightings) => ({
-    type: GET_SIGHTING,
+    type: GET_SIGHTINGS,
     payload: sightings
+})
+
+const getSingleSighting = (sighting) => ({
+  type: GET_SINGLE_SIGHTING,
+  payload: sighting
 })
 
 const createSighting = (sighting) => ({
@@ -24,9 +30,20 @@ export const getAllSightings = () => async (dispatch) => {
 }
 
 
-export const createASighting = (payload) => async (dispatch) => {
-  console.log("INSIDE THUNK")
+export const getASighting = (sightingId) => async (dispatch) => {
+  const response = await fetch(`/api/sightings/${sightingId}`);
 
+  if (response.status >= 400) {
+      throw response
+  }
+
+  const data = await response.json();
+  dispatch(getSingleSighting(data));
+  return data;
+}
+
+
+export const createASighting = (payload) => async (dispatch) => {
   const response = await fetch(`/api/sightings/`, {
     method: "POST",
     headers: {
@@ -44,7 +61,6 @@ export const createASighting = (payload) => async (dispatch) => {
   const data = await response.json()
 
   if (data.errors) {
-    console.log('inside ERRORS')
     return data.errors
   } else {
     dispatch(createSighting(data))
@@ -54,7 +70,7 @@ export const createASighting = (payload) => async (dispatch) => {
 
 const sightingReducer = (state = {}, action) => {
     switch (action.type) {
-        case GET_SIGHTING:
+        case GET_SIGHTINGS:
           let sightings = {}
 
           action.payload.forEach(sighting => {
@@ -62,10 +78,9 @@ const sightingReducer = (state = {}, action) => {
           })
 
           return { ...state, ...sightings }
+        case GET_SINGLE_SIGHTING:
+            return {...state , ...action.payload}
         case CREATE_SIGHTING:
-          console.log("INSIDE REDUCER")
-          console.log(state)
-          console.log(action.payload)
           state[action.payload.id] = action.payload
           return {...state}
         default:
