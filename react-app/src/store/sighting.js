@@ -21,7 +21,14 @@ export const getAllSightings = () => async (dispatch) => {
 const sightingReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_SIGHTING:
-            return { ...state, sightings: action.sightings }
+          let sightings = {}
+
+          action.payload.forEach(sighting => {
+            sightings[sighting.id] = sighting
+          })
+
+          return { ...state, ...sightings }
+
         default:
             return state
     }

@@ -1,11 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
-import sighting from './sighting'
+import sightingReducer from './sighting'
 
 const rootReducer = combineReducers({
   session,
-  sighting
+  sightings: sightingReducer
 });
 
 
