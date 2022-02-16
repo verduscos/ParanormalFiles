@@ -8,6 +8,8 @@ const Sightings = () => {
   const dispatch = useDispatch()
   let sightings = useSelector(state => state.sightings);
   let sightingsArray = Object.values(sightings);
+  console.log("THIS IS THE ARRAY")
+  console.log(sightingsArray)
 
   const [date, setDate] = useState("")
   const [title, setTitle] = useState("")

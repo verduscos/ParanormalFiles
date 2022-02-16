@@ -79,7 +79,7 @@ const sightingReducer = (state = {}, action) => {
 
           return { ...state, ...sightings }
         case GET_SINGLE_SIGHTING:
-            return {...state , ...action.payload}
+            return {...state , singleSighting: action.payload}
         case CREATE_SIGHTING:
           state[action.payload.id] = action.payload
           return {...state}

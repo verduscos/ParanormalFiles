@@ -47,8 +47,9 @@ function App() {
           <Sightings />
         </Route>
         <Route path='/sightings/:sightingId' exact={true} >
-          {/* <h1>Specific Sightings</h1> */}
-          {/* <Sightings /> */}
+          <SingleSighting />
+        </Route>
+        <Route path='/sightings/new' exact={true} >
           <SingleSighting />
         </Route>
       </Switch>

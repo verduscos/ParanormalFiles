@@ -8,7 +8,7 @@ const SingleSighting = () => {
     const dispatch = useDispatch()
     const params = useParams()
     const { sightingId } = params
-    let sighting = useSelector(state => state.sightings)
+    let sighting = useSelector(state => state.sightings["singleSighting"])
 
 
     useEffect(() => {
@@ -17,10 +17,10 @@ const SingleSighting = () => {
 
     return (
         <>
-        <h1>{sighting.title}</h1>
-        <p>{sighting.date}</p>
-        <p>{sighting.category}</p>
-        <p>{sighting.description}</p>
+        <h1>{sighting?.title}</h1>
+        <p>{sighting?.date}</p>
+        <p>{sighting?.category}</p>
+        <p>{sighting?.description}</p>
         </>
     )
 }
