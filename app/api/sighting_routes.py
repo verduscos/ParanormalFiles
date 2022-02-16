@@ -87,8 +87,6 @@ def delete_sighting(id):
     """
     Delete a specific sighting.
     """
-
-    print("DELETE ROUTE HRERHERHEHRHERR")
     sighting = Sighting.query.get(id)
     if sighting:
 

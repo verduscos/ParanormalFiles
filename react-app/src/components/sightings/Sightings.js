@@ -6,11 +6,10 @@ import "./sightings.css"
 
 const Sightings = () => {
   const dispatch = useDispatch()
+  let currentUser = useSelector(state => state.session.user)
   let sightings = useSelector(state => state.sightings);
-  let test = useSelector(state => state.sightings.singleSighting);
   let sightingsArray = Object.values(sightings);
-  console.log("THIS IS THE ARRAY")
-  console.log(sightingsArray)
+
 
   const [date, setDate] = useState("")
   const [title, setTitle] = useState("")
@@ -21,9 +20,7 @@ const Sightings = () => {
     e.preventDefault()
 
     const payload = {
-      // TODO
-      // replace user id
-      user_id: "1",
+      user_id: currentUser.id,
       date: date,
       location: "testing",
       title: title,
@@ -37,7 +34,7 @@ const Sightings = () => {
 
   useEffect(() => {
     dispatch(sessionActions.getAllSightings())
-  }, [dispatch, test])
+  }, [dispatch])
 
 
   return (

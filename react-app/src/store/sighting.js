@@ -1,16 +1,10 @@
 const GET_SIGHTINGS = "session/GET_SIGHTING";
 const CREATE_SIGHTING = "session/CREATE_SIGHTING"
-const GET_SINGLE_SIGHTING = "session/GET_SINGLE_SIGHTING"
 const DELETE_SIGHTING = "session/DELETE_SIGHTING"
 
 const getSightings = (sightings) => ({
     type: GET_SIGHTINGS,
     payload: sightings
-})
-
-const getSingleSighting = (sighting) => ({
-  type: GET_SINGLE_SIGHTING,
-  payload: sighting
 })
 
 const createSighting = (sighting) => ({
@@ -33,19 +27,6 @@ export const getAllSightings = () => async (dispatch) => {
     const data = await response.json();
     dispatch(getSightings(data.sightings));
     return data;
-}
-
-
-export const getASighting = (sightingId) => async (dispatch) => {
-  const response = await fetch(`/api/sightings/${sightingId}`);
-
-  if (response.status >= 400) {
-      throw response
-  }
-
-  const data = await response.json();
-  dispatch(getSingleSighting(data));
-  return data;
 }
 
 
@@ -96,8 +77,6 @@ const sightingReducer = (state = {}, action) => {
           })
 
           return { ...state, ...sightings }
-        case GET_SINGLE_SIGHTING:
-            return {singleSighting: action.payload}
         case CREATE_SIGHTING:
           state[action.payload.id] = action.payload
           return {...state}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
@@ -9,9 +9,7 @@ const SingleSighting = () => {
     const history = useHistory()
     const params = useParams()
     const { sightingId } = params
-    // let sighting = useSelector(state => state.sightings["singleSighting"])
     let sighting = useSelector(state => state.sightings[sightingId])
-    console.log(sighting)
     let currentUser = useSelector(state => state.session.user)
 
     const handleDelete = (e) => {
