@@ -43,7 +43,7 @@ def create_sighting():
         sighting = Sighting(
             user_id=request.json["user_id"],
             date=request.json["date"],
-            location=request.json["location"],
+            # location=request.json["location"],
             title=request.json["title"],
             description=request.json["description"],
             category=request.json["category"]
@@ -52,6 +52,8 @@ def create_sighting():
         db.session.commit()
 
         return sighting.to_dict()
+    print(form.errors)
+    print(request.json)
     return {"errors": form.errors}, 400
 
 
