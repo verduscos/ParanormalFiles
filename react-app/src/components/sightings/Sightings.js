@@ -7,6 +7,7 @@ import "./sightings.css"
 const Sightings = () => {
   const dispatch = useDispatch()
   let sightings = useSelector(state => state.sightings);
+  let test = useSelector(state => state.sightings.singleSighting);
   let sightingsArray = Object.values(sightings);
   console.log("THIS IS THE ARRAY")
   console.log(sightingsArray)
@@ -36,7 +37,7 @@ const Sightings = () => {
 
   useEffect(() => {
     dispatch(sessionActions.getAllSightings())
-  }, [dispatch])
+  }, [dispatch, test])
 
 
   return (

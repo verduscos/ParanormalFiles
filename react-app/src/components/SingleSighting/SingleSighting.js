@@ -9,7 +9,9 @@ const SingleSighting = () => {
     const history = useHistory()
     const params = useParams()
     const { sightingId } = params
-    let sighting = useSelector(state => state.sightings["singleSighting"])
+    // let sighting = useSelector(state => state.sightings["singleSighting"])
+    let sighting = useSelector(state => state.sightings[sightingId])
+    console.log(sighting)
     let currentUser = useSelector(state => state.session.user)
 
     const handleDelete = (e) => {
@@ -21,7 +23,7 @@ const SingleSighting = () => {
 
 
     useEffect(() => {
-        dispatch(sessionActions.getASighting(sightingId))
+        dispatch(sessionActions.getAllSightings())
     }, [dispatch, sightingId])
 
     return (
