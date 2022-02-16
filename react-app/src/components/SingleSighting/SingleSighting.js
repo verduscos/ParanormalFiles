@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 
 
@@ -28,6 +28,10 @@ const SingleSighting = () => {
         <>
         { currentUser && currentUser?.id === sighting?.user_id ?
         <button onClick={handleDelete}>Delete</button> :
+        null
+        }
+        { currentUser && currentUser?.id === sighting?.user_id ?
+        <Link to={`/sightings/edit/${sighting.id}`}>Edit</Link> :
         null
         }
 

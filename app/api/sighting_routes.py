@@ -63,7 +63,7 @@ def update_sighting(id):
     form = SightingForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     sighting = Sighting.query.get(id)
-
+    print("WE HIT A API ROUTE")
     if form.validate_on_submit():
         updated_sighting = Sighting.update(
             sighting=sighting,

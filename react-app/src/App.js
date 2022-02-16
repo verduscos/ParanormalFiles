@@ -10,6 +10,7 @@ import User from './components/User';
 import Sightings from './components/sightings/Sightings';
 import SingleSighting from './components/SingleSighting/SingleSighting';
 import CreateForm from './components/CreateForm/CreateForm';
+import EditForm from './components/EditForm/EditForm';
 import { authenticate } from './store/session';
 
 function App() {
@@ -52,6 +53,9 @@ function App() {
         </Route>
         <Route path='/report' exact={true} >
           <CreateForm />
+        </Route>
+        <Route path='/sightings/edit/:sightingId' exact={true} >
+          <EditForm />
         </Route>
       </Switch>
     </BrowserRouter>
