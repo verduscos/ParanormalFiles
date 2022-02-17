@@ -67,8 +67,5 @@ def delete_comment(commentId):
         db.session.delete(comment)
         db.session.commit()
 
-        print("WE DELETED")
-        print(type(commentId))
         return {"delete": f"{commentId}"}
-    print("WE DID NOT")
     return {errors: "Sighting not found."}, 400
