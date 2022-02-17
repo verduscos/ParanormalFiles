@@ -24,6 +24,8 @@ const Comments = () => {
 
   useEffect(() => {
     dispatch(getALLComments(sightingId))
+    // dispatch(deleteAComment(id))
+
   }, [dispatch, sightingId])
 
   return (

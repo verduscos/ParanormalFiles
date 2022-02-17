@@ -64,8 +64,9 @@ export const deleteAComment = (payload) => async (dispatch) => {
   console.log(payload, "INSIDE THUNKERUKEKKRERR")
   if (response.ok) {
     const data = await response.json();
-    dispatch(deleteAComment(data))
-    return data
+    console.log(data)
+    dispatch(deleteComment(data))
+    return
   }
 }
 
@@ -82,11 +83,16 @@ const commentsReducer = (state = {}, action) => {
 
       return { ...state, ...comments}
     case DELETE_COMMENT:
-      let comments3 = {...state}
+      let comments3 = { ...state}
 
-      delete comments3.comment[action.payload.commentId]
+      console.log("THIS IS THE ACTION", action.payload)
+      // console.log(action.payload["delete"])
+      // console.log(typeof action.payload.delete)
+      console.log(comments3)
+      let id = (action.payload["delete"])
+      delete comments3[id]
 
-      return { ...comments3}
+      return comments3
     default:
       return state;
   }
