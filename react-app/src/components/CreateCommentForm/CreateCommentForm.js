@@ -8,6 +8,8 @@ const CreateCommentForm = () => {
     <>
       <form>
         <textarea></textarea>
+        <button>CANCEL</button>
+        <button>COMMENT</button>
       </form>
     </>
   )
