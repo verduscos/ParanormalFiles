@@ -50,9 +50,9 @@ def update_comment(commentId):
     if form.validate_on_submit():
         comment.comment = request.json["comment"]
         db.session.commit()
-        return{"update": "successful"}
+        return {"comment": comment.to_dict()}
+    return{"update": "success"}
 
-    return {"comment": comment.to_dict()}
 
 
 @comment_routes.route("<int:commentId>", methods=["DELETE"])

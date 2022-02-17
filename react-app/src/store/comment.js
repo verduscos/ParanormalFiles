@@ -105,11 +105,12 @@ const commentsReducer = (state = {}, action) => {
       comments[action.payload.comment.id] = action.payload.comment
 
       return { ...state, ...comments}
-    // case UPDATE_COMMENT:
-    //   let comments2 = { ...action.payload}
+    case UPDATE_COMMENT:
+      let comments2 = { ...action.payload}
     //   // console.log(comments2)
     //   // comments2[action.payload.comment_id] = action.payload.comment
-    //   return { ...state}
+      console.log(action.payload.comment.comment, "INSIDE UPDATE REDUCER")
+      return { ...comments2}
     case DELETE_COMMENT:
       let comments3 = { ...state}
 
