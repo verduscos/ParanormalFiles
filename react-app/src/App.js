@@ -9,7 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import Sightings from './components/sightings/Sightings';
 import SingleSighting from './components/SingleSighting/SingleSighting';
-import CreateForm from './components/CreateForm/CreateForm';
+import CreateSightingForm from './components/CreateSightingForm/CreateSightingForm'
 import EditForm from './components/EditForm/EditForm';
 import { authenticate } from './store/session';
 
@@ -52,7 +52,7 @@ function App() {
           <SingleSighting />
         </Route>
         <Route path='/report' exact={true} >
-          <CreateForm />
+          <CreateSightingForm />
         </Route>
         <Route path='/sightings/edit/:sightingId' exact={true} >
           <EditForm />

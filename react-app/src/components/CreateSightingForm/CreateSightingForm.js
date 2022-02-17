@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 
-const CreateForm = () => {
+const CreateSightingForm = () => {
   let currentUser = useSelector(state => state.session.user)
   const history = useHistory()
   const dispatch = useDispatch()
@@ -64,4 +64,4 @@ const CreateForm = () => {
 }
 
 
-export default CreateForm;
+export default CreateSightingForm;
