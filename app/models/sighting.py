@@ -36,5 +36,4 @@ class Sighting(db.Model):
     def update(sighting, **kwargs):
         for key, value in kwargs.items():
             setattr(sighting, key, value)
-
         return sighting

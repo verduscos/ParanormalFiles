@@ -21,3 +21,9 @@ class Comment(db.Model):
             "sighting_id": self.sighting_id,
             "updated_at": self.updated_at,
         }
+
+    @staticmethod
+    def update(comment, **kwargs):
+        for key, value in kwargs.items():
+            setattr(comment, key, value)
+        return comment

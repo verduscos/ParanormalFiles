@@ -11,7 +11,6 @@ def create_comment(sightingId):
     Create a comment for a specific sighting.
     """
     form = CommentForm()
-    print("SOMETHINGGGGGGG")
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         comment = Comment(
@@ -34,3 +33,20 @@ def get_comments(sightingId):
     comments = Comment.query.filter(Comment.sighting_id == sightingId).all()
 
     return {"comments": [comment.to_dict() for comment in comments]}
+
+
+@comment_routes.route("/<int:commentId>", methods=["PUT"])
+def update_comment(commentId):
+    """
+    Update a specific comment.
+    """
+    form = CommentForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    comment = Comment.query.get(commentId)
+
+    if form.validate_on_submit():
+        comment.comment = request.json["comment"]
+        db.session.commit()
+        return{"update": "successful"}
+
+    return {"comment": comment.to_dict()}
