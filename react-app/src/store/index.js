@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
 import sightingReducer from './sighting'
+import commentsReducer from './comment'
 
 const rootReducer = combineReducers({
   session,
-  sightings: sightingReducer
+  sightings: sightingReducer,
+  comments: commentsReducer
 });
 
 

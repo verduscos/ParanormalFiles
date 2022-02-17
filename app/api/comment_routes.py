@@ -1,6 +1,6 @@
 from flask import Blueprint, session, request
 from app.forms import CommentForm
-from app.models import Comment, db
+from app.models import Comment, User, db
 
 comment_routes = Blueprint("comments", __name__)
 
@@ -30,7 +30,10 @@ def get_comments(sightingId):
     """
     Get all comments for a specific sighting.
     """
-    comments = Comment.query.filter(Comment.sighting_id == sightingId).all()
+    comments = Comment.query.order_by(Comment.updated_at.desc()).join(User).filter(
+        Comment.sighting_id == sightingId
+    ).all()
+    # comments = Comment.query.filter(Comment.sighting_id == sightingId).all()
 
     return {"comments": [comment.to_dict() for comment in comments]}
 
