@@ -1,5 +1,6 @@
 const GET_COMMENTS = "session/GET_COMMENTS"
 const CREATE_COMMENT = "session/CREATE_COMMENT"
+const DELETE_COMMENT = "session/DELETE_ACTION"
 
 
 const getComments = (comments) => ({
@@ -10,6 +11,11 @@ const getComments = (comments) => ({
 const createComment = (comment) => ({
   type: CREATE_COMMENT,
   payload: comment
+})
+
+const deleteComment = (commentId) => ({
+  type: DELETE_COMMENT,
+  payload: commentId
 })
 
 
@@ -51,6 +57,18 @@ export const createAComment = (payload) => async (dispatch) => {
   }
 }
 
+export const deleteAComment = (payload) => async (dispatch) => {
+  const response = await fetch(`/api/comments/${payload}`, {
+    method: "DELETE",
+  })
+  console.log(payload, "INSIDE THUNKERUKEKKRERR")
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(deleteAComment(data))
+    return data
+  }
+}
+
 
 const commentsReducer = (state = {}, action) => {
   switch (action.type) {
@@ -63,6 +81,12 @@ const commentsReducer = (state = {}, action) => {
       comments[action.payload.comment.id] = action.payload.comment
 
       return { ...state, ...comments}
+    case DELETE_COMMENT:
+      let comments3 = {...state}
+
+      delete comments3.comment[action.payload.commentId]
+
+      return { ...comments3}
     default:
       return state;
   }
