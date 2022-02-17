@@ -97,20 +97,27 @@ export const deleteAComment = (payload) => async (dispatch) => {
 const commentsReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_COMMENTS:
-      let comments1 = { ...action.payload.comments}
+      let comments1 = {}
 
-      return { ...comments1 }
+      console.log(action.payload)
+
+      action.payload.comments.forEach(comment => {
+        comments1[comment.id] = comment
+      })
+
+      return { ...state, ...comments1 }
     case CREATE_COMMENT:
       let comments = {}
       comments[action.payload.comment.id] = action.payload.comment
 
       return { ...state, ...comments}
     case UPDATE_COMMENT:
-      let comments2 = { ...action.payload}
+      let comments2 = { ...state}
     //   // console.log(comments2)
     //   // comments2[action.payload.comment_id] = action.payload.comment
-      console.log(action.payload.comment.comment, "INSIDE UPDATE REDUCER")
-      return { ...comments2}
+      console.log(action.payload.comment, "INSIDE UPDATE REDUCER")
+        comments2[action.payload.comment.id] = action.payload.comment
+      return comments2
     case DELETE_COMMENT:
       let comments3 = { ...state}
 

@@ -63,28 +63,28 @@ const Comments = () => {
       <h3>Comments</h3>
       {commentsArray?.map(comment => (
         <ul key={`comment-${comment?.id}-card`}>
-          {/* <p key={`comment-${comment?.username}`}>{comment.username}</p> */}
+          <p key={`comment-${comment?.username}`}>{comment.username}</p>
           <p key={`comment-${comment?.id}`}>{comment?.comment}</p>
           {comment?.user_id === currentUser?.id ?
             <>
               <button
               onClick={() => {
                 displayEditForm(true)
-                setCommentId(comment.id)
+                setCommentId(comment?.id)
               }}
               >Edit</button>
               <button
-                value={comment.id}
+                value={comment?.id}
                 onClick={(e) => {
                   // setCommentId(e.target.value)
-                  deleteComment(e, comment.id)
+                  deleteComment(e, comment?.id)
                 }}
               >Delete</button>
             </>
             :
             null
           }
-          { comment.user_id === currentUser.id && editForm ? editComponent : null }
+          { comment.user_id === currentUser?.id && editForm ? editComponent : null }
         </ul>
       ))}
     </>
