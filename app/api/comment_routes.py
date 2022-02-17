@@ -50,3 +50,19 @@ def update_comment(commentId):
         return{"update": "successful"}
 
     return {"comment": comment.to_dict()}
+
+
+@comment_routes.route("<int:commentId>", methods=["DELETE"])
+def delete_comment(commentId):
+    """
+    Delete a specific comment.
+    """
+    comment = Comment.query.get(commentId)
+
+    if comment:
+
+        db.session.delete(comment)
+        db.session.commit()
+
+        return {"delete": f"{commentId}"}
+    return {errors: "Sighting not found."}, 400
