@@ -1,5 +1,6 @@
 const GET_COMMENTS = "session/GET_COMMENTS"
 const CREATE_COMMENT = "session/CREATE_COMMENT"
+const UPDATE_COMMENT = "session/UPDATE_COMMENT"
 const DELETE_COMMENT = "session/DELETE_ACTION"
 
 
@@ -10,6 +11,11 @@ const getComments = (comments) => ({
 
 const createComment = (comment) => ({
   type: CREATE_COMMENT,
+  payload: comment
+})
+
+const updateCommnet = (comment) => ({
+  type: UPDATE_COMMENT,
   payload: comment
 })
 
@@ -57,14 +63,31 @@ export const createAComment = (payload) => async (dispatch) => {
   }
 }
 
+export const updateAComment = (payload) => async (dispatch) => {
+  console.log(payload)
+  console.log("ABOVE IS PAYLOAD")
+  const response = await fetch(`/api/comments/${payload.comment_id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      comment_id: payload.comment_id,
+      comment: payload.comment
+    })
+  })
+
+  const data = await response.json()
+  dispatch(updateCommnet(data))
+}
+
 export const deleteAComment = (payload) => async (dispatch) => {
   const response = await fetch(`/api/comments/${payload}`, {
     method: "DELETE",
   })
-  console.log(payload, "INSIDE THUNKERUKEKKRERR")
+
   if (response.ok) {
     const data = await response.json();
-    console.log(data)
     dispatch(deleteComment(data))
     return
   }
@@ -82,13 +105,14 @@ const commentsReducer = (state = {}, action) => {
       comments[action.payload.comment.id] = action.payload.comment
 
       return { ...state, ...comments}
+    // case UPDATE_COMMENT:
+    //   let comments2 = { ...action.payload}
+    //   // console.log(comments2)
+    //   // comments2[action.payload.comment_id] = action.payload.comment
+    //   return { ...state}
     case DELETE_COMMENT:
       let comments3 = { ...state}
 
-      console.log("THIS IS THE ACTION", action.payload)
-      // console.log(action.payload["delete"])
-      // console.log(typeof action.payload.delete)
-      console.log(comments3)
       let id = (action.payload["delete"])
       delete comments3[id]
 
