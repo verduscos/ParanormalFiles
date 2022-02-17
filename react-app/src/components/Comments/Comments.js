@@ -10,7 +10,9 @@ const Comments = () => {
   const { sightingId } = params;
   let currentUser = useSelector(state => state.session.user)
   let comments = useSelector(state => state.comments)
-  let commentsArray = Object.values(comments);
+  let commentsArray;
+  commentsArray = Object.values(comments);
+
 
 
   useEffect(() => {
@@ -24,7 +26,7 @@ const Comments = () => {
         null
       }
       <h3>Comments</h3>
-      {commentsArray.map(comment => (
+      {commentsArray?.map(comment => (
         <ul key={`comment-${comment.id}-card`}>
           <p key={`comment-${comment.username}`}>{comment.username}</p>
           <p key={`comment-${comment.id}`}>{comment.comment}</p>

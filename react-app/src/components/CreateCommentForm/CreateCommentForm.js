@@ -12,7 +12,6 @@ const CreateCommentForm = () => {
   const dispatch = useDispatch();
   const [comment, setComment] = useState("");
 
-  console.log(comment)
 
   const createComment = (e) => {
     e.preventDefault();
@@ -23,10 +22,7 @@ const CreateCommentForm = () => {
       comment: comment
     }
 
-    console.log(payload);
-
     dispatch(createAComment(payload))
-    console.log("INSIDE BTN")
   }
 
   return (

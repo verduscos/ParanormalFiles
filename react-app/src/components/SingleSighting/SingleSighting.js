@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory, Link } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import Comments from "../Comments/Comments"
+import { getALLComments } from "../../store/comment";
+import CreateCommentForm from "../CreateCommentForm/CreateCommentForm";
 
 const SingleSighting = () => {
   const dispatch = useDispatch()
@@ -11,6 +13,11 @@ const SingleSighting = () => {
   const { sightingId } = params
   let sighting = useSelector(state => state.sightings[sightingId])
   let currentUser = useSelector(state => state.session.user)
+
+
+  useEffect(() => {
+    dispatch(getALLComments(sightingId))
+  }, [dispatch, sightingId])
 
 
   const handleDelete = (e) => {
