@@ -8,7 +8,7 @@ def seed_sighting_images():
 
     image2 = SightingImage(
         sighting_id=1,
-        image_url="imageUrlHere"
+        image_url="https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/alien.jpg"
     )
 
     image3 = SightingImage(
