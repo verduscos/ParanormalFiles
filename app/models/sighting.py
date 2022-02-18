@@ -31,6 +31,8 @@ class Sighting(db.Model):
             "image_url": self.sighting_images.image_url,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "username": self.user.username,
+
         }
 
     @staticmethod
