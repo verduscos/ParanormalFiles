@@ -28,6 +28,7 @@ class Sighting(db.Model):
             "title": self.title,
             "description": self.description,
             "category": self.category,
+            "image_url": self.sighting_images.image_url,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }

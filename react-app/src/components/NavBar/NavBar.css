@@ -1,0 +1,23 @@
+nav {
+  width: 100vw;
+  left: 0;
+  top: 0;
+  position: absolute;
+
+}
+
+#nav-ul {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 1200px;
+  padding: 0;
+}
+
+.nav-li {
+  list-style: none;
+}
+
+.nav-li > a {
+  text-decoration: none;
+}

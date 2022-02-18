@@ -12,6 +12,59 @@ const CreateSightingForm = () => {
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState("")
 
+
+
+
+
+
+
+
+  // TEST
+
+
+
+  const [image, setImage] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
+
+
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("image", image);
+
+
+      // aws uploads can be a bit slow—displaying
+      // some sort of loading message is a good idea
+      setImageLoading(true);
+
+      const res = await fetch(`/api/sightings/${2}/image`, {
+          method: "POST",
+          body: formData,
+      });
+      if (res.ok) {
+          await res.json();
+          setImageLoading(false);
+          history.push("/images");
+      }
+      else {
+          setImageLoading(false);
+          setImageLoading(false);
+          const data = await res.json();
+          // a real app would probably use more advanced
+          // error handling
+          console.log(data);
+      }
+  }
+
+  const updateImage = (e) => {
+      const file = e.target.files[0];
+      setImage(file);
+  }
+
+
+
+  // TEST
+
   const createSighting = (e) => {
     e.preventDefault()
 
@@ -59,6 +112,18 @@ const CreateSightingForm = () => {
         </select>
         <button>Report</button>
       </form>
+
+      {/* TESING */}
+      <h1>TEST IMAGE</h1>
+      <form onSubmit={handleSubmit}>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={updateImage}
+            />
+            <button type="submit">Submit</button>
+            {(imageLoading)&& <p>Loading...</p>}
+        </form>
     </>
   )
 }
