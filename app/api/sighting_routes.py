@@ -7,17 +7,6 @@ from app.s3_helpers import (
 sighting_routes = Blueprint("sightings", __name__)
 
 
-@sighting_routes.route("/test")
-def get_sightings_test():
-
-    # THIS IS NOT WORKING
-    sightings = Sighting.query.all()
-
-    print("TESTING")
-    print({"sightings": [sighting.to_dict() for sighting in sightings]})
-    return {"sightings": [sighting.to_dict() for sighting in sightings]}
-
-
 @sighting_routes.route("/")
 def get_sightings():
     """
@@ -25,7 +14,6 @@ def get_sightings():
     """
     sightings = Sighting.query.all()
 
-    print("TESTING")
     print({"sightings": [sighting.to_dict() for sighting in sightings]})
     return {"sightings": [sighting.to_dict() for sighting in sightings]}
 
@@ -66,7 +54,7 @@ def create_sighting():
         )
         db.session.add(sighting)
         db.session.commit()
-
+        print("WE ARE HERE")
         return sighting.to_dict()
     return {"errors": form.errors}, 400
 
@@ -133,7 +121,6 @@ def upload_image(sightingId):
         # if the dictionary doesn't have a url key
         # it means that there was an error when we tried to upload
         # so we send back that error message
-        print('HER')
         return upload, 400
 
     url = upload["url"]

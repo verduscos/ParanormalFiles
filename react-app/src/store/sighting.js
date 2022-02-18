@@ -57,6 +57,7 @@ export const createASighting = (payload) => async (dispatch) => {
     return data.errors
   } else {
     dispatch(createSighting(data))
+    return data
   }
 }
 

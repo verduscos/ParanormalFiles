@@ -57,6 +57,9 @@ function App() {
         <Route path='/sightings/edit/:sightingId' exact={true} >
           <EditForm />
         </Route>
+        <Route path='/sightings/:sightingId/images' exact={true} >
+          <CreateSightingForm />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 
 const CreateSightingForm = () => {
   let currentUser = useSelector(state => state.session.user)
+  const params = useParams();
+
+  const { sightingId } = params;
+
+  console.log(sightingId)
+
+  let test = useSelector(state => state.sightings)
+
+  let testarr = Object.keys(test)
+  let newId = parseInt(testarr[testarr.length - 1])
+  newId++
+  console.log(newId)
+
   const history = useHistory()
   const dispatch = useDispatch()
   const [date, setDate] = useState("")
@@ -14,9 +27,11 @@ const CreateSightingForm = () => {
 
 
 
+console.log("TEST HRE", test)
 
-
-
+useEffect(() => {
+  dispatch(sessionActions.getAllSightings())
+}, [dispatch])
 
 
   // TEST
@@ -37,7 +52,7 @@ const CreateSightingForm = () => {
       // some sort of loading message is a good idea
       setImageLoading(true);
 
-      const res = await fetch(`/api/sightings/${2}/image`, {
+      const res = await fetch(`/api/sightings/${newId}/image`, {
           method: "POST",
           body: formData,
       });
@@ -76,9 +91,14 @@ const CreateSightingForm = () => {
       description: description,
       category: category
     }
+    console.log('SAKLFJDSKL')
 
-    dispatch(sessionActions.createASighting(payload))
-    history.push("/")
+    dispatch(sessionActions.createASighting(payload)).catch(async (res) => {
+      const data = await res.json();
+      console.log("THIS IS THE DATA", data)
+
+    })
+    history.push(`/sightings/${newId}/images`)
   }
 
 
