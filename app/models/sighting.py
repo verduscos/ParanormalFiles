@@ -15,7 +15,7 @@ class Sighting(db.Model):
 
     user = db.relationship("User", back_populates="sightings")
     comments = db.relationship("Comment", cascade="all, delete", passive_deletes=True, back_populates="sighting")
-    sighting_images = db.relationship("SightingImage",  cascade="all, delete", passive_deletes=True, back_populates="sighting")
+    sighting_images = db.relationship("SightingImage",  cascade="all, delete", passive_deletes=True, back_populates="sighting", lazy='dynamic')
     likes = db.relationship("Like", cascade="all, delete", passive_deletes=True, back_populates="sighting")
 
 
@@ -28,7 +28,8 @@ class Sighting(db.Model):
             "title": self.title,
             "description": self.description,
             "category": self.category,
-            "image_url": self.sighting_images.image_url,
+            # "image_url": self.sighting_images.image_url,
+            "sighting_images": [sighting_image.image_url for sighting_image in self.sighting_images],
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "username": self.user.username,

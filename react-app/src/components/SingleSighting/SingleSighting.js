@@ -23,6 +23,7 @@ const SingleSighting = () => {
   const handleDelete = (e) => {
     e.preventDefault();
     dispatch(sessionActions.deleteASighting(sightingId))
+    console.log("DELETE CLICKED")
 
     history.push("/")
   }

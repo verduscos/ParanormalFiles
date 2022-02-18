@@ -11,9 +11,7 @@ sighting_routes = Blueprint("sightings", __name__)
 def get_sightings_test():
 
     # THIS IS NOT WORKING
-    sightings = Sighting.query.join(SightingImage).filter(
-      Sighting.id == 2
-    ).all()
+    sightings = Sighting.query.all()
 
     print("TESTING")
     print({"sightings": [sighting.to_dict() for sighting in sightings]})
@@ -25,10 +23,10 @@ def get_sightings():
     """
     Get all sightings in DB, will use on splash page.
     """
-    sightings = Sighting.query.join(SightingImage).filter(
-      Sighting.id == 2
-    ).all()
+    sightings = Sighting.query.all()
 
+    print("TESTING")
+    print({"sightings": [sighting.to_dict() for sighting in sightings]})
     return {"sightings": [sighting.to_dict() for sighting in sightings]}
 
 

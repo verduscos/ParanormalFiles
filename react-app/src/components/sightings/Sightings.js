@@ -26,6 +26,7 @@ const Sightings = () => {
             <li key={`title-${sighting?.id}`}>{sighting?.title}</li>
             {/* <li key={`description-${sighting.id}`}>{sighting.description}</li> */}
             <li key={`category-${sighting?.id}`}>{sighting?.category}</li>
+            <img src={sighting?.sighting_images[1]}></img>
           </ul>
         </Link>
       ))}
