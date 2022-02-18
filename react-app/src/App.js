@@ -10,6 +10,7 @@ import User from './components/User';
 import Sightings from './components/sightings/Sightings';
 import SingleSighting from './components/SingleSighting/SingleSighting';
 import CreateSightingForm from './components/CreateSightingForm/CreateSightingForm'
+import ImageForm from './components/ImageForm/ImageForm';
 import EditForm from './components/EditForm/EditForm';
 import { authenticate } from './store/session';
 
@@ -58,7 +59,7 @@ function App() {
           <EditForm />
         </Route>
         <Route path='/sightings/:sightingId/images' exact={true} >
-          <CreateSightingForm />
+          <ImageForm />
         </Route>
       </Switch>
     </BrowserRouter>
