@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
 import { AiOutlineHome, AiOutlineHeart } from 'react-icons/ai';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { IoAlbumsOutline } from 'react-icons/io5';

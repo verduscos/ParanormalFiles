@@ -9,7 +9,7 @@ function ProfileButton({ user }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  const [logoutToggle, setlogoutToggle] = useState(true);
+  // const [logoutToggle, setlogoutToggle] = useState(true);
 
 
   const openMenu = () => {
@@ -39,8 +39,8 @@ function ProfileButton({ user }) {
   return (
     <>
       <button id='user-icon' onClick={openMenu}>
-        { logoutToggle ? <i><BiLogOutCircle /></i> : null }
-        {/* <i><BiLogOutCircle /></i> */}
+        {/* { logoutToggle ? <i><BiLogOutCircle /></i> : null } */}
+        <i><BiLogOutCircle /></i>
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
