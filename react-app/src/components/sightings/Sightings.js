@@ -24,9 +24,8 @@ const Sightings = () => {
             {/* <li key={sighting.id}>{sighting.location}</li> */}
             <li key={`date-${sighting?.id}`}>{sighting?.date}</li>
             <li key={`title-${sighting?.id}`}>{sighting?.title}</li>
-            {/* <li key={`description-${sighting.id}`}>{sighting.description}</li> */}
             <li key={`category-${sighting?.id}`}>{sighting?.category}</li>
-            <img src={sighting?.sighting_images[0]}></img>
+            <img src={sighting?.sighting_images[0]} alt="sighting-img"></img>
           </ul>
         </Link>
       ))}

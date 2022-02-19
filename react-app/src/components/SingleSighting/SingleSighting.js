@@ -4,7 +4,7 @@ import { useParams, useHistory, Link } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import Comments from "../Comments/Comments"
 import { getALLComments } from "../../store/comment";
-import CreateCommentForm from "../CreateCommentForm/CreateCommentForm";
+
 
 const SingleSighting = () => {
   const dispatch = useDispatch()
@@ -23,7 +23,6 @@ const SingleSighting = () => {
   const handleDelete = (e) => {
     e.preventDefault();
     dispatch(sessionActions.deleteASighting(sightingId))
-    console.log("DELETE CLICKED")
 
     history.push("/")
   }

@@ -10,7 +10,6 @@ const UploadPrompt = () => {
   let sightings = useSelector(state => state.sightings);
   let sightingsArray = Object.keys(sightings)
   let newId = parseInt(sightingsArray[sightingsArray.length - 1])
-  console.log(newId)
 
   useEffect(() => {
     dispatch(sessionActions.getAllSightings())

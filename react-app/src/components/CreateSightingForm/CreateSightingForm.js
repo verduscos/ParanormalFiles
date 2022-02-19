@@ -5,13 +5,6 @@ import * as sessionActions from "../../store/sighting"
 
 const CreateSightingForm = () => {
   let currentUser = useSelector(state => state.session.user)
-
-  let test = useSelector(state => state.sightings)
-
-  let testarr = Object.keys(test)
-  let newId = parseInt(testarr[testarr.length - 1])
-  newId++
-
   const history = useHistory()
   const dispatch = useDispatch()
   const [date, setDate] = useState("")
