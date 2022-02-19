@@ -1,14 +1,17 @@
 import React from 'react';
+import { useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { AiOutlineHome, AiOutlineHeart } from 'react-icons/ai';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { IoAlbumsOutline } from 'react-icons/io5';
+import ProfileButton from './ProfileButton';
 import './Navigation.css'
 
 
 
 const NavbarLoggedIn = () => {
+  let currentUser = useSelector(state => state.session.user)
 
   return (
     <nav id="user-nav">
@@ -33,7 +36,8 @@ const NavbarLoggedIn = () => {
           </NavLink>
         </div>
         <div id="user-btn">
-          <LogoutButton />
+          {/* <LogoutButton /> */}
+          <ProfileButton user={currentUser} />
         </div>
       </div>
     </nav>

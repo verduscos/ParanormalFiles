@@ -48,9 +48,9 @@ useEffect(() => {
   console.log(errors)
   return (
     <>
-      {errors.map(error => {
+      {errors.map(error => (
         <p>{error}</p>
-      })}
+      ))}
       <form onSubmit={createSighting} id="sighting-form">
         <input
           onChange={(e) => {

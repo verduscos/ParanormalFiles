@@ -15,7 +15,7 @@ function SignupForm() {
         e.preventDefault();
         if (password === confirmPassword) {
             setErrors([]);
-            return dispatch(sessionActions.signUp({ email, username, password }))
+            return dispatch(sessionActions.signUp(username, email, password ))
                 .catch(async (res) => {
                     const data = await res.json();
                     if(data && data.errors) setErrors(data.errors);
