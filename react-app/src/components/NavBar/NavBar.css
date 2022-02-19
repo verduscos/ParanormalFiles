@@ -1,4 +1,4 @@
-nav {
+/* nav {
   width: 100vw;
   left: 0;
   top: 0;
@@ -20,4 +20,17 @@ nav {
 
 .nav-li > a {
   text-decoration: none;
+} */
+
+
+
+/* USER NAV */
+#user-nav {
+  background-color: red;
+  /* width: 100vw; */
+  left: 0;
+  top: 0;
+  width: 275px;
+  height: 100vh;
+  position: absolute;
 }

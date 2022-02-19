@@ -11,6 +11,8 @@ const CreateSightingForm = () => {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState("")
+  const [errors, setErrors] = useState([])
+
 
 useEffect(() => {
   dispatch(sessionActions.getAllSightings())
@@ -19,7 +21,7 @@ useEffect(() => {
 
   const createSighting = (e) => {
     e.preventDefault()
-
+    console.log("BUTTON CLICKED")
     const payload = {
       user_id: currentUser.id,
       date: date,
@@ -29,13 +31,26 @@ useEffect(() => {
       category: category
     }
 
-    dispatch(sessionActions.createASighting(payload))
-    history.push(`/upload`)
+    dispatch(sessionActions.createASighting(payload)).catch(async (res) => {
+      console.log("INSIDE DISPATCH")
+      const data = await res.json();
+      if (data.errors) {
+        console.log("FRONT", data.errors)
+        return setErrors(["askdfjlk"]);
+      }
+
+    })
+
+
+    //history.push(`/upload`)
   }
 
-
+  console.log(errors)
   return (
     <>
+      {errors.map(error => {
+        <p>{error}</p>
+      })}
       <form onSubmit={createSighting} id="sighting-form">
         <input
           onChange={(e) => {
