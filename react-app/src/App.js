@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
+// import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -14,6 +14,7 @@ import ImageForm from './components/ImageForm/ImageForm';
 import EditForm from './components/EditForm/EditForm';
 import UploadPrompt from './components/AddImagePrompt';
 import { authenticate } from './store/session';
+import Navigation from './components/Navigation';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -32,11 +33,19 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      {/* <NavBar /> */}
+      <Navigation isLoaded={loaded} />
+      {loaded && (
+        <Switch>
+          <Route path="/signup">
+            <SignUpForm />
+          </Route>
+        </Switch>
+      )}
       <Switch>
-        <Route path='/login' exact={true}>
+        {/* <Route path='/login' exact={true}>
           <LoginForm />
-        </Route>
+        </Route> */}
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
