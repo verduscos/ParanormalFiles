@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
+import "./CreateSightingForm.css"
 
 const CreateSightingForm = () => {
   let currentUser = useSelector(state => state.session.user)
@@ -14,14 +15,14 @@ const CreateSightingForm = () => {
   const [errors, setErrors] = useState([])
 
 
-useEffect(() => {
-  dispatch(sessionActions.getAllSightings())
-}, [dispatch])
+  useEffect(() => {
+    dispatch(sessionActions.getAllSightings())
+  }, [dispatch])
 
 
   const createSighting = (e) => {
     e.preventDefault()
-    console.log("BUTTON CLICKED")
+
     const payload = {
       user_id: currentUser.id,
       date: date,
@@ -47,27 +48,29 @@ useEffect(() => {
 
   console.log(errors)
   return (
-    <>
-      {errors.map(error => (
-        <p>{error}</p>
-      ))}
-      <form onSubmit={createSighting} id="sighting-form">
-        <input
+    <form onSubmit={createSighting} id="sighting-form">
+      <div id="form-inner">
+
+        <input className="sighting-inputs"
+
           onChange={(e) => {
             setDate(e.target.value)
           }}
           type="date" value={date} />
-        <input
+        <input className="sighting-inputs"
           onChange={(e) => {
             setTitle(e.target.value)
           }}
           type="text" value={title} placeholder="Title" />
         <textarea
+          id="textarea"
+          className="sighting-inputs"
           onChange={(e) => {
             setDescription(e.target.value)
           }}
-          type="text" value={description} placeholder="description" />
+          type="text" value={description} placeholder="Describe your sighting..." />
         <select
+          className="sighting-inputs"
           onChange={(e) => {
             setCategory(e.target.value)
           }}
@@ -77,9 +80,9 @@ useEffect(() => {
           <option value="Ghosts">Ghosts</option>
           <option value="Demons">Demons</option>
         </select>
-        <button>Report</button>
-      </form>
-    </>
+        <button className="sighting-inputs cursor">Report</button>
+      </div>
+    </form>
   )
 }
 

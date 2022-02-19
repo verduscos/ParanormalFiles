@@ -1,0 +1,33 @@
+#sighting-form {
+  width: 1050px;
+  margin-left: 275px;
+  /* background-color: red !important; */
+}
+
+#form-inner {
+  width: 500px;
+  /* background-color: gray; */
+  margin: 0 auto;
+
+}
+
+.sighting-inputs {
+  /* background-color: green; */
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  height: 50px;
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+#textarea {
+  height: 100px;
+  resize: none;
+}
+
+.cursor {
+  cursor: pointer;
+}
