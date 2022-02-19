@@ -1,12 +1,15 @@
-/* nav {
+#nav-guest {
   width: 100vw;
   left: 0;
   top: 0;
+  height: 75px;
   position: absolute;
-
+  background-color: #4A5259;
+  display: flex;
+  align-items: center;
 }
 
-#nav-ul {
+#nav-ul-guest {
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
@@ -20,7 +23,9 @@
 
 .nav-li > a {
   text-decoration: none;
-} */
+  color: white;
+
+}
 
 
 

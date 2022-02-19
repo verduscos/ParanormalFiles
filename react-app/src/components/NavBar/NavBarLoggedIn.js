@@ -4,6 +4,8 @@ import LogoutButton from '../auth/LogoutButton';
 import { AiOutlineHome, AiOutlineHeart } from 'react-icons/ai';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { IoAlbumsOutline } from 'react-icons/io5';
+import { login } from '../../store/session';
+
 import { BiLogOutCircle } from 'react-icons/bi';
 
 
