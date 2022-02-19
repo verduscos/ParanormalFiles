@@ -4,6 +4,7 @@ import { useParams, useHistory, Link } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import Comments from "../Comments/Comments"
 import { getALLComments } from "../../store/comment";
+import "./SingleSighting.css"
 
 
 const SingleSighting = () => {
@@ -33,23 +34,27 @@ const SingleSighting = () => {
   }, [dispatch])
 
   return (
-    <>
-      {currentUser && currentUser?.id === sighting?.user_id ?
-        <button onClick={handleDelete}>Delete</button> :
-        null
-      }
-      {currentUser && currentUser?.id === sighting?.user_id ?
-        <Link to={`/sightings/edit/${sighting.id}`}>Edit</Link> :
-        null
-      }
+    <div id="sighting-comp-container">
+      <div id="article-container">
 
-      <h1>{sighting?.title}</h1>
-      <p>{sighting?.date}</p>
-      <p>{sighting?.category}</p>
-      <p>{sighting?.description}</p>
+        {currentUser && currentUser?.id === sighting?.user_id ?
+          <button onClick={handleDelete}>Delete</button> :
+          null
+        }
+        {currentUser && currentUser?.id === sighting?.user_id ?
+          <Link to={`/sightings/edit/${sighting.id}`}>Edit</Link> :
+          null
+        }
 
-      <Comments />
-    </>
+        {/* <p>{sighting?.date}</p> */}
+        {/* <p>{sighting?.category}</p> */}
+        <h1 id="article-title">{sighting?.title}</h1>
+        <img src={sighting?.sighting_images[0]} id="sighting-img"></img>
+        <p id="article-body">{sighting?.description}</p>
+
+        <Comments />
+      </div>
+    </div>
   )
 }
 
