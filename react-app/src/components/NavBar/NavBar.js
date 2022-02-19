@@ -23,7 +23,12 @@ const NavBar = () => {
         </li>
         { currentUser
         ?
-        <LogoutButton />
+        <>
+          <NavLink to='/report' exact={true} activeClassName='active'>
+            Report
+          </NavLink>
+          <LogoutButton />
+        </>
         :
         <>
         <li className="nav-li">

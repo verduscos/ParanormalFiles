@@ -12,6 +12,7 @@ import SingleSighting from './components/SingleSighting/SingleSighting';
 import CreateSightingForm from './components/CreateSightingForm/CreateSightingForm'
 import ImageForm from './components/ImageForm/ImageForm';
 import EditForm from './components/EditForm/EditForm';
+import UploadPrompt from './components/AddImagePrompt';
 import { authenticate } from './store/session';
 
 function App() {
@@ -60,6 +61,9 @@ function App() {
         </Route>
         <Route path='/sightings/:sightingId/images' exact={true} >
           <ImageForm />
+        </Route>
+        <Route path='/upload' exact={true} >
+          <UploadPrompt />
         </Route>
       </Switch>
     </BrowserRouter>
