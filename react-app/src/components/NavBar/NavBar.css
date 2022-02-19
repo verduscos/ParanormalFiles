@@ -26,11 +26,59 @@
 
 /* USER NAV */
 #user-nav {
-  background-color: red;
-  /* width: 100vw; */
+  background-color: #4A5259;
   left: 0;
   top: 0;
   width: 275px;
   height: 100vh;
   position: absolute;
+}
+
+
+#nav-link-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 23px;
+  justify-content: space-between;
+  height: 100vh;
+  width: 100px;
+  margin-left: auto;
+}
+
+#user-site-nav-links {
+  display: flex;
+  flex-direction: column;
+}
+
+#user-site-nav-links > a {
+  color:white;
+  font-size: 25px;
+  margin: 13px 0;
+}
+
+#report-link {
+  border-top: 1px solid rgba(255, 255, 255, 0.459);
+  padding-top: 26px !important;
+}
+
+
+#user-btn {
+  padding-bottom: 15px;
+}
+
+#home {
+  padding-top: 15px;
+}
+
+#home > a {
+  color: white;
+}
+
+#logoutBtn {
+  border: none;
+  color:white;
+  font-size: 25px;
+  background-color: transparent;
+  cursor: pointer;
 }
