@@ -1,9 +1,14 @@
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
 #nav-guest {
   width: 100vw;
   left: 0;
   top: 0;
   height: 75px;
-  position: absolute;
+  position: sticky;
   background-color: #4A5259;
   display: flex;
   align-items: center;
@@ -86,4 +91,29 @@
   font-size: 25px;
   background-color: transparent;
   cursor: pointer;
+}
+
+
+
+/* NAV LOGIN/SIGNUP */
+#signup {
+  color: white;
+  background-color: black;
+  border:none;
+  outline: none;
+  padding: 3px;
+  border-radius: 99em;
+  margin: 0 10px;
+  height: 35px;
+  width: 100px;
+  cursor: pointer;
+}
+
+#signin {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  margin: 0 15px;
 }
