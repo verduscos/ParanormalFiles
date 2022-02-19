@@ -32,14 +32,13 @@ function App() {
     <BrowserRouter>
       <Navigation isLoaded={loaded} />
       <Switch>
-        <ProtectedRoute path='/users' exact={true} >
+        {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        </ProtectedRoute> */}
+        {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
           <Sightings />
         </Route>
         <Route path='/sightings/:sightingId' exact={true} >

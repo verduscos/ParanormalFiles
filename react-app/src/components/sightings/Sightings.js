@@ -16,20 +16,34 @@ const Sightings = () => {
 
 
   return (
-    <>
-      <h1>Hello, World!</h1>
+    <div id="sightings-container">
       {sightingsArray.map((sighting, i) => (
-        <Link to={`/sightings/${sighting?.id}`} key={`link-${i}`}>
-          <ul id="sighting-card" key={sighting?.id}>
-            {/* <li key={sighting.id}>{sighting.location}</li> */}
-            <li key={`date-${sighting?.id}`}>{sighting?.date}</li>
-            <li key={`title-${sighting?.id}`}>{sighting?.title}</li>
-            <li key={`category-${sighting?.id}`}>{sighting?.category}</li>
-            <img src={sighting?.sighting_images[0]} alt="sighting-img"></img>
-          </ul>
-        </Link>
+        <ul id="sighting-card" key={sighting?.id}>
+          {/* <li key={sighting.id}>{sighting.location}</li> */}
+          <div>
+            <li className="card-r1" key={`date-${sighting?.id}`}>
+              <p>{sighting?.username}</p>
+              {/* TODO
+                  FIX DATE FORMAT
+              */}
+              <p>{sighting?.date}</p>
+            </li>
+            <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}`}>
+              <div key={`title-${sighting?.id}`}>
+                <h2 className="card-text">{sighting.title}</h2>
+                <p className="card-text card-story">{sighting.description}</p>
+              </div>
+            </Link>
+            <Link className="link" to={`/sightings/${sighting?.category}`}>
+              <li className="category-link" key={`category-${sighting?.id}`} >{sighting?.category}</li>
+            </Link>
+          </div>
+          <Link className="link card-img" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
+            <img className="card-img" src={sighting?.sighting_images[0]} alt="sighting-img"></img>
+          </Link>
+        </ul>
       ))}
-    </>
+    </div>
   )
 }
 

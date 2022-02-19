@@ -1,16 +1,76 @@
+#sightings-container {
+  border-top: 1px solid black;
+  margin-top: 80px;
+  width: 1050px;
+  margin-left: 275px;
+  /* from Medium */
+  font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
 #sighting-card {
-    border: 1px solid black;
+    border-bottom: 1px solid black;
     padding: 15px;
-    width: 500px;
+    width: 700px;
+    margin: 0 auto;
+    display: flex;
+    text-decoration: none;
+}
+
+#sighting-card > div > li {
+  list-style-type: none;
 }
 
 #sighting-form {
-    background-color: gray;
-    width: 500px;
     height: 750px;
     display: flex;
     flex-direction: column;
     position: absolute;
     right: 30%;
     top:10%;
+}
+
+
+/* NEW? */
+.card-r1 {
+  display: flex;
+}
+
+.card-r1  > * {
+  margin: 0 5px;
+
+}
+
+.card-img {
+  height: 125px;
+  align-self: center;
+  margin-left: auto;
+}
+
+.card-story {
+  display: -webkit-box;
+  width: 500px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+
+.link {
+  text-decoration: none;
+}
+
+.link > li {
+  list-style-type: none;
+}
+
+.category-link {
+  background-color: rgba(0, 0, 0, 0.349);
+  width: 75px;
+  text-align: center;
+  border-radius: 50px;
+  padding: 2px;
+  color: white;
+}
+
+.card-text {
+  color:black
 }
