@@ -1,130 +1,89 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100&family=Roboto&display=swap');
-
-#nav {
-    background-color: #292929;
-    color: rgb(235, 235, 235);
-    display:flex;
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: bold;
-    height: 75px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 10;
+#nav-guest {
+  width: 100vw;
+  left: 0;
+  top: 0;
+  height: 75px;
+  position: absolute;
+  background-color: #4A5259;
+  display: flex;
+  align-items: center;
 }
 
-#nav-inner-container {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    text-decoration: none;
-    list-style: none;
-    width: 70%;
-
+#nav-ul-guest {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 1200px;
+  padding: 0;
 }
 
-li {
-    align-self:center;
+.nav-li {
+  list-style: none;
+}
+
+.nav-li > a {
+  text-decoration: none;
+  color: white;
 
 }
 
-li > * {
-    display: inline-block;
-    margin-right: 30px;
-    text-decoration: none;
-    color: rgb(235, 235, 235);
 
-}
 
-.underline {
-    transition-duration: .5s;
-}
-
-.focus-color:hover{
-    color: rgb(184, 184, 184);
+/* USER NAV */
+#user-nav {
+  background-color: #4A5259;
+  left: 0;
+  top: 0;
+  width: 275px;
+  height: 100vh;
+  position: absolute;
 }
 
 
-/* bandaid - need to find what is causing margin */
-#bandaid {
-    margin-left: -40px;
+#nav-link-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 23px;
+  justify-content: space-between;
+  height: 100vh;
+  width: 100px;
+  margin-left: auto;
 }
 
-#title {
-    margin-right:50px;
-    font-size: 23px;
+#user-site-nav-links {
+  display: flex;
+  flex-direction: column;
 }
 
-#signupButt {
-    color: rgb(235, 235, 235);
-    font-weight: bold;
-    border: 1px solid rgb(235, 235, 235);
-    font-size:16px;
-    background-color: transparent;
-    padding: 5px;
-    width: 100px;
-    border-radius: 3px;
-    cursor: pointer;
-    transition-duration: .2s;
-    /* color: blue; */
+#user-site-nav-links > a {
+  color:white;
+  font-size: 25px;
+  margin: 13px 0;
 }
 
-#loginButt {
-    transition-duration: .2s;
-    color: #292929;
-    width: 100px;
-    padding: 5px;
-    text-align: center;
-    border-radius: 3px;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    border:solid 1px transparent;
+#report-link {
+  border-top: 1px solid rgba(255, 255, 255, 0.459);
+  padding-top: 26px !important;
 }
 
-#signupButt:hover
-{
-    background-color: rgb(235, 235, 235);
-    color: #292929;
 
-}
-#loginButt:hover {
-    /* border: solid 1px rgb(180, 180, 180); */
-    color: rgb(78, 78, 78);
-    /* background-color: #292929; */
+#user-btn {
+  padding-bottom: 15px;
 }
 
-#demo {
-    color: rgb(235, 235, 235);
-    font-weight: bold;
-    border: 1px solid rgb(235, 235, 235);
-    font-size:16px;
-    background-color: transparent;
-    padding: 5px;
-    width: 100px;
-    border-radius: 3px;
-    cursor: pointer;
-    transition-duration: .2s;
+#home {
+  padding-top: 15px;
 }
 
-#demo:hover
-{
-    background-color: rgb(235, 235, 235);
-    color: #292929;
-
+#home > a {
+  color: white;
 }
 
-#user-icon {
-    border: none;
-    background-color: transparent;
-    font-size: 30px;
-    cursor: pointer;
-    transition-duration: .2s;
-    float: center;
-}
-#user-icon:hover {
-    color: rgb(194, 194, 194)
+#logoutBtn {
+  border: none;
+  color:white;
+  font-size: 25px;
+  background-color: transparent;
+  cursor: pointer;
 }
