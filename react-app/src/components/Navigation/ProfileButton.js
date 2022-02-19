@@ -43,7 +43,7 @@ function ProfileButton({ user }) {
         <i><BiLogOutCircle /></i>
       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
+        <ul id="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li>
