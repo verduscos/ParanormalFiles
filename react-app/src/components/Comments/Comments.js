@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getALLComments, deleteAComment, updateAComment } from "../../store/comment";
 import CreateCommentForm from "../CreateCommentForm/CreateCommentForm";
+import "./Comments.css"
 
 const Comments = () => {
   const dispatch = useDispatch();
@@ -60,7 +61,11 @@ const Comments = () => {
         <CreateCommentForm /> :
         null
       }
-      <h3>Comments</h3>
+      <div id="comment-header">
+        <h3>Comments </h3>
+        <p id="comment-count">{commentsArray.length}</p>
+      </div>
+
       {commentsArray?.map(comment => (
         <ul key={`comment-${comment?.id}-card`}>
           <p key={`comment-${comment?.username}`}>{comment.username}</p>
@@ -68,10 +73,10 @@ const Comments = () => {
           {comment?.user_id === currentUser?.id ?
             <>
               <button
-              onClick={() => {
-                displayEditForm(true)
-                setCommentId(comment?.id)
-              }}
+                onClick={() => {
+                  displayEditForm(true)
+                  setCommentId(comment?.id)
+                }}
               >Edit</button>
               <button
                 value={comment?.id}
@@ -84,7 +89,7 @@ const Comments = () => {
             :
             null
           }
-          { comment.user_id === currentUser?.id && editForm ? editComponent : null }
+          {comment.user_id === currentUser?.id && editForm ? editComponent : null}
         </ul>
       ))}
     </>
