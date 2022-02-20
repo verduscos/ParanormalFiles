@@ -30,7 +30,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navigation isLoaded={loaded} />
       <Switch>
         {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
@@ -39,6 +38,7 @@ function App() {
           <User />
         </ProtectedRoute> */}
         <Route path='/' exact={true} >
+          <Navigation isLoaded={loaded} />
           <Sightings />
         </Route>
         <Route path='/sightings/:sightingId' exact={true} >
