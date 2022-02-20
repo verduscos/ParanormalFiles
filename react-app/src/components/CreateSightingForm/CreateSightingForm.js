@@ -9,7 +9,6 @@ const CreateSightingForm = () => {
   let currentUser = useSelector(state => state.session.user)
   const history = useHistory()
   const dispatch = useDispatch()
-  const [date, setDate] = useState("")
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState("")
@@ -26,40 +25,30 @@ const CreateSightingForm = () => {
 
     const payload = {
       user_id: currentUser.id,
-      date: date,
-      location: "testing",
       title: title,
+      date: 'nada',
+      location: "nada",
       description: description,
       category: category
     }
 
     const data = await dispatch(sessionActions.createASighting(payload));
-    if (data) {
-      console.log(data)
-      setErrors(data)
-      console.log("INSIDE DATA")
+    if (data.errors) {
+      setErrors(data.errors)
+    } else {
+      history.push(`/upload`)
     }
 
-    // dispatch(sessionActions.createASighting(payload)).catch(async (res) => {
-    //   const data = await res.json();
-    //   if (data.errors) {
-    //     console.log("FRONT", data.errors)
-    //     return setErrors([data.errors]);
-      // }
-
-    // })
 
 
-    //history.push(`/upload`)
   }
 
-  console.log(errors)
   return (
     <>
     <CreateNav />
       <form onSubmit={createSighting} id="sighting-form">
         <div id="form-inner">
-          {errors.map(error => (
+          {errors?.map(error => (
             <p>{error.split(":")[1]}</p>
           ))}
 
@@ -94,12 +83,12 @@ const CreateSightingForm = () => {
             <option value="UFOs">UFOs</option>
             <option value="Ghosts">Ghosts</option>
             <option value="Demons">Demons</option>
-            <option value="Demons">Angels</option>
-            <option value="Demons">Reincarnation</option>
-            <option value="Demons">Monsters</option>
-            <option value="Demons">Mandela Effect</option>
-            <option value="Demons">Time Travel</option>
-            <option value="Demons">Synchronicity</option>
+            <option value="Angels">Angels</option>
+            <option value="Reincarnation">Reincarnation</option>
+            <option value="Monsters">Monsters</option>
+            <option value="Mandela Effect">Mandela Effect</option>
+            <option value="Time Travel">Time Travel</option>
+            <option value="Synchronicity">Synchronicity</option>
           </select>
           <button id="post-form-btn" className="sighting-inputs cursor">Post</button>
         </div>

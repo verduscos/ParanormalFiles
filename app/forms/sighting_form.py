@@ -8,10 +8,11 @@ class SightingForm(FlaskForm):
         "Date"
     )
     location = StringField(
-        "Date",
-        validators=[
-            Length(min=5, max=25 , message="Please provide valid coordinates")
-        ]
+        "Date"
+        # ,
+        # validators=[
+        #     Length(min=5, max=25 , message="Please provide valid coordinates")
+        # ]
     )
     title = StringField(
         "Title",

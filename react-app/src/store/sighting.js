@@ -56,7 +56,7 @@ export const createASighting = (payload) => async (dispatch) => {
   console.log("NO ERROR")
   if (data.errors) {
     console.log("INSIDE THUINK ERROR")
-    return data.errors
+    return data
   } else {
     dispatch(createSighting(data))
     return data
