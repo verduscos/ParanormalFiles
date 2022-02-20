@@ -40,9 +40,11 @@
 }
 
 .card-img {
-  height: 125px;
+  height: 200px;
+  width: 200px;
   align-self: center;
   margin-left: auto;
+  object-fit: cover;
 }
 
 .card-story {

@@ -8,7 +8,7 @@ class Sighting(db.Model):
     date = db.Column(db.String(15), nullable=False)
     location = db.Column(db.String(50), nullable=True)
     title = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(2000), nullable=False)
+    description = db.Column(db.String(5000), nullable=False)
     category = db.Column(db.String(50), nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
     updated_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
