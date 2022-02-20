@@ -5,11 +5,7 @@ from wtforms.validators import DataRequired, Length
 
 class SightingForm(FlaskForm):
     date = StringField(
-        "Date",
-        validators=[
-            DataRequired("Please provide a date."),
-            Length(min=10, max=10, message="Invalid Date")
-        ]
+        "Date"
     )
     location = StringField(
         "Date",
@@ -20,14 +16,14 @@ class SightingForm(FlaskForm):
     title = StringField(
         "Title",
         validators=[
-            DataRequired("Please provice a title."),
+            DataRequired("Provide a title."),
             Length(min=5, max=100, message="Title must be between 5 - 100 characters.")
         ]
     )
     description = StringField(
         "Description",
         validators=[
-            DataRequired("Please provide a description."),
+            DataRequired("Story cannot be empty"),
             Length(min=5, max=2000, message="Description must be between 5 - 2000 characters.")
         ]
     )

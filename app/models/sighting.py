@@ -5,7 +5,7 @@ class Sighting(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    date = db.Column(db.String(15), nullable=False)
+    date = db.Column(db.String(15), nullable=True)
     location = db.Column(db.String(50), nullable=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(5000), nullable=False)

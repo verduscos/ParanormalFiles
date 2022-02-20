@@ -21,7 +21,7 @@ const CreateSightingForm = () => {
   }, [dispatch])
 
 
-  const createSighting = (e) => {
+  const createSighting = async (e) => {
     e.preventDefault()
 
     const payload = {
@@ -33,14 +33,21 @@ const CreateSightingForm = () => {
       category: category
     }
 
-    dispatch(sessionActions.createASighting(payload)).catch(async (res) => {
-      const data = await res.json();
-      if (data.errors) {
-        console.log("FRONT", data.errors)
-        return setErrors([data.errors]);
-      }
+    const data = await dispatch(sessionActions.createASighting(payload));
+    if (data) {
+      console.log(data)
+      setErrors(data)
+      console.log("INSIDE DATA")
+    }
 
-    })
+    // dispatch(sessionActions.createASighting(payload)).catch(async (res) => {
+    //   const data = await res.json();
+    //   if (data.errors) {
+    //     console.log("FRONT", data.errors)
+    //     return setErrors([data.errors]);
+      // }
+
+    // })
 
 
     //history.push(`/upload`)
@@ -52,6 +59,9 @@ const CreateSightingForm = () => {
     <CreateNav />
       <form onSubmit={createSighting} id="sighting-form">
         <div id="form-inner">
+          {errors.map(error => (
+            <p>{error.split(":")[1]}</p>
+          ))}
 
           {/* <input className="sighting-inputs"
 
