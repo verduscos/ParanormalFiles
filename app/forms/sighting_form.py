@@ -4,16 +4,16 @@ from wtforms.validators import DataRequired, Length
 
 
 class SightingForm(FlaskForm):
-    date = StringField(
-        "Date"
-    )
-    location = StringField(
-        "Date"
-        # ,
-        # validators=[
-        #     Length(min=5, max=25 , message="Please provide valid coordinates")
-        # ]
-    )
+    # date = StringField(
+    #     "Date"
+    # )
+    # location = StringField(
+    #     "Location"
+    #     # ,
+    #     # validators=[
+    #     #     Length(min=5, max=25 , message="Please provide valid coordinates")
+    #     # ]
+    # )
     title = StringField(
         "Title",
         validators=[
@@ -33,4 +33,8 @@ class SightingForm(FlaskForm):
         validators=[
             DataRequired("Please choose a category")
         ]
+    )
+
+    image_url = StringField(
+      "Image"
     )

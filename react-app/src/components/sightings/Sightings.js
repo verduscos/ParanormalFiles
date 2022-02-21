@@ -41,7 +41,7 @@ const Sightings = () => {
               </Link>
             </div>
             <Link className="link card-img" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
-              <img className="card-img" src={sighting?.sighting_images[0]} alt="sighting-img"></img>
+              <img className="card-img" src={sighting?.image_url} alt="sighting-img"></img>
             </Link>
           </ul>
         ))}

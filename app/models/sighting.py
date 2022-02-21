@@ -5,11 +5,12 @@ class Sighting(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    date = db.Column(db.String(15), nullable=True)
-    location = db.Column(db.String(50), nullable=True)
+    # date = db.Column(db.String(15), nullable=True)
+    # location = db.Column(db.String(50), nullable=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(5000), nullable=False)
     category = db.Column(db.String(50), nullable=False)
+    image_url = db.Column(db.String(1000), nullable=True)
     created_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
     updated_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
 
@@ -23,13 +24,14 @@ class Sighting(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "date" : self.date,
-            "location": self.location,
+            # "date" : self.date,
+            # "location": self.location,
             "title": self.title,
             "description": self.description,
             "category": self.category,
-            # "image_url": self.sighting_images.image_url,
-            "sighting_images": [sighting_image.image_url for sighting_image in self.sighting_images],
+            "image_url": self.image_url,
+            # No longer using sighting_images for capstone
+            # "sighting_images": [sighting_image.image_url for sighting_image in self.sighting_images],
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "username": self.user.username,
