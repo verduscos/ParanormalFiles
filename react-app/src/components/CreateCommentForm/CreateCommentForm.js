@@ -26,7 +26,6 @@ const CreateCommentForm = () => {
 
     const data =  await dispatch(createAComment(payload));
     if (data) {
-      console.log(data)
       setErrors(data.errors)
     } else {
       return

@@ -52,10 +52,7 @@ export const createASighting = (payload) => async (dispatch) => {
     })
   })
   const data = await response.json()
-  console.log(data)
-  console.log("NO ERROR")
   if (data.errors) {
-    console.log("INSIDE THUINK ERROR")
     return data
   } else {
     dispatch(createSighting(data))
@@ -64,7 +61,6 @@ export const createASighting = (payload) => async (dispatch) => {
 }
 
 export const updateSighting = (payload) => async (dispatch) => {
-  console.log("taklaklfsdjkls")
   const response = await fetch(`/api/sightings/${payload.sighting_id}`, {
     method: "PUT",
     headers: {
@@ -79,19 +75,14 @@ export const updateSighting = (payload) => async (dispatch) => {
       location: payload.location
     })
   })
-  console.log("taklaklfsdjkls")
 
   const data = await response.json()
-  console.log("INSID THUNK")
   if (data.errors) {
-    console.log(data)
     return data
   } else {
     dispatch(editSighting(data))
     return data
   }
-  console.log("taklaklfsdjkls")
-
 }
 
 

@@ -19,9 +19,6 @@ const Comments = () => {
 
   const currentUser = useSelector(state => state.session.user)
   let comments = useSelector(state => state.comments)
-  // let test = useSelector(state => state.comments)
-  // console.log(Object.values(test.comments))
-  // console.log(comments)
   let commentsArray = Object.values(comments);
 
   const deleteComment = (e, id) => {
@@ -70,7 +67,7 @@ const Comments = () => {
 
 
   useEffect(() => {
-    dispatch(getALLComments(sightingId, currentUser?.id))
+    dispatch(getALLComments(sightingId))
 
   }, [dispatch, sightingId])
 

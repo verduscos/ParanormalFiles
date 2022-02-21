@@ -34,17 +34,15 @@ export const getALLComments = (sightingId, userId) => async (dispatch) => {
   }
 
   const data = await response.json();
-  // console.log("INSIDE COMMENT THUNK")
-  // console.log(data)
+  //  might allow users to leave multiple comments
+  // let userLeftComment = false;
+  // data.comments.forEach(comment => {
+  //   if (comment.user_id === userId) {
+  //     userLeftComment = true
+  //   }
+  // })
 
-  let userLeftComment;
-  data.comments.forEach(comment => {
-    if (comment.user_id === userId) {
-      userLeftComment = true
-    }
-  })
-
-  dispatch(getComments(data, userLeftComment));
+  dispatch(getComments(data));
   return data;
 
 }
@@ -109,9 +107,6 @@ const commentsReducer = (state = {}, action) => {
       action.payload.comments.forEach(comment => {
         comments1[comment.id] = comment
       })
-      console.log(action.userLeftComment)
-      console.log("reducer above")
-      // userLeftComment: action.userLeftComment
 
       return {  ...state,  ...comments1}
     case CREATE_COMMENT:

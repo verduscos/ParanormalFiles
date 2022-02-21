@@ -26,7 +26,6 @@ def get_sightings():
     """
     sightings = Sighting.query.all()
 
-    print({"sightings": [sighting.to_dict() for sighting in sightings]})
     return {"sightings": [sighting.to_dict() for sighting in sightings]}
 
 
@@ -66,7 +65,6 @@ def create_sighting():
         )
         db.session.add(sighting)
         db.session.commit()
-        print("WE ARE HERE")
         return sighting.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
@@ -76,7 +74,6 @@ def update_sighting(id):
     """
     Update an existing sighting.
     """
-    print("asldkfj")
     form = SightingForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     sighting = Sighting.query.get(id)

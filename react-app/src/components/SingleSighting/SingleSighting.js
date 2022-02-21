@@ -77,7 +77,7 @@ const SingleSighting = () => {
                 </div>
                 : null}
 
-        <img src={sighting?.sighting_images[0]} id="sighting-img"></img>
+        <img src={sighting?.sighting_images[0]} id="sighting-img" alt="article-img"></img>
         <p id="article-body">{sighting?.description}</p>
         <Comments />
       </div>

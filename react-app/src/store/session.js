@@ -41,10 +41,8 @@ export const login = (email, password) => async (dispatch) => {
     })
   });
 
-  console.log("NOT IN RES")
 
   if (response.ok) {
-    console.log("RES OKAY")
     const data = await response.json();
     dispatch(setUser(data))
     return null;
