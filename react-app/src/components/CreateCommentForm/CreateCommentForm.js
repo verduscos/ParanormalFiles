@@ -11,10 +11,11 @@ const CreateCommentForm = () => {
   let currentUser = useSelector(state => state.session.user)
   const { sightingId } = params;
   const dispatch = useDispatch();
+  const [errors, setErrors] = useState([])
   const [comment, setComment] = useState("");
 
 
-  const createComment = (e) => {
+  const createComment = async (e) => {
     e.preventDefault();
 
     const payload = {
@@ -23,12 +24,21 @@ const CreateCommentForm = () => {
       comment: comment
     }
 
-    dispatch(createAComment(payload))
+    const data =  await dispatch(createAComment(payload));
+    if (data) {
+      console.log(data)
+      setErrors(data.errors)
+    } else {
+      return
+    }
   }
 
   return (
     <>
       <form onSubmit={createComment}>
+      {errors?.map(error => (
+            <p>{error.split(":")[1]}</p>
+          ))}
         <textarea
           id="comment-textarea"
           value={comment}

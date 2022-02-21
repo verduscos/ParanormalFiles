@@ -51,16 +51,14 @@ export const createAComment = (payload) => async (dispatch) => {
     })
   })
 
-  if (response.status >= 400) {
-    throw response;
-  }
-
-  if (response.ok) {
     const data = await response.json();
-    dispatch(createComment(data))
 
-    return data;
-  }
+    if (data.errors) {
+      return data
+    } else {
+      dispatch(createComment(data))
+      return data
+    }
 }
 
 export const updateAComment = (payload) => async (dispatch) => {

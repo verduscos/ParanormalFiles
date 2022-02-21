@@ -5,6 +5,16 @@ from app.models import Comment, User, db
 comment_routes = Blueprint("comments", __name__)
 
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 @comment_routes.route("/<int:sightingId>", methods=["POST"])
 def create_comment(sightingId):
     """
@@ -22,7 +32,7 @@ def create_comment(sightingId):
         db.session.commit()
 
         return {"comment": comment.to_dict()}
-    return {"errors": form.errors}, 400
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 
 @comment_routes.route("/<int:sightingId>")
@@ -51,7 +61,7 @@ def update_comment(commentId):
         comment.comment = request.json["comment"]
         db.session.commit()
         return {"comment": comment.to_dict()}
-    return{"update": "success"}
+    return{"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 
 

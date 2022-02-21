@@ -13,6 +13,7 @@ const Comments = () => {
   const [comment, setComment] = useState("");
   const [commentId, setCommentId] = useState(0);
   const [editForm, displayEditForm] = useState(false);
+  const [errors, setErrors] = useState([])
   let currentUser = useSelector(state => state.session.user)
   let comments = useSelector(state => state.comments)
   let commentsArray = Object.values(comments);
@@ -30,7 +31,13 @@ const Comments = () => {
       comment: comment
     }
 
-    dispatch(updateAComment(payload))
+    // if (comment.length > 4) {
+
+      dispatch(updateAComment(payload))
+    // } else {
+    //   setErrors(["Comment cannot be empty."])
+    // }
+
   }
 
   // EDITFORM
@@ -70,10 +77,13 @@ const Comments = () => {
 
       {commentsArray?.map(comment => (
         <div id="comments-ul" key={`comment-${comment?.id}-card`}>
-          <p key={`comment-${comment?.username}`}>{comment.username}</p>
+          <p key={`comment-${comment?.username}`}>{comment?.username}</p>
           <p key={`comment-${comment?.id}`}>{comment?.comment}</p>
           {comment?.user_id === currentUser?.id ?
             <>
+                  {errors?.map(error => (
+            <p>{error.split(":")[1]}</p>
+          ))}
               <button
                 onClick={() => {
                   displayEditForm(true)
