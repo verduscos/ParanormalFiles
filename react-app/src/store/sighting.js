@@ -64,6 +64,7 @@ export const createASighting = (payload) => async (dispatch) => {
 }
 
 export const updateSighting = (payload) => async (dispatch) => {
+  console.log("taklaklfsdjkls")
   const response = await fetch(`/api/sightings/${payload.sighting_id}`, {
     method: "PUT",
     headers: {
@@ -78,8 +79,19 @@ export const updateSighting = (payload) => async (dispatch) => {
       location: payload.location
     })
   })
+  console.log("taklaklfsdjkls")
+
   const data = await response.json()
-  dispatch(editSighting(data))
+  console.log("INSID THUNK")
+  if (data.errors) {
+    console.log(data)
+    return data
+  } else {
+    dispatch(editSighting(data))
+    return data
+  }
+  console.log("taklaklfsdjkls")
+
 }
 
 

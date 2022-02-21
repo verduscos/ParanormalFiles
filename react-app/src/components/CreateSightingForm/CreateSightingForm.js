@@ -46,8 +46,8 @@ const CreateSightingForm = () => {
   return (
     <>
     <CreateNav />
-      <form onSubmit={createSighting} id="sighting-form">
-        <div id="form-inner">
+      <form onSubmit={createSighting} className="sighting-form">
+        <div className="form-inner">
           {errors?.map(error => (
             <p>{error.split(":")[1]}</p>
           ))}
@@ -73,8 +73,7 @@ const CreateSightingForm = () => {
             }}
             type="text" value={description} placeholder="Tell your story...." />
           <select
-            id="form-options"
-            className="sighting-inputs"
+            className="sighting-inputs form-options"
             onChange={(e) => {
               setCategory(e.target.value)
             }}
@@ -90,7 +89,7 @@ const CreateSightingForm = () => {
             <option value="Time Travel">Time Travel</option>
             <option value="Synchronicity">Synchronicity</option>
           </select>
-          <button id="post-form-btn" className="sighting-inputs cursor">Post</button>
+          <button className="post-form-btn sighting-inputs cursor">Post</button>
         </div>
       </form>
     </>

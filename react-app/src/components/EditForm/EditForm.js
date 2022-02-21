@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+import CreateNav from "../CreateSightingForm/CreateNav";
+import "../CreateSightingForm/CreateSightingForm.css"
+
 import * as sessionActions from "../../store/sighting"
 
 
@@ -10,17 +13,18 @@ const EditForm = () => {
   const { sightingId } = params
   const history = useHistory()
   const dispatch = useDispatch()
-  const [date, setDate] = useState("")
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState("")
+  const [errors, setErrors] = useState([])
 
-  const editSighting = (e) => {
+
+  const editSighting = async (e) => {
     e.preventDefault()
 
     const payload = {
       user_id: currentUser.id,
-      date: date,
+      date: "",
       location: "testing",
       title: title,
       description: description,
@@ -28,41 +32,49 @@ const EditForm = () => {
       sighting_id: sightingId
     }
 
-    dispatch(sessionActions.updateSighting(payload))
-    history.push("/")
+    const data = await dispatch(sessionActions.updateSighting(payload));
+    if (data.errors) {
+      setErrors(data.errors)
+    } else {
+      history.push("/")
+    }
   }
 
   return (
     <>
-      <h1>EDIT FORM</h1>
-      <form onSubmit={editSighting} id="sighting-form">
-        <input
-          onChange={(e) => {
-            setDate(e.target.value)
-          }}
-          type="date" value={date} />
-        <input
-          onChange={(e) => {
-            setTitle(e.target.value)
-          }}
-          type="text" value={title} placeholder="Title" />
-        <textarea
-          onChange={(e) => {
-            setDescription(e.target.value)
-          }}
-          type="text" value={description} placeholder="description" />
-        <select
-          onChange={(e) => {
-            setCategory(e.target.value)
-          }}
-          value={category}>
-          <option value="categories">Select Category</option>
-          <option value="UFOs">UFOs</option>
-          <option value="Ghosts">Ghosts</option>
-          <option value="Demons">Demons</option>
-        </select>
-        <button>Report</button>
-      </form>    </>
+      <CreateNav />
+      <form onSubmit={editSighting} className="sighting-form">
+        <div className="form-inner">
+        {errors?.map(error => (
+            <p>{error.split(":")[1]}</p>
+          ))}
+          <input
+            className="sighting-inputs"
+            onChange={(e) => {
+              setTitle(e.target.value)
+            }}
+            type="text" value={title} placeholder="Title" />
+          <textarea
+            className="sighting-inputs"
+            onChange={(e) => {
+              setDescription(e.target.value)
+            }}
+            type="text" value={description} placeholder="description" />
+          <select
+            className="sighting-inputs form-options"
+            onChange={(e) => {
+              setCategory(e.target.value)
+            }}
+            value={category}>
+            <option value="categories">Select Category</option>
+            <option value="UFOs">UFOs</option>
+            <option value="Ghosts">Ghosts</option>
+            <option value="Demons">Demons</option>
+          </select>
+          <button className="post-form-btn sighting-inputs cursor">Update</button>
+        </div>
+      </form>
+    </>
   )
 }
 

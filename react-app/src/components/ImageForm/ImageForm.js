@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import "./ImageForm.css"
 import * as sessionActions from "../../store/sighting"
 
 const ImageForm = () => {
@@ -33,7 +34,7 @@ const ImageForm = () => {
     if (res.ok) {
       await res.json();
       setImageLoading(false);
-      history.push("/images");
+      history.push("/mysightings");
     }
     else {
       setImageLoading(false);
@@ -53,8 +54,13 @@ const ImageForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form id="image-form" onSubmit={handleSubmit}>
+        {/* <label for="file-btn">
+          Choose File
+        </label> */}
         <input
+        id="file-btn"
+
           type="file"
           accept="image/*"
           onChange={updateImage}

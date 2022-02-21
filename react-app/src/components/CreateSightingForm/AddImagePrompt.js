@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import * as sessionActions from "../store/sighting"
+import * as sessionActions from "../../store/sighting"
+import "./CreateSightingForm.css"
 
 
 const UploadPrompt = () => {
@@ -16,11 +17,11 @@ const UploadPrompt = () => {
   }, [dispatch])
 
   return (
-    <>
-      <h1>Upload Images?</h1>
-      <Link to={`/sightings/${newId}/images`}>Add Images</Link>
-      <Link to={`/`}>Skip</Link>
-    </>
+    <div id="image-prompt">
+      <h1>Upload an image?</h1>
+      <Link id="add-img" to={`/sightings/${newId}/images`}>Add Image</Link>
+      <Link id="skip" to={`/`}>Skip</Link>
+    </div>
   )
 }
 

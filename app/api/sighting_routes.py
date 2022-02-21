@@ -76,6 +76,7 @@ def update_sighting(id):
     """
     Update an existing sighting.
     """
+    print("asldkfj")
     form = SightingForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     sighting = Sighting.query.get(id)

@@ -9,9 +9,10 @@ import SingleSighting from './components/SingleSighting/SingleSighting';
 import CreateSightingForm from './components/CreateSightingForm/CreateSightingForm'
 import ImageForm from './components/ImageForm/ImageForm';
 import EditForm from './components/EditForm/EditForm';
-import UploadPrompt from './components/AddImagePrompt';
+import UploadPrompt from './components/CreateSightingForm/AddImagePrompt';
 import { authenticate } from './store/session';
 import Navigation from './components/Navigation';
+import CreateNav from './components/CreateSightingForm/CreateNav';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -41,6 +42,9 @@ function App() {
           <Navigation isLoaded={loaded} />
           <Sightings />
         </Route>
+        <ProtectedRoute path='/mysightings' exact={true} >
+          <Navigation isLoaded={loaded} />
+        </ProtectedRoute>
         <Route path='/sightings/:sightingId' exact={true} >
           <SingleSighting />
         </Route>
@@ -51,9 +55,11 @@ function App() {
           <EditForm />
         </Route>
         <Route path='/sightings/:sightingId/images' exact={true} >
+          <CreateNav />
           <ImageForm />
         </Route>
         <Route path='/upload' exact={true} >
+          <CreateNav />
           <UploadPrompt />
         </Route>
       </Switch>
