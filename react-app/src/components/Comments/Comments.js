@@ -57,17 +57,19 @@ const Comments = () => {
 
   return (
     <>
-      {currentUser ?
-        <CreateCommentForm /> :
-        null
-      }
+
       <div id="comment-header">
         <h3>Comments </h3>
         <p id="comment-count">{commentsArray.length}</p>
       </div>
 
+      {currentUser ?
+        <CreateCommentForm /> :
+        null
+      }
+
       {commentsArray?.map(comment => (
-        <ul key={`comment-${comment?.id}-card`}>
+        <div id="comments-ul" key={`comment-${comment?.id}-card`}>
           <p key={`comment-${comment?.username}`}>{comment.username}</p>
           <p key={`comment-${comment?.id}`}>{comment?.comment}</p>
           {comment?.user_id === currentUser?.id ?
@@ -90,7 +92,7 @@ const Comments = () => {
             null
           }
           {comment.user_id === currentUser?.id && editForm ? editComponent : null}
-        </ul>
+        </div>
       ))}
     </>
   )

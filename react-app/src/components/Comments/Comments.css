@@ -5,8 +5,14 @@
   margin-bottom: 40px;
 }
 
+#comments-ul {
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.055);
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 5px;
 
-
+}
 
 #comment-count {
   background-color: rgba(0, 0, 0, 0.219);
@@ -15,4 +21,33 @@
   text-align: center;
   margin-left: 15px;
   padding: 3px;
+}
+
+
+/* CREATE COMMENT FORM */
+#comment-textarea {
+  resize:none;
+  width: 500px;
+  height: 100px;
+  outline: none;
+  border-radius: 5px;
+}
+
+#comment-btns {
+  text-align: right;
+  width: 500px;
+}
+
+#comment-btns > * {
+  border:none;
+  margin: 0 5px;
+  border-radius: 99em;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.219);
+  cursor: pointer;
+}
+
+#submit-comment:hover  {
+  background-color: rgba(70, 70, 70, 0.219);
+
 }

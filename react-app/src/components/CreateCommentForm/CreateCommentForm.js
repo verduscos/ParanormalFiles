@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createAComment } from "../../store/comment";
+import "../Comments/Comments.css"
 
 
 
@@ -29,13 +30,18 @@ const CreateCommentForm = () => {
     <>
       <form onSubmit={createComment}>
         <textarea
-        value={comment}
-        onChange={(e) => {
-          setComment(e.target.value)
-        }}
+          id="comment-textarea"
+          value={comment}
+          onChange={(e) => {
+            setComment(e.target.value)
+          }}
         ></textarea>
-        <button>CANCEL</button>
-        <button>COMMENT</button>
+        <div id="comment-btns">
+          <button onClick={() => {
+            setComment("")
+          }}>CANCEL</button>
+          <button id="submit-comment">COMMENT</button>
+        </div>
       </form>
     </>
   )
