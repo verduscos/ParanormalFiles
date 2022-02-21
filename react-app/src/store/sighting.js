@@ -69,11 +69,10 @@ export const updateSighting = (payload) => async (dispatch) => {
     },
     body: JSON.stringify({
       user_id: payload.user_id,
-      date: payload.date,
       title: payload.title,
       description: payload.description,
       category: payload.category,
-      location: payload.location
+      image_url: payload.url
     })
   })
 

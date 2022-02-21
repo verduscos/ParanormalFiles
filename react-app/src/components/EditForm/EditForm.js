@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import CreateNav from "../CreateSightingForm/CreateNav";
 import "../CreateSightingForm/CreateSightingForm.css"
-
 import * as sessionActions from "../../store/sighting"
 
 
@@ -17,27 +16,75 @@ const EditForm = () => {
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState("")
   const [errors, setErrors] = useState([])
+  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState("")
+  const [imageLoading, setImageLoading] = useState(false);
+
 
 
   const editSighting = async (e) => {
     e.preventDefault()
 
+    // IMAGE UPLOAD STARTS
+    const formData = new FormData();
+    formData.append("image", image);
+
+    // TODO
+    // aws uploads can be a bit slow—displaying
+    // some sort of loading message is a good idea
+    setImageLoading(true);
+
+    const res = await fetch(`/api/sightings/image`, {
+      method: "POST",
+      body: formData,
+    });
+    if (res.ok) {
+      const data = await res.json();
+      setImageLoading(false);
+      // console.log(data)
+      setImageUrl(data.url)
+      // console.log(imageUrl)
+      // console.log("IMAGE URL ABOVE")
+
+      // history.push("/mysightings");
+    }
+    else {
+      setImageLoading(false);
+      const data = await res.json();
+      // TODO
+      // a real app would probably use more advanced
+      // error handling
+      console.log(data);
+    }
+    // IMAGE UPLOAD ENDS
+
+
     const payload = {
       user_id: currentUser.id,
-      date: "",
-      location: "testing",
       title: title,
       description: description,
       category: category,
-      sighting_id: sightingId
+      sighting_id: sightingId,
+      url: imageUrl
     }
 
-    const data = await dispatch(sessionActions.updateSighting(payload));
-    if (data.errors) {
-      setErrors(data.errors)
-    } else {
-      history.push("/")
+    if (imageUrl.length > 4) {
+
+
+      const data = await dispatch(sessionActions.updateSighting(payload));
+      if (data.errors) {
+        setErrors(data.errors)
+      } else {
+        history.push("/")
+      }
     }
+  }
+
+
+
+  const updateImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
   }
 
   return (
@@ -45,7 +92,7 @@ const EditForm = () => {
       <CreateNav />
       <form onSubmit={editSighting} className="sighting-form">
         <div className="form-inner">
-        {errors?.map(error => (
+          {errors?.map(error => (
             <p>{error.split(":")[1]}</p>
           ))}
           <input
@@ -71,6 +118,16 @@ const EditForm = () => {
             <option value="Ghosts">Ghosts</option>
             <option value="Demons">Demons</option>
           </select>
+
+
+          <input
+            id="file-btn"
+
+            type="file"
+            accept="image/*"
+            onChange={updateImage}
+          />
+
           <button className="post-form-btn sighting-inputs cursor">Update</button>
         </div>
       </form>

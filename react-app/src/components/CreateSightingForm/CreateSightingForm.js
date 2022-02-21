@@ -95,7 +95,7 @@ const CreateSightingForm = () => {
 
   return (
     <>
-    <CreateNav />
+      <CreateNav />
       <form onSubmit={createSighting} className="sighting-form">
         <div className="form-inner">
           {errors?.map(error => (
@@ -142,12 +142,12 @@ const CreateSightingForm = () => {
 
 
           <input
-        id="file-btn"
+            id="file-btn"
 
-          type="file"
-          accept="image/*"
-          onChange={updateImage}
-        />
+            type="file"
+            accept="image/*"
+            onChange={updateImage}
+          />
 
 
 
