@@ -1,15 +1,17 @@
 #sighting-comp-container {
-  /* background-color: gray; */
   width: 1050px;
   margin-left: 275px;
 }
 
 #article-container {
   width: 700px;
-  /* background-color: red; */
   margin: 0 auto;
 }
-
+#header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 #article-title {
   line-height: 40px;
@@ -27,4 +29,26 @@
 
 #sighting-img {
   width: 700px;
+  user-select: none;
+}
+
+#user-btns {
+  position: relative;
+  right: 0;
+  /* margin-bottom: -22px; */
+  display: flex;
+  justify-content: flex-end;
+  background-color: transparent;
+}
+
+#user-btns > * {
+  border: none;
+  text-decoration: none;
+  color: black;
+  background-color: rgb(255, 255, 255);
+  border: .5px solid rgba(14, 13, 13, 0.363);
+  padding: 5px;
+  margin: 0 3px -15px 3px;
+  cursor: pointer;
+  border-radius: 99em;
 }

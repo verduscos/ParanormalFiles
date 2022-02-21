@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory, Link } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import Comments from "../Comments/Comments"
 import { getALLComments } from "../../store/comment";
+import { BiDotsHorizontalRounded } from "react-icons/bi";
 import "./SingleSighting.css"
 
 
@@ -12,6 +13,7 @@ const SingleSighting = () => {
   const history = useHistory()
   const params = useParams()
   const { sightingId } = params
+  const [userBtns, setUserBtns] = useState(false)
   let sighting = useSelector(state => state.sightings[sightingId])
   let currentUser = useSelector(state => state.session.user)
 
@@ -28,6 +30,13 @@ const SingleSighting = () => {
     history.push("/")
   }
 
+  // let userBtns = (
+  //   <div>
+  //     <button onClick={handleDelete}>Delete</button>
+  //     <Link to={`/sightings/edit/${sighting.id}`}>Edit</Link>
+  //   </div>
+  // )
+
 
   useEffect(() => {
     dispatch(sessionActions.getAllSightings())
@@ -37,21 +46,39 @@ const SingleSighting = () => {
     <div id="sighting-comp-container">
       <div id="article-container">
 
-        {currentUser && currentUser?.id === sighting?.user_id ?
-          <button onClick={handleDelete}>Delete</button> :
-          null
-        }
-        {currentUser && currentUser?.id === sighting?.user_id ?
-          <Link to={`/sightings/edit/${sighting.id}`}>Edit</Link> :
-          null
-        }
-
         {/* <p>{sighting?.date}</p> */}
         {/* <p>{sighting?.category}</p> */}
-        <h1 id="article-title">{sighting?.title}</h1>
+
+        <div id="header-container">
+          <h1 id="article-title">{sighting?.title}</h1>
+          {currentUser && currentUser?.id === sighting?.user_id ?
+            <>
+              <span
+              onBlur={() => {
+                setUserBtns(!userBtns)
+              }}
+              onClick={() => {
+                setUserBtns(!userBtns)
+              }}>
+
+                <BiDotsHorizontalRounded size={25} />
+              </span>
+
+            </>
+            :
+            null
+          }
+        </div>
+
+        {userBtns ?
+                <div id="user-btns">
+                  <button onClick={handleDelete}>Delete</button>
+                  <Link to={`/sightings/edit/${sighting.id}`}>Edit</Link>
+                </div>
+                : null}
+
         <img src={sighting?.sighting_images[0]} id="sighting-img"></img>
         <p id="article-body">{sighting?.description}</p>
-
         <Comments />
       </div>
     </div>

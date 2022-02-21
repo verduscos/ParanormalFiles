@@ -46,6 +46,7 @@ function App() {
           <Navigation isLoaded={loaded} />
         </ProtectedRoute>
         <Route path='/sightings/:sightingId' exact={true} >
+          <Navigation isLoaded={loaded} />
           <SingleSighting />
         </Route>
         <Route path='/report' exact={true} >
