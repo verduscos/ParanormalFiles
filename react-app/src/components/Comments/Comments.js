@@ -10,11 +10,11 @@ const Comments = () => {
   const dispatch = useDispatch();
   const params = useParams()
   const { sightingId } = params;
-  // const [commentId, setCommentId] = useState(0);
   const [comment, setComment] = useState("");
   const [commentId, setCommentId] = useState(0);
   const [editForm, displayEditForm] = useState(false);
   const [errors, setErrors] = useState([])
+  const [selectedComment, setSelectedComment] = useState(null)
   const [displayUsrBtn, setDisplayUsrBtn] = useState(false);
 
   const currentUser = useSelector(state => state.session.user)
@@ -38,8 +38,9 @@ const Comments = () => {
     }
 
     if (comment.length >= 4) {
-      // Remove editCommentForm on submission and reset error mssgs
+      // Remove editCommentForm on submission, reset comment and error mssgs
       displayEditForm(!editForm);
+      setComment("")
       setErrors([]);
 
       dispatch(updateAComment(payload))
@@ -63,8 +64,6 @@ const Comments = () => {
     </>
   )
 
-  // EDITFORM
-
 
   useEffect(() => {
     dispatch(getALLComments(sightingId))
@@ -79,6 +78,7 @@ const Comments = () => {
         <p id="comment-count">{commentsArray.length}</p>
       </div>
 
+      {/* Only show comment form if a user is logged in */}
       {currentUser ?
         <CreateCommentForm /> :
         null
@@ -89,20 +89,20 @@ const Comments = () => {
           <div>
             <p key={`comment-${comment?.username}`}>{comment?.username}</p>
             {currentUser.id === comment?.user_id ?
-              <BiDotsHorizontalRounded onClick={() => {
-                setDisplayUsrBtn(!displayUsrBtn)
-              }} />
+              <BiDotsHorizontalRounded
+                value={comment.id}
+                onClick={() => {
+                  setSelectedComment(comment.id)
+                  setDisplayUsrBtn(!displayUsrBtn)
+                }} />
               : null}
           </div>
           <p key={`comment-${comment?.id}`}>{comment?.comment}</p>
           {comment?.user_id === currentUser?.id ?
             <>
-              {errors?.map(error => (
-                <p>{error}</p>
-              ))}
+              {comment.id === selectedComment ? <p>{errors[0]}</p> : null}
 
-
-              {displayUsrBtn ?
+              {displayUsrBtn && selectedComment === comment.id ?
                 <>
                   <button
                     onClick={() => {
@@ -114,7 +114,6 @@ const Comments = () => {
                   <button
                     value={comment?.id}
                     onClick={(e) => {
-                      // setCommentId(e.target.value)
                       deleteComment(e, comment?.id)
                     }}
                   >Delete</button>
@@ -126,7 +125,9 @@ const Comments = () => {
             :
             null
           }
-          {comment.user_id === currentUser?.id && editForm ? editComponent : null}
+
+          {/* only show edit for for currently selected comment and if comment belongs to logged in user */}
+          {comment.user_id === currentUser?.id && editForm && selectedComment === comment.id ? editComponent : null}
         </div>
       ))}
     </>

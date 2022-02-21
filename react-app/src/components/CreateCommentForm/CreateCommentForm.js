@@ -24,11 +24,10 @@ const CreateCommentForm = () => {
       comment: comment
     }
 
+    if (comment.length >=4) setComment("")
     const data =  await dispatch(createAComment(payload));
     if (data) {
       setErrors(data.errors)
-    } else {
-      return
     }
   }
 
