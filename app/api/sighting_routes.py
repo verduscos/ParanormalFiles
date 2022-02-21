@@ -55,13 +55,15 @@ def create_sighting():
     form = SightingForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
+        print(request.json)
         sighting = Sighting(
             user_id=request.json["user_id"],
-            date=request.json["date"],
+            # date=request.json["date"],
             # location=request.json["location"],
             title=request.json["title"],
             description=request.json["description"],
-            category=request.json["category"]
+            category=request.json["category"],
+            image_url=request.json["image_url"]
         )
         db.session.add(sighting)
         db.session.commit()
@@ -112,9 +114,9 @@ def delete_sighting(id):
 
 
 # IMAGES
-@sighting_routes.route("/<int:sightingId>/image", methods=["POST"])
+@sighting_routes.route("/image", methods=["POST"])
 # @login_required
-def upload_image(sightingId):
+def upload_image():
     if "image" not in request.files:
         return {"errors": "image required"}, 400
 
@@ -135,7 +137,7 @@ def upload_image(sightingId):
 
     url = upload["url"]
     # flask_login allows us to get the current user from the request
-    new_image = SightingImage(sighting_id=sightingId, image_url=url)
-    db.session.add(new_image)
-    db.session.commit()
+    # new_image = SightingImage(image_url=url)
+    # db.session.add(new_image)
+    # db.session.commit()
     return {"url": url}

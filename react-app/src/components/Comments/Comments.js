@@ -84,11 +84,11 @@ const Comments = () => {
         null
       }
 
-      {commentsArray?.map(comment => (
+      {commentsArray && commentsArray.map(comment => (
         <div id="comments-ul" key={`comment-${comment?.id}-card`}>
           <div>
             <p key={`comment-${comment?.username}`}>{comment?.username}</p>
-            {currentUser.id === comment?.user_id ?
+            {currentUser?.id === comment?.user_id ?
               <BiDotsHorizontalRounded
                 value={comment.id}
                 onClick={() => {

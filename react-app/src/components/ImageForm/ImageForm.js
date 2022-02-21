@@ -34,7 +34,7 @@ const ImageForm = () => {
     if (res.ok) {
       await res.json();
       setImageLoading(false);
-      history.push("/mysightings");
+      // history.push("/mysightings");
     }
     else {
       setImageLoading(false);

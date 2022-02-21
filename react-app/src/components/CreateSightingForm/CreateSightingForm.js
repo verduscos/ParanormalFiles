@@ -13,6 +13,9 @@ const CreateSightingForm = () => {
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState("")
   const [errors, setErrors] = useState([])
+  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState("")
+  const [imageLoading, setImageLoading] = useState(false);
 
 
   useEffect(() => {
@@ -23,24 +26,71 @@ const CreateSightingForm = () => {
   const createSighting = async (e) => {
     e.preventDefault()
 
+    // IMAGE UPLOAD STARTS
+    const formData = new FormData();
+    formData.append("image", image);
+
+    // TODO
+    // aws uploads can be a bit slow—displaying
+    // some sort of loading message is a good idea
+    setImageLoading(true);
+
+    const res = await fetch(`/api/sightings/image`, {
+      method: "POST",
+      body: formData,
+    });
+    if (res.ok) {
+      const data = await res.json();
+      setImageLoading(false);
+      console.log("IMAGE RES")
+      // console.log(data.)
+      setImageUrl(data.url)
+      console.log(imageUrl)
+      console.log("IMAGE URL ABOVE")
+      // history.push("/mysightings");
+    }
+    else {
+      setImageLoading(false);
+      setImageLoading(false);
+      const data = await res.json();
+      // a real app would probably use more advanced
+      // error handling
+      // console.log(data);
+    }
+    // IMAGE UPLOAD ENDS
+
+
+
+
+
+
+
+
+
     const payload = {
       user_id: currentUser.id,
       title: title,
-      date: 'nada',
-      location: "nada",
       description: description,
-      category: category
+      category: category,
+      url: imageUrl
     }
+
+    console.log(payload)
 
     const data = await dispatch(sessionActions.createASighting(payload));
     if (data.errors) {
       setErrors(data.errors)
     } else {
-      history.push(`/upload`)
+      // history.push(`/upload`)
     }
 
+  }
 
 
+
+  const updateImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
   }
 
   return (
@@ -89,6 +139,18 @@ const CreateSightingForm = () => {
             <option value="Time Travel">Time Travel</option>
             <option value="Synchronicity">Synchronicity</option>
           </select>
+
+
+          <input
+        id="file-btn"
+
+          type="file"
+          accept="image/*"
+          onChange={updateImage}
+        />
+
+
+
           <button className="post-form-btn sighting-inputs cursor">Post</button>
         </div>
       </form>
