@@ -4,9 +4,10 @@ const UPDATE_COMMENT = "session/UPDATE_COMMENT"
 const DELETE_COMMENT = "session/DELETE_ACTION"
 
 
-const getComments = (comments) => ({
+const getComments = (comments, userLeftComment) => ({
   type: GET_COMMENTS,
-  payload: comments
+  payload: comments,
+  userLeftComment: userLeftComment
 })
 
 const createComment = (comment) => ({
@@ -25,7 +26,7 @@ const deleteComment = (commentId) => ({
 })
 
 
-export const getALLComments = (sightingId) => async (dispatch) => {
+export const getALLComments = (sightingId, userId) => async (dispatch) => {
   const response = await fetch(`/api/comments/${sightingId}`)
 
   if (response.status >= 400) {
@@ -33,7 +34,17 @@ export const getALLComments = (sightingId) => async (dispatch) => {
   }
 
   const data = await response.json();
-  dispatch(getComments(data));
+  // console.log("INSIDE COMMENT THUNK")
+  // console.log(data)
+
+  let userLeftComment;
+  data.comments.forEach(comment => {
+    if (comment.user_id === userId) {
+      userLeftComment = true
+    }
+  })
+
+  dispatch(getComments(data, userLeftComment));
   return data;
 
 }
@@ -98,8 +109,11 @@ const commentsReducer = (state = {}, action) => {
       action.payload.comments.forEach(comment => {
         comments1[comment.id] = comment
       })
+      console.log(action.userLeftComment)
+      console.log("reducer above")
+      // userLeftComment: action.userLeftComment
 
-      return { ...state, ...comments1 }
+      return {  ...state,  ...comments1}
     case CREATE_COMMENT:
       let comments = {}
       comments[action.payload.comment.id] = action.payload.comment

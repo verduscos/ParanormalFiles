@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getALLComments, deleteAComment, updateAComment } from "../../store/comment";
+import { BiDotsHorizontalRounded } from "react-icons/bi";
 import CreateCommentForm from "../CreateCommentForm/CreateCommentForm";
 import "./Comments.css"
 
@@ -14,12 +15,20 @@ const Comments = () => {
   const [commentId, setCommentId] = useState(0);
   const [editForm, displayEditForm] = useState(false);
   const [errors, setErrors] = useState([])
-  let currentUser = useSelector(state => state.session.user)
+  const [displayUsrBtn, setDisplayUsrBtn] = useState(false);
+
+  const currentUser = useSelector(state => state.session.user)
   let comments = useSelector(state => state.comments)
+  // let test = useSelector(state => state.comments)
+  // console.log(Object.values(test.comments))
+  // console.log(comments)
   let commentsArray = Object.values(comments);
 
   const deleteComment = (e, id) => {
     e.preventDefault();
+    // remove edit and delete btn when a comment is deleted
+    setDisplayUsrBtn(!displayUsrBtn)
+
     dispatch(deleteAComment(id));
 
   }
@@ -31,12 +40,15 @@ const Comments = () => {
       comment: comment
     }
 
-    // if (comment.length > 4) {
+    if (comment.length >= 4) {
+      // Remove editCommentForm on submission and reset error mssgs
+      displayEditForm(!editForm);
+      setErrors([]);
 
       dispatch(updateAComment(payload))
-    // } else {
-    //   setErrors(["Comment cannot be empty."])
-    // }
+    } else {
+      setErrors(["Comment must be longer than 3 characters"])
+    }
 
   }
 
@@ -58,7 +70,7 @@ const Comments = () => {
 
 
   useEffect(() => {
-    dispatch(getALLComments(sightingId))
+    dispatch(getALLComments(sightingId, currentUser?.id))
 
   }, [dispatch, sightingId])
 
@@ -77,26 +89,42 @@ const Comments = () => {
 
       {commentsArray?.map(comment => (
         <div id="comments-ul" key={`comment-${comment?.id}-card`}>
-          <p key={`comment-${comment?.username}`}>{comment?.username}</p>
+          <div>
+            <p key={`comment-${comment?.username}`}>{comment?.username}</p>
+            {currentUser.id === comment?.user_id ?
+              <BiDotsHorizontalRounded onClick={() => {
+                setDisplayUsrBtn(!displayUsrBtn)
+              }} />
+              : null}
+          </div>
           <p key={`comment-${comment?.id}`}>{comment?.comment}</p>
           {comment?.user_id === currentUser?.id ?
             <>
-                  {errors?.map(error => (
-            <p>{error.split(":")[1]}</p>
-          ))}
-              <button
-                onClick={() => {
-                  displayEditForm(true)
-                  setCommentId(comment?.id)
-                }}
-              >Edit</button>
-              <button
-                value={comment?.id}
-                onClick={(e) => {
-                  // setCommentId(e.target.value)
-                  deleteComment(e, comment?.id)
-                }}
-              >Delete</button>
+              {errors?.map(error => (
+                <p>{error}</p>
+              ))}
+
+
+              {displayUsrBtn ?
+                <>
+                  <button
+                    onClick={() => {
+                      displayEditForm(true)
+                      setCommentId(comment?.id)
+                      setDisplayUsrBtn(!displayUsrBtn)
+                    }}
+                  >Edit</button>
+                  <button
+                    value={comment?.id}
+                    onClick={(e) => {
+                      // setCommentId(e.target.value)
+                      deleteComment(e, comment?.id)
+                    }}
+                  >Delete</button>
+                </>
+                : null}
+
+
             </>
             :
             null
