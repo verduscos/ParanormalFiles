@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import CreateNav from "../CreateSightingForm/CreateNav";
@@ -18,7 +18,8 @@ const EditForm = () => {
   const [errors, setErrors] = useState([])
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("")
-  const [imageLoading, setImageLoading] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
+  const [payload, setPayload] = useState({})
 
 
 
@@ -28,6 +29,12 @@ const EditForm = () => {
     // IMAGE UPLOAD STARTS
     const formData = new FormData();
     formData.append("image", image);
+    // formData.append("title", title);
+    // formData.append("description", description);
+    // formData.append("category", category);
+    // formData.append("sighting_id", sightingId);
+
+    console.log("INSIDE EDIT")
 
     // TODO
     // aws uploads can be a bit slow—displaying
@@ -43,6 +50,7 @@ const EditForm = () => {
       setImageLoading(false);
       // console.log(data)
       setImageUrl(data.url)
+      console.log(imageUrl)
       // console.log(imageUrl)
       // console.log("IMAGE URL ABOVE")
 
@@ -58,8 +66,8 @@ const EditForm = () => {
     }
     // IMAGE UPLOAD ENDS
 
-
     const payload = {
+      sighting_id: sightingId,
       user_id: currentUser.id,
       title: title,
       description: description,
@@ -68,16 +76,14 @@ const EditForm = () => {
       url: imageUrl
     }
 
-    if (imageUrl.length > 4) {
-
-
-      const data = await dispatch(sessionActions.updateSighting(payload));
+      console.log(formData)
+      const data = await dispatch(sessionActions.updateSighting(formData));
       if (data.errors) {
         setErrors(data.errors)
       } else {
         history.push("/")
       }
-    }
+
   }
 
 
@@ -86,6 +92,12 @@ const EditForm = () => {
     const file = e.target.files[0];
     setImage(file);
   }
+
+  // CAUSES ERROR : Unhandled Rejection (TypeError): Cannot read properties of undefined (reading 'sighting_id')
+  // useEffect(() => {
+  //   let payload;
+  //   dispatch(sessionActions.updateSighting(payload))
+  // }, [dispatch])
 
   return (
     <>
