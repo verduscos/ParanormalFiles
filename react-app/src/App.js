@@ -13,13 +13,15 @@ import UploadPrompt from './components/CreateSightingForm/AddImagePrompt';
 import { authenticate } from './store/session';
 import Navigation from './components/Navigation';
 import CreateNav from './components/CreateSightingForm/CreateNav';
+import Categories from './components/Categories/Categories';
+import Comments from './components/Comments/Comments';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -40,15 +42,20 @@ function App() {
         </ProtectedRoute> */}
         <Route path='/' exact={true} >
           <Navigation isLoaded={loaded} />
+          <Categories />
           <Sightings />
         </Route>
         <ProtectedRoute path='/mysightings' exact={true} >
           <Navigation isLoaded={loaded} />
         </ProtectedRoute>
+        <Route path='/sightings/categories/:category' exact={true} >
+
+        </Route>
         <Route path='/sightings/:sightingId' exact={true} >
           <Navigation isLoaded={loaded} />
           <SingleSighting />
         </Route>
+
         <Route path='/report' exact={true} >
           <CreateSightingForm />
         </Route>
@@ -59,10 +66,12 @@ function App() {
           <CreateNav />
           <ImageForm />
         </Route>
-        <Route path='/upload' exact={true} >
+        {/* <Route path='/:category' exact={true}>
+        </Route> */}
+        {/* <Route path='/upload' exact={true} >
           <CreateNav />
           <UploadPrompt />
-        </Route>
+        </Route> */}
       </Switch>
     </BrowserRouter>
   );

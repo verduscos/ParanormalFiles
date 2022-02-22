@@ -1,4 +1,5 @@
 const GET_SIGHTINGS = "session/GET_SIGHTING";
+const GET_SIGHTINGS_BY_CATEGORY = "session/GET_SIGHTINGS_BY_CATEGORY"
 const CREATE_SIGHTING = "session/CREATE_SIGHTING"
 const EDIT_SIGHTING = "session/EDIT_SIGHTING"
 const DELETE_SIGHTING = "session/DELETE_SIGHTING"
@@ -6,6 +7,11 @@ const DELETE_SIGHTING = "session/DELETE_SIGHTING"
 const getSightings = (sightings) => ({
     type: GET_SIGHTINGS,
     payload: sightings
+})
+
+const getSightingsByCategory = (sightings) => ({
+  type: GET_SIGHTINGS_BY_CATEGORY,
+  payload: sightings
 })
 
 const createSighting = (sighting) => ({
@@ -115,6 +121,13 @@ const sightingReducer = (state = {}, action) => {
           })
 
           return { ...state, ...sightings }
+        case GET_SIGHTINGS_BY_CATEGORY:
+          let category = {}
+          action.payload.forEach(sighting => {
+            category[sighting.id] = sighting
+          })
+
+          return { ...state, ...category}
         case CREATE_SIGHTING:
           state[action.payload.id] = action.payload
           return {...state}

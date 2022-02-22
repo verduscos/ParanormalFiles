@@ -26,7 +26,7 @@ const deleteComment = (commentId) => ({
 })
 
 
-export const getALLComments = (sightingId, userId) => async (dispatch) => {
+export const getALLComments = (sightingId) => async (dispatch) => {
   const response = await fetch(`/api/comments/${sightingId}`)
 
   if (response.status >= 400) {
@@ -34,13 +34,6 @@ export const getALLComments = (sightingId, userId) => async (dispatch) => {
   }
 
   const data = await response.json();
-  //  might allow users to leave multiple comments
-  // let userLeftComment = false;
-  // data.comments.forEach(comment => {
-  //   if (comment.user_id === userId) {
-  //     userLeftComment = true
-  //   }
-  // })
 
   dispatch(getComments(data));
   return data;
@@ -108,7 +101,7 @@ const commentsReducer = (state = {}, action) => {
         comments1[comment.id] = comment
       })
 
-      return {  ...state,  ...comments1}
+      return {  ...comments1}
     case CREATE_COMMENT:
       let comments = {}
       comments[action.payload.comment.id] = action.payload.comment

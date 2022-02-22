@@ -1,0 +1,10 @@
+#test {
+  position: absolute;
+  right: 0;
+}
+
+#categories-container {
+  background-color: red;
+  width: 500px;
+  margin-left: auto;
+}

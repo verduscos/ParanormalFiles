@@ -42,6 +42,10 @@ const SingleSighting = () => {
     dispatch(sessionActions.getAllSightings())
   }, [dispatch])
 
+  useEffect(() => {
+    dispatch(getALLComments(sightingId))
+  }, [dispatch, sightingId])
+
   return (
     <div id="sighting-comp-container">
       <div id="article-container">
