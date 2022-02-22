@@ -1,4 +1,5 @@
 from flask import Blueprint, session, request
+from sqlalchemy import or_
 from app.forms import SightingForm
 from app.models import Sighting, SightingImage, db
 from app.s3_helpers import (
@@ -29,10 +30,10 @@ def get_sightings():
     return {"sightings": [sighting.to_dict() for sighting in sightings]}
 
 
-@sighting_routes.route("/<category>")
+@sighting_routes.route("/<string:category>")
 def get_sightings_by_category(category):
     """
-    Get all sightings in DB, will use on splash page.
+    Get all sightings in based of category, will use in category comp.
     """
     sightings = Sighting.query.filter(Sighting.category == category).all()
 
@@ -91,14 +92,10 @@ def update_sighting(id):
     sighting = Sighting.query.get(id)
 
     if form.validate_on_submit():
-        # sighting["title"] = request.json["title"]
-        # sighting["description"] = request.json["description"]
-        # sighting["category"] = request.json["category"]
-        # sighting["image_url"] = request.json["image_url"]
-
         updated_sighting = Sighting.update(
             sighting=sighting,
             user_id=request.json["user_id"],
+            # Will use this after capstone, need more time
             # date=request.json["date"],
             # location=request.json["location"],
             title=request.json["title"],
@@ -157,3 +154,22 @@ def upload_image():
     # db.session.add(new_image)
     # db.session.commit()
     return {"url": url}
+
+
+# TESTING SEARCH
+
+@sighting_routes.route('/search/<string:searchstr>')
+def searching_sightings(searchstr):
+  # search_results = Sighting.query.filter(Sighting.title.contains(searchstr)) \
+  # .filter(Sighting.category.contains(searchstr))
+
+  search_results = Sighting.query.filter(
+    or_(Sighting.title.contains(searchstr), Sighting.category.contains(searchstr), Sighting.description.contains(searchstr)))
+
+  results = [ search.to_dict() for search in  search_results]
+  # print("TESTING HERREHRHERHEHR", test)
+  # print(len(test))
+  if len(results) > 0:
+    return {"search":results}
+  else :
+    return {"error": "No results found."}
