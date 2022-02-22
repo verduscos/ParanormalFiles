@@ -67,25 +67,16 @@ const EditForm = () => {
     }
     // IMAGE UPLOAD ENDS
 
-    const payload = {
-      sighting_id: sightingId,
-      user_id: currentUser.id,
-      title: title,
-      description: description,
-      category: category,
-      sighting_id: sightingId,
-      url: imageUrl
-    }
 
       console.log("PAYLOAD BELOW")
       console.log(payload)
       console.log(imageUrl)
-      const data = await dispatch(sessionActions.updateSighting(payload));
-      if (data.errors) {
-        setErrors(data.errors)
-      } else {
-        // history.push("/")
-      }
+      // const data = await dispatch(sessionActions.updateSighting(payload));
+      // if (data.errors) {
+      //   setErrors(data.errors)
+      // } else {
+        history.push("/")
+      // }
 
   }
 
@@ -97,10 +88,17 @@ const EditForm = () => {
   }
 
   // CAUSES ERROR : Unhandled Rejection (TypeError): Cannot read properties of undefined (reading 'sighting_id')
-  // useEffect(() => {
-  //   let payload;
-  //   dispatch(sessionActions.updateSighting(payload))
-  // }, [dispatch])
+  useEffect(() => {
+    const payload = {
+      sighting_id: sightingId,
+      user_id: currentUser.id,
+      title: title,
+      description: description,
+      category: category,
+      url: imageUrl
+    }
+    dispatch(sessionActions.updateSighting(payload))
+  }, [dispatch, imageUrl])
 
   return (
     <>

@@ -77,12 +77,12 @@ const CreateSightingForm = () => {
 
     console.log(payload)
 
-    const data = await dispatch(sessionActions.createASighting(payload));
-    if (data.errors) {
-      setErrors(data.errors)
-    } else {
-      // history.push(`/upload`)
-    }
+    // const data = await dispatch(sessionActions.createASighting(payload));
+    // if (data.errors) {
+    //   setErrors(data.errors)
+    // } else {
+    //   // history.push(`/upload`)
+    // }
 
   }
 
@@ -92,6 +92,22 @@ const CreateSightingForm = () => {
     const file = e.target.files[0];
     setImage(file);
   }
+
+
+  useEffect(() => {
+    const payload = {
+      user_id: currentUser.id,
+      title: title,
+      description: description,
+      category: category,
+      url: imageUrl
+    }
+
+    dispatch(sessionActions.createASighting(payload));
+      // history.push(`/upload`)
+
+
+  }, [dispatch, imageUrl])
 
   return (
     <>
