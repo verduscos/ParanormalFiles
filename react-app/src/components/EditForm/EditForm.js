@@ -98,7 +98,6 @@ const EditForm = () => {
     setImage(file);
   }
 
-  // CAUSES ERROR : Unhandled Rejection (TypeError): Cannot read properties of undefined (reading 'sighting_id')
   useEffect(() => {
     const payload = {
       sighting_id: sightingId,
