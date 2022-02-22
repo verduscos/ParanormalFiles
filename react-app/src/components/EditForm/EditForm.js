@@ -76,12 +76,13 @@ const EditForm = () => {
       url: imageUrl
     }
 
-      console.log(formData)
-      const data = await dispatch(sessionActions.updateSighting(formData));
+      console.log("PAYLOAD BELOW")
+      console.log(payload)
+      const data = await dispatch(sessionActions.updateSighting(payload));
       if (data.errors) {
         setErrors(data.errors)
       } else {
-        history.push("/")
+        // history.push("/")
       }
 
   }
