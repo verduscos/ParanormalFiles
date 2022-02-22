@@ -29,6 +29,16 @@ def get_sightings():
     return {"sightings": [sighting.to_dict() for sighting in sightings]}
 
 
+@sighting_routes.route("/<category>")
+def get_sightings_by_category(category):
+    """
+    Get all sightings in DB, will use on splash page.
+    """
+    sightings = Sighting.query.filter(Sighting.category == category).all()
+
+    return {"sightings": [sighting.to_dict() for sighting in sightings]}
+
+
 @sighting_routes.route("/<int:id>")
 def get_sighting_by_id(id):
     """
