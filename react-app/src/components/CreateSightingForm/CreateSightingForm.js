@@ -78,11 +78,16 @@ const CreateSightingForm = () => {
     console.log(payload)
 
     // const data = await dispatch(sessionActions.createASighting(payload));
-    // if (data.errors) {
-    //   setErrors(data.errors)
-    // } else {
-    //   // history.push(`/upload`)
-    // }
+    let errorsArr = [];
+
+    if (title.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
+    if (description.length <= 4) errorsArr.push("Description must be at least 4 characters long.")
+    if (category.length < 1) errorsArr.push("Please choose a category.")
+    setErrors(errorsArr)
+    if (errorsArr.length === 0) {
+      history.push('/')
+    }
+
 
   }
 
@@ -94,7 +99,7 @@ const CreateSightingForm = () => {
   }
 
 
-  useEffect(() => {
+  useEffect(async () => {
     const payload = {
       user_id: currentUser.id,
       title: title,
@@ -102,10 +107,7 @@ const CreateSightingForm = () => {
       category: category,
       url: imageUrl
     }
-
     dispatch(sessionActions.createASighting(payload));
-      // history.push(`/upload`)
-
 
   }, [dispatch, imageUrl])
 
@@ -115,7 +117,7 @@ const CreateSightingForm = () => {
       <form onSubmit={createSighting} className="sighting-form">
         <div className="form-inner">
           {errors?.map(error => (
-            <p>{error.split(":")[1]}</p>
+            <p>{error}</p>
           ))}
 
           {/* <input className="sighting-inputs"
