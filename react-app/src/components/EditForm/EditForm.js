@@ -18,7 +18,7 @@ const EditForm = () => {
   const [errors, setErrors] = useState([])
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("")
-  const [imageLoading, setImageLoading] = useState(true);
+  const [imageLoading, setImageLoading] = useState(false);
   const [payload, setPayload] = useState({})
 
 
@@ -50,6 +50,7 @@ const EditForm = () => {
       setImageLoading(false);
       // console.log(data)
       setImageUrl(data.url)
+      console.log("IMAGE URL", data.url)
       console.log(imageUrl)
       // console.log(imageUrl)
       // console.log("IMAGE URL ABOVE")
@@ -78,6 +79,7 @@ const EditForm = () => {
 
       console.log("PAYLOAD BELOW")
       console.log(payload)
+      console.log(imageUrl)
       const data = await dispatch(sessionActions.updateSighting(payload));
       if (data.errors) {
         setErrors(data.errors)
