@@ -75,8 +75,19 @@ const EditForm = () => {
       // if (data.errors) {
       //   setErrors(data.errors)
       // } else {
-        history.push("/")
+        // history.push("/")
       // }
+
+
+      let errorsArr = [];
+
+      if (title.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
+      if (description.length <= 4) errorsArr.push("Description must be at least 4 characters long.")
+      if (category.length < 1) errorsArr.push("Please choose a category.")
+      setErrors(errorsArr)
+      if (errorsArr.length === 0) {
+        history.push('/')
+      }
 
   }
 
@@ -106,7 +117,7 @@ const EditForm = () => {
       <form onSubmit={editSighting} className="sighting-form">
         <div className="form-inner">
           {errors?.map(error => (
-            <p>{error.split(":")[1]}</p>
+            <p>{error}</p>
           ))}
           <input
             className="sighting-inputs"
