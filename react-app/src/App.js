@@ -14,7 +14,7 @@ import { authenticate } from './store/session';
 import Navigation from './components/Navigation';
 import CreateNav from './components/CreateSightingForm/CreateNav';
 import Categories from './components/Categories/Categories';
-import Comments from './components/Comments/Comments';
+import Category from './components/Categories/Category';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,7 +49,9 @@ function App() {
           <Navigation isLoaded={loaded} />
         </ProtectedRoute>
         <Route path='/sightings/categories/:category' exact={true} >
-
+          <Navigation isLoaded={loaded} />
+          <Categories />
+          <Category />
         </Route>
         <Route path='/sightings/:sightingId' exact={true} >
           <Navigation isLoaded={loaded} />

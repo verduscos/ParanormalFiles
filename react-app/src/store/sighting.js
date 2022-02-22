@@ -42,6 +42,20 @@ export const getAllSightings = () => async (dispatch) => {
 }
 
 
+export const getAllSightingsByCategory = (category) => async (dispatch) => {
+  const response = await fetch(`/api/sightings/${category}`);
+  console.log("CATEGORY BELOW - RESDUCERS")
+  console.log(category)
+  if (response.status >= 400) {
+    throw response
+  }
+
+  const data = await response.json();
+  dispatch(getSightingsByCategory(data.sightings));
+  return data
+}
+
+
 export const createASighting = (payload) => async (dispatch) => {
   const response = await fetch(`/api/sightings/`, {
     method: "POST",
@@ -123,11 +137,13 @@ const sightingReducer = (state = {}, action) => {
           return { ...state, ...sightings }
         case GET_SIGHTINGS_BY_CATEGORY:
           let category = {}
+          console.log("reducer here")
+          console.log(action.payload)
           action.payload.forEach(sighting => {
             category[sighting.id] = sighting
           })
 
-          return { ...state, ...category}
+          return { ...category}
         case CREATE_SIGHTING:
           state[action.payload.id] = action.payload
           return {...state}
