@@ -15,6 +15,7 @@ import Navigation from './components/Navigation';
 import CreateNav from './components/CreateSightingForm/CreateNav';
 import Categories from './components/Categories/Categories';
 import Category from './components/Categories/Category';
+import MySightings from './components/MySightings/mysightings';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,6 +48,8 @@ function App() {
         </Route>
         <ProtectedRoute path='/mysightings' exact={true} >
           <Navigation isLoaded={loaded} />
+          <MySightings />
+          <Categories />
         </ProtectedRoute>
         <Route path='/sightings/categories/:category' exact={true} >
           <Navigation isLoaded={loaded} />
@@ -57,7 +60,6 @@ function App() {
           <Navigation isLoaded={loaded} />
           <SingleSighting />
         </Route>
-
         <Route path='/report' exact={true} >
           <CreateSightingForm />
         </Route>

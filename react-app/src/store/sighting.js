@@ -64,9 +64,14 @@ export const getAllSightingsByCategory = (category) => async (dispatch) => {
 
 export const getAllUserSightings = (userId) => async (dispatch) => {
   const response = await fetch(`/api/sightings/user/${userId}`);
+  if (response.status >= 400) {
+    throw response
+  }
 
   const data = await response.json();
-  dispatch(getAllUserSightings(data.sightings));
+  console.log("INSIDE THUNK")
+  console.log(data.sightings)
+  dispatch(getSightingsByUser(data.sightings));
   return data
 }
 
