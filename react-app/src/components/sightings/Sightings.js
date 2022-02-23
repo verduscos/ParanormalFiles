@@ -36,7 +36,7 @@ const Sightings = () => {
                   <p className="card-text card-story">{sighting.description}</p>
                 </div>
               </Link>
-              <Link className="link" to={`/sightings/${sighting?.category}`}>
+              <Link className="link" to={`/sightings/categories/${sighting?.category}`}>
                 <li className="category-link" key={`category-${sighting?.id}`} >{sighting?.category}</li>
               </Link>
             </div>
