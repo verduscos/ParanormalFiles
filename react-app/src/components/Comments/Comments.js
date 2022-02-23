@@ -55,12 +55,13 @@ const Comments = () => {
   const editComponent = (
     <>
       <textarea
+        value={comment}
         onChange={(e) => {
           setComment(e.target.value)
         }}
       >
       </textarea>
-      <button onClick={editComment}>Edit</button>
+      <button onClick={editComment}>Update</button>
     </>
   )
 
@@ -108,6 +109,7 @@ const Comments = () => {
                     onClick={() => {
                       displayEditForm(true)
                       setCommentId(comment?.id)
+                      setComment(comment?.comment)
                       setDisplayUsrBtn(!displayUsrBtn)
                     }}
                   >Edit</button>
