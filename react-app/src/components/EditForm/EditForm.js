@@ -23,7 +23,7 @@ const EditForm = () => {
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(currentSighting?.image_url)
   const [imageLoading, setImageLoading] = useState(false);
-  const [payload, setPayload] = useState({})
+  // const [payload, setPayload] = useState({})
 
 
 
@@ -33,12 +33,6 @@ const EditForm = () => {
     // IMAGE UPLOAD STARTS
     const formData = new FormData();
     formData.append("image", image);
-    // formData.append("title", title);
-    // formData.append("description", description);
-    // formData.append("category", category);
-    // formData.append("sighting_id", sightingId);
-
-    // console.log("INSIDE EDIT")
 
     // TODO
     // aws uploads can be a bit slow—displaying
@@ -52,14 +46,10 @@ const EditForm = () => {
     if (res.ok) {
       const data = await res.json();
       setImageLoading(false);
-      // console.log(data)
       setImageUrl(data.url)
-      console.log("IMAGE URL", data.url)
-      console.log(imageUrl)
-      // console.log(imageUrl)
-      // console.log("IMAGE URL ABOVE")
 
-      // history.push("/mysightings");
+
+
     }
     else {
       setImageLoading(false);
@@ -116,7 +106,6 @@ const EditForm = () => {
     }
     dispatch(sessionActions.updateSighting(payload))
 
-    // setTitle("sfd")
 
   }, [dispatch, imageUrl])
 

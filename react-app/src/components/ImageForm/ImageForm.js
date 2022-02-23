@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./ImageForm.css"
 import * as sessionActions from "../../store/sighting"
 
 const ImageForm = () => {
   const params = useParams();
   const dispatch = useDispatch()
-  const history = useHistory()
+  // const history = useHistory()
   const { sightingId } = params;
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
@@ -39,7 +39,7 @@ const ImageForm = () => {
     else {
       setImageLoading(false);
       setImageLoading(false);
-      const data = await res.json();
+      // const data = await res.json();
       // a real app would probably use more advanced
       // error handling
       // console.log(data);

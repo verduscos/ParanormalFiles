@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
-import { UseState } from "react-redux";
+// import { UseState } from "react-redux";
 import "./Categories.css";
 
 const Categories = () => {
-  const [searchStr, setSearchStr] = useState("")
+  // const [searchStr, setSearchStr] = useState("")
   const categories = ["UFOs", "Ghosts", "Demons", "Angels", "Reincarnation", "Monsters", "Mandela Effect", "Time Travel", 'Synchronicity'];
 
+  // TODO post presentation
+  // const search = async (e) => {
+  //   e.preventDefault();
 
-  const search = async (e) => {
-    e.preventDefault();
-
-    const data = await fetch(`/api/sightings/search/${searchStr}`)
-    console.log(data);
-    console.log("DATA SHOULD BE ABOVE")
-  }
+  //   const data = await fetch(`/api/sightings/search/${searchStr}`)
+  //   console.log(data);
+  //   console.log("DATA SHOULD BE ABOVE")
+  // }
 
   return (
     <div id="categories-container">
@@ -25,7 +25,7 @@ const Categories = () => {
       </form> */}
       <div id="categories-inner">
         {categories.map(category => (
-          <Link to={`/sightings/categories/${category}`}>{category}</Link>
+          <Link to={`/sightings/categories/${category}`} key={category}>{category}</Link>
         ))}
       </div>
     </div>

@@ -2,14 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-// import UsersList from './components/UsersList';
-// import User from './components/User';
 import Sightings from './components/sightings/Sightings';
 import SingleSighting from './components/SingleSighting/SingleSighting';
 import CreateSightingForm from './components/CreateSightingForm/CreateSightingForm'
 import ImageForm from './components/ImageForm/ImageForm';
 import EditForm from './components/EditForm/EditForm';
-import UploadPrompt from './components/CreateSightingForm/AddImagePrompt';
 import { authenticate } from './store/session';
 import Navigation from './components/Navigation';
 import CreateNav from './components/CreateSightingForm/CreateNav';
@@ -35,12 +32,6 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        {/* <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute> */}
-        {/* <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute> */}
         <Route path='/' exact={true} >
           <Sightings />
           <Navigation isLoaded={loaded} />
@@ -59,10 +50,11 @@ function App() {
         <Route path='/sightings/:sightingId' exact={true} >
           <Navigation isLoaded={loaded} />
           <SingleSighting />
+          <Categories />
         </Route>
-        <Route path='/report' exact={true} >
+        <ProtectedRoute path='/report' exact={true} >
           <CreateSightingForm />
-        </Route>
+        </ProtectedRoute>
         <Route path='/sightings/edit/:sightingId' exact={true} >
           <EditForm />
         </Route>
@@ -70,12 +62,9 @@ function App() {
           <CreateNav />
           <ImageForm />
         </Route>
-        {/* <Route path='/:category' exact={true}>
-        </Route> */}
-        {/* <Route path='/upload' exact={true} >
-          <CreateNav />
-          <UploadPrompt />
-        </Route> */}
+        <Route>
+          <h1>Not Found</h1>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

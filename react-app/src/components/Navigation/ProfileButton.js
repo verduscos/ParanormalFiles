@@ -12,11 +12,11 @@ function ProfileButton({ user }) {
   // const [logoutToggle, setlogoutToggle] = useState(true);
 
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-    // setlogoutToggle(false)
-  };
+  // const openMenu = () => {
+  //   if (showMenu) return;
+  //   setShowMenu(true);
+  //   // setlogoutToggle(false)
+  // };
 
   useEffect(() => {
     if (!showMenu) return;

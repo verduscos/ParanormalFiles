@@ -52,7 +52,7 @@ const CreateSightingForm = () => {
     else {
       setImageLoading(false);
       setImageLoading(false);
-      const data = await res.json();
+      // const data = await res.json();
       // a real app would probably use more advanced
       // error handling
       // console.log(data);
@@ -67,15 +67,13 @@ const CreateSightingForm = () => {
 
 
 
-    const payload = {
-      user_id: currentUser.id,
-      title: title,
-      description: description,
-      category: category,
-      url: imageUrl
-    }
-
-    console.log(payload)
+    // const payload = {
+    //   user_id: currentUser.id,
+    //   title: title,
+    //   description: description,
+    //   category: category,
+    //   url: imageUrl
+    // }
 
     // const data = await dispatch(sessionActions.createASighting(payload));
     let errorsArr = [];
@@ -101,7 +99,7 @@ const CreateSightingForm = () => {
   }
 
 
-  useEffect(async () => {
+  useEffect(() => {
     const payload = {
       user_id: currentUser.id,
       title: title,
