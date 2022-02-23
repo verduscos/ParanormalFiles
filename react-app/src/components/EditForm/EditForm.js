@@ -10,7 +10,10 @@ const EditForm = () => {
   const params = useParams()
   const { sightingId } = params
   let currentUser = useSelector(state => state.session.user)
-  let currentSighting = useSelector(state => state.sightings[sightingId])
+  let sightings = useSelector(state => state.sightings)
+  console.log(sightings)
+  let currentSighting = sightings[sightingId]
+  console.log(currentSighting)
   const history = useHistory()
   const dispatch = useDispatch()
   const [title, setTitle] = useState(currentSighting?.title)
@@ -35,7 +38,7 @@ const EditForm = () => {
     // formData.append("category", category);
     // formData.append("sighting_id", sightingId);
 
-    console.log("INSIDE EDIT")
+    // console.log("INSIDE EDIT")
 
     // TODO
     // aws uploads can be a bit slow—displaying
@@ -69,9 +72,9 @@ const EditForm = () => {
     // IMAGE UPLOAD ENDS
 
 
-      console.log("PAYLOAD BELOW")
-      console.log(payload)
-      console.log(imageUrl)
+      // console.log("PAYLOAD BELOW")
+      // console.log(payload)
+      // console.log(imageUrl)
       // const data = await dispatch(sessionActions.updateSighting(payload));
       // if (data.errors) {
       //   setErrors(data.errors)
@@ -82,13 +85,13 @@ const EditForm = () => {
 
       let errorsArr = [];
 
-      if (title.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
-      if (description.length <= 4) errorsArr.push("Description must be at least 4 characters long.")
-      if (category.length < 1) errorsArr.push("Please choose a category.")
-      if (imageUrl.length < 1) errorsArr.push("Please upload an image.")
+      if (title?.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
+      if (description?.length <= 4) errorsArr.push("Description must be at least 4 characters long.")
+      if (category?.length < 1) errorsArr.push("Please choose a category.")
+      if (imageUrl?.length < 1) errorsArr.push("Please upload an image.")
       setErrors(errorsArr)
       if (errorsArr.length === 0) {
-        history.push('/')
+        history.push('/mysightings')
       }
 
   }
@@ -117,6 +120,10 @@ const EditForm = () => {
 
   }, [dispatch, imageUrl])
 
+  useEffect(() => {
+    dispatch(sessionActions.getAllSightings())
+  }, [dispatch])
+
   return (
     <>
       <CreateNav />
@@ -132,6 +139,7 @@ const EditForm = () => {
             }}
             type="text" value={title} placeholder="Title" />
           <textarea
+            id="edit-textarea"
             className="sighting-inputs"
             onChange={(e) => {
               setDescription(e.target.value)

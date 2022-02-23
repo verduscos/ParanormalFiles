@@ -4,11 +4,11 @@
 } */
 
 #nav-guest {
-  width: 100vw;
+  width: 100%;
   left: 0;
   top: 0;
   height: 75px;
-  position: absolute;
+  position: fixed;
   background-color: #4A5259;
   display: flex;
   align-items: center;

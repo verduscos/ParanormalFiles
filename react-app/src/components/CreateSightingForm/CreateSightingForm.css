@@ -2,7 +2,7 @@
   width: 1050px;
   /* margin-left: 275px; */
   /* background-color: gray ; */
-  width: 100vw;
+  width: 100%;
   right: 0;
   /* position: absolute; */
   /* margin: 0 auto !important; */
@@ -26,6 +26,15 @@
   margin: 10px 0;
   font-size: 18px;
 }
+
+
+#edit-textarea {
+  height: 200px;
+  resize: none;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+
+}
+
 
 #textarea {
   height: 100px;

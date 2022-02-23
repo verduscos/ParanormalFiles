@@ -1,5 +1,6 @@
 const GET_SIGHTINGS = "session/GET_SIGHTING";
 const GET_SIGHTINGS_BY_CATEGORY = "session/GET_SIGHTINGS_BY_CATEGORY"
+const GET_USER_SIGHTINGS = "session/GET_USER_SIGHTINGS"
 const CREATE_SIGHTING = "session/CREATE_SIGHTING"
 const EDIT_SIGHTING = "session/EDIT_SIGHTING"
 const DELETE_SIGHTING = "session/DELETE_SIGHTING"
@@ -11,6 +12,11 @@ const getSightings = (sightings) => ({
 
 const getSightingsByCategory = (sightings) => ({
   type: GET_SIGHTINGS_BY_CATEGORY,
+  payload: sightings
+})
+
+const getSightingsByUser = (sightings) => ({
+  type: GET_USER_SIGHTINGS,
   payload: sightings
 })
 
@@ -52,6 +58,15 @@ export const getAllSightingsByCategory = (category) => async (dispatch) => {
 
   const data = await response.json();
   dispatch(getSightingsByCategory(data.sightings));
+  return data
+}
+
+
+export const getAllUserSightings = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/sightings/user/${userId}`);
+
+  const data = await response.json();
+  dispatch(getAllUserSightings(data.sightings));
   return data
 }
 
@@ -144,6 +159,14 @@ const sightingReducer = (state = {}, action) => {
           })
 
           return { ...category}
+        case GET_USER_SIGHTINGS:
+          let userSightings = {}
+
+          action.payload.forEach(sighting => {
+            userSightings[sighting.id] = sighting
+          })
+
+          return {...userSightings}
         case CREATE_SIGHTING:
           state[action.payload.id] = action.payload
           return {...state}

@@ -40,6 +40,16 @@ def get_sightings_by_category(category):
     return {"sightings": [sighting.to_dict() for sighting in sightings]}
 
 
+@sighting_routes.route("/user/<int:userId>")
+def get_sightings_for_user(userId):
+    """
+    Get all sightings for a user.
+    """
+    sightings = Sighting.query.filter(Sighting.user_id == userId).all()
+
+    return {"sightings": [sighting.to_dict() for sighting in sightings]}
+
+
 @sighting_routes.route("/<int:id>")
 def get_sighting_by_id(id):
     """

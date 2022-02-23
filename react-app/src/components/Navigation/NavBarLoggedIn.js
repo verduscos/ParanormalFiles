@@ -24,9 +24,9 @@ const NavbarLoggedIn = () => {
           <NavLink to='/' exact={true} activeClassName='active'>
             <AiOutlineHome />
           </NavLink>
-          <NavLink to='/sightings/favorites' exact={true} activeClassName='active'>
+          {/* <NavLink to='/sightings/favorites' exact={true} activeClassName='active'>
             <AiOutlineHeart />
-          </NavLink>
+          </NavLink> */}
           <NavLink to='/mysightings' exact={true} activeClassName='active'>
             <IoAlbumsOutline />
           </NavLink>
