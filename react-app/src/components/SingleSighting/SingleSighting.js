@@ -17,6 +17,12 @@ const SingleSighting = () => {
   let sighting = useSelector(state => state.sightings[sightingId])
   let currentUser = useSelector(state => state.session.user)
 
+  window.localStorage.setItem("title", sighting.title)
+  window.localStorage.setItem("description", sighting.title)
+  window.localStorage.setItem("category", sighting.category)
+  window.localStorage.setItem("image_url", sighting.image_url)
+
+
 
   useEffect(() => {
     dispatch(getALLComments(sightingId))
@@ -82,7 +88,7 @@ const SingleSighting = () => {
                 : null}
 
         <img src={sighting?.image_url} id="sighting-img" alt="article-img"></img>
-        <p id="article-body">{sighting?.description}</p>
+        <p id="article-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
         <Comments />
       </div>
     </div>
