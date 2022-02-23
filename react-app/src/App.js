@@ -13,6 +13,7 @@ import CreateNav from './components/CreateSightingForm/CreateNav';
 import Categories from './components/Categories/Categories';
 import Category from './components/Categories/Category';
 import MySightings from './components/MySightings/mysightings';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -63,7 +64,9 @@ function App() {
           <ImageForm />
         </Route>
         <Route>
-          <h1>Not Found</h1>
+          <Navigation isLoaded={loaded} />
+          <NotFound />
+          <Categories />
         </Route>
       </Switch>
     </BrowserRouter>
