@@ -41,9 +41,9 @@ function App() {
           <User />
         </ProtectedRoute> */}
         <Route path='/' exact={true} >
+          <Sightings />
           <Navigation isLoaded={loaded} />
           <Categories />
-          <Sightings />
         </Route>
         <ProtectedRoute path='/mysightings' exact={true} >
           <Navigation isLoaded={loaded} />

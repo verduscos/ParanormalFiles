@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import { UseState } from "react-redux";
 import "./Categories.css";
 
 const Categories = () => {
+  const [searchStr, setSearchStr] = useState("")
   const categories = ["UFOs", "Ghosts", "Demons", "Angels", "Reincarnation", "Monsters", "Mandela Effect", "Time Travel", 'Synchronicity'];
+
+
+  const search = async (e) => {
+    e.preventDefault();
+
+    const data = await fetch(`/api/sightings/search/${searchStr}`)
+    console.log(data);
+    console.log("DATA SHOULD BE ABOVE")
+  }
 
   return (
     <div id="categories-container">
-      <h1 id="test">Categories</h1>
-      {categories.map(category => (
-        <Link to={`/sightings/categories/${category}`}>{category}</Link>
-      ))}
+      {/* <h1 id="test">Categories</h1> */}
+      <form onSubmit={search} id="search-form">
+        <input onChange={((e) => {
+          setSearchStr(e.target.value)
+        })} id="search" type="text" placeholder='Search'/>
+      </form>
+      <div id="categories-inner">
+        {categories.map(category => (
+          <Link to={`/sightings/categories/${category}`}>{category}</Link>
+        ))}
+      </div>
     </div>
 
   )
