@@ -18,12 +18,11 @@ const Categories = () => {
 
   return (
     <div id="categories-container">
-      {/* <h1 id="test">Categories</h1> */}
-      <form onSubmit={search} id="search-form">
+      {/* <form onSubmit={search} id="search-form">
         <input onChange={((e) => {
           setSearchStr(e.target.value)
         })} id="search" type="text" placeholder='Search'/>
-      </form>
+      </form> */}
       <div id="categories-inner">
         {categories.map(category => (
           <Link to={`/sightings/categories/${category}`}>{category}</Link>

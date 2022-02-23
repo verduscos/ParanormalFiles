@@ -70,6 +70,10 @@
   height: 65px;
   display: flex;
   align-items: center;
+  width: 100vw;
+  position:absolute;
+  left: 0;
+  top: 0;
 }
 
 #create-nav > ul {

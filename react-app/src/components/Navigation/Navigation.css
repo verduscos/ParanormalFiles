@@ -8,10 +8,11 @@
   left: 0;
   top: 0;
   height: 75px;
-  position: sticky;
+  position: absolute;
   background-color: #4A5259;
   display: flex;
   align-items: center;
+  z-index: 10;
 }
 
 #nav-ul-guest {
@@ -150,4 +151,8 @@
   font-size: 25px;
   padding:0;
 
+}
+
+.edit-form {
+  margin-top: 125px;
 }

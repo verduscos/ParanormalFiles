@@ -7,17 +7,18 @@ import * as sessionActions from "../../store/sighting"
 
 
 const EditForm = () => {
-  let currentUser = useSelector(state => state.session.user)
   const params = useParams()
   const { sightingId } = params
+  let currentUser = useSelector(state => state.session.user)
+  let currentSighting = useSelector(state => state.sightings[sightingId])
   const history = useHistory()
   const dispatch = useDispatch()
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
-  const [category, setCategory] = useState("")
+  const [title, setTitle] = useState(currentSighting?.title)
+  const [description, setDescription] = useState(currentSighting?.description)
+  const [category, setCategory] = useState(currentSighting?.category)
   const [errors, setErrors] = useState([])
   const [image, setImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState("")
+  const [imageUrl, setImageUrl] = useState(currentSighting?.image_url)
   const [imageLoading, setImageLoading] = useState(false);
   const [payload, setPayload] = useState({})
 
@@ -84,12 +85,15 @@ const EditForm = () => {
       if (title.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
       if (description.length <= 4) errorsArr.push("Description must be at least 4 characters long.")
       if (category.length < 1) errorsArr.push("Please choose a category.")
+      if (imageUrl.length < 1) errorsArr.push("Please upload an image.")
       setErrors(errorsArr)
       if (errorsArr.length === 0) {
         history.push('/')
       }
 
   }
+
+
 
 
 
@@ -108,12 +112,15 @@ const EditForm = () => {
       url: imageUrl
     }
     dispatch(sessionActions.updateSighting(payload))
+
+    // setTitle("sfd")
+
   }, [dispatch, imageUrl])
 
   return (
     <>
       <CreateNav />
-      <form onSubmit={editSighting} className="sighting-form">
+      <form onSubmit={editSighting} className="sighting-form edit-form">
         <div className="form-inner">
           {errors?.map(error => (
             <p>{error}</p>
@@ -136,7 +143,7 @@ const EditForm = () => {
               setCategory(e.target.value)
             }}
             value={category}>
-            <option value="categories">Select Category</option>
+            <option value="categories">Update Category?</option>
             <option value="UFOs">UFOs</option>
             <option value="Ghosts">Ghosts</option>
             <option value="Demons">Demons</option>
