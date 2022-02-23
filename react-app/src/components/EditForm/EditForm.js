@@ -157,10 +157,12 @@ const EditForm = () => {
             <option value="Demons">Demons</option>
           </select>
 
-
+          <label>
+            Update Image?
+          </label>
           <input
             id="file-btn"
-
+            placeholder=""
             type="file"
             accept="image/*"
             onChange={updateImage}

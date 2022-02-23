@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
-import { AiOutlineHome, AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineHome } from 'react-icons/ai';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { IoAlbumsOutline } from 'react-icons/io5';
 import ProfileButton from './ProfileButton';

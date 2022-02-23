@@ -38,7 +38,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button id='user-icon' onClick={openMenu}>
+      <button id='user-icon' onClick={logout}>
         {/* { logoutToggle ? <i><BiLogOutCircle /></i> : null } */}
         <i><BiLogOutCircle /></i>
       </button>
