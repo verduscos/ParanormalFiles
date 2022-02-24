@@ -111,9 +111,9 @@ const EditForm = () => {
   }, [dispatch, imageUrl])
 
 
-console.log("testing testing testing")
-console.log(title)
-console.log(window.localStorage.getItem("title"))
+  console.log("testing testing testing")
+  console.log(title)
+  console.log(window.localStorage.getItem("title"))
 
   useEffect(() => {
     (async () => {
@@ -157,6 +157,12 @@ console.log(window.localStorage.getItem("title"))
                 <option value="UFOs">UFOs</option>
                 <option value="Ghosts">Ghosts</option>
                 <option value="Demons">Demons</option>
+                <option value="Angels">Angels</option>
+                <option value="Reincarnation">Reincarnation</option>
+                <option value="Monsters">Monsters</option>
+                <option value="Mandela Effect">Mandela Effect</option>
+                <option value="Time Travel">Time Travel</option>
+                <option value="Synchronicity">Synchronicity</option>
               </select>
 
               <label>

@@ -33,22 +33,25 @@ const CreateCommentForm = () => {
 
   return (
     <>
-      <form onSubmit={createComment}>
+      <form id="comment-form-container" onSubmit={createComment}>
       {errors?.map(error => (
             <p>{error.split(":")[1]}</p>
           ))}
         <textarea
-          id="comment-textarea"
+          className="comment-textarea"
           value={comment}
           onChange={(e) => {
             setComment(e.target.value)
           }}
         ></textarea>
-        <div id="comment-btns">
-          <button onClick={() => {
+        <div >
+          <button
+          className="comment-btns-edit"
+          onClick={(e) => {
+            e.preventDefault()
             setComment("")
           }}>CANCEL</button>
-          <button id="submit-comment">COMMENT</button>
+          <button className="comment-btns-edit">COMMENT</button>
         </div>
       </form>
     </>

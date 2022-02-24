@@ -16,6 +16,7 @@ const Comments = () => {
   const [errors, setErrors] = useState([])
   const [selectedComment, setSelectedComment] = useState(null)
   const [displayUsrBtn, setDisplayUsrBtn] = useState(false);
+  const [displayDots, setDisplayDots] = useState(true)
 
   const currentUser = useSelector(state => state.session.user)
   let comments = useSelector(state => state.comments)
@@ -39,6 +40,7 @@ const Comments = () => {
 
     if (comment.length >= 4) {
       // Remove editCommentForm on submission, reset comment and error mssgs
+      setDisplayDots(true)
       displayEditForm(!editForm);
       setComment("")
       setErrors([]);
@@ -55,13 +57,19 @@ const Comments = () => {
   const editComponent = (
     <>
       <textarea
+        className="comment-textarea"
         value={comment}
         onChange={(e) => {
           setComment(e.target.value)
         }}
       >
       </textarea>
-      <button onClick={editComment}>Update</button>
+      <button className="comment-btns-edit" onClick={editComment}>Update</button>
+      <button className="comment-btns-edit"
+      onClick={() => {
+        displayEditForm(false)
+        setDisplayDots(true)
+      }}>Cancel</button>
     </>
   )
 
@@ -89,7 +97,7 @@ const Comments = () => {
         <div id="comments-ul" key={`comment-${comment?.id}-card`}>
           <div>
             <p key={`comment-${comment?.username}`}>{comment?.username}</p>
-            {currentUser?.id === comment?.user_id ?
+            {currentUser?.id === comment?.user_id && displayDots ?
               <BiDotsHorizontalRounded
                 value={comment.id}
                 onClick={() => {
@@ -106,14 +114,17 @@ const Comments = () => {
               {displayUsrBtn && selectedComment === comment.id ?
                 <>
                   <button
+                    className="comment-btns-edit"
                     onClick={() => {
                       displayEditForm(true)
+                      setDisplayDots(false)
                       setCommentId(comment?.id)
                       setComment(comment?.comment)
                       setDisplayUsrBtn(!displayUsrBtn)
                     }}
                   >Edit</button>
                   <button
+                    className="comment-btns-edit"
                     value={comment?.id}
                     onClick={(e) => {
                       deleteComment(e, comment?.id)

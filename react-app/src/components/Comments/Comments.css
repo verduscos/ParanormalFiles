@@ -1,3 +1,7 @@
+#comment-form-container {
+  margin-bottom: 50px;
+}
+
 #comment-header {
   display: flex;
   align-items: center;
@@ -25,7 +29,7 @@
 
 
 /* CREATE COMMENT FORM */
-#comment-textarea {
+.comment-textarea {
   resize:none;
   width: 500px;
   height: 100px;
@@ -50,4 +54,17 @@
 #submit-comment:hover  {
   background-color: rgba(70, 70, 70, 0.219);
 
+}
+
+
+/* EDITING CSS */
+.comment-btns-edit {
+  background-color: #171F26;
+  color: rgb(212, 212, 212);
+  letter-spacing: .5px;
+  padding: 8px;
+  border: none;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
 }
