@@ -65,9 +65,9 @@ function App() {
           <ImageForm />
         </ProtectedRoute>
         <Route>
-          <Navigation isLoaded={loaded} />
+          {/* <Navigation isLoaded={loaded} /> */}
           <NotFound />
-          <Categories />
+          {/* <Categories /> */}
         </Route>
       </Switch>
     </BrowserRouter>
