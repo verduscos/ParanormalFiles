@@ -18,15 +18,36 @@ const Categories = () => {
 
   return (
     <div id="categories-container">
-      {/* <form onSubmit={search} id="search-form">
-        <input onChange={((e) => {
-          setSearchStr(e.target.value)
-        })} id="search" type="text" placeholder='Search'/>
-      </form> */}
+
       <div id="categories-inner">
-        {categories.map(category => (
-          <Link to={`/sightings/categories/${category}`} key={category}>{category}</Link>
-        ))}
+        <div id="ufos">
+            <Link to={`/sightings/categories/UFOs`}>UFOs</Link>
+        </div>
+        <div id="ghosts">
+          <Link to={`/sightings/categories/Ghosts`}>Ghosts</Link>
+        </div>
+        <div id="demons">
+          <Link to={`/sightings/categories/Demons`}>Demons</Link>
+        </div>
+        <div>
+          <Link to={`/sightings/categories/Angels`} id="angels">Angels</Link>
+        </div>
+        <div>
+          <Link to={`/sightings/categories/Reincarnation`} id="reincarnation">Reincarnation</Link>
+        </div>
+        <div>
+          <Link to={`/sightings/categories/Monsters`} id="monsters">Monsters</Link>
+        </div>
+        <div>
+          <Link to={`/sightings/categories/Mandela Effect`} id="mandela-effect">Mandela Effect</Link>
+        </div>
+        <div>
+          <Link to={`/sightings/categories/Time Travel`} id="time-travel">Time Travel</Link>
+        </div>
+        <div>
+          <Link to={`/sightings/categories/Synchronicity`} id="synchronicity">Synchronicity</Link>
+        </div>
+
       </div>
     </div>
 
