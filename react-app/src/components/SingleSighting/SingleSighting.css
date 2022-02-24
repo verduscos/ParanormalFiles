@@ -1,6 +1,7 @@
 #sighting-comp-container {
   width: 1050px;
   margin-left: 275px;
+  min-height: 95vh;
 }
 
 #article-container {

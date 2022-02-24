@@ -55,7 +55,9 @@
   font-family: medium-content-title-font,Georgia,Cambria,"Times New Roman",Times,serif !important;
   min-height: 50px;
   max-height: 500px;
+  height: 200px;
   resize: none;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
 
 .form-options {
