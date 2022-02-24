@@ -24,16 +24,19 @@ function Navigation({ isLoaded }) {
   }
 
   let guestNav = (
-    <nav id="nav-guest">
-      <ul id="nav-ul-guest">
-        <li className='nav-li'>
-          <NavLink exact to="/">LOGO</NavLink>
-        </li>
-        <li className='nav-li'>
-          {isLoaded && sessionLinks}
-        </li>
-      </ul>
-    </nav>
+    <>
+      <nav id="nav-guest">
+        <ul id="nav-ul-guest">
+          <li className='nav-li'>
+            <NavLink exact to="/">LOGO</NavLink>
+          </li>
+          <li className='nav-li'>
+            {isLoaded && sessionLinks}
+          </li>
+        </ul>
+      </nav>
+      <img id="header-img" src="https://thedarkestblog.com/wp-content/uploads/2016/10/The-Darkest-Blog-Forest.jpg"/>
+    </>
   )
 
   let userNav = (
@@ -42,7 +45,7 @@ function Navigation({ isLoaded }) {
 
   return (
     <>
-    { sessionUser ? userNav : guestNav }
+      {sessionUser ? userNav : guestNav}
     </>
   );
 }

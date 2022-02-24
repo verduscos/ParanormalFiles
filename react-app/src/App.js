@@ -14,6 +14,7 @@ import Categories from './components/Categories/Categories';
 import Category from './components/Categories/Category';
 import MySightings from './components/MySightings/mysightings';
 import NotFound from './components/NotFound/NotFound';
+import Homeheader from './components/HomeHeader/HomeHeader';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -56,13 +57,13 @@ function App() {
         <ProtectedRoute path='/report' exact={true} >
           <CreateSightingForm />
         </ProtectedRoute>
-        <Route path='/sightings/edit/:sightingId' exact={true} >
+        <ProtectedRoute path='/sightings/edit/:sightingId' exact={true} >
           <EditForm />
-        </Route>
-        <Route path='/sightings/:sightingId/images' exact={true} >
+        </ProtectedRoute>
+        <ProtectedRoute path='/sightings/:sightingId/images' exact={true} >
           <CreateNav />
           <ImageForm />
-        </Route>
+        </ProtectedRoute>
         <Route>
           <Navigation isLoaded={loaded} />
           <NotFound />

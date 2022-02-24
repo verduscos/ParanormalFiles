@@ -8,11 +8,11 @@
   left: 0;
   top: 0;
   height: 75px;
-  position: fixed;
-  background-color: #4A5259;
+  position: absolute;
+  background-color: transparent;
   display: flex;
   align-items: center;
-  z-index: 10;
+  z-index: 101;
 }
 
 #nav-ul-guest {
@@ -31,6 +31,14 @@
   text-decoration: none;
   color: white;
 
+}
+
+#header-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
 }
 
 
