@@ -15,6 +15,8 @@ import Category from './components/Categories/Category';
 import MySightings from './components/MySightings/mysightings';
 import NotFound from './components/NotFound/NotFound';
 import Homeheader from './components/HomeHeader/HomeHeader';
+import SplashBg from './components/Navigation/SpashBg';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -36,6 +38,7 @@ function App() {
       <Switch>
         <Route path='/' exact={true} >
           <Navigation isLoaded={loaded} />
+          {/* <SplashBg /> */}
           <Sightings />
           <Categories />
         </Route>

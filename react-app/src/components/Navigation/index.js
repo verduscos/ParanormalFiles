@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import NavbarLoggedIn from './NavBarLoggedIn';
 import LoginFormModal from '../auth/LoginFormModal';
 import SignupFormModal from '../auth/SignupFormModal';
+import SplashBg from './SpashBg';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -23,6 +24,7 @@ function Navigation({ isLoaded }) {
     );
   }
 
+
   let guestNav = (
     <>
       <nav id="nav-guest">
@@ -35,8 +37,8 @@ function Navigation({ isLoaded }) {
           </li>
         </ul>
       </nav>
-      <img id="header-img" src="https://thedarkestblog.com/wp-content/uploads/2016/10/The-Darkest-Blog-Forest.jpg"/>
-      <div id="splash-margin"></div>
+      {/* <img id="header-img" src="https://thedarkestblog.com/wp-content/uploads/2016/10/The-Darkest-Blog-Forest.jpg"/> */}
+      {/* <div id="splash-margin"></div> */}
     </>
   )
 
@@ -46,7 +48,7 @@ function Navigation({ isLoaded }) {
 
   return (
     <>
-      {sessionUser ? userNav : guestNav}
+      {sessionUser ? userNav : <SplashBg />}
     </>
   );
 }
