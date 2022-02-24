@@ -84,7 +84,7 @@ const EditForm = () => {
     // if (imageUrl?.length < 1) errorsArr.push("Please upload an image.")
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
-      history.push('/mysightings')
+      history.push(`/sightings/${sightingId}`)
     }
 
   }
@@ -135,7 +135,7 @@ const editText = (e) => {
   setErrors(errorsArr)
   if (errorsArr.length === 0) {
     dispatch(sessionActions.updateSighting(payload))
-    history.push('/mysightings')
+    history.push(`/sightings/${sightingId}`)
   }
 }
 
