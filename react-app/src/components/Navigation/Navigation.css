@@ -39,8 +39,16 @@
   left: 0;
   width: 100%;
   z-index: 100;
+  margin-bottom: 800px;
+  height: 100%;
 }
 
+/* margin for splash page only */
+#splash-margin {
+  width: 50px;
+  height: 350px;
+  margin-bottom: 625px;
+}
 
 
 /* USER NAV */

@@ -36,6 +36,7 @@ function Navigation({ isLoaded }) {
         </ul>
       </nav>
       <img id="header-img" src="https://thedarkestblog.com/wp-content/uploads/2016/10/The-Darkest-Blog-Forest.jpg"/>
+      <div id="splash-margin"></div>
     </>
   )
 
