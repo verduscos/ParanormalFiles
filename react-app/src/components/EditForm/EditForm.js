@@ -23,12 +23,14 @@ const EditForm = () => {
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [editTextOnly, setEditTextOnly] = useState(true)
   // const [payload, setPayload] = useState({})
 
 
 
   const editSighting = async (e) => {
     e.preventDefault()
+
 
     // IMAGE UPLOAD STARTS
     const formData = new FormData();
@@ -110,26 +112,39 @@ const EditForm = () => {
 
   }, [dispatch, imageUrl])
 
+const editText = (e) => {
+  e.preventDefault()
 
-  console.log("testing testing testing")
-  console.log(title)
-  console.log(window.localStorage.getItem("title"))
+  const payload = {
+    sighting_id: sightingId,
+    user_id: currentUser.id,
+    title: title,
+    description: description,
+    category: category,
+    url: imageUrl
+  }
+  let errorsArr = [];
 
-  useEffect(() => {
-    (async () => {
-      await dispatch(sessionActions.getAllSightings())
-      setLoaded(true);
-    })();
-  }, [dispatch]);
+  if (title?.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
+  if (description?.length <= 4) errorsArr.push("Description must be at least 5 characters long.")
+  if (category?.length < 1) errorsArr.push("Please choose a category.")
+  // if (imageUrl?.length < 1) errorsArr.push("Please upload an image.")
+  setErrors(errorsArr)
+  if (errorsArr.length === 0) {
+    dispatch(sessionActions.updateSighting(payload))
+    history.push('/mysightings')
+  }
+}
+
 
 
 
   return (
     <>
-      {loaded ?
-        <>
+
+
           <CreateNav />
-          <form onSubmit={editSighting} className="sighting-form edit-form">
+          <form className="sighting-form edit-form">
             <div className="form-inner">
               {errors?.map(error => (
                 <p>{error}</p>
@@ -169,19 +184,27 @@ const EditForm = () => {
                 Update Image?
               </label>
               <input
+                onClick={() => {
+                  setEditTextOnly(false)
+                }}
                 id="file-btn"
-                placeholder=""
                 type="file"
                 accept="image/*"
                 onChange={updateImage}
               />
 
-              <button className="post-form-btn sighting-inputs cursor">Update</button>
+              { editTextOnly ? null
+              :
+              <button onClick={editSighting}className="post-form-btn sighting-inputs cursor">Upload</button>
+              }
+
+
+              { editTextOnly ?
+                <button onClick={editText}className="post-form-btn sighting-inputs cursor">Update</button>
+              : null}
             </div>
           </form>
         </>
-        : <h1>loading</h1>}
-    </>
   )
 }
 

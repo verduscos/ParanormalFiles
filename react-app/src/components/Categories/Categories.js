@@ -48,6 +48,7 @@ const Categories = () => {
           <Link to={`/sightings/categories/Synchronicity`} id="synchronicity">Synchronicity</Link>
         </div>
 
+
       </div>
     </div>
 
