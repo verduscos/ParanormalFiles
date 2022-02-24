@@ -24,6 +24,7 @@ const EditForm = () => {
   const [imageLoading, setImageLoading] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [editTextOnly, setEditTextOnly] = useState(true)
+  const [test, setTest] = useState(null)
   // const [payload, setPayload] = useState({})
 
 
@@ -89,12 +90,14 @@ const EditForm = () => {
   }
 
   console.log(title)
-
+  console.log("TEST TES TEST TTEST")
+  console.log(test)
 
 
   const updateImage = (e) => {
     const file = e.target.files[0];
     setImage(file);
+    setEditTextOnly(false)
   }
 
   useEffect(() => {
@@ -184,9 +187,13 @@ const editText = (e) => {
                 Update Image?
               </label>
               <input
-                onClick={() => {
-                  setEditTextOnly(false)
-                }}
+                // onClick={() => {
+                //   setEditTextOnly(false)
+                // }}
+                // value={test}
+                // onChange={(e) => {
+                //   setTest(e.target.value)
+                // }}
                 id="file-btn"
                 type="file"
                 accept="image/*"

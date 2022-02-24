@@ -18,7 +18,7 @@ const SingleSighting = () => {
   let currentUser = useSelector(state => state.session.user)
 
   window.localStorage.setItem("title", sighting?.title)
-  window.localStorage.setItem("description", sighting?.title)
+  window.localStorage.setItem("description", sighting?.description)
   window.localStorage.setItem("category", sighting?.category)
   window.localStorage.setItem("image_url", sighting?.image_url)
 
