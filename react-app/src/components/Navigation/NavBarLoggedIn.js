@@ -6,6 +6,8 @@ import { IoIosAddCircleOutline } from 'react-icons/io';
 import { IoAlbumsOutline } from 'react-icons/io5';
 import ProfileButton from './ProfileButton';
 import './Navigation.css'
+import logo from "./logo-paranormal-files.png"
+
 
 
 
@@ -17,7 +19,7 @@ const NavbarLoggedIn = () => {
       <div id="nav-link-container">
         <div id="home">
           <NavLink to='/' exact={true} activeClassName='active'>
-            Logo
+            <img src={logo} />
           </NavLink>
         </div>
         <div id="user-site-nav-links">

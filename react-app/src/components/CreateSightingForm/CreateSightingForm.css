@@ -78,7 +78,7 @@
 
 /* CREATE NAV */
 #create-nav {
-  background-color: #171F26;
+  background-color: black;
   height: 65px;
   display: flex;
   align-items: center;
@@ -104,8 +104,14 @@
   font-style: normal;
 }
 
+#create-nav-link {
+  align-items: center;
+  display: flex;
+
+}
+
 #create-nav-link > * {
-  margin: 0 5px;
+  margin: 0 15px;
 }
 
 
