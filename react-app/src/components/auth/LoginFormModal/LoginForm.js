@@ -17,7 +17,9 @@ function LoginForm() {
   };
 
   const demo = async (e) => {
-    await dispatch(login("demo@aa.io", "password"))
+    setCredential("demo@aa.io");
+    setPassword("password")
+    await dispatch(login(credential, password))
   }
 
   return (
