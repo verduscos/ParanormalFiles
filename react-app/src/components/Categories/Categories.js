@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 // import { UseState } from "react-redux";
+import { VscGithub } from "react-icons/vsc"
+import { BsLinkedin } from "react-icons/bs"
 import "./Categories.css";
 
 const Categories = () => {
@@ -21,7 +23,7 @@ const Categories = () => {
 
       <div id="categories-inner">
         <div id="ufos">
-            <Link to={`/sightings/categories/UFOs`}>UFOs</Link>
+          <Link to={`/sightings/categories/UFOs`}>UFOs</Link>
         </div>
         <div id="ghosts">
           <Link to={`/sightings/categories/Ghosts`}>Ghosts</Link>
@@ -47,9 +49,21 @@ const Categories = () => {
         <div>
           <Link to={`/sightings/categories/Synchronicity`} id="synchronicity">Synchronicity</Link>
         </div>
-
-
       </div>
+
+
+      <div id="aboutme-links">
+        <p>Developed by Eddie Verdusco</p>
+        <ul>
+          <li key="github-link">
+            <a href={"https://github.com/verduscos"} target="_blank"><VscGithub /></a>
+          </li>
+          <li key="github-link">
+            <a href={"https://www.linkedin.com/in/eddie-verdusco/"} target="_blank"><BsLinkedin /></a>
+          </li>
+        </ul>
+      </div>
+
     </div>
 
   )
