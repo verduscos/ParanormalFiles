@@ -58,7 +58,7 @@ const Categories = () => {
           <li key="github-link">
             <a href={"https://github.com/verduscos"} target="_blank"><VscGithub /></a>
           </li>
-          <li key="github-link">
+          <li key="linkedin-link">
             <a href={"https://www.linkedin.com/in/eddie-verdusco/"} target="_blank"><BsLinkedin /></a>
           </li>
         </ul>

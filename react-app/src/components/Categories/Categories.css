@@ -18,12 +18,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin: 100px 0 50px 0; */
-  /* background-color: red; */
   overflow: auto;
   height: 200px;
   height: 85%;
-  /* background-image: url("https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/Best-ufo-wallpaper+(2).jpg") */
 
 }
 
@@ -81,26 +78,25 @@ body {
 #categories-inner > div > a {
   text-decoration: none;
   font-size: 23px;
-  font-weight: 900;
+  font-weight: 700;
   color: white;
   letter-spacing: 1px;
   text-shadow: 0px 2px 2px rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.548);
-   /* width: 400px;
-  height: 600px; */
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-
+  transition-duration: .25s;
   display:flex;
   align-items: center;
   justify-content: center;
 }
 
-#categories-inner > div:hover {
-  background-color: rgb(44, 44, 44);
+#categories-inner > div > a:hover {
+  color: #D10606;
+  text-shadow: none;
 }
 
 
@@ -125,12 +121,12 @@ body {
 
 /* about me */
 #aboutme-links {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   bottom: 10px;
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
-  /* background-color: red; */
 }
 
 #aboutme-links > p {
@@ -139,22 +135,27 @@ body {
   font-size: 15px;
 }
 
+
+
+
 #aboutme-links > ul {
   display: flex;
   list-style-type: none;
-  text-align: center;
-  /* background-color: green; */
-  padding: 0;
-  margin-left: 60%;
+  display:flex;
+  flex-direction: column;
 }
 
 #aboutme-links > ul > li {
-  margin: 0 10px;
-  /* background-color: gray; */
-  /* margin-left:20%; */
+  margin: 2px 0px;
 }
+
 
 #aboutme-links > ul > li > a {
   color: rgb(207, 207, 207);
-    font-size: 23px;
+  font-size: 23px;
+  transition-duration: .25s;
+}
+
+#aboutme-links > ul > li > a:hover {
+  color: #D10606
 }

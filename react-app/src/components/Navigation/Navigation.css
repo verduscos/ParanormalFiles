@@ -82,6 +82,11 @@ body {
   color:white;
   font-size: 25px;
   margin: 13px 0;
+  transition-duration: .25s;
+}
+
+#user-site-nav-links > a:hover {
+  color: #D10606;
 }
 
 #report-link {
@@ -169,6 +174,10 @@ body {
   padding:0;
   cursor: pointer;
 
+}
+
+#user-icon:hover {
+  color: #D10606;
 }
 
 .edit-form {
