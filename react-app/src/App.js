@@ -14,8 +14,7 @@ import Categories from './components/Categories/Categories';
 import Category from './components/Categories/Category';
 import MySightings from './components/MySightings/mysightings';
 import NotFound from './components/NotFound/NotFound';
-import Homeheader from './components/HomeHeader/HomeHeader';
-import SplashBg from './components/Navigation/SpashBg';
+import Footer from './components/Footer/Footer';
 
 
 function App() {
@@ -73,6 +72,7 @@ function App() {
           {/* <Categories /> */}
         </Route>
       </Switch>
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }

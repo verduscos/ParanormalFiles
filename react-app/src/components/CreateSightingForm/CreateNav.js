@@ -11,7 +11,10 @@ const CreateNav = () => {
   return (
     <nav id="create-nav">
       <ul>
-        <NavLink to="/">logo <span>Draft in {currentUser.username}</span></NavLink>
+        <div id="create-nav-link">
+        <NavLink to="/">logo </NavLink>
+        <span>Draft in {currentUser.username}</span>
+        </div>
         {/* <li>logo <span>Draft in {currentUser.username}</span></li> */}
         <ProfileButton />
       </ul>

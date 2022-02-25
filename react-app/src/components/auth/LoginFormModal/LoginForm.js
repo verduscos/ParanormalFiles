@@ -33,8 +33,8 @@ function LoginForm() {
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           className='inputs'
-          placeholder="Username or Email"
-          required
+          placeholder="Email"
+
         />
         <input
           type="password"
@@ -42,7 +42,6 @@ function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
           className='inputs'
           placeholder="Password"
-          required
         />
       <button type="submit" className="modalButts">Log In</button>
       <button onClick={demo} className="modalButts">Demo</button>

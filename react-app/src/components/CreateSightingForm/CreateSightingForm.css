@@ -104,6 +104,10 @@
   font-style: normal;
 }
 
+#create-nav-link > * {
+  margin: 0 5px;
+}
+
 
 
 /* IMAGE PROMPT */
