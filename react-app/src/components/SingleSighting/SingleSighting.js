@@ -33,7 +33,7 @@ const SingleSighting = () => {
     e.preventDefault();
     dispatch(sessionActions.deleteASighting(sightingId))
 
-    history.push("/")
+    history.push("/mysightings")
   }
 
   // let userBtns = (
@@ -87,7 +87,7 @@ const SingleSighting = () => {
                   <Link to={`/sightings/edit/${sighting.id}`}>Edit</Link>
                 </div>
                 : null}
-        <p id="sighting-date">{`${sighting?.created_at.split(' ')[2]} ${sighting?.created_at.split(' ')[1]}, ${sighting?.created_at.split(' ')[3]}`}</p>
+        <p id="sighting-date-article">{`${sighting?.created_at.split(' ')[2]} ${sighting?.created_at.split(' ')[1]}, ${sighting?.created_at.split(' ')[3]}`}</p>
         <img src={sighting?.image_url} id="sighting-img" alt="article-img"></img>
         <p id="article-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
         <Comments />

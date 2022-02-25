@@ -37,7 +37,7 @@ const Sightings = () => {
                 </div>
               </Link>
               <div id="sighting-date">
-                <p>{`${sighting?.created_at.split(' ')[2]} ${sighting.updated_at.split(' ')[1]}, ${sighting.updated_at.split(' ')[3]} in `}</p>
+                <p>{`${sighting?.created_at.split(' ')[2]} ${sighting.created_at.split(' ')[1]}, ${sighting.created_at.split(' ')[3]} in `}</p>
                 <Link className="link" to={`/sightings/categories/${sighting?.category}`}>
                   <li className="category-link" key={`category-${sighting?.id}`} >{sighting?.category}</li>
                 </Link>

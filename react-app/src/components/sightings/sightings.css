@@ -3,7 +3,6 @@
   width: 1050px;
   margin-left: 275px;
   margin-top: 50px;
-  /* from Medium */
   min-height: 95vh;
   font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
@@ -43,10 +42,15 @@
 
 
 #sighting-date {
-  /* background-color: red; */
   display: flex;
   align-items: center;
+  justify-content: flex-start !important;
 }
+
+ /* #sighting-date-article {
+  display: flex;
+  align-items: center;
+} */
 
 #sighting-date > * {
   margin: 0 5px;
@@ -86,7 +90,7 @@
 }
 
 .category-link {
-  background-color: rgba(0, 0, 0, 0.349);
+  background-color: rgba(83, 83, 83, 0.349);
   width: 75px;
   text-align: center;
   border-radius: 50px;
