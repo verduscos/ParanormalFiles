@@ -61,6 +61,7 @@ const SingleSighting = () => {
 
         <div id="header-container">
           <h1 id="article-title">{sighting?.title}</h1>
+
           {currentUser && currentUser?.id === sighting?.user_id ?
             <>
               <span
@@ -86,7 +87,7 @@ const SingleSighting = () => {
                   <Link to={`/sightings/edit/${sighting.id}`}>Edit</Link>
                 </div>
                 : null}
-
+        <p id="sighting-date">{`${sighting?.created_at.split(' ')[2]} ${sighting?.created_at.split(' ')[1]}, ${sighting?.created_at.split(' ')[3]}`}</p>
         <img src={sighting?.image_url} id="sighting-img" alt="article-img"></img>
         <p id="article-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
         <Comments />
