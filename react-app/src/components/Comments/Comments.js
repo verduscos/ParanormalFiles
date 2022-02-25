@@ -99,6 +99,7 @@ const Comments = () => {
             <p key={`comment-${comment?.username}`}>{comment?.username}</p>
             {currentUser?.id === comment?.user_id && displayDots ?
               <BiDotsHorizontalRounded
+              id="comment-dots"
                 value={comment.id}
                 onClick={() => {
                   setSelectedComment(comment.id)
