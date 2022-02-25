@@ -28,7 +28,7 @@ const Sightings = () => {
                 {/* TODO
                   FIX DATE FORMAT
                 */}
-                <p>{sighting?.date}</p>
+                {/* <p>{`${sighting?.created_at.split(' ')[2]} ${sighting.updated_at.split(' ')[1]}, ${sighting.updated_at.split(' ')[3]}`}</p> */}
               </li>
               <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}`}>
                 <div key={`title-${sighting?.id}`}>
@@ -36,9 +36,12 @@ const Sightings = () => {
                   <p className="card-text card-story">{sighting.description}</p>
                 </div>
               </Link>
-              <Link className="link" to={`/sightings/categories/${sighting?.category}`}>
-                <li className="category-link" key={`category-${sighting?.id}`} >{sighting?.category}</li>
-              </Link>
+              <div id="sighting-date">
+                <p>{`${sighting?.created_at.split(' ')[2]} ${sighting.updated_at.split(' ')[1]}, ${sighting.updated_at.split(' ')[3]} in `}</p>
+                <Link className="link" to={`/sightings/categories/${sighting?.category}`}>
+                  <li className="category-link" key={`category-${sighting?.id}`} >{sighting?.category}</li>
+                </Link>
+              </div>
             </div>
             <Link className="link card-img" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
               <img className="card-img" src={sighting?.image_url} alt="sighting-img"></img>
