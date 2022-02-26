@@ -16,6 +16,7 @@ const CreateSightingForm = () => {
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("")
   const [imageLoading, setImageLoading] = useState(false);
+  const [displayUrl, setDisplayUrl] = useState("")
 
 
   useEffect(() => {
@@ -82,6 +83,7 @@ const CreateSightingForm = () => {
   const updateImage = (e) => {
     const file = e.target.files[0];
     setImage(file);
+    setDisplayUrl(file["name"])
   }
 
 
@@ -103,7 +105,7 @@ const CreateSightingForm = () => {
       <form onSubmit={createSighting} className="sighting-form">
         <div className="form-inner">
           {errors?.map(error => (
-            <p>{error}</p>
+            <li className="error-mssg">{error}</li>
           ))}
 
           {/* <input className="sighting-inputs"
@@ -144,14 +146,20 @@ const CreateSightingForm = () => {
             <option value="Synchronicity">Synchronicity</option>
           </select>
 
-
-          <input
-            id="file-btn"
-            required
-            type="file"
-            accept="image/*"
-            onChange={updateImage}
-          />
+          <div className="upload-container">
+            <label for="file-btn" value="Upload Image" id="file-label">
+              <p>Choose Image</p>
+            </label>
+            <input
+              id="file-btn"
+              required
+              name="file"
+              type="file"
+              accept="image/*"
+              onChange={updateImage}
+            />
+            <p>{displayUrl}</p>
+          </div>
 
 
 
