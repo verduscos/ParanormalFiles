@@ -176,7 +176,10 @@ const sightingReducer = (state = {}, action) => {
           state[action.payload.id] = action.payload
           return {...state}
         case EDIT_SIGHTING:
-          return {...state}
+          let updated = {...state}
+          updated[action.payload.id] = action.payload
+
+          return {...updated}
         case DELETE_SIGHTING:
           let updatedSightings = { ...state}
 
