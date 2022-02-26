@@ -29,7 +29,7 @@ function SignupForm() {
       }
 
     } else {
-      errorArr.push('Confirm Password field must be the same as the Password field');
+      errorArr.push('password: Confirm Password field must be the same as the Password field');
     }
     setErrors(errorArr)
   }
@@ -38,7 +38,7 @@ function SignupForm() {
       <h2 className='modal-title'>Sign Up!</h2>
       <ul>
         {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
+          <li key={idx}>{error.split(":")[1]}</li>
         ))}
       </ul>
       <input
