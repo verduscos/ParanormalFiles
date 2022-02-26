@@ -149,7 +149,7 @@ const EditForm = () => {
 
 
       <CreateNav />
-      <form className="sighting-form edit-form">
+      <form className="sighting-form">
         <div className="form-inner">
           {errors?.map(error => (
             <li className="error-mssg">{error}</li>

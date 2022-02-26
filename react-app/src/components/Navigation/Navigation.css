@@ -79,7 +79,7 @@ body {
 }
 
 #user-site-nav-links > a {
-  color:white;
+  color: rgb(212, 212, 212);
   font-size: 25px;
   margin: 13px 0;
   transition-duration: .25s;
@@ -105,7 +105,7 @@ body {
 }
 
 #home > a {
-  color: white;
+  color: rgb(212, 212, 212);
 }
 
 #logoutBtn {
@@ -169,7 +169,7 @@ body {
   outline: none;
   background-color: transparent;
   border: none;
-  color: white;
+  color: rgb(212, 212, 212);
   font-size: 25px;
   padding:0;
   cursor: pointer;
@@ -178,10 +178,6 @@ body {
 
 #user-icon:hover {
   color: #D10606;
-}
-
-.edit-form {
-  margin-top: 125px;
 }
 
 
