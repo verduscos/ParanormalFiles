@@ -1,13 +1,46 @@
-# Flask React Project
+# Paranormal Files 
 
-This is the starter for the Flask React project.
+[Paranormal Files](https://something-medium.herokuapp.com/), loosely based on [Medium](https://medium.com/), is social platform where users can share or read about experiences with the paranormal.
+
+![splash page](https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/splash-pf.PNG)
+
+# Technologies Used
+Built with React/Redux for the frontend and Python/Flask for the backend with a PostgreSQL database.
+
+# Sightings/Stories
+Users can report a sighting and share an through the implementation of Amazon Web Services S3.
+![sightings](https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/create-pf.PNG)
+
+View of a sighting after creation
+![sightingview](https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/sighting-pf.PNG)
+
+# Commenting
+Users can comment on a sighting to share their thoughts/
+![comment](https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/commens-pf.PNG)
+
+Sign in easily as a Demo user
+![signin modal](https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/signin-pf.PNG)
+
+## Features
+Full CRUD:
+ * [Sightings](https://github.com/verduscos/medium-clone/wiki/Feature-List) 
+ * [Comments](https://github.com/verduscos/medium-clone/wiki/Feature-List)
+
+Additional functionality:
+ * [Categories](https://github.com/verduscos/medium-clone/wiki/Feature-List)
+
+Upcoming featues:
+ * Likes
+ * Favorites
+ * Search
+ * Tags (will replace categories with tags which the user/reporter create instead of picking a category)
 
 ## Getting started
 
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
+   git clone https://github.com/verduscos/medium-clone
    ```
 
 2. Install dependencies
@@ -82,7 +115,7 @@ hurt to run it again.
    ```
 
 7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
+   This should be the full URL of your Heroku app: i.e. "https://something-medium.herokuapp.com/"
 8. Push your docker container to heroku from the root directory of your project.
    (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
    This will build the Dockerfile and push the image to your heroku container registry.
