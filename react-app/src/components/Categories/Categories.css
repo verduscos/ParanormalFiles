@@ -102,17 +102,17 @@ body {
 
 /* CATEGORY BGs */
 #ufos {
-  background-image: url("https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/Best-ufo-wallpaper+(2).jpg");
+  /* background-image: url("https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/Best-ufo-wallpaper+(2).jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
 }
 #ghosts {
-  background-image: url("https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/ghosts-getty_10242019.jpg");
+  /* background-image: url("https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/ghosts-getty_10242019.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
 }
 #demons {
-  background-image: url("https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/exorcisms-feat.jpg");
+  /* background-image: url("https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/exorcisms-feat.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
 }

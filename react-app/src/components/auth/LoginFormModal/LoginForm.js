@@ -24,7 +24,7 @@ function LoginForm() {
 
   return (
     <form onSubmit={onLogin} className='modal'>
-      <h2 className='modal-title'>Log in!</h2>
+      <h2 className='modal-title'>Welcome back.</h2>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error.split(":")[1]}</li>

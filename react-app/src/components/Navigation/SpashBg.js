@@ -16,6 +16,7 @@ const SplashBg = () => {
       <nav id="splash-guest">
         <ul id="splash-ul">
           <h1 id="splash-header">Paranormal Files</h1>
+          {/* <h3>Share your experiances with the paranormal</h3> */}
           <LoginFormModal />
           <SignupFormModal />
         </ul>
