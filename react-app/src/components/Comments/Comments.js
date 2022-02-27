@@ -21,6 +21,7 @@ const Comments = () => {
   const currentUser = useSelector(state => state.session.user)
   let comments = useSelector(state => state.comments)
   let commentsArray = Object.values(comments);
+  let commentsReversedArray = commentsArray.reverse()
 
   const deleteComment = (e, id) => {
     e.preventDefault();
@@ -93,10 +94,11 @@ const Comments = () => {
         null
       }
 
-      {commentsArray && commentsArray.map(comment => (
+      {commentsArray && commentsReversedArray.map(comment => (
         <div id="comments-ul" key={`comment-${comment?.id}-card`}>
           <div>
             <p key={`comment-${comment?.username}`}>{comment?.username}</p>
+            <p key={`comment-${comment?.created_at}`}>{`${comment?.created_at.split(' ')[2]} ${comment.created_at.split(' ')[1]}, ${comment.created_at.split(' ')[3]}`}</p>
             {currentUser?.id === comment?.user_id && displayDots ?
               <BiDotsHorizontalRounded
               id="comment-dots"

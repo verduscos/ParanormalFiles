@@ -20,6 +20,7 @@ class Comment(db.Model):
             "user_id": self.user_id,
             "sighting_id": self.sighting_id,
             "updated_at": self.updated_at,
+            "created_at": self.created_at,
             "username": self.user.username
         }
 
