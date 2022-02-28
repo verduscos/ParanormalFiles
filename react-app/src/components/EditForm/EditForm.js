@@ -189,7 +189,7 @@ const EditForm = () => {
 
           <div className="upload-container">
             <label for="file-btn" value="Upload Image" id="file-label">
-              <p>Choose Image</p>
+              <p>Update Image?</p>
             </label>
             <input
               id="file-btn"

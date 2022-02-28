@@ -69,10 +69,11 @@ const CreateSightingForm = () => {
     if (title.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
     if (description.length <= 4) errorsArr.push("Description must be at least 4 characters long.")
     if (category.length < 1) errorsArr.push("Please choose a category.")
+    if (displayUrl.length < 1) errorsArr.push("Please choose an image.")
     setErrors(errorsArr)
 
     if (errorsArr.length === 0) {
-      history.push('/')
+      history.push('/mysightings')
     }
 
 
@@ -152,7 +153,6 @@ const CreateSightingForm = () => {
             </label>
             <input
               id="file-btn"
-              required
               name="file"
               type="file"
               accept="image/*"
