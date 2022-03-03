@@ -1,25 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-// import { UseState } from "react-redux";
 import { VscGithub } from "react-icons/vsc"
 import { BsLinkedin } from "react-icons/bs"
+import * as sessions from "../../store/search"
 import "./Categories.css";
+import { useDispatch } from 'react-redux';
 
 const Categories = () => {
-  // const [searchStr, setSearchStr] = useState("")
+  const [searchInput, setSearchInput] = useState("")
+  const dispatch = useDispatch()
   const categories = ["UFOs", "Ghosts", "Demons", "Angels", "Reincarnation", "Monsters", "Mandela Effect", "Time Travel", 'Synchronicity'];
 
   // TODO post presentation
-  // const search = async (e) => {
-  //   e.preventDefault();
+  const search = async (e, searchStr) => {
+    e.preventDefault();
+    dispatch(sessions.searchAllSightings(searchStr))
+    // const data = await fetch(`/api/sightings/search/${searchStr}`)
+    // console.log(data);
+    // console.log("DATA SHOULD BE ABOVE")
+  }
 
-  //   const data = await fetch(`/api/sightings/search/${searchStr}`)
-  //   console.log(data);
-  //   console.log("DATA SHOULD BE ABOVE")
-  // }
+  useEffect(() => {
+    dispatch(sessions.searchAllSightings())
+  }, [dispatch])
 
   return (
     <div id="categories-container">
+
+      <form
+        value={searchInput}
+        onChange={(e) => {
+          setSearchInput(e.target.value)
+          console.log(searchInput)
+        }}
+        onSubmit={
+          (e) => {
+            e.preventDefault()
+            console.log("INPUT", searchInput)
+            search(e, searchInput)
+          }}
+      >
+        <input type="text" required />
+        <button>search</button>
+      </form>
 
       <h2 id="categories-header">Categories</h2>
       <div id="categories-inner">
