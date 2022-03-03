@@ -4,7 +4,7 @@ const GET_USER_SIGHTINGS = "session/GET_USER_SIGHTINGS"
 const CREATE_SIGHTING = "session/CREATE_SIGHTING"
 const EDIT_SIGHTING = "session/EDIT_SIGHTING"
 const DELETE_SIGHTING = "session/DELETE_SIGHTING"
-const SEARCH = "session/SEARCH"
+// const SEARCH = "session/SEARCH"
 
 const getSightings = (sightings) => ({
   type: GET_SIGHTINGS,
@@ -36,10 +36,10 @@ const editSighting = (sighting) => ({
   payload: sighting
 })
 
-const searchSightings = (searchStr) => ({
-  type: SEARCH,
-  payload: searchStr
-})
+// const searchSightings = (searchStr) => ({
+//   type: SEARCH,
+//   payload: searchStr
+// })
 
 export const getAllSightings = () => async (dispatch) => {
   const response = await fetch(`/api/sightings/`);
@@ -68,30 +68,32 @@ export const getAllSightingsByCategory = (category) => async (dispatch) => {
 }
 
 
-export const searchAllSightings = (searchStr) => async (dispatch) => {
-  const response = await fetch(`/api/sightings/search/${searchStr}`);
+// export const searchAllSightings = (searchStr) => async (dispatch) => {
+//   const response = await fetch(`/api/sightings/search/${searchStr}`);
 
-  if (response.status >= 400) {
-    throw response
-  }
+//   if (response.status >= 400) {
+//     throw response
+//   }
 
-  const data = await response.json();
-  dispatch(searchSightings(data));
-  return data;
+//   const data = await response.json();
+//   dispatch(searchSightings(data));
+//   return data;
 
-}
+// }
 
 export const getAllUserSightings = (userId) => async (dispatch) => {
   const response = await fetch(`/api/sightings/user/${userId}`);
   if (response.status >= 400) {
     throw response
-  }
+  } else {
 
-  const data = await response.json();
-  console.log("INSIDE THUNK")
-  console.log(data.sightings)
-  dispatch(getSightingsByUser(data.sightings));
-  return data
+
+    const data = await response.json();
+    console.log("INSIDE THUNK")
+    console.log(data.sightings)
+    dispatch(getSightingsByUser(data.sightings));
+    return data
+  }
 }
 
 
@@ -175,15 +177,6 @@ const sightingReducer = (state = {}, action) => {
 
       return { ...state, ...sightings }
 
-    case SEARCH:
-      let search = { ...state }
-      console.log(action.payload)
-      console.log("REDUCER")
-      action.payload.forEach(sighting => {
-        search[sighting.id] = sighting
-      })
-
-      return search
     case GET_SIGHTINGS_BY_CATEGORY:
       let category = {}
       console.log("reducer here")

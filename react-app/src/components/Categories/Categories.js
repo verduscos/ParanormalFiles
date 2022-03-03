@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { VscGithub } from "react-icons/vsc"
 import { BsLinkedin } from "react-icons/bs"
-import * as sessions from "../../store/sighting"
+import * as sessions from "../../store/search"
 import "./Categories.css";
 import { useDispatch } from 'react-redux';
 
@@ -14,7 +14,7 @@ const Categories = () => {
   // TODO post presentation
   const search = async (e, searchStr) => {
     e.preventDefault();
-    dispatch(sessions.searchAllSightings())
+    dispatch(sessions.searchAllSightings(searchStr))
     // const data = await fetch(`/api/sightings/search/${searchStr}`)
     // console.log(data);
     // console.log("DATA SHOULD BE ABOVE")
