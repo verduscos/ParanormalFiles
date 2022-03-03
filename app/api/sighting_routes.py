@@ -169,7 +169,7 @@ def upload_image():
 # TESTING SEARCH
 
 @sighting_routes.route('/search/<string:searchstr>')
-def searching_sightings(searchstr):
+def searching_sightings(searchstr, methods=["GET", "POST"]):
   # search_results = Sighting.query.filter(Sighting.title.contains(searchstr)) \
   # .filter(Sighting.category.contains(searchstr))
 

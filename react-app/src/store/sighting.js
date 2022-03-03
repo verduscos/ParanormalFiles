@@ -4,10 +4,11 @@ const GET_USER_SIGHTINGS = "session/GET_USER_SIGHTINGS"
 const CREATE_SIGHTING = "session/CREATE_SIGHTING"
 const EDIT_SIGHTING = "session/EDIT_SIGHTING"
 const DELETE_SIGHTING = "session/DELETE_SIGHTING"
+const SEARCH = "session/SEARCH"
 
 const getSightings = (sightings) => ({
-    type: GET_SIGHTINGS,
-    payload: sightings
+  type: GET_SIGHTINGS,
+  payload: sightings
 })
 
 const getSightingsByCategory = (sightings) => ({
@@ -32,19 +33,24 @@ const deleteSighting = (sightingId) => ({
 
 const editSighting = (sighting) => ({
   type: EDIT_SIGHTING,
-  payload:sighting
+  payload: sighting
+})
+
+const searchSightings = (searchStr) => ({
+  type: SEARCH,
+  payload: searchStr
 })
 
 export const getAllSightings = () => async (dispatch) => {
-    const response = await fetch(`/api/sightings/`);
+  const response = await fetch(`/api/sightings/`);
 
-    if (response.status >= 400) {
-        throw response
-    }
+  if (response.status >= 400) {
+    throw response
+  }
 
-    const data = await response.json();
-    dispatch(getSightings(data.sightings));
-    return data;
+  const data = await response.json();
+  dispatch(getSightings(data.sightings));
+  return data;
 }
 
 
@@ -61,6 +67,19 @@ export const getAllSightingsByCategory = (category) => async (dispatch) => {
   return data
 }
 
+
+export const searchAllSightings = (searchStr) => async (dispatch) => {
+  const response = await fetch(`/api/sightings/search/${searchStr}`);
+
+  if (response.status >= 400) {
+    throw response
+  }
+
+  const data = await response.json();
+  dispatch(searchAllSightings(data));
+  return data;
+
+}
 
 export const getAllUserSightings = (userId) => async (dispatch) => {
   const response = await fetch(`/api/sightings/user/${userId}`);
@@ -80,7 +99,7 @@ export const createASighting = (payload) => async (dispatch) => {
   const response = await fetch(`/api/sightings/`, {
     method: "POST",
     headers: {
-      "Content-Type" : "application/json"
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
       user_id: payload.user_id,
@@ -105,7 +124,7 @@ export const updateSighting = (payload) => async (dispatch) => {
   const response = await fetch(`/api/sightings/${payload.sighting_id}`, {
     method: "PUT",
     headers: {
-      "Content-Type" : "application/json"
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
       user_id: payload.user_id,
@@ -146,50 +165,58 @@ export const deleteASighting = (sightingId) => async (dispatch) => {
 
 
 const sightingReducer = (state = {}, action) => {
-    switch (action.type) {
-        case GET_SIGHTINGS:
-          let sightings = {}
+  switch (action.type) {
+    case GET_SIGHTINGS:
+      let sightings = {}
 
-          action.payload.forEach(sighting => {
-            sightings[sighting.id] = sighting
-          })
+      action.payload.forEach(sighting => {
+        sightings[sighting.id] = sighting
+      })
 
-          return { ...state, ...sightings }
-        case GET_SIGHTINGS_BY_CATEGORY:
-          let category = {}
-          console.log("reducer here")
-          console.log(action.payload)
-          action.payload.forEach(sighting => {
-            category[sighting.id] = sighting
-          })
+    case SEARCH:
+      let search = { ...state.sightings }
 
-          return { ...category}
-        case GET_USER_SIGHTINGS:
-          let userSightings = {}
+      action.payload.forEach(sighting => {
+        search[sighting.id] = sighting
+      })
 
-          action.payload.forEach(sighting => {
-            userSightings[sighting.id] = sighting
-          })
+      return search
+      return { ...state, ...sightings }
+    case GET_SIGHTINGS_BY_CATEGORY:
+      let category = {}
+      console.log("reducer here")
+      console.log(action.payload)
+      action.payload.forEach(sighting => {
+        category[sighting.id] = sighting
+      })
 
-          return {...userSightings}
-        case CREATE_SIGHTING:
-          state[action.payload.id] = action.payload
-          return {...state}
-        case EDIT_SIGHTING:
-          let updated = {...state}
-          updated[action.payload.id] = action.payload
+      return { ...category }
+    case GET_USER_SIGHTINGS:
+      let userSightings = {}
 
-          return {...updated}
-        case DELETE_SIGHTING:
-          let updatedSightings = { ...state}
+      action.payload.forEach(sighting => {
+        userSightings[sighting.id] = sighting
+      })
 
-          let id = (action.payload["found"])
-          delete updatedSightings[id];
+      return { ...userSightings }
+    case CREATE_SIGHTING:
+      state[action.payload.id] = action.payload
+      return { ...state }
+    case EDIT_SIGHTING:
+      let updated = { ...state }
+      updated[action.payload.id] = action.payload
 
-          return updatedSightings
-        default:
-            return state
-    }
+      return { ...updated }
+    case DELETE_SIGHTING:
+      let updatedSightings = { ...state }
+
+      let id = (action.payload["found"])
+      delete updatedSightings[id];
+
+      return updatedSightings
+    default:
+      return state
+  }
 };
 
 export default sightingReducer;

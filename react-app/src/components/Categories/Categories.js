@@ -1,25 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-// import { UseState } from "react-redux";
 import { VscGithub } from "react-icons/vsc"
 import { BsLinkedin } from "react-icons/bs"
 import "./Categories.css";
 
 const Categories = () => {
-  // const [searchStr, setSearchStr] = useState("")
+  const [searchInput, setSearchInput] = useState("")
   const categories = ["UFOs", "Ghosts", "Demons", "Angels", "Reincarnation", "Monsters", "Mandela Effect", "Time Travel", 'Synchronicity'];
 
   // TODO post presentation
-  // const search = async (e) => {
-  //   e.preventDefault();
+  const search = async (e, searchStr) => {
+    e.preventDefault();
 
-  //   const data = await fetch(`/api/sightings/search/${searchStr}`)
-  //   console.log(data);
-  //   console.log("DATA SHOULD BE ABOVE")
-  // }
+    const data = await fetch(`/api/sightings/search/${searchStr}`)
+    console.log(data);
+    console.log("DATA SHOULD BE ABOVE")
+  }
 
   return (
     <div id="categories-container">
+
+      <form
+        value={searchInput}
+        setSearchInput(e.target.value)
+        onSubmit={
+          (e) => {
+            e.preventDefault()
+            console.log("INPUT", e.target.value)
+            search(e, searchInput)
+          }}
+      >
+        <input type="text" required />
+        <button>search</button>
+      </form>
 
       <h2 id="categories-header">Categories</h2>
       <div id="categories-inner">
