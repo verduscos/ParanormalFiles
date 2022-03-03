@@ -76,7 +76,7 @@ export const searchAllSightings = (searchStr) => async (dispatch) => {
   }
 
   const data = await response.json();
-  dispatch(searchAllSightings(data));
+  dispatch(searchSightings(data));
   return data;
 
 }
@@ -173,15 +173,17 @@ const sightingReducer = (state = {}, action) => {
         sightings[sighting.id] = sighting
       })
 
-    case SEARCH:
-      let search = { ...state.sightings }
+      return { ...state, ...sightings }
 
+    case SEARCH:
+      let search = { ...state }
+      console.log(action.payload)
+      console.log("REDUCER")
       action.payload.forEach(sighting => {
         search[sighting.id] = sighting
       })
 
       return search
-      return { ...state, ...sightings }
     case GET_SIGHTINGS_BY_CATEGORY:
       let category = {}
       console.log("reducer here")
