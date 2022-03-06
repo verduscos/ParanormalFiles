@@ -98,6 +98,6 @@
   color: rgb(221, 221, 221);
 }
 
-.card-text {
+.card-text, #no-results {
   color: rgb(221, 221, 221);
 }

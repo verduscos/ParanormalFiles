@@ -29,7 +29,7 @@ const NavbarLoggedIn = () => {
   const fetchUserSightings = (e) => {
     e.preventDefault()
 
-    dispatch(sessionActions.getAllSightings())
+    dispatch(sessionActions.getAllUserSightings(currentUser.id))
     history.push("/mysightings")
   }
 
