@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { VscGithub } from "react-icons/vsc"
 import { BsLinkedin } from "react-icons/bs"
-import * as sessions from "../../store/search"
+import * as sessions from "../../store/sighting"
 import "./Categories.css";
 import { useDispatch } from 'react-redux';
 

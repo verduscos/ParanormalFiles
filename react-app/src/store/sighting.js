@@ -4,11 +4,16 @@ const GET_USER_SIGHTINGS = "session/GET_USER_SIGHTINGS"
 const CREATE_SIGHTING = "session/CREATE_SIGHTING"
 const EDIT_SIGHTING = "session/EDIT_SIGHTING"
 const DELETE_SIGHTING = "session/DELETE_SIGHTING"
-// const SEARCH = "session/SEARCH"
+const SEARCH = "session/SEARCH"
 
 const getSightings = (sightings) => ({
   type: GET_SIGHTINGS,
   payload: sightings
+})
+
+const searchSightings = (searchStr) => ({
+  type: SEARCH,
+  payload: searchStr
 })
 
 const getSightingsByCategory = (sightings) => ({
@@ -35,6 +40,30 @@ const editSighting = (sighting) => ({
   type: EDIT_SIGHTING,
   payload: sighting
 })
+
+
+
+
+
+
+export const searchAllSightings = (searchStr) => async (dispatch) => {
+  const response = await fetch(`/api/sightings/search/${searchStr}`);
+  console.log("INSIDE THUNKs")
+  if (response.status >= 400) {
+    console.log(response)
+    throw response
+  }
+
+  const data = await response.json();
+  dispatch(searchSightings(data));
+  console.log(data)
+  return data;
+
+}
+
+
+
+
 
 // const searchSightings = (searchStr) => ({
 //   type: SEARCH,
@@ -177,13 +206,29 @@ const sightingReducer = (state = {}, action) => {
 
       return { ...state, ...sightings }
 
+
+
+    case SEARCH:
+      let search = {}
+      console.log("INSIDE REDUCER")
+
+      if (action.payload["sightings"]) {
+        action.payload["sightings"].forEach(sighting => {
+          console.log(sighting["id"])
+          search[sighting.id] = sighting
+        })
+
+        return { ...search };
+      }
+
+
+
+
     case GET_SIGHTINGS_BY_CATEGORY:
       let category = {}
-      console.log("reducer here")
-      console.log(action.payload)
-      action.payload.forEach(sighting => {
-        category[sighting.id] = sighting
-      })
+      // action.payload.forEach(sighting => {
+      //   category[sighting.id] = sighting
+      // })
 
       return { ...category }
     case GET_USER_SIGHTINGS:
