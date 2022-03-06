@@ -31,12 +31,10 @@ const Categories = () => {
         value={searchInput}
         onChange={(e) => {
           setSearchInput(e.target.value)
-          console.log(searchInput)
         }}
         onSubmit={
           (e) => {
             e.preventDefault()
-            console.log("INPUT", searchInput)
             search(e, searchInput)
           }}
       >

@@ -176,10 +176,11 @@ def searching_sightings(searchstr, methods=["GET", "POST"]):
   search_results = Sighting.query.filter(
     or_(Sighting.title.contains(searchstr), Sighting.category.contains(searchstr), Sighting.description.contains(searchstr)))
 
-  results = [ search.to_dict() for search in  search_results]
-  # print("TESTING HERREHRHERHEHR", test)
+  results = { "sightings": [ search.to_dict() for search in  search_results]}
+  print(results)
+  print("TESTING HERREHRHERHEHR")
   # print(len(test))
-  if len(results) > 0:
-    return {"search":results}
+  if len(results['sightings']) > 0:
+    return results
   else :
     return {"error": "No results found."}
