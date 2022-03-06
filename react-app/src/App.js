@@ -66,10 +66,14 @@ function App() {
           <CreateNav />
           <ImageForm />
         </ProtectedRoute>
+        <Route path="/sightings/search/:string" exact={true}>
+          <Navigation />
+          <Sightings />
+          <Categories />
+        </Route>
         <Route>
           {/* <Navigation isLoaded={loaded} /> */}
           <NotFound />
-          {/* <Categories /> */}
         </Route>
       </Switch>
       {/* <Footer /> */}

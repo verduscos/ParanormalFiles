@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { VscGithub } from "react-icons/vsc"
 import { BsLinkedin } from "react-icons/bs"
 import * as sessions from "../../store/sighting"
@@ -9,15 +9,17 @@ import { useDispatch } from 'react-redux';
 const Categories = () => {
   const [searchInput, setSearchInput] = useState("")
   const dispatch = useDispatch()
+  const history = useHistory()
   const categories = ["UFOs", "Ghosts", "Demons", "Angels", "Reincarnation", "Monsters", "Mandela Effect", "Time Travel", 'Synchronicity'];
 
   // TODO post presentation
   const search = async (e, searchStr) => {
     e.preventDefault();
     dispatch(sessions.searchAllSightings(searchStr))
-    // const data = await fetch(`/api/sightings/search/${searchStr}`)
-    // console.log(data);
-    // console.log("DATA SHOULD BE ABOVE")
+    const data = await fetch(`/api/sightings/search/${searchStr}`)
+    console.log(data);
+    console.log("DATA SHOULD BE ABOVE")
+    history.push(`/sightings/search/${searchStr}`)
   }
 
   useEffect(() => {

@@ -18,7 +18,11 @@ const Sightings = () => {
   return (
     <div id="sightings-container">
       <div id="sightings-inner">
-
+        {!sightingsArray.length ?
+        <>
+        <h2>No results found.</h2>
+        </>
+        : null}
         {sightingsArray.map((sighting, i) => (
           <ul id="sighting-card" key={sighting?.id}>
             {/* <li key={sighting.id}>{sighting.location}</li> */}
