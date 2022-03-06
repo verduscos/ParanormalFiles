@@ -20,7 +20,7 @@ const Sightings = () => {
       <div id="sightings-inner">
         {!sightingsArray.length ?
         <>
-        <h2>No results found.</h2>
+        <h2 id="no-results">No results found.</h2>
         </>
         : null}
         {sightingsArray.map((sighting, i) => (

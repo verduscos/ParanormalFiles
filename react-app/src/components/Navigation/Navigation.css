@@ -33,6 +33,23 @@ body {
 
 }
 
+.user-nav-btn {
+  color: white;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  cursor: pointer;
+  margin: 13px 0;
+  transition-duration: .25s;
+}
+
+.user-nav-btn:hover {
+  color: #D10606;
+}
+
 #header-img {
   position: absolute;
   top: 0;

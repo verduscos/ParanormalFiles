@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory } from 'react-router-dom';
 import { AiOutlineHome } from 'react-icons/ai';
@@ -26,6 +26,13 @@ const NavbarLoggedIn = () => {
     history.push("/")
   }
 
+  const fetchUserSightings = (e) => {
+    e.preventDefault()
+
+    dispatch(sessionActions.getAllSightings())
+    history.push("/mysightings")
+  }
+
   // useEffect(() => {
   //   dispatch(sessionActions.getAllSightings())
   // }, [dispatch])
@@ -39,19 +46,23 @@ const NavbarLoggedIn = () => {
           </NavLink>
         </div>
         <div id="user-site-nav-links">
-          <NavLink
-          onClick={(e) => {
-            fetch(e)
-          }}
-          to='/' exact={true} activeClassName='active'>
+          <div
+            onClick={(e) => {
+              fetch(e)
+            }}
+            exact={true} activeClassName='active' class="user-nav-btn">
             <AiOutlineHome />
-          </NavLink>
+          </div>
           {/* <NavLink to='/sightings/favorites' exact={true} activeClassName='active'>
             <AiOutlineHeart />
           </NavLink> */}
-          <NavLink to='/mysightings' exact={true} activeClassName='active'>
+          <div
+            onClick={(e) => {
+              fetchUserSightings(e)
+            }}
+            exact={true} activeClassName='active' class="user-nav-btn">
             <IoAlbumsOutline />
-          </NavLink>
+          </div>
           <NavLink id="report-link" to='/report' exact={true} activeClassName='active'>
             <IoIosAddCircleOutline />
           </NavLink>
