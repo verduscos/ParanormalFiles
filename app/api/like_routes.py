@@ -26,16 +26,14 @@ def post_like(sightingId):
   form = LikeForm()
   form["csrf_token"].data = request.cookies["csrf_token"]
   if form.validate_on_submit():
-    searchExists = Like.query.filter(Like.user_id == request.json["user_id"] and Like.sighting_id == request.json["sighting_id"]).first()
-    print(type(searchExists))
+    searchExists = Like.query.filter(Like.user_id == request.json["user_id"], Like.sighting_id == request.json["sighting_id"]).first()
     if searchExists is None:
       like = Like(
         user_id=request.json["user_id"],
         sighting_id=request.json["sighting_id"]
       )
-      # db.session.add(like)
-      # db.session.commit()
-      print("IN HRERERER")
+      db.session.add(like)
+      db.session.commit()
 
       return { "likes" : like.to_dict() }
 
