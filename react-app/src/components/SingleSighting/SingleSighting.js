@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory, Link } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
+import { getSightingLikes } from "../../store/like";
 import Comments from "../Comments/Comments"
 import { getALLComments } from "../../store/comment";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
+import { AiOutlineLike } from "react-icons/ai"
 import "./SingleSighting.css"
 
 
@@ -16,6 +18,9 @@ const SingleSighting = () => {
   const [userBtns, setUserBtns] = useState(false)
   let sighting = useSelector(state => state.sightings[sightingId])
   let currentUser = useSelector(state => state.session.user)
+  let likes = { "likes": useSelector(state => state.likes) }
+  const [sightingLikes, setSightingLikes] = useState(0)
+  console.log(likes)
 
   window.localStorage.setItem("title", sighting?.title)
   window.localStorage.setItem("description", sighting?.description)
@@ -26,7 +31,8 @@ const SingleSighting = () => {
 
   useEffect(() => {
     dispatch(sessionActions.getAllSightings())
-  }, [dispatch])
+    dispatch(getSightingLikes(sightingId))
+  }, [dispatch, sightingId])
 
 
   const handleDelete = (e) => {
@@ -46,6 +52,7 @@ const SingleSighting = () => {
 
   useEffect(() => {
     dispatch(sessionActions.getAllSightings())
+
   }, [dispatch])
 
   useEffect(() => {
@@ -92,6 +99,11 @@ const SingleSighting = () => {
         <img src={sighting?.image_url} id="sighting-img" alt="article-img"></img>
         <p id="article-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
         <Comments />
+      </div>
+
+      <div>
+          <AiOutlineLike />
+          {/* <p>{data && likes.likes}</p> */}
       </div>
     </div>
   )
