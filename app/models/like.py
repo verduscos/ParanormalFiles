@@ -11,3 +11,10 @@ class Like(db.Model):
 
     user = db.relationship("User", back_populates="likes")
     sighting = db.relationship("Sighting", back_populates="likes")
+
+
+    def to_dict(self):
+      return {
+        "id": self.id,
+        "sighting_id": self.sighting_id
+      }
