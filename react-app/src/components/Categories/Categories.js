@@ -44,7 +44,7 @@ const Categories = () => {
         <button>search</button>
       </form>
 
-      <h2 id="categories-header">Categories</h2>
+      <h2 id="categories-header">Popular</h2>
       <div id="categories-inner">
         <div id="ufos">
           <Link to={`/sightings/categories/UFOs`}>UFOs</Link>
