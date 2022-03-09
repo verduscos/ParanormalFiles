@@ -1,16 +1,5 @@
-#testing {
-  color: white;
-  margin-bottom: 25px;
-  cursor: pointer;
-}
-
-
-
-
-
 body {
   background-color: #0a0a0a;
-  /* color: white !important; */
 }
 
 #categories-container {
@@ -21,28 +10,19 @@ body {
   height: 100vh;
   position: fixed;
   z-index: 2;
-
 }
 
 #categories-inner {
   display: grid;
   grid-template-columns: repeat(auto-fill, 125px);
   grid-gap: none;
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* overflow: auto; */
-  /* height: 2px; */
-  /* margin-top: 50px; */
   height: 55%;
   border-bottom: 5px solid#0a0a0a;
   overflow: auto;
   justify-content: center;
-
   grid-template-rows: auto auto 1fr 1fr 1fr auto auto;
   grid-gap:10px;
   margin: 0 auto;
-  /* height: calc(100vh - 10px); */
-
 }
 
 #categories-header {
@@ -54,62 +34,24 @@ body {
   font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-/* #categories-inner > a {
-  border-bottom: 1px solid white;
-  border-top: 1px solid white;
-  padding-top: 20px 0 20px 0;
-  width: 100%;
-  text-align: center;
-} */
-
-/* #categories-inner::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-}
-
-#categories-inner::-webkit-scrollbar {
-  width: 18px;
-  background-color: rgba(0, 0, 0, 0.233);
-}
-
-#categories-inner::-webkit-scrollbar-thumb {
-  background-color: rgb(34, 34, 34);
-  box-shadow: .3px .3px 1px rgba(0, 128, 0, 0.63);
-} */
-
 #search-form {
   margin: 25px 0 100px 0;
   text-align: center;
 }
 
-/* #search {
-} */
-
 #categories-inner > div  {
   font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   text-decoration: none;
   font-size: 13px;
-  /* margin: 50px 25px; */
   color: white;
-
-  /* border-bottom: 1px solid rgba(0, 0, 0, 0.082); */
-  /* border-top: 1px solid rgba(94, 94, 94, 0.075); */
-  /* width: 100%; */
   text-align: center;
-  /* background-image: url("https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/Best-ufo-wallpaper+(2).jpg");
-  background-repeat: no-repeat;
-  background-size: cover; */
-  /* backdrop-filter: blur(5px); */
   position: relative;
   height: 50px;
-  /* margin: 10px; */
-  /* padding: 5px; */
   border-radius: 5px;
   border: rgba(255, 255, 255, 0.185) 2px solid;
-  /* width: 100px; */
-  /* height: 5px !important; */
 }
 
-#categories-inner > div > a {
+#categories-inner > div > p {
   text-decoration: none;
   font-size: 13x;
   font-weight: 700;
@@ -126,32 +68,29 @@ body {
   display:flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
-#categories-inner > div > a:hover {
+#categories-inner > div > p:hover {
   color: #D10606;
   text-shadow: none;
 }
 
-
 /* CATEGORY BGs */
 #ufos {
-  /* background-image: url("https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/Best-ufo-wallpaper+(2).jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 #ghosts {
-  /* background-image: url("https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/ghosts-getty_10242019.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 #demons {
-  /* background-image: url("https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/exorcisms-feat.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
 }
-
-
 
 /* about me */
 #aboutme-links {
@@ -170,9 +109,6 @@ body {
   margin: 5px 0;
 }
 
-
-
-
 #aboutme-links > ul {
   display: flex;
   list-style-type: none;
@@ -183,7 +119,6 @@ body {
 #aboutme-links > ul > li {
   margin: 2px 0px;
 }
-
 
 #aboutme-links > ul > li > a {
   color: rgb(207, 207, 207);

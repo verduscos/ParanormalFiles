@@ -45,13 +45,13 @@ const Categories = () => {
       </form>
 
       <h2 id="categories-header">Popular</h2>
-      <div >
+      <div id="categories-inner">
         {categories.map(category => (
           <div id="testing"
             onClick={(e) => {
               search(e, category)
             }}
-          >{category}</div>
+          ><p>{category}</p></div>
         ))}
       </div>
 
