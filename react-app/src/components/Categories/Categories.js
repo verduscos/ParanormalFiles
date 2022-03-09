@@ -16,9 +16,6 @@ const Categories = () => {
   const search = async (e, searchStr) => {
     e.preventDefault();
     dispatch(sessions.searchAllSightings(searchStr))
-    const data = await fetch(`/api/sightings/search/${searchStr}`)
-    console.log(data);
-    console.log("DATA SHOULD BE ABOVE")
     history.push(`/sightings/search/${searchStr}`)
   }
 
@@ -47,10 +44,12 @@ const Categories = () => {
       <h2 id="categories-header">Popular</h2>
       <div id="categories-inner">
         {categories.map(category => (
-          <div id="testing"
-            onClick={(e) => {
-              search(e, category)
-            }}
+          <div
+          key={category}
+          id="testing"
+          onClick={(e) => {
+            search(e, category)
+          }}
           ><p>{category}</p></div>
         ))}
       </div>

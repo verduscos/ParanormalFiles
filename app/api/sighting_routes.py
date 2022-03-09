@@ -177,9 +177,6 @@ def searching_sightings(searchstr, methods=["GET", "POST"]):
     or_(Sighting.title.contains(searchstr), Sighting.category.contains(searchstr), Sighting.description.contains(searchstr)))
 
   results = { "sightings": [ search.to_dict() for search in  search_results]}
-  print(results)
-  print("TESTING HERREHRHERHEHR")
-  # print(len(test))
   if len(results['sightings']) > 0:
     return results
   else :

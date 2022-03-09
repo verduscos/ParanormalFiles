@@ -41,7 +41,7 @@ const NavbarLoggedIn = () => {
     <nav id="user-nav">
       <div id="nav-link-container">
         <div id="home">
-          <NavLink to='/' exact={true} activeClassName='active'>
+          <NavLink to='/' activeclassname='active'>
             <img src={logo} />
           </NavLink>
         </div>
@@ -50,7 +50,7 @@ const NavbarLoggedIn = () => {
             onClick={(e) => {
               fetch(e)
             }}
-            exact={true} activeClassName='active' class="user-nav-btn">
+            activeclassname='active' className="user-nav-btn">
             <AiOutlineHome />
           </div>
           {/* <NavLink to='/sightings/favorites' exact={true} activeClassName='active'>
@@ -60,10 +60,10 @@ const NavbarLoggedIn = () => {
             onClick={(e) => {
               fetchUserSightings(e)
             }}
-            exact={true} activeClassName='active' class="user-nav-btn">
+             activeclassname='active' className="user-nav-btn">
             <IoAlbumsOutline />
           </div>
-          <NavLink id="report-link" to='/report' exact={true} activeClassName='active'>
+          <NavLink id="report-link" to='/report' activeclassname='active'>
             <IoIosAddCircleOutline />
           </NavLink>
         </div>
