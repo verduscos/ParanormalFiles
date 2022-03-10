@@ -19,9 +19,9 @@ const Categories = () => {
     history.push(`/sightings/search/${searchStr}`)
   }
 
-  useEffect(() => {
-    dispatch(sessions.searchAllSightings())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(sessions.searchAllSightings())
+  // }, [dispatch])
 
   return (
     <div id="categories-container">

@@ -20,6 +20,11 @@ const SingleSighting = () => {
   let currentUser = useSelector(state => state.session.user)
   let likes = useSelector(state => state.likes)
 
+  useEffect(() => {
+    dispatch(sessionActions.getAllSightings())
+
+  }, [dispatch])
+
 
 
   window.localStorage.setItem("title", sighting?.title)
@@ -51,7 +56,7 @@ const SingleSighting = () => {
 
   useEffect(() => {
     dispatch(getALLComments(sightingId))
-    dispatch(getSightingLikes(sightingId))
+    // dispatch(getSightingLikes(sightingId))
   }, [dispatch, sightingId])
 
   return (

@@ -14,6 +14,7 @@ import Categories from './components/Categories/Categories';
 import Category from './components/Categories/Category';
 import MySightings from './components/MySightings/mysightings';
 import NotFound from './components/NotFound/NotFound';
+import Search from './components/Search/Search';
 
 
 function App() {
@@ -67,7 +68,8 @@ function App() {
         </ProtectedRoute>
         <Route path="/sightings/search/:string" exact={true}>
           <Navigation />
-          <Sightings />
+          {/* <Sightings /> */}
+          <Search />
           <Categories />
         </Route>
         <Route>
