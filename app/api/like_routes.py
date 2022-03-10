@@ -8,7 +8,7 @@ like_routes = Blueprint("likes", __name__)
 @like_routes.route("/<int:userId>")
 def get_likes(userId):
   """
-  Get all likes for a specific sightings.
+  Get all user favorites.
   """
   likes = Like.query.filter(Like.user_id == userId).all()
   # total_likes = len(likes)

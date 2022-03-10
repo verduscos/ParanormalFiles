@@ -1,10 +1,17 @@
 const GET_SIGHTINGS = "session/GET_SIGHTING";
 const GET_SIGHTINGS_BY_CATEGORY = "session/GET_SIGHTINGS_BY_CATEGORY"
 const GET_USER_SIGHTINGS = "session/GET_USER_SIGHTINGS"
+const GET_FAVORITES = "session/GET_FAVORITES"
 const CREATE_SIGHTING = "session/CREATE_SIGHTING"
 const EDIT_SIGHTING = "session/EDIT_SIGHTING"
 const DELETE_SIGHTING = "session/DELETE_SIGHTING"
 const SEARCH = "session/SEARCH"
+
+
+const getFavorites = (sightings) => ({
+  type: GET_FAVORITES,
+  payload: sightings
+})
 
 const getSightings = (sightings) => ({
   type: GET_SIGHTINGS,
@@ -44,6 +51,17 @@ const editSighting = (sighting) => ({
 
 
 
+export const getAllFavorites = (Id) => async (dispatch) => {
+  const response = await fetch(`/api/likes/${Id}`);
+
+  if (response.status >= 400) {
+    throw response;
+  }
+
+  const data = await response.json();
+  dispatch(getFavorites(data));
+  return data;
+}
 
 
 export const searchAllSightings = (searchStr) => async (dispatch) => {
@@ -203,7 +221,7 @@ const sightingReducer = (state = {}, action) => {
 
     case SEARCH:
       let search = {}
-
+      console.log("SEARCH REDUCER")
       if (action.payload["sightings"]) {
         action.payload["sightings"].forEach(sighting => {
           search[sighting.id] = sighting
@@ -213,7 +231,14 @@ const sightingReducer = (state = {}, action) => {
       }
 
 
+    case GET_FAVORITES:
+      let favorites = {}
 
+      action.payload["likes"].forEach(sighting => {
+        favorites[sighting.id] = sighting;
+      })
+
+      return favorites
 
     case GET_SIGHTINGS_BY_CATEGORY:
       let category = {}

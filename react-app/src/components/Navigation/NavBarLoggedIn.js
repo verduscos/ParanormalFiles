@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory } from 'react-router-dom';
-import { AiOutlineHome } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineHeart } from 'react-icons/ai';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { IoAlbumsOutline } from 'react-icons/io5';
+
 import ProfileButton from './ProfileButton';
 import * as sessionActions from "../../store/sighting"
 import './Navigation.css'
@@ -23,6 +24,12 @@ const NavbarLoggedIn = () => {
 
     // dispatch(sessionActions.getAllSightings())
     history.push("/")
+  }
+
+  const fetchFavorites = (e) => {
+    e.preventDefault()
+
+    history.push("/myfavorites")
   }
 
   const fetchUserSightings = (e) => {
@@ -49,8 +56,17 @@ const NavbarLoggedIn = () => {
             activeclassname='active' className="user-nav-btn">
             <AiOutlineHome />
           </div>
-          {/* <NavLink to='/sightings/favorites' exact={true} activeClassName='active'>
+
+
+
+          <div
+            onClick={(e) => {
+              fetchFavorites(e)
+            }}
+            activeclassname='active' className="user-nav-btn">
             <AiOutlineHeart />
+          </div>
+          {/* <NavLink to='/sightings/favorites' exact={true} activeClassName='active'>
           </NavLink> */}
           <div
             onClick={(e) => {

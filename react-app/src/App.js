@@ -15,6 +15,7 @@ import Category from './components/Categories/Category';
 import MySightings from './components/MySightings/mysightings';
 import NotFound from './components/NotFound/NotFound';
 import Search from './components/Search/Search';
+import Favorites from './components/Favorites/Favorites';
 
 
 function App() {
@@ -44,6 +45,11 @@ function App() {
         <ProtectedRoute path='/mysightings' exact={true} >
           <Navigation isLoaded={loaded} />
           <MySightings />
+          <Categories />
+        </ProtectedRoute>
+        <ProtectedRoute path='/myfavorites' exact={true} >
+          <Navigation isLoaded={loaded} />
+          <Favorites />
           <Categories />
         </ProtectedRoute>
         <Route path='/sightings/categories/:category' exact={true} >

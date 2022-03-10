@@ -22,5 +22,6 @@ class Like(db.Model):
         "description": self.sighting.description,
         "created_at": self.sighting.created_at,
         "category": self.sighting.category,
+        "image_url": self.sighting.image_url,
         "username": self.user.username
       }
