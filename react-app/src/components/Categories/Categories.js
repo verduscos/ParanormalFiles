@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { VscGithub } from "react-icons/vsc"
 import { BsLinkedin } from "react-icons/bs"
+import { AiOutlineSearch } from "react-icons/ai"
 import * as sessions from "../../store/sighting"
 import "./Categories.css";
 import { useDispatch } from 'react-redux';
@@ -12,7 +13,6 @@ const Categories = () => {
   const history = useHistory()
   const categories = ["UFOs", "Ghosts", "Demons", "Angels", "Reincarnation", "Monsters", "Mandela Effect", "Time Travel", 'Synchronicity'];
 
-  // TODO post presentation
   const search = async (e, searchStr) => {
     e.preventDefault();
     dispatch(sessions.searchAllSightings(searchStr))
@@ -27,6 +27,7 @@ const Categories = () => {
     <div id="categories-container">
 
       <form
+        id="search-form"
         value={searchInput}
         onChange={(e) => {
           setSearchInput(e.target.value)
@@ -37,8 +38,9 @@ const Categories = () => {
             search(e, searchInput)
           }}
       >
-        <input type="text" required />
-        <button>search</button>
+        <AiOutlineSearch id="search-icon" />
+        <input  id="search" type="text" required />
+        {/* <button>search</button> */}
       </form>
 
       <h2 id="categories-header">Popular</h2>
