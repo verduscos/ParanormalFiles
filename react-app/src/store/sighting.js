@@ -234,9 +234,11 @@ const sightingReducer = (state = {}, action) => {
     case GET_FAVORITES:
       let favorites = {}
 
-      action.payload["likes"].forEach(sighting => {
-        favorites[sighting.id] = sighting;
-      })
+      if (action.payload["likes"]) {
+        action.payload["likes"].forEach(sighting => {
+          favorites[sighting.id] = sighting;
+        })
+      }
 
       return favorites
 
