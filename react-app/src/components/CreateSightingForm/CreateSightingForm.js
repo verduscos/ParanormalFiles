@@ -41,12 +41,9 @@ const CreateSightingForm = () => {
     });
     if (res.ok) {
       const data = await res.json();
-      // setImageLoading(false);
-      console.log("IMAGE RES")
-      // console.log(data.)
+
       setImageUrl(data.url)
-      console.log(imageUrl)
-      console.log("IMAGE URL ABOVE")
+
       // history.push("/mysightings");
     }
     else {
@@ -55,7 +52,6 @@ const CreateSightingForm = () => {
       // const data = await res.json();
       // a real app would probably use more advanced
       // error handling
-      // console.log(data);
     }
     // IMAGE UPLOAD ENDS
 

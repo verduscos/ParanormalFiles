@@ -76,7 +76,6 @@ def create_sighting():
     form = SightingForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
-        print(request.json)
         sighting = Sighting(
             user_id=request.json["user_id"],
             # date=request.json["date"],

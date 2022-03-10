@@ -12,8 +12,6 @@ def get_likes(sightingId):
   """
   likes = Like.query.filter(Like.sighting_id == sightingId).all()
   total_likes = len(likes)
-  print("WE HIT IT")
-  print(total_likes)
 
   return {"likes": total_likes}
 

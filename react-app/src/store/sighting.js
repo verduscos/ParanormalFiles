@@ -48,15 +48,12 @@ const editSighting = (sighting) => ({
 
 export const searchAllSightings = (searchStr) => async (dispatch) => {
   const response = await fetch(`/api/sightings/search/${searchStr}`);
-  console.log("INSIDE THUNKs")
   if (response.status >= 400) {
-    console.log(response)
     throw response
   }
 
   const data = await response.json();
   dispatch(searchSightings(data));
-  console.log(data)
   return data;
 
 }
@@ -85,8 +82,6 @@ export const getAllSightings = () => async (dispatch) => {
 
 export const getAllSightingsByCategory = (category) => async (dispatch) => {
   const response = await fetch(`/api/sightings/${category}`);
-  console.log("CATEGORY BELOW - RESDUCERS")
-  console.log(category)
   if (response.status >= 400) {
     throw response
   }
@@ -118,8 +113,6 @@ export const getAllUserSightings = (userId) => async (dispatch) => {
 
 
     const data = await response.json();
-    console.log("INSIDE THUNK")
-    console.log(data.sightings)
     dispatch(getSightingsByUser(data.sightings));
     return data
   }
@@ -210,11 +203,9 @@ const sightingReducer = (state = {}, action) => {
 
     case SEARCH:
       let search = {}
-      console.log("INSIDE REDUCER")
 
       if (action.payload["sightings"]) {
         action.payload["sightings"].forEach(sighting => {
-          console.log(sighting["id"])
           search[sighting.id] = sighting
         })
 

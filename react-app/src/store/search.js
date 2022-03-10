@@ -9,15 +9,12 @@
 
 // export const searchAllSightings = (searchStr) => async (dispatch) => {
 //   const response = await fetch(`/api/sightings/search/${searchStr}`);
-//   console.log("INSIDE THUNKs")
 //   if (response.status >= 400) {
-//     console.log(response)
 //     throw response
 //   }
 
 //   const data = await response.json();
 //   dispatch(searchSightings(data));
-//   console.log(data)
 //   return data;
 
 // }
@@ -33,7 +30,6 @@
 //     if (action.payload["sightings"]) {
 
 //       action.payload["sightings"].forEach(sighting => {
-//         console.log("INSDIE LOOP", sighting)
 //         search[sighting["id"]] = sighting
 //       })
 

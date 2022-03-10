@@ -51,14 +51,9 @@ const EditForm = () => {
       // TODO
       // a real app would probably use more advanced
       // error handling
-      // console.log(data);
     }
     // IMAGE UPLOAD ENDS
 
-
-    // console.log("PAYLOAD BELOW")
-    // console.log(payload)
-    // console.log(imageUrl)
     // const data = await dispatch(sessionActions.updateSighting(payload));
     // if (data.errors) {
     //   setErrors(data.errors)

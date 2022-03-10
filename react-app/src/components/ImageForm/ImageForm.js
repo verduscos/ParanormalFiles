@@ -42,7 +42,6 @@ const ImageForm = () => {
       // const data = await res.json();
       // a real app would probably use more advanced
       // error handling
-      // console.log(data);
     }
   }
 
