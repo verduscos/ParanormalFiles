@@ -13,10 +13,9 @@ const CreateNav = () => {
     <nav id="create-nav">
       <ul>
         <div id="create-nav-link">
-        <NavLink to="/"><img src={logo} /></NavLink>
+        <NavLink to="/"><img src={logo} alt="paranormal-files-logo" /></NavLink>
         <span>Draft in {currentUser.username}</span>
         </div>
-        {/* <li>logo <span>Draft in {currentUser.username}</span></li> */}
         <ProfileButton />
       </ul>
     </nav>

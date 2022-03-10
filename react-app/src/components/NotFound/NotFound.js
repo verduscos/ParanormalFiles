@@ -13,7 +13,7 @@ const NotFound = () => {
           <h2>You shouldn't be here... <Link id="home" to="/">go back.</Link></h2>
         </div>
         <div id="img-container">
-          <img id="notfound-img" src="https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/stefano-pollio-ZC0EbdLC8G0-unsplash.jpg" />
+          <img id="notfound-img" src="https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/stefano-pollio-ZC0EbdLC8G0-unsplash.jpg" alt="not-found-bg" />
         </div>
       </div>
     </div>

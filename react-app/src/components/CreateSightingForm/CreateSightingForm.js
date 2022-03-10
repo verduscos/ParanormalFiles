@@ -15,7 +15,6 @@ const CreateSightingForm = () => {
   const [errors, setErrors] = useState([])
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("")
-  const [imageLoading, setImageLoading] = useState(false);
   const [displayUrl, setDisplayUrl] = useState("")
 
 
@@ -34,7 +33,7 @@ const CreateSightingForm = () => {
     // TODO
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
-    setImageLoading(true);
+    // setImageLoading(true);
 
     const res = await fetch(`/api/sightings/image`, {
       method: "POST",
@@ -42,7 +41,7 @@ const CreateSightingForm = () => {
     });
     if (res.ok) {
       const data = await res.json();
-      setImageLoading(false);
+      // setImageLoading(false);
       console.log("IMAGE RES")
       // console.log(data.)
       setImageUrl(data.url)
@@ -51,8 +50,8 @@ const CreateSightingForm = () => {
       // history.push("/mysightings");
     }
     else {
-      setImageLoading(false);
-      setImageLoading(false);
+      // setImageLoading(false);
+      // setImageLoading(false);
       // const data = await res.json();
       // a real app would probably use more advanced
       // error handling

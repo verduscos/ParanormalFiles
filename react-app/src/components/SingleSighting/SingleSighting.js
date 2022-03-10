@@ -18,21 +18,15 @@ const SingleSighting = () => {
   const [userBtns, setUserBtns] = useState(false)
   let sighting = useSelector(state => state.sightings[sightingId])
   let currentUser = useSelector(state => state.session.user)
-  let likes = { "likes": useSelector(state => state.likes) }
-  const [sightingLikes, setSightingLikes] = useState(0)
-  console.log(likes)
+  let likes = useSelector(state => state.likes)
+
+
 
   window.localStorage.setItem("title", sighting?.title)
   window.localStorage.setItem("description", sighting?.description)
   window.localStorage.setItem("category", sighting?.category)
   window.localStorage.setItem("image_url", sighting?.image_url)
 
-
-
-  useEffect(() => {
-    dispatch(sessionActions.getAllSightings())
-    dispatch(getSightingLikes(sightingId))
-  }, [dispatch, sightingId])
 
 
   const handleDelete = (e) => {
@@ -57,6 +51,7 @@ const SingleSighting = () => {
 
   useEffect(() => {
     dispatch(getALLComments(sightingId))
+    dispatch(getSightingLikes(sightingId))
   }, [dispatch, sightingId])
 
   return (
@@ -101,10 +96,13 @@ const SingleSighting = () => {
         <Comments />
       </div>
 
-      <div>
+      {/* LIKES */}
+      {/* <div>
           <AiOutlineLike />
-          {/* <p>{data && likes.likes}</p> */}
-      </div>
+
+      </div> */}
+
+
     </div>
   )
 }

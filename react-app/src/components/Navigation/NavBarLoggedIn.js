@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory } from 'react-router-dom';
 import { AiOutlineHome } from 'react-icons/ai';
@@ -16,8 +16,7 @@ const NavbarLoggedIn = () => {
   let currentUser = useSelector(state => state.session.user)
   const history = useHistory()
   const dispatch = useDispatch()
-  let sightings = useSelector(state => state.sightings);
-  let sightingsArray = Object.values(sightings);
+
 
   const fetch = (e) => {
     e.preventDefault()
@@ -33,16 +32,13 @@ const NavbarLoggedIn = () => {
     history.push("/mysightings")
   }
 
-  // useEffect(() => {
-  //   dispatch(sessionActions.getAllSightings())
-  // }, [dispatch])
 
   return (
     <nav id="user-nav">
       <div id="nav-link-container">
         <div id="home">
           <NavLink to='/' activeclassname='active'>
-            <img src={logo} />
+            <img src={logo} alt="paranormal-files-logo" />
           </NavLink>
         </div>
         <div id="user-site-nav-links">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { VscGithub } from "react-icons/vsc"
 import { BsLinkedin } from "react-icons/bs"
 import * as sessions from "../../store/sighting"
@@ -59,10 +59,10 @@ const Categories = () => {
         <p>Developed by Eddie Verdusco</p>
         <ul>
           <li key="github-link">
-            <a href={"https://github.com/verduscos"} target="_blank"><VscGithub /></a>
+            <a href={"https://github.com/verduscos"} target="_blank" rel="noreferrer"><VscGithub /></a>
           </li>
           <li key="linkedin-link">
-            <a href={"https://www.linkedin.com/in/eddie-verdusco/"} target="_blank"><BsLinkedin /></a>
+            <a href={"https://www.linkedin.com/in/eddie-verdusco/"} target="_blank" rel="noreferrer"><BsLinkedin /></a>
           </li>
         </ul>
       </div>

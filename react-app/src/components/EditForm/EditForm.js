@@ -10,9 +10,6 @@ const EditForm = () => {
   const params = useParams()
   const { sightingId } = params
   let currentUser = useSelector(state => state.session.user)
-  let sightings = useSelector(state => state.sightings)
-  // let sightingsArray = Object.values(sightings)
-  let currentSighting = sightings[sightingId]
   const history = useHistory()
   const dispatch = useDispatch()
   const [title, setTitle] = useState(window.localStorage.getItem("title"))
@@ -21,12 +18,8 @@ const EditForm = () => {
   const [imageUrl, setImageUrl] = useState(window.localStorage.getItem("image_url"))
   const [errors, setErrors] = useState([])
   const [image, setImage] = useState(null);
-  const [imageLoading, setImageLoading] = useState(false);
-  const [loaded, setLoaded] = useState(false);
   const [editTextOnly, setEditTextOnly] = useState(true)
-  const [test, setTest] = useState(null)
   const [displayUrl, setDisplayUrl] = useState("")
-  // const [payload, setPayload] = useState({})
 
 
 
@@ -41,7 +34,6 @@ const EditForm = () => {
     // TODO
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
-    setImageLoading(true);
 
     const res = await fetch(`/api/sightings/image`, {
       method: "POST",
@@ -49,19 +41,17 @@ const EditForm = () => {
     });
     if (res.ok) {
       const data = await res.json();
-      setImageLoading(false);
       setImageUrl(data.url)
 
 
 
     }
     else {
-      setImageLoading(false);
       const data = await res.json();
       // TODO
       // a real app would probably use more advanced
       // error handling
-      console.log(data);
+      // console.log(data);
     }
     // IMAGE UPLOAD ENDS
 
@@ -82,17 +72,12 @@ const EditForm = () => {
     if (title?.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
     if (description?.length <= 4) errorsArr.push("Description must be at least 5 characters long.")
     if (category?.length < 1) errorsArr.push("Please choose a category.")
-    // if (imageUrl?.length < 1) errorsArr.push("Please upload an image.")
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
       history.push(`/sightings/${sightingId}`)
     }
 
   }
-
-  console.log(title)
-  console.log("TEST TES TEST TTEST")
-  console.log(test)
 
 
   const updateImage = (e) => {
@@ -112,8 +97,6 @@ const EditForm = () => {
       url: imageUrl
     }
     dispatch(sessionActions.updateSighting(payload))
-    // window.localStorage.setItem("currentSighting", currentSighting)
-
 
   }, [dispatch, imageUrl])
 

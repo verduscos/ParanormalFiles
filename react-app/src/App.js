@@ -14,7 +14,6 @@ import Categories from './components/Categories/Categories';
 import Category from './components/Categories/Category';
 import MySightings from './components/MySightings/mysightings';
 import NotFound from './components/NotFound/NotFound';
-import Footer from './components/Footer/Footer';
 
 
 function App() {
