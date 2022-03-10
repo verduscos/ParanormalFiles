@@ -5,15 +5,15 @@ from app.models import Like, User, db
 like_routes = Blueprint("likes", __name__)
 
 
-@like_routes.route("/<int:sightingId>")
-def get_likes(sightingId):
+@like_routes.route("/<int:userId>")
+def get_likes(userId):
   """
   Get all likes for a specific sightings.
   """
-  likes = Like.query.filter(Like.sighting_id == sightingId).all()
-  total_likes = len(likes)
+  likes = Like.query.filter(Like.user_id == userId).all()
+  # total_likes = len(likes)
 
-  return {"likes": total_likes}
+  return {"likes": [like.to_dict() for like in likes]}
 
 
 @like_routes.route("<int:sightingId>", methods=["POST"])
@@ -41,7 +41,7 @@ def post_like(sightingId):
 @like_routes.route("<int:sightingId>", methods=["DELETE"])
 def delete_like(sightingId):
   """
-  Post a like to a specific sighting.
+  Delete a like for a specific sighting.
   """
   form = LikeForm()
   form["csrf_token"].data = request.cookies["csrf_token"]

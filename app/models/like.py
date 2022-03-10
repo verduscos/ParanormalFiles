@@ -17,5 +17,10 @@ class Like(db.Model):
       return {
         "id": self.id,
         "sighting_id": self.sighting_id,
-        "user_id": self.user_id
+        "user_id": self.user_id,
+        "title":  self.sighting.title,
+        "description": self.sighting.description,
+        "created_at": self.sighting.created_at,
+        "category": self.sighting.category,
+        "username": self.user.username
       }
