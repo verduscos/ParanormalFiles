@@ -1,3 +1,28 @@
+
+.red {
+  color: #D10606;
+}
+.like-btns {
+  font-size: 25px;
+  width: 25px;
+  display: flex;
+  cursor: pointer;
+}
+
+#temp-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row-reverse;
+  padding-bottom: 5px;
+}
+
+#temp-container > * {
+  margin-left: 15px;
+}
+
+/* LIKE BTNS */
+
 #sighting-comp-container {
   width: 1050px;
   margin-left: 275px;

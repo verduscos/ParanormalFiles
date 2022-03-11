@@ -6,7 +6,7 @@ import { deleteLike, likeSightingThunk } from "../../store/like";
 import Comments from "../Comments/Comments"
 import { getALLComments } from "../../store/comment";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
-import { AiOutlineLike } from "react-icons/ai"
+import { AiOutlineLike, AiOutlineHeart, AiFillHeart } from "react-icons/ai"
 import "./SingleSighting.css"
 
 
@@ -125,18 +125,25 @@ const SingleSighting = () => {
           </div>
           : null}
 
+          <div id="temp-container">
+
         { (displayRemove) && localStorage.getItem(sighting?.id) || favorited ?
-                <button onClick={(e) => {
+                <div onClick={(e) => {
                   unfavorite(e)
-                }}>Remove</button>
+                }}
+                className="like-btns red"
+                ><AiFillHeart /></div>
           :
-        <button onClick={(e) => {
-          favorite(e)
-        }}>Favorite</button>
-      }
+          <div onClick={(e) => {
+            favorite(e)
+          }}
+          className="like-btns"
+          ><AiOutlineHeart /></div>
+        }
 
 
         <p id="sighting-date-article">{`${sighting?.created_at.split(' ')[2]} ${sighting?.created_at.split(' ')[1]}, ${sighting?.created_at.split(' ')[3]}`}</p>
+        </div>
         <img src={sighting?.image_url} id="sighting-img" alt="article-img"></img>
         <p id="article-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
         <Comments />
