@@ -16,8 +16,8 @@ def get_likes(userId):
   return {"likes": [like.to_dict() for like in likes]}
 
 
-@like_routes.route("<int:sightingId>", methods=["POST"])
-def post_like(sightingId):
+@like_routes.route("/", methods=["POST"])
+def post_like():
   """
   Post a like to a specific sighting.
   """
@@ -38,21 +38,21 @@ def post_like(sightingId):
   return { "likes" : "post to likes failed." }
 
 
-@like_routes.route("<int:sightingId>", methods=["DELETE"])
-def delete_like(sightingId):
+@like_routes.route("/", methods=["DELETE"])
+def delete_like():
   """
   Delete a like for a specific sighting.
   """
+  print("TOP LEVEL")
   form = LikeForm()
-  form["csrf_token"].data = request.cookies["csrf_token"]
-  if form.validate_on_submit():
-    searchExists = Like.query.filter(Like.user_id == request.json["user_id"], Like.sighting_id == request.json["sighting_id"]).first()
-
-    if searchExists is not None:
-
-      db.session.delete(searchExists)
-      db.session.commit()
-
-      return { "likes" : "like deleted" }
+  print("BEFORE VALIDATE")
+  # form["csrf_token"].data = request.cookies["csrf_token"]
+  # if form.validate_on_submit():
+  print("WWWWWWEEEEEEEEEE HIT")
+  searchExists = Like.query.filter(Like.user_id == request.json["user_id"], Like.sighting_id == request.json["sighting_id"]).first()
+  if searchExists is not None:
+    db.session.delete(searchExists)
+    db.session.commit()
+    return { "likes" : "like deleted" }
 
   return { "likes" : "delete to likes failed." }

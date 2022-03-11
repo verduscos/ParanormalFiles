@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory, Link } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
-import { likeSightingThunk } from "../../store/like";
+import { deleteLike, likeSightingThunk } from "../../store/like";
 import Comments from "../Comments/Comments"
 import { getALLComments } from "../../store/comment";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
@@ -50,7 +50,7 @@ const SingleSighting = () => {
     }
 
     dispatch(likeSightingThunk(payload))
-    localStorage.setItem( sighting.id, true)
+    localStorage.setItem(sighting.id, true)
 
   }
 
@@ -63,8 +63,8 @@ const SingleSighting = () => {
       sighting_id: sightingId
     }
 
-    dispatch(likeSightingThunk(payload))
-    localStorage.setItem( sighting.id, true)
+    dispatch(deleteLike(payload))
+    localStorage.removeItem(sighting.id)
 
   }
 
@@ -124,7 +124,7 @@ const SingleSighting = () => {
 
         { localStorage.getItem(sighting?.id) ?
                 <button onClick={(e) => {
-                  favorite(e)
+                  unfavorite(e)
                 }}>Remove</button>
           :
         <button onClick={(e) => {
