@@ -39,21 +39,23 @@ const Categories = () => {
           }}
       >
         <AiOutlineSearch id="search-icon" />
-        <input  id="search" type="text" required />
+        <input id="search" type="text" required />
         {/* <button>search</button> */}
       </form>
 
-      <h2 id="categories-header">Popular</h2>
-      <div id="categories-inner">
-        {categories.map(category => (
-          <div
-          key={category}
-          id="testing"
-          onClick={(e) => {
-            search(e, category)
-          }}
-          ><p>{category}</p></div>
-        ))}
+      <div id="tag-links">
+          <h2 id="categories-header">Popular</h2>
+          <div id="categories-inner">
+            {categories.map(category => (
+              <div
+                key={category}
+                id="testing"
+                onClick={(e) => {
+                  search(e, category)
+                }}
+              ><p>{category}</p></div>
+            ))}
+          </div>
       </div>
 
 
