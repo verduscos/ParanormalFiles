@@ -16,6 +16,8 @@ const SingleSighting = () => {
   const params = useParams()
   const { sightingId } = params
   const [userBtns, setUserBtns] = useState(false)
+  const [favorited, setFavorited] = useState(false)
+  const [displayRemove, setDisplayRemove] = useState(true)
   let sighting = useSelector(state => state.sightings[sightingId])
   let currentUser = useSelector(state => state.session.user)
   let likes = useSelector(state => state.likes)
@@ -51,6 +53,7 @@ const SingleSighting = () => {
 
     dispatch(likeSightingThunk(payload))
     localStorage.setItem(sighting.id, true)
+    setFavorited(true)
 
   }
 
@@ -65,7 +68,7 @@ const SingleSighting = () => {
 
     dispatch(deleteLike(payload))
     localStorage.removeItem(sighting.id)
-
+    setDisplayRemove(false)
   }
 
   // let userBtns = (
@@ -122,7 +125,7 @@ const SingleSighting = () => {
           </div>
           : null}
 
-        { localStorage.getItem(sighting?.id) ?
+        { (displayRemove) && localStorage.getItem(sighting?.id) || favorited ?
                 <button onClick={(e) => {
                   unfavorite(e)
                 }}>Remove</button>
