@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory, Link } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
-import { getSightingLikes } from "../../store/like";
+import { likeSightingThunk } from "../../store/like";
 import Comments from "../Comments/Comments"
 import { getALLComments } from "../../store/comment";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
@@ -39,6 +39,33 @@ const SingleSighting = () => {
     dispatch(sessionActions.deleteASighting(sightingId))
 
     history.push("/mysightings")
+  }
+
+  const favorite = (e) => {
+    e.preventDefault();
+
+    const payload = {
+      user_id: currentUser.id,
+      sighting_id: sightingId
+    }
+
+    dispatch(likeSightingThunk(payload))
+    localStorage.setItem( sighting.id, true)
+
+  }
+
+
+  const unfavorite = (e) => {
+    e.preventDefault();
+
+    const payload = {
+      user_id: currentUser.id,
+      sighting_id: sightingId
+    }
+
+    dispatch(likeSightingThunk(payload))
+    localStorage.setItem( sighting.id, true)
+
   }
 
   // let userBtns = (
@@ -94,6 +121,17 @@ const SingleSighting = () => {
             <Link to={`/sightings/edit/${sighting.id}`}>Edit</Link>
           </div>
           : null}
+
+        { localStorage.getItem(sighting?.id) ?
+                <button onClick={(e) => {
+                  favorite(e)
+                }}>Remove</button>
+          :
+        <button onClick={(e) => {
+          favorite(e)
+        }}>Favorite</button>
+      }
+
 
         <p id="sighting-date-article">{`${sighting?.created_at.split(' ')[2]} ${sighting?.created_at.split(' ')[1]}, ${sighting?.created_at.split(' ')[3]}`}</p>
         <img src={sighting?.image_url} id="sighting-img" alt="article-img"></img>
