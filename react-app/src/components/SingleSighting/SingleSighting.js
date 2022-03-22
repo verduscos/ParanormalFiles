@@ -4,6 +4,7 @@ import { useParams, useHistory, Link } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import { deleteLike, likeSightingThunk } from "../../store/like";
 import Comments from "../Comments/Comments"
+import { getSightingLikes } from "../../store/like";
 import { getALLComments } from "../../store/comment";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { AiOutlineLike, AiOutlineHeart, AiFillHeart } from "react-icons/ai"
@@ -21,6 +22,7 @@ const SingleSighting = () => {
   let sighting = useSelector(state => state.sightings[sightingId])
   let currentUser = useSelector(state => state.session.user)
   let likes = useSelector(state => state.likes)
+  console.log(likes[sightingId])
 
   useEffect(() => {
     dispatch(sessionActions.getAllSightings())
@@ -80,7 +82,8 @@ const SingleSighting = () => {
 
 
   useEffect(() => {
-    dispatch(sessionActions.getAllSightings())
+    dispatch(sessionActions.getAllSightings());
+    dispatch(getSightingLikes(currentUser.id));
 
   }, [dispatch])
 
@@ -127,7 +130,7 @@ const SingleSighting = () => {
 
           <div id="temp-container">
 
-        { (displayRemove) && localStorage.getItem(sighting?.id) || favorited ?
+        { likes[sightingId]  ?
                 <div onClick={(e) => {
                   unfavorite(e)
                 }}

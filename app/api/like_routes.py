@@ -53,6 +53,6 @@ def delete_like():
   if searchExists is not None:
     db.session.delete(searchExists)
     db.session.commit()
-    return { "likes" : "like deleted" }
+    return { "deleted" : searchExists.sighting_id }
 
   return { "likes" : "delete to likes failed." }

@@ -79,13 +79,27 @@ export const likeSightingThunk = (payload) => async (dispatch) => {
 const likesReducer = (state = {}, action) => {
   switch (action.type){
     case GET_LIKES:
-      let likes = action.payload.likes
+      let likes = { ...state }
 
-      return likes
+      action.payload.likes.forEach(liked => {
+        likes[liked.id] = liked
+      })
 
-    // case LIKE_SIGHTING:
+      return { ...likes }
 
+    case REMOVE_LIKE:
+      let likess = { ...state }
+      let id = action.payload["deleted"]
 
+      delete likess[id];
+      return likess
+
+    case LIKE_SIGHTING:
+      let like = { ...state }
+
+      like[action.payload.likes.id] = action.payload.likes;
+
+      return like
 
     default:
       return state;
