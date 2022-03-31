@@ -83,7 +83,7 @@ const SingleSighting = () => {
 
   useEffect(() => {
     dispatch(sessionActions.getAllSightings());
-    dispatch(getSightingLikes(currentUser.id));
+    dispatch(getSightingLikes(currentUser?.id));
 
   }, [dispatch])
 
