@@ -7,7 +7,6 @@ import * as sessionActions from "../../store/sighting"
 const ImageForm = () => {
   const params = useParams();
   const dispatch = useDispatch()
-  // const history = useHistory()
   const { sightingId } = params;
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
@@ -54,9 +53,6 @@ const ImageForm = () => {
   return (
     <>
       <form id="image-form" onSubmit={handleSubmit}>
-        {/* <label for="file-btn">
-          Choose File
-        </label> */}
         <input
         id="file-btn"
 

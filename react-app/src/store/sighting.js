@@ -221,7 +221,6 @@ const sightingReducer = (state = {}, action) => {
 
     case SEARCH:
       let search = {}
-      console.log("SEARCH REDUCER")
       if (action.payload["sightings"]) {
         action.payload["sightings"].forEach(sighting => {
           search[sighting.id] = sighting

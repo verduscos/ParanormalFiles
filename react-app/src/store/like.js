@@ -19,8 +19,6 @@ const removeSighting = (sighting) => ({
 
 
 export const deleteLike = (payload) => async (dispatch) => {
-  console.log("THUNKL")
-  console.log(payload.user_id)
   const response = await fetch(`/api/likes/`, {
     method: "DELETE",
     headers: {

@@ -19,13 +19,9 @@ const MySightings = () => {
 
         {sightingsArray.map((sighting, i) => (
           <ul id="sighting-card" key={sighting?.id}>
-            {/* <li key={sighting.id}>{sighting.location}</li> */}
             <div>
               <li className="card-r1" key={`date-${sighting?.id}`}>
                 <p>{sighting?.username}</p>
-                {/* TODO
-                  FIX DATE FORMAT
-                */}
                 <p>{sighting?.date}</p>
               </li>
               <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}`}>

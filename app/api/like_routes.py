@@ -43,12 +43,9 @@ def delete_like():
   """
   Delete a like for a specific sighting.
   """
-  print("TOP LEVEL")
   form = LikeForm()
-  print("BEFORE VALIDATE")
   # form["csrf_token"].data = request.cookies["csrf_token"]
   # if form.validate_on_submit():
-  print("WWWWWWEEEEEEEEEE HIT")
   searchExists = Like.query.filter(Like.user_id == request.json["user_id"], Like.sighting_id == request.json["sighting_id"]).first()
   if searchExists is not None:
     db.session.delete(searchExists)

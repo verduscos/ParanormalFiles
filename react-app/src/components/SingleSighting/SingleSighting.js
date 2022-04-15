@@ -22,7 +22,6 @@ const SingleSighting = () => {
   let sighting = useSelector(state => state.sightings[sightingId])
   let currentUser = useSelector(state => state.session.user)
   let likes = useSelector(state => state.likes)
-  console.log(likes[sightingId])
 
   useEffect(() => {
     dispatch(sessionActions.getAllSightings())
