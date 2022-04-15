@@ -7,7 +7,7 @@ import Comments from "../Comments/Comments"
 import { getSightingLikes } from "../../store/like";
 import { getALLComments } from "../../store/comment";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
-import { AiOutlineLike, AiOutlineHeart, AiFillHeart } from "react-icons/ai"
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"
 import "./SingleSighting.css"
 
 
@@ -73,13 +73,6 @@ const SingleSighting = () => {
     setDisplayRemove(false)
   }
 
-  // let userBtns = (
-  //   <div>
-  //     <button onClick={handleDelete}>Delete</button>
-  //     <Link to={`/sightings/edit/${sighting.id}`}>Edit</Link>
-  //   </div>
-  // )
-
 
   useEffect(() => {
     dispatch(sessionActions.getAllSightings());
@@ -89,15 +82,11 @@ const SingleSighting = () => {
 
   useEffect(() => {
     dispatch(getALLComments(sightingId))
-    // dispatch(getSightingLikes(sightingId))
   }, [dispatch, sightingId])
 
   return (
     <div id="sighting-comp-container">
       <div id="article-container">
-
-        {/* <p>{sighting?.date}</p> */}
-        {/* <p>{sighting?.category}</p> */}
 
         <div id="header-container">
           <h1 id="article-title">{sighting?.title}</h1>
@@ -151,14 +140,6 @@ const SingleSighting = () => {
         <p id="article-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
         <Comments />
       </div>
-
-      {/* LIKES */}
-      {/* <div>
-          <AiOutlineLike />
-
-      </div> */}
-
-
     </div>
   )
 }

@@ -3,14 +3,12 @@ import thunk from 'redux-thunk';
 import session from './session'
 import sightingReducer from './sighting'
 import commentsReducer from './comment'
-import searchReducer from './search';
 import likesReducer from './like';
 
 const rootReducer = combineReducers({
   session,
   sightings: sightingReducer,
   comments: commentsReducer,
-  searchResults: searchReducer,
   likes: likesReducer,
 });
 
