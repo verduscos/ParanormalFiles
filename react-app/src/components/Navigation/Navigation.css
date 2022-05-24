@@ -54,11 +54,16 @@ body {
   color: #D10606;
 }
 
+/*  */
+.splash-container {
+  background-image: url('http://www.birds.com/wp-content/uploads/home/bird4.jpg');
+}
+
 #header-img {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   z-index: 3;
   margin-bottom: 800px;
   height: 100%;
@@ -67,8 +72,14 @@ body {
 
 @media screen and (max-width:640px) {
   #header-img {
-    height: 55%;
+    height: 80%;
+    width: auto;
   }
+}
+
+#testy {
+  background-color: red;
+  width: 100vw;
 }
 
 /* margin for splash page only */
