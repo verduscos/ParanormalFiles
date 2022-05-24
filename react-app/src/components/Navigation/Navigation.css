@@ -65,6 +65,12 @@ body {
   object-fit: cover;
 }
 
+@media screen and (max-width:640px) {
+  #header-img {
+    height: 55%;
+  }
+}
+
 /* margin for splash page only */
 #splash-margin {
   width: 50px;
