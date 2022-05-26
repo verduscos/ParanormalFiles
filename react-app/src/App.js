@@ -32,7 +32,7 @@ function App() {
   if (!loaded) {
     return null;
   }
-dd 
+
   return (
     <BrowserRouter>
       <Switch>

@@ -9,8 +9,8 @@ const SplashBg = () => {
 
   return (
     <div id="splash-container">
+      {/* SPLASH BACKGROUND */}
       <img id="header-img" src="https://thedarkestblog.com/wp-content/uploads/2016/10/The-Darkest-Blog-Forest.jpg" alt="splash-bg" />
-      <div id="splash-container">asdf</div>
       <nav id="splash-guest">
         <ul id="splash-ul">
           <h1 id="splash-header">Paranormal Files</h1>
