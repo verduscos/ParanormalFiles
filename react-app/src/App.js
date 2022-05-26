@@ -32,14 +32,13 @@ function App() {
   if (!loaded) {
     return null;
   }
-
+dd 
   return (
     <BrowserRouter>
       <Switch>
         <Route path='/' exact={true} >
           <Navigation isLoaded={loaded} />
-          {/* <SplashBg /> */}
-          <Sightings />
+          {/* <Sightings /> */}
           <Categories />
         </Route>
         <ProtectedRoute path='/mysightings' exact={true} >

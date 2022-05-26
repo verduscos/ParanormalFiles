@@ -12,9 +12,9 @@ function Navigation() {
   )
 
   return (
-    <div id="testy">
+    <>
       {sessionUser ? userNav : <SplashBg />}
-    </div>
+    </>
   );
 }
 
