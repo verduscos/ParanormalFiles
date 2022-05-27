@@ -87,14 +87,34 @@ body {
   padding: 0;
 }
 
+#splash-logo-container {
+  background-color: red;
+  height: 200px;
+  width: 100vw;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#splash-logo {
+  /* height: 90px; */
+  /* width: 100vw; */
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
 @media screen and (max-width:640px) {
   #header-img {
-    height: 50%;
+    height: 60%;
   }
 
   #splash-header {
     font-size: 46px;
     letter-spacing: 3px;
+    display: none;
   }
   #splash-subheader {
     font-size: 20px;
@@ -102,10 +122,6 @@ body {
   }
 }
 
-#testy {
-  background-color: red;
-  width: 100vw;
-}
 
 /* margin for splash page only */
 #splash-margin {
