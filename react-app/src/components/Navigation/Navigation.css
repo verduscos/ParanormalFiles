@@ -95,7 +95,9 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #splash-logo {
