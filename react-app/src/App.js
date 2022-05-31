@@ -38,31 +38,31 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/' exact={true} >
+        <Route path='/' >
           <Navigation isLoaded={loaded} />
           <Tags />
-          {/* <Sightings /> */}
+          <Sightings />
           {/* <Categories /> */}
         </Route>
         <ProtectedRoute path='/mysightings' exact={true} >
           <Navigation isLoaded={loaded} />
           <MySightings />
-          <Categories />
+          {/* <Categories /> */}
         </ProtectedRoute>
         <ProtectedRoute path='/myfavorites' exact={true} >
           <Navigation isLoaded={loaded} />
           <Favorites />
-          <Categories />
+          {/* <Categories /> */}
         </ProtectedRoute>
         <Route path='/sightings/categories/:category' exact={true} >
           <Navigation isLoaded={loaded} />
-          <Categories />
+          {/* <Categories /> */}
           <Category />
         </Route>
         <Route path='/sightings/:sightingId' exact={true} >
           <Navigation isLoaded={loaded} />
           <SingleSighting />
-          <Categories />
+          {/* <Categories /> */}
         </Route>
         <ProtectedRoute path='/report' exact={true} >
           <CreateSightingForm />
@@ -76,8 +76,9 @@ function App() {
         </ProtectedRoute>
         <Route path="/sightings/search/:string" exact={true}>
           <Navigation />
-          {/* <Sightings /> */}
+          <Sightings />
           <Search />
+
           <Categories />
         </Route>
         <Route>
