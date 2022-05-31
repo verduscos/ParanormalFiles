@@ -9,13 +9,12 @@ const SplashBg = () => {
 
 
   return (
-    <>
+    <div>
+      <div id="splash-container">
+        {/* LOGO FOR MOBILE */}
       <div id="splash-logo-container">
         <img id="splash-logo" src={logo} alt="pf-logo" />
       </div>
-      <div id="splash-container">
-        {/* SPLASH BACKGROUND */}
-        <img id="header-img" src="https://thedarkestblog.com/wp-content/uploads/2016/10/The-Darkest-Blog-Forest.jpg" alt="splash-bg" />
         <nav id="splash-guest">
           <ul id="splash-ul">
             <h1 id="splash-header">Paranormal Files</h1>
@@ -25,7 +24,7 @@ const SplashBg = () => {
           </ul>
         </nav>
       </div>
-    </>
+    </div>
   )
 }
 

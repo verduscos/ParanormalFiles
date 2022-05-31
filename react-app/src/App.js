@@ -11,7 +11,9 @@ import { authenticate } from './store/session';
 import Navigation from './components/Navigation';
 import CreateNav from './components/CreateSightingForm/CreateNav';
 import Categories from './components/Categories/Categories';
+// TAGS
 import Category from './components/Categories/Category';
+import Tags from './components/Tags';
 import MySightings from './components/MySightings/mysightings';
 import NotFound from './components/NotFound/NotFound';
 import Search from './components/Search/Search';
@@ -38,8 +40,9 @@ function App() {
       <Switch>
         <Route path='/' exact={true} >
           <Navigation isLoaded={loaded} />
-          <Sightings />
-          <Categories />
+          {/* <Sightings /> */}
+          <Tags />
+          {/* <Categories /> */}
         </Route>
         <ProtectedRoute path='/mysightings' exact={true} >
           <Navigation isLoaded={loaded} />
