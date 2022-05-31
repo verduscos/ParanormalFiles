@@ -98,6 +98,9 @@ body {
 }
 
 @media screen and (max-width:640px) {
+  #splash-container {
+    height: 60vh;
+  }
   #splash-header {
     font-size: 46px;
     letter-spacing: 3px;

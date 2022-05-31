@@ -1,5 +1,8 @@
-#tags {
+#tags-container {
+  background-color: green;
+}
+
+#tags-header {
   color:red;
-  font-size: 50px;
-  z-index: 90000000000000;
+  font-size: 18px;
 }
