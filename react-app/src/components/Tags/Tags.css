@@ -1,9 +1,11 @@
 #tags-container {
-  border-bottom: 1px solid rgba(230, 230, 230, 1);
-  border-top: 1px solid rgba(230, 230, 230, 1);
+  border-bottom: .5px solid rgba(230, 230, 230, 1);
+  border-top: .5px solid rgba(230, 230, 230, 1);
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 24px 0;
   width: 100vw;
+
+  z-index: 9000;
 }
 
 #tags-header {
@@ -19,7 +21,7 @@
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
-  margin: 0 24px;
+  margin: 0  10px  0 24px;
   padding: 0;
 }
 
