@@ -1,24 +1,36 @@
 #tags-container {
-  background-color: green;
+  border-bottom: 1px solid rgba(230, 230, 230, 1);
+  border-top: 1px solid rgba(230, 230, 230, 1);
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 24px 0;
   width: 100vw;
 }
 
 #tags-header {
-  color:red;
-  font-size: 18px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.083em;
+  margin-left:28px;
 }
 
 
 #categories-list {
-  background-color: gray;
-  list-style-type: none;
-  padding: 0;
   display: flex;
   flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0 24px;
+  padding: 0;
 }
 
 #categories-list > li {
+  background-color: transparent;
+  border: 1px solid rgba(230, 230, 230, 1);
+  border-radius: 3px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 13px;
+  margin: 5px;
+  padding: 6px 16px;
   width: fit-content;
-  background-color: beige;
-  margin: 15px;
 }
