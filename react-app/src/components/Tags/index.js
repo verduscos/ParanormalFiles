@@ -8,6 +8,12 @@ const Tags = () => {
   return (
     <div id="tags-container">
       <h2 id="tags-header">DISCOVER MORE OF WHAT MATTERS TO YOU</h2>
+
+      <ul id="categories-list">
+        {categories.map( category => (
+          <li>{category}</li>
+        ))}
+      </ul>
     </div>
   )
 }

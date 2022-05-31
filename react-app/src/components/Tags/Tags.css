@@ -1,8 +1,30 @@
 #tags-container {
   background-color: green;
+  width: 100vw;
 }
 
 #tags-header {
   color:red;
   font-size: 18px;
+}
+
+
+#categories-list {
+  background-color: gray;
+  list-style-type: none;
+  /* width: 50vw; */
+  /* display: table; */
+  /* flex-direction: column; */
+  /* display: grid; */
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  padding: 0;
+
+}
+
+#categories-list > li {
+  /* display: inline; */
+  width: fit-content;
+  background-color: beige;
+  margin: 15px;
 }
