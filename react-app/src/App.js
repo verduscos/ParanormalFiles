@@ -40,8 +40,8 @@ function App() {
       <Switch>
         <Route path='/' >
           <Navigation isLoaded={loaded} />
-          <Tags />
-          <Sightings />
+          {/* <Tags /> */}
+          {/* <Sightings /> */}
           {/* <Categories /> */}
         </Route>
         <ProtectedRoute path='/mysightings' exact={true} >
