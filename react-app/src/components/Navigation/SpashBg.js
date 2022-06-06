@@ -9,24 +9,29 @@ const SplashBg = () => {
 
 
   return (
+    <>
     <div id="guest-nav-container">
       <nav id="guest-nav">
-        <ul>
+        {/* <ul>
           <li>
-            <img id="splash-logo" src={logo} alt="pf-logo" />
+          <img id="splash-logo" src={logo} alt="pf-logo" />
           </li>
           <li>
-            <LoginFormModal />
+          <LoginFormModal />
           </li>
-        </ul>
+        </ul> */}
       </nav>
 
-      <div>
+      {/* <div>
         <h1>Stay curious.</h1>
         <h2>Discuss and share paranormal experiences.</h2>
         <SignupFormModal />
-      </div>
+      </div> */}
     </div>
+
+      <div id="test5"></div>
+
+      </>
   )
 }
 
