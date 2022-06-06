@@ -9,17 +9,16 @@ const SplashBg = () => {
 
 
   return (
-    <>
     <div id="guest-nav-container">
       <nav id="guest-nav">
-        {/* <ul>
+        <ul>
           <li>
           <img id="splash-logo" src={logo} alt="pf-logo" />
           </li>
           <li>
           <LoginFormModal />
           </li>
-        </ul> */}
+        </ul>
       </nav>
 
       {/* <div>
@@ -28,10 +27,6 @@ const SplashBg = () => {
         <SignupFormModal />
       </div> */}
     </div>
-
-      <div id="test5"></div>
-
-      </>
   )
 }
 

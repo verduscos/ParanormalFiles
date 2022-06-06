@@ -135,14 +135,6 @@ body {
   cursor: pointer;
 }
 
-#signin {
-  border: none;
-  cursor: pointer;
-  outline: none;
-  background-color: transparent;
-  color: white;
-  margin: 0 15px;
-}
 
 
 
@@ -185,14 +177,21 @@ body {
 
 
 #signin {
-  background-color: transparent ;
-  border: 1px solid #9ea09c;
-  height: 45px;
-  width:100px;
-  transition-duration: .2s;
+  background-color: rgb(212, 212, 212);
+  border: none;
+  border-radius: 99em;
+  color: black;
+  cursor: pointer;
   letter-spacing: 1px;
-
+  line-height: 20px;
+  margin: 0 15px;
+  outline: none;
+  padding: 9px 16px;
+  transition-duration: .2s;
+  width: 100px;
 }
+
+
 
 #signup {
   background-color: transparent ;
