@@ -4,6 +4,8 @@
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 24px 0;
   width: 100vw;
+
+  width: 100%;
 }
 
 #tags-header {
@@ -39,5 +41,36 @@
 
 /* DESKTOP */
 @media screen and (min-width: 1024px) {
-  
+  /* #tags-container { */
+    /* display: grid; */
+    /* grid-template-columns: repeat(8, 1fr) repeat(4, minmax(48px, 1fr)); */
+    /* grid-template-rows: 1fr; */
+  /* } */
+}
+
+
+#content-grid {
+  display: grid;
+  /* gap: 100px; */
+  grid-template-columns: repeat(8, 1fr) repeat(4, minmax(48px, 1fr));
+  background-color: gray;
+}
+
+#main {
+  background-color: blueviolet;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+#main2 {
+  background-color: blue;
+  grid-column-start: 2;
+  grid-column-end: 11;
+}
+
+
+#tags-container {
+  background-color: green;
+  grid-column-start: 11;
+  grid-column-end: 13;
 }

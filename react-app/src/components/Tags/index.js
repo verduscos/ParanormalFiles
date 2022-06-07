@@ -25,16 +25,26 @@ const Tags = () => {
   }
 
   return (
-    <div id="tags-container">
-      <h2 id="tags-header">DISCOVER MORE OF WHAT MATTERS TO YOU</h2>
+    <div id="content-grid">
+      <div id="main">
+ONE
+      </div>
 
-      <ul id="categories-list">
-        {tagList.map(tag => (
-          <li
-            onClick={(e) => search(e, tag)}
-          >{tag}</li>
-        ))}
-      </ul>
+      <div id="main2">
+TWO
+      </div>
+
+      <div id="tags-container">
+        <h2 id="tags-header">DISCOVER MORE OF WHAT MATTERS TO YOU</h2>
+
+        <ul id="categories-list">
+          {tagList.map(tag => (
+            <li
+              onClick={(e) => search(e, tag)}
+            >{tag}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }
