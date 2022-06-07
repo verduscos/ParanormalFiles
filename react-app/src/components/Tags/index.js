@@ -10,19 +10,16 @@ const Tags = () => {
   let sightings = useSelector(state => state.sightings);
   let sightingsArray = Object.values(sightings);
 
-  // console.log(sightings)
 
   const tagList = ["UFOs", "Angels", "Reincarnation", "Ghosts", "Monsters", "Mandela Effect", "Time Travel", "Demons", 'Synchronicity'];
 
   const search = async (e, searchStr) => {
     e.preventDefault();
-    console.log(sightingsArray);
-
 
     dispatch(sessions.searchAllSightings(searchStr))
     history.push(`/sightings/search/${searchStr}`)
-    sightingsArray = sightingsArray.filter(s => s.category === searchStr);
 
+    // sightingsArray = sightingsArray.filter(s => s.category === searchStr);
     // need to filter correctly, save a query
     // console.log(sightingsArray);
   }
