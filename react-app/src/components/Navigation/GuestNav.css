@@ -1,5 +1,6 @@
 #guest-nav-container {
   background-image: url("https://thedarkestblog.com/wp-content/uploads/2016/10/The-Darkest-Blog-Forest.jpg");
+  background-position: 60%;
   background-repeat: no-repeat;
   background-size: cover;
   height: 80vh;
@@ -19,10 +20,12 @@
 #guest-nav > ul {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   height: inherit;
-  padding: 0;
   list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  width: 90%;
 }
 
 #guest-nav > ul > li {
@@ -67,13 +70,18 @@
   padding: 0;
 }
 
+/* TABLET */
+@media screen and (min-width:768px) and (max-width: 1023px) {
+  #guest-nav-container {
+    height: 40vh;
+  }
 
+  #guest-header {
+    font-size: 85px;
+  }
+  #guest-sub-header {
+    font-size: 24px;
+  }
+}
 
-
-
-
-
-
-/* @media screen and (max-width:640px) {
-
-} */
+/* DESKTOP */
