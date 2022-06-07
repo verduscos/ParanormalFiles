@@ -13,7 +13,7 @@ const SplashBg = () => {
       <nav id="guest-nav">
         <ul>
           <li>
-          <img id="splash-logo" src={logo} alt="pf-logo" />
+          <img id="guest-nav-logo" src={logo} alt="pf-logo" />
           </li>
           <li>
           <LoginFormModal />
@@ -21,11 +21,11 @@ const SplashBg = () => {
         </ul>
       </nav>
 
-      {/* <div>
-        <h1>Stay curious.</h1>
-        <h2>Discuss and share paranormal experiences.</h2>
+      <div id="headings-container">
+        <h1 id="guest-header">Stay curious.</h1>
+        <h3 id="guest-sub-header">Discuss and share paranormal experiences.</h3>
         <SignupFormModal />
-      </div> */}
+      </div>
     </div>
   )
 }

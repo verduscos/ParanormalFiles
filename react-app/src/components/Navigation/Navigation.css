@@ -183,8 +183,6 @@ body {
   color: black;
   cursor: pointer;
   letter-spacing: 1px;
-  line-height: 20px;
-  margin: 0 15px;
   outline: none;
   padding: 9px 16px;
   transition-duration: .2s;
