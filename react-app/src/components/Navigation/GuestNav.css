@@ -4,6 +4,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 80vh;
+  min-height: 300px;
+  width: 100vw;
 }
 
 #guest-nav {
@@ -13,7 +15,7 @@
   left: 0;
   position: fixed;
   top: 0;
-  width: 100%;
+  width: inherit;
   z-index: 1;
 }
 
@@ -51,6 +53,7 @@
   margin-top: 75px;
   padding: 0 20px;
   position: relative;
+  min-height: 300px;
 }
 
 #guest-header {
@@ -81,6 +84,15 @@
   }
   #guest-sub-header {
     font-size: 24px;
+  }
+
+  /* BUTTONS */
+  #signup {
+    font-size: 20px;
+  }
+
+  #signin {
+    font-size: 14px;
   }
 }
 
