@@ -97,3 +97,17 @@
 }
 
 /* DESKTOP */
+@media screen and (min-width: 1024px) {
+  #guest-nav > ul {
+    max-width: 1192px;
+  }
+
+  #headings-container {
+    max-width: 1192px;
+    margin: 0 auto;
+  }
+
+  #guest-header {
+    font-size: 106px;
+  }
+}
