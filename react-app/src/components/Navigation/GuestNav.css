@@ -35,66 +35,45 @@
   user-select: none;
 }
 
-/* Above is complete */
+/* END OF NAV */
+
+
 
 #headings-container {
   color: rgb(212, 212, 212);
-  margin-top: 75px;
-  position: relative;
-  padding: 0 20px;
-  height: inherit;
   display: flex;
   flex-direction: column;
+  height: inherit;
   justify-content: center;
-}
-
-
-#splash-guest {
-  top: 0;
-  position: absolute;
-  margin: 15% auto 0 auto;
-  text-align: center;
-  width: 100%;
-  padding: 0;
-  z-index: 100;
+  margin-top: 75px;
+  padding: 0 20px;
+  position: relative;
 }
 
 #guest-header {
-  font-size: 150px;
-  letter-spacing: 3px;
-  margin: 0;
   font-size: 70px;
   font-family: gt-super, Georgia, Cambria, "Times New Roman", Times, serif;
   font-weight: 400;
+  letter-spacing: 3px;
+  margin: 0;
 }
 
 #guest-sub-header {
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 22px;
+  font-weight: 400;
   letter-spacing: 3px;
   margin: 35px 0 50px 0;
   padding: 0;
-  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 400;
 }
+
+
+
+
+
 
 
 
 /* @media screen and (max-width:640px) {
-  #splash-container {
-    height: 60vh;
-  }
-  #splash-header {
-    font-size: 46px;
-    letter-spacing: 3px;
-    display: none;
-  }
-  #splash-subheader {
-    font-size: 20px;
-    letter-spacing: 3px;
-  }
-  #splash-logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+
 } */
