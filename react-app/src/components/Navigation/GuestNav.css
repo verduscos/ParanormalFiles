@@ -9,8 +9,9 @@
 }
 
 #guest-nav {
-  background-color: black;
-  border-bottom: 1px solid #ffffff;;
+  /* background-color: rgba(0, 0, 0, 0.856); */
+  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 35%, rgba(0, 0, 0, 0.623) 100%);
+  border-bottom: 1px solid rgb(212, 212, 212);
   height: 75px;
   left: 0;
   position: fixed;
@@ -77,6 +78,11 @@
 @media screen and (min-width:768px) and (max-width: 1023px) {
   #guest-nav-container {
     height: 40vh;
+  }
+
+  #headings-container {
+    width: 90%;
+    margin: 0 auto;
   }
 
   #guest-header {
