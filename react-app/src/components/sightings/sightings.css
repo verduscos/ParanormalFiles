@@ -5,7 +5,6 @@
     sans-serif;
   margin: 0 24px;
   padding-top: 40px;
-
 }
 
 #sighting-card {
@@ -25,9 +24,9 @@
   display: flex;
   color: rgb(221, 221, 221);
   border-radius: 5px; */
-
   /* background-color: gray; */
-  height: 100px;
+
+  height: inherit;
   list-style: none;
   margin-bottom: 20px;
   margin-right: 20px;
@@ -62,6 +61,35 @@
 
 .link {
   text-decoration: none;
+}
+
+
+/* TABLET */
+@media screen and (min-width:768px) and (max-width: 1023px) {
+  #sighting-title {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  #sighting-title {
+    font-size: 22px;
+
+  }
+
+  .sighting-img {
+    height: 134px;
+    object-fit: cover;
+    width: 200px;
+  }
+
+  #sighting-card {
+    height: 134px;
+  }
+
+  #sightings-container {
+    margin: 0 48px;
+  }
+
 }
 
 

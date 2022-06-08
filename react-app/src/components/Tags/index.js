@@ -25,9 +25,9 @@ const Tags = () => {
   }
 
   return (
-      <div id="tags-container">
+    <div id="tags-container">
+      <div id="tags-wrapper">
         <h2 id="tags-header">DISCOVER MORE OF WHAT MATTERS TO YOU</h2>
-
         <ul id="categories-list">
           {tagList.map(tag => (
             <li
@@ -36,6 +36,7 @@ const Tags = () => {
           ))}
         </ul>
       </div>
+    </div>
   )
 }
 
