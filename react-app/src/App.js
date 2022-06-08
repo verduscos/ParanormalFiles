@@ -18,6 +18,8 @@ import MySightings from './components/MySightings/mysightings';
 import NotFound from './components/NotFound/NotFound';
 import Search from './components/Search/Search';
 import Favorites from './components/Favorites/Favorites';
+// MAIN
+import Main from './components/Main';
 
 
 function App() {
@@ -41,6 +43,7 @@ function App() {
         <Route path='/' >
           <Navigation isLoaded={loaded} />
           <Tags />
+          <Main />
           {/* <Sightings /> */}
           {/* <Categories /> */}
         </Route>
