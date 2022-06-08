@@ -17,42 +17,40 @@ const Sightings = () => {
 
   return (
     <div id="sightings-container">
-      <div id="sightings-inner">
-        {!sightingsArray.length ?
-        <>
-        <h2 id="no-results">No results found.</h2>
-        </>
-        : null}
+        {/* {!sightingsArray.length ?
+          <>
+            <h2 id="no-results">No results found.</h2>
+          </>
+          : null} */}
+
         {sightingsArray.map((sighting, i) => (
           <ul id="sighting-card" key={sighting?.id}>
-            {/* <li key={sighting.id}>{sighting.location}</li> */}
-            <div>
-              <li className="card-r1" key={`date-${sighting?.id}`}>
-                <p>{sighting?.username}</p>
-                {/* TODO
-                  FIX DATE FORMAT
-                */}
-                {/* <p>{`${sighting?.created_at.split(' ')[2]} ${sighting.updated_at.split(' ')[1]}, ${sighting.updated_at.split(' ')[3]}`}</p> */}
-              </li>
+            <li key={`date-${sighting?.id}`}>
+              <h4 id="sighting-author">
+                {sighting?.username}
+              </h4>
+            </li>
+            <li>
               <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}`}>
                 <div key={`title-${sighting?.id}`}>
-                  <h2 className="card-text">{sighting.title}</h2>
-                  <p className="card-text card-story">{sighting.description}</p>
+                  <h2 id="sighting-title">{sighting.title}</h2>
+                  {/* <p className="card-text card-story">{sighting.description}</p> */}
                 </div>
               </Link>
-              <div id="sighting-date">
-                <p>{`${sighting?.created_at.split(' ')[2]} ${sighting.created_at.split(' ')[1]}, ${sighting.created_at.split(' ')[3]} in `}</p>
-                <Link className="link" to={`/sightings/categories/${sighting?.category}`}>
-                  <li className="category-link" key={`category-${sighting?.id}`} >{sighting?.category}</li>
-                </Link>
-              </div>
-            </div>
-            <Link className="link card-img" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
-              <img className="card-img" src={sighting?.image_url} alt="sighting-img"></img>
-            </Link>
+            </li>
+            <li>
+              <span id="sighting-date">{`${sighting?.created_at.split(' ')[2]} ${sighting.created_at.split(' ')[1]}, ${sighting.created_at.split(' ')[3]}`}</span>
+              {/* <Link className="link" to={`/sightings/categories/${sighting?.category}`}>
+                  <p className="category-link" key={`category-${sighting?.id}`} >{sighting?.category}</p>
+                </Link> */}
+            </li>
+            <li>
+              <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
+                <img className="sighting-img" src={sighting?.image_url} alt="sighting-img"></img>
+              </Link>
+            </li>
           </ul>
         ))}
-      </div>
     </div>
   )
 }
