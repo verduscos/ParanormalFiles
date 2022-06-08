@@ -40,7 +40,7 @@ function App() {
       <Switch>
         <Route path='/' >
           <Navigation isLoaded={loaded} />
-          {/* <Main /> */}
+          <Main />
           <Sightings />
           {/* <Categories /> */}
         </Route>

@@ -40,7 +40,9 @@ const Sightings = () => {
               </Link>
             </li>
             <li>
-              <span id="sighting-date">{`${sighting?.created_at.split(' ')[2]} ${sighting.created_at.split(' ')[1]}, ${sighting.created_at.split(' ')[3]}`}</span>
+              <span id="sighting-date">{`${sighting?.created_at.split(' ')[2]} ${sighting.created_at.split(' ')[1]}`}</span>
+              {/* , ${sighting.created_at.split(' ')[3]} */}
+
               {/* <Link className="link" to={`/sightings/categories/${sighting?.category}`}>
                   <p className="category-link" key={`category-${sighting?.id}`} >{sighting?.category}</p>
                 </Link> */}
