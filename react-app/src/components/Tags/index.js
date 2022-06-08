@@ -25,15 +25,6 @@ const Tags = () => {
   }
 
   return (
-    <div id="content-grid">
-      <div id="main">
-ONE
-      </div>
-
-      <div id="main2">
-TWO
-      </div>
-
       <div id="tags-container">
         <h2 id="tags-header">DISCOVER MORE OF WHAT MATTERS TO YOU</h2>
 
@@ -45,7 +36,6 @@ TWO
           ))}
         </ul>
       </div>
-    </div>
   )
 }
 
