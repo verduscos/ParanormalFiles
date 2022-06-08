@@ -42,7 +42,7 @@ function App() {
       <Switch>
         <Route path='/' >
           <Navigation isLoaded={loaded} />
-          <Tags />
+          {/* <Tags /> */}
           <Main />
           {/* <Sightings /> */}
           {/* <Categories /> */}

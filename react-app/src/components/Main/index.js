@@ -1,4 +1,5 @@
 import React from 'react';
+import Tags from '../Tags';
 import './Main.css';
 
 const Main = () => {
@@ -13,7 +14,7 @@ const Main = () => {
         TWO
       </div>
       <div id="col-3">
-        THREE
+        <Tags />
       </div>
     </div>
   )

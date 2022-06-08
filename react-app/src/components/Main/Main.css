@@ -2,7 +2,6 @@
   display: grid;
   /* gap: 100px; */
   grid-template-columns: repeat(8, 1fr) repeat(4, minmax(48px, 1fr));
-  background-color: gray;
 }
 
 #col-1 {
@@ -19,7 +18,6 @@
 
 
 #col-3 {
-  background-color: green;
   grid-column-start: 11;
   grid-column-end: 13;
 }
