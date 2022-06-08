@@ -39,9 +39,9 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path='/' >
-          <Navigation isLoaded={loaded} />
+          {/* <Navigation isLoaded={loaded} /> */}
           <Main />
-          <Sightings />
+          {/* <Sightings /> */}
           {/* <Categories /> */}
         </Route>
         <ProtectedRoute path='/mysightings' exact={true} >

@@ -17,11 +17,11 @@ const Sightings = () => {
 
   return (
     <div id="sightings-container">
-      {/* {!sightingsArray.length ?
+      {!sightingsArray.length ?
           <>
             <h2 id="no-results">No results found.</h2>
           </>
-          : null} */}
+          : null}
 
       {sightingsArray.map((sighting, i) => (
         <div id="sighting-card">

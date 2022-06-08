@@ -1,5 +1,8 @@
 import React from 'react';
+import SplashBg from '../Navigation/SpashBg';
+import Navigation from '../Navigation';
 import Tags from '../Tags';
+import Sightings from '../sightings/Sightings';
 import './Main.css';
 
 const Main = () => {
@@ -8,13 +11,13 @@ const Main = () => {
   return (
     <div id="content-grid">
       <div id="col-1">
-        ONE
+        <Navigation />
       </div>
       <div id="col-2">
-        TWO
+        <Tags />
       </div>
       <div id="col-3">
-        <Tags />
+        <Sightings />
       </div>
     </div>
   )
