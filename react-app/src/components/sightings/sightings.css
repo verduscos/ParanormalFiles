@@ -1,17 +1,19 @@
 #sightings-container {
-  margin-top: 20px;
-  /* width: 1050px; */
-  margin-top: 50px;
-  min-height: 95vh;
+  background-color: white;
   font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif;
-
-    background-color: white;
-    padding-top: 40px;
+  margin: 0 24px;
+  padding-top: 40px;
 }
 
 #sighting-card {
+  display: flex;
+  margin-bottom: 32px;
+  justify-content: space-between;
+}
+
+#sighting-details {
   /* background-color: black;
   border-bottom: 1px solid rgba(0, 0, 0, 0.13);
   padding: 15px;
@@ -20,11 +22,11 @@
   color: rgb(221, 221, 221);
   border-radius: 5px; */
 
-  list-style: none;
   height: 100px;
-  background-color: gray;
-  /* margin: 0 auto 20px auto; */
+  list-style: none;
   margin-bottom: 20px;
+  margin-right: 20px;
+  padding: 0;
 }
 
 #sighting-author {
@@ -43,6 +45,8 @@
 
 #sighting-date {
   color: rgba(117, 117, 117, 1);
+  font-size: 13px;
+  padding-top: 4px;
 }
 
 .sighting-img {
@@ -57,7 +61,7 @@
 
 
 /* NOT IN SIGHTINGS */
-#sighting-form {
+/* #sighting-form {
   height: 750px;
   display: flex;
   flex-direction: column;
@@ -65,7 +69,6 @@
   right: 30%;
   top: 10%;
 }
-
 
 #sighting-date {
   display: flex;
@@ -96,4 +99,4 @@
 
 .card-text, #no-results {
   color: rgb(221, 221, 221);
-}
+} */

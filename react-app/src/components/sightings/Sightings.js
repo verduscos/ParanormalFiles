@@ -17,14 +17,15 @@ const Sightings = () => {
 
   return (
     <div id="sightings-container">
-        {/* {!sightingsArray.length ?
+      {/* {!sightingsArray.length ?
           <>
             <h2 id="no-results">No results found.</h2>
           </>
           : null} */}
 
-        {sightingsArray.map((sighting, i) => (
-          <ul id="sighting-card" key={sighting?.id}>
+      {sightingsArray.map((sighting, i) => (
+        <div id="sighting-card">
+          <ul id="sighting-details" key={sighting?.id}>
             <li key={`date-${sighting?.id}`}>
               <h4 id="sighting-author">
                 {sighting?.username}
@@ -44,13 +45,17 @@ const Sightings = () => {
                   <p className="category-link" key={`category-${sighting?.id}`} >{sighting?.category}</p>
                 </Link> */}
             </li>
-            <li>
+            {/* <li>
               <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
                 <img className="sighting-img" src={sighting?.image_url} alt="sighting-img"></img>
-              </Link>
-            </li>
+                </Link>
+            </li> */}
           </ul>
-        ))}
+          <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
+            <img className="sighting-img" src={sighting?.image_url} alt="sighting-img"></img>
+          </Link>
+        </div>
+      ))}
     </div>
   )
 }
