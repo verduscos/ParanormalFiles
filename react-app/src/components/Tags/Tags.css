@@ -3,10 +3,12 @@
   border-top: .5px solid rgba(230, 230, 230, 1);
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
+  padding: 24px 0;
 }
 
 #tags-wrapper {
-  margin: 0 48px;
+  width: inherit;
+  /* margin: 0 48px; */
   /* padding: 24px 0; */
 }
 
@@ -35,9 +37,17 @@
   color: rgba(117, 117, 117, 1);
   cursor: pointer;
   font-size: 13px;
-  margin: 5px;
+  margin: 0 8px 8px 0;
   padding: 6px 16px;
   width: fit-content;
+}
+
+
+
+
+/* TABLET */
+@media screen and (min-width:768px) and (max-width: 1023px) {
+
 }
 
 
