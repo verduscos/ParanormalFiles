@@ -19,7 +19,7 @@ const Sightings = () => {
     <div id="sightings-container">
       {!sightingsArray.length ?
           <>
-            <h2 id="no-results">No results found.</h2>
+            <h2>No results found.</h2>
           </>
           : null}
 
@@ -35,7 +35,7 @@ const Sightings = () => {
               <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}`}>
                 <div key={`title-${sighting?.id}`}>
                   <h2 id="sighting-title">{sighting.title}</h2>
-                  {/* <p className="card-text card-story">{sighting.description}</p> */}
+                  <p className="sighting-story">{sighting.description}</p>
                 </div>
               </Link>
             </li>

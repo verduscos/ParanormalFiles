@@ -59,21 +59,31 @@
   width: 100px;
 }
 
+/* HIDE Sighting story while not in Desktop view */
+.sighting-story {
+  color: rgba(117, 117, 117, 1);
+  display: none;
+  font-size: 16px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0 0 4px 0;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
 .link {
   text-decoration: none;
 }
 
-
 /* TABLET */
 @media screen and (min-width:768px) and (max-width: 1023px) {
-  #sighting-title {
+  #sighting-author {
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 500;
   }
 
   #sighting-title {
     font-size: 22px;
-
   }
 
   .sighting-img {
@@ -90,6 +100,35 @@
     margin: 0 48px;
   }
 
+  .sighting-story {
+    display: -webkit-box;
+  }
+}
+
+/* DESKTOP */
+@media screen and (min-width: 1024px) {
+  #sighting-card {
+    height: 100%
+  }
+
+  #sighting-title {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  #sighting-date {
+    padding-top: 8px;
+  }
+
+  .sighting-img {
+    height: 134px;
+    object-fit: cover;
+    width: 200px;
+  }
+
+  .sighting-story {
+    display: -webkit-box;
+  }
 }
 
 
@@ -114,14 +153,6 @@
   margin: 0 5px;
 }
 
-.card-story {
-  display: -webkit-box;
-  width: 500px;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-}
-
 .category-link {
   background-color: rgba(83, 83, 83, 0.349);
   width: 125%;
@@ -130,7 +161,4 @@
   padding: 2px;
   color: rgb(221, 221, 221);
 }
-
-.card-text, #no-results {
-  color: rgb(221, 221, 221);
-} */
+ */
