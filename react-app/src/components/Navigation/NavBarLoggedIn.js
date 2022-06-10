@@ -36,14 +36,14 @@ const NavbarLoggedIn = () => {
   }
 
   return (
-    <nav id="user-nav">
-      <div id="nav-link-container">
-        <div id="home">
+    <nav id="user-nav-container">
+      <ul id="nav-link-container">
+        <ul id="home">
           <NavLink to='/' activeclassname='active'>
             <img src={logo} alt="paranormal-files-logo" />
           </NavLink>
-        </div>
-        <div id="user-site-nav-links">
+        </ul>
+        <ul id="user-nav-links">
           <div
             onClick={(e) => {
               fetch(e)
@@ -63,17 +63,17 @@ const NavbarLoggedIn = () => {
             onClick={(e) => {
               fetchUserSightings(e)
             }}
-             activeclassname='active' className="user-nav-btn">
+            activeclassname='active' className="user-nav-btn">
             <IoAlbumsOutline />
           </div>
           <NavLink id="report-link" to='/report' activeclassname='active'>
             <IoIosAddCircleOutline />
           </NavLink>
-        </div>
-        <div id="user-btn">
+        </ul>
+        <ul id="user-btn">
           <ProfileButton user={currentUser} />
-        </div>
-      </div>
+        </ul>
+      </ul>
     </nav>
   )
 }
