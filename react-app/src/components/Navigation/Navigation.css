@@ -119,14 +119,6 @@ body {
   cursor: pointer;
 }
 
-
-
-/* NAV LOGIN/SIGNUP */
-
-
-
-
-
 /* PROFILE DROPDOWN */
 #profile-dropdown {
   background-color: white;
@@ -177,10 +169,6 @@ body {
   transition-duration: .2s;
   width: 100px;
 }
-
-
-
-
 
 #signup {
   background-color: rgb(212, 212, 212);

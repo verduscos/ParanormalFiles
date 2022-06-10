@@ -1,5 +1,4 @@
 import React from 'react';
-import SplashBg from '../Navigation/SpashBg';
 import Navigation from '../Navigation';
 import Tags from '../Tags';
 import Sightings from '../sightings/Sightings';
@@ -7,8 +6,6 @@ import Footer from '../Footer'
 import './Main.css';
 
 const Main = () => {
-
-
   return (
     <div id="content-grid">
       <div id="col-1">

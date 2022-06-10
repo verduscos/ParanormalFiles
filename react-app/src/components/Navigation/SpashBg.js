@@ -4,10 +4,7 @@ import SignupFormModal from "../auth/SignupFormModal";
 import logo from "./logo-paranormal-files.png";
 import './GuestNav.css';
 
-
 const SplashBg = () => {
-
-
   return (
     <div id="guest-nav-container">
       <nav id="guest-nav">

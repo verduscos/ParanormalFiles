@@ -4,7 +4,6 @@ import * as sessionActions from '../../store/session';
 import { useHistory } from 'react-router-dom';
 import { BiLogOutCircle } from 'react-icons/bi';
 
-
 function ProfileButton({ user }) {
   const history = useHistory();
   const dispatch = useDispatch();
