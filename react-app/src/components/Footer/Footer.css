@@ -1,12 +1,12 @@
 #footer-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  background-color: white;
+  /* background-color: gray; */
   width: 100%;
-  height: 35px;
+  /* height: 3500px; */
   z-index: 3;
   display: flex;
   align-items: center;
-  border-top: 1px solid rgba(128, 128, 128, 0.336);
+  /* border-top: 1px solid rgba(128, 128, 128, 0.336); */
+
+  margin: 0  10px  0 24px;
+  padding: 24px 0;
 }

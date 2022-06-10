@@ -6,7 +6,7 @@ const Footer = () => {
 
   return (
     <footer id="footer-container">
-      asdfasdfdsfasdfasf
+      FOOTER
     </footer>
   )
 }

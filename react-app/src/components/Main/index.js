@@ -3,6 +3,7 @@ import SplashBg from '../Navigation/SpashBg';
 import Navigation from '../Navigation';
 import Tags from '../Tags';
 import Sightings from '../sightings/Sightings';
+import Footer from '../Footer'
 import './Main.css';
 
 const Main = () => {
@@ -15,6 +16,7 @@ const Main = () => {
       </div>
       <div id="col-2">
         <Tags />
+        <Footer/>
       </div>
       <div id="col-3">
         <Sightings />
