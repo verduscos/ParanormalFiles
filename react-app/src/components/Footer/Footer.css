@@ -1,12 +1,20 @@
 #footer-container {
-  /* background-color: gray; */
-  width: 100%;
-  /* height: 3500px; */
-  z-index: 3;
+  margin: 0 10px 0 24px;
+}
+
+.social-link > a {
+  color: black;
+  margin: 0 15px;
+  font-size: 20px;
+ }
+
+
+#footer-container > ul {
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: flex;
   align-items: center;
-  /* border-top: 1px solid rgba(128, 128, 128, 0.336); */
-
-  margin: 0  10px  0 24px;
-  padding: 24px 0;
+  justify-content: flex-start;
+  letter-spacing: .5px;
+  list-style: none;
+  padding: 0;
 }

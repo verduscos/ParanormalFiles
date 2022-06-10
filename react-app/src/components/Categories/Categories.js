@@ -59,7 +59,7 @@ const Categories = () => {
       </div>
 
 
-      <div id="aboutme-links">
+      {/* <div id="aboutme-links">
         <p>Developed by Eddie Verdusco</p>
         <ul>
           <li key="github-link">
@@ -69,7 +69,7 @@ const Categories = () => {
             <a href={"https://www.linkedin.com/in/eddie-verdusco/"} target="_blank" rel="noreferrer"><BsLinkedin /></a>
           </li>
         </ul>
-      </div>
+      </div> */}
 
     </div>
 
