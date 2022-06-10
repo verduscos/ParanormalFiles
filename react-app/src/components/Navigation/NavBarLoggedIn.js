@@ -41,39 +41,36 @@ const NavbarLoggedIn = () => {
       <ul>
         <li id="user-nav-home-logo">
           <NavLink to='/' activeclassname='active'>
-            <img src={logo} alt="paranormal-files-logo"/>
+            <img src={logo} alt="paranormal-files-logo" />
           </NavLink>
         </li>
-        <li id="user-nav-links">
-          <div
-            onClick={(e) => {
-              fetch(e)
-            }}
-            activeclassname='active' className="user-nav-btn">
-            <AiOutlineHome />
-          </div>
-          <div
-            onClick={(e) => {
-              fetchFavorites(e)
-            }}
-            activeclassname='active' className="user-nav-btn">
-            <AiOutlineHeart />
-          </div>
+        <li
+          onClick={(e) => {
+            fetch(e)
+          }}
+          activeclassname='active' className="user-nav-btn">
+          <AiOutlineHome />
+        </li>
+        <li
+          onClick={(e) => {
+            fetchFavorites(e)
+          }}
+          activeclassname='active' className="user-nav-btn">
+          <AiOutlineHeart />
+        </li>
 
-          <div
-            onClick={(e) => {
-              fetchUserSightings(e)
-            }}
-            activeclassname='active' className="user-nav-btn">
-            <IoAlbumsOutline />
-          </div>
-          <NavLink id="report-link" to='/report' activeclassname='active'>
-            <IoIosAddCircleOutline />
-          </NavLink>
+        <li
+          onClick={(e) => {
+            fetchUserSightings(e)
+          }}
+          activeclassname='active' className="user-nav-btn">
+          <IoAlbumsOutline />
         </li>
-        <li id="user-btn">
+        {/* <NavLink id="report-link" to='/report' activeclassname='active'>
+          <IoIosAddCircleOutline />
+        </NavLink> */}
+        <li className="user-nav-btn">
           <ProfileButton user={currentUser} />
-          <LogoutButton />
         </li>
       </ul>
     </nav>

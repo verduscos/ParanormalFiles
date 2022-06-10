@@ -5,7 +5,10 @@
 }
 
 #col-1 {
-  grid-row: 3;
+  /* grid-row: 3; */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 
