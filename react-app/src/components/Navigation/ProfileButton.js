@@ -30,7 +30,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button id='user-icon' onClick={logout}>
+      <button id='user-icon' onClick={() => setShowMenu(!showMenu)}>
         <i><BiLogOutCircle /></i>
       </button>
       {showMenu && (

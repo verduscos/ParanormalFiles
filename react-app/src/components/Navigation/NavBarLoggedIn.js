@@ -8,6 +8,7 @@ import ProfileButton from './ProfileButton';
 import * as sessionActions from "../../store/sighting"
 import './Navigation.css'
 import logo from "./logo-paranormal-files.png"
+import LogoutButton from '../auth/LogoutButton';
 
 const NavbarLoggedIn = () => {
   let currentUser = useSelector(state => state.session.user)
@@ -37,13 +38,13 @@ const NavbarLoggedIn = () => {
 
   return (
     <nav id="user-nav-container">
-      <ul id="nav-link-container">
-        <ul id="home">
+      <ul>
+        <li id="user-nav-home-logo">
           <NavLink to='/' activeclassname='active'>
-            <img src={logo} alt="paranormal-files-logo" />
+            <img src={logo} alt="paranormal-files-logo"/>
           </NavLink>
-        </ul>
-        <ul id="user-nav-links">
+        </li>
+        <li id="user-nav-links">
           <div
             onClick={(e) => {
               fetch(e)
@@ -69,10 +70,11 @@ const NavbarLoggedIn = () => {
           <NavLink id="report-link" to='/report' activeclassname='active'>
             <IoIosAddCircleOutline />
           </NavLink>
-        </ul>
-        <ul id="user-btn">
+        </li>
+        <li id="user-btn">
           <ProfileButton user={currentUser} />
-        </ul>
+          <LogoutButton />
+        </li>
       </ul>
     </nav>
   )
