@@ -39,10 +39,10 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path='/' >
-          <Navigation isLoaded={loaded} />
-          {/* <Main /> */}
-          <Sightings />
-          <Categories />
+          {/* <Navigation isLoaded={loaded} /> */}
+          <Main />
+          {/* <Sightings /> */}
+          {/* <Categories /> */}
         </Route>
         <ProtectedRoute path='/mysightings' exact={true} >
           <Navigation isLoaded={loaded} />

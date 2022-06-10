@@ -22,13 +22,14 @@ const NavbarLoggedIn = () => {
   const fetch = (e) => {
     e.preventDefault()
 
-    // dispatch(sessionActions.getAllSightings())
+    dispatch(sessionActions.getAllSightings())
     history.push("/")
   }
 
   const fetchFavorites = (e) => {
     e.preventDefault()
 
+    dispatch(sessionActions.getAllFavorites(currentUser.id));
     history.push("/myfavorites")
   }
 
