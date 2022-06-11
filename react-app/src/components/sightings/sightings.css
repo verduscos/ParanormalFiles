@@ -14,19 +14,9 @@
   margin-bottom: 32px;
   justify-content: space-between;
   padding-bottom: 16px;
-  /* background-color: red; */
 }
 
 #sighting-details {
-  /* background-color: black;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.13);
-  padding: 15px;
-  width: 1700px;
-  display: flex;
-  color: rgb(221, 221, 221);
-  border-radius: 5px; */
-  /* background-color: gray; */
-
   height: inherit;
   list-style: none;
   margin-bottom: 20px;

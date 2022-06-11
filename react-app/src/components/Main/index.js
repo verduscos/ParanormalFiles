@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Navigation from '../Navigation';
 import Tags from '../Tags';
 import Sightings from '../sightings/Sightings';
@@ -6,9 +7,17 @@ import Footer from '../Footer'
 import './Main.css';
 
 const Main = () => {
+  const dispatch = useDispatch()
+  let currentUser = useSelector(state => state.session.user)
+  const [navId, setNavId] = useState("guest-nav");
+
+  useEffect(() => {
+    if (currentUser) setNavId("user-nav");
+  }, [dispatch])
+
   return (
     <div id="content-grid">
-      <div id="col-1">
+      <div id="guest-nav">
         <Navigation />
       </div>
       <div id="col-2">

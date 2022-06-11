@@ -14,9 +14,16 @@
     grid-template-columns: repeat(8, 1fr);
   }
 
-  #col-1 {
-    grid-column: 1 / 9;
+  #guest-nav {
+    grid-column: 1 / 9 !important;
+    grid-row: 1;
+    background-color: red;
   }
+
+  /* #user-nav {
+    grid-column: 1 / 2;
+    grid-row: 2;
+  } */
 
   #col-2 {
     grid-column: 6 / 8;
