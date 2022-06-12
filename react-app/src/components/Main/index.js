@@ -9,15 +9,15 @@ import './Main.css';
 const Main = () => {
   const dispatch = useDispatch()
   let currentUser = useSelector(state => state.session.user)
-  const [navId, setNavId] = useState("guest-nav");
+  const [navId, setNavId] = useState("col-1-guest");
 
   useEffect(() => {
-    if (currentUser) setNavId("user-nav");
-  }, [dispatch])
+    currentUser !== null ? setNavId("col-1-user") : setNavId("col-1-guest");
+  }, [currentUser])
 
   return (
     <div id="content-grid">
-      <div id="col-1">
+      <div id={navId}>
         <Navigation />
       </div>
       <div id="col-2">
