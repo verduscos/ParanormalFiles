@@ -40,7 +40,7 @@ const NavbarLoggedIn = () => {
     <nav id="user-nav-container">
       <ul>
         <li id="user-nav-home-logo">
-          <NavLink to='/' activeclassname='active'>
+          <NavLink to='/' activeclassName='active'>
             <img src={logo} alt="paranormal-files-logo" />
           </NavLink>
         </li>
@@ -48,14 +48,14 @@ const NavbarLoggedIn = () => {
           onClick={(e) => {
             fetch(e)
           }}
-          activeclassname='active' className="user-nav-btn">
+          activeclassName='active' className="user-nav-btn">
           <AiOutlineHome />
         </li>
         <li
           onClick={(e) => {
             fetchFavorites(e)
           }}
-          activeclassname='active' className="user-nav-btn">
+          activeclassName='active' className="user-nav-btn">
           <AiOutlineHeart />
         </li>
 
