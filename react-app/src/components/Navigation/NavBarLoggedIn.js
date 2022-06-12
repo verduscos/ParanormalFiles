@@ -40,7 +40,7 @@ const NavbarLoggedIn = () => {
     <nav id="user-nav-container">
       <ul>
         <li id="user-nav-home-logo">
-          <NavLink to='/' activeclassName='active'>
+          <NavLink to='/'>
             <img src={logo} alt="paranormal-files-logo" />
           </NavLink>
         </li>
@@ -48,14 +48,14 @@ const NavbarLoggedIn = () => {
           onClick={(e) => {
             fetch(e)
           }}
-          activeclassName='active' className="user-nav-btn">
+          className="user-nav-btn">
           <AiOutlineHome />
         </li>
         <li
           onClick={(e) => {
             fetchFavorites(e)
           }}
-          activeclassName='active' className="user-nav-btn">
+          className="user-nav-btn">
           <AiOutlineHeart />
         </li>
 
@@ -63,7 +63,7 @@ const NavbarLoggedIn = () => {
           onClick={(e) => {
             fetchUserSightings(e)
           }}
-          activeclassname='active' className="user-nav-btn">
+          className="user-nav-btn">
           <IoAlbumsOutline />
         </li>
         <NavLink className="user-nav-btn" to='/report' activeclassname='active'>

@@ -5,7 +5,7 @@
   background-size: cover;
   height: 80vh;
   min-height: 500px;
-  width: 100%;
+  width: 100vw;
 }
 
 #guest-nav {
@@ -13,7 +13,7 @@
   background-color: white;
   height: 75px;
   left: 0;
-  position: fixed;
+  position: relative;
   top: 0;
   width: inherit;
   z-index: 1;
