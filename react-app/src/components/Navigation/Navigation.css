@@ -87,15 +87,15 @@ body {
 /* DESKTOP */
 @media screen and (min-width: 1024px) {
   #user-nav-container > ul {
-    height: 100vh;
-    position: static;
-  }
-
-  #user-nav-container > ul {
     display: flex;
+    align-items: flex-end;
     flex-direction: column;
-    min-width: 150px;
-    max-width: 200px;
+    height: 100vh;
+    min-width: 15vw;
+    padding-right: 28px;
+    position: static;
+
+    /* background-color: red; */
   }
 }
 

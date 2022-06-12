@@ -11,7 +11,7 @@
   #content-grid {
     display: grid;
     grid-auto-columns: auto;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(12, 1fr);
   }
 
   #col-1-guest {
@@ -27,16 +27,15 @@
   }
 
   #col-2 {
-    grid-column: 6 / 8;
+    grid-column: 10 / 12;
     grid-row: 2;
     height: fit-content;
     position: sticky;
     top: 75px;
-
   }
 
   #col-3 {
-    grid-column: 2 / 6;
+    grid-column: 4 / 10;
     grid-row: 2;
   }
 }
