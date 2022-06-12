@@ -66,9 +66,9 @@ const NavbarLoggedIn = () => {
           activeclassname='active' className="user-nav-btn">
           <IoAlbumsOutline />
         </li>
-        {/* <NavLink id="report-link" to='/report' activeclassname='active'>
+        <NavLink className="user-nav-btn" to='/report' activeclassname='active'>
           <IoIosAddCircleOutline />
-        </NavLink> */}
+        </NavLink>
         <li className="user-nav-btn">
           <ProfileButton user={currentUser} />
         </li>

@@ -15,14 +15,15 @@
   }
 
   #col-1-guest {
-    grid-column: 1 / 9 !important;
+    grid-column: 1 / 9;
     grid-row: 1;
-    background-color: red;
   }
 
   #col-1-user {
     grid-column: 1 / 2;
     grid-row: 2;
+    height: fit-content;
+    position: fixed;
   }
 
   #col-2 {
@@ -74,12 +75,6 @@
 #user-site-nav-links > a:hover {
   color: #D10606;
 }
-
-#report-link {
-  border-top: 1px solid rgba(255, 255, 255, 0.459);
-  padding-top: 26px !important;
-}
-
 
 #user-btn {
   padding-bottom: 15px;

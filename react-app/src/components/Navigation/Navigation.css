@@ -90,6 +90,13 @@ body {
     height: 100vh;
     position: static;
   }
+
+  #user-nav-container > ul {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+    max-width: 200px;
+  }
 }
 
 
