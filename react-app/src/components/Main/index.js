@@ -17,7 +17,7 @@ const Main = () => {
 
   return (
     <div id="content-grid">
-      <div id="guest-nav">
+      <div id="col-1">
         <Navigation />
       </div>
       <div id="col-2">

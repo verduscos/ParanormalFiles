@@ -14,7 +14,7 @@
     grid-template-columns: repeat(8, 1fr);
   }
 
-  #guest-nav {
+  #col-1 {
     grid-column: 1 / 9 !important;
     grid-row: 1;
     background-color: red;
