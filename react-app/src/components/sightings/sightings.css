@@ -62,6 +62,10 @@
   -webkit-line-clamp: 2;
 }
 
+.tag {
+  display: none;
+}
+
 .link {
   text-decoration: none;
 }
@@ -127,9 +131,14 @@
   }
 
   .tag {
+    background-color: rgba(242, 242, 242, 1);
     border-radius: 100px;
-    padding: 8px 8px;
-
+    color: rgba(117, 117, 117, 1);
+    display: block;
+    font-size: 13px;
+    height: fit-content;
+    margin: 8px 0 0 4px;
+    padding: 0 12px;
   }
 }
 
