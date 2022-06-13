@@ -38,8 +38,13 @@ body {
     top: 75px;
   }
 
-  #col-3 {
+  #col-3-guest {
     grid-column: 3 / 10;
+    grid-row: 2;
+  }
+
+  #col-3-user {
+    grid-column: 4 / 10;
     grid-row: 2;
   }
 }

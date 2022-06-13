@@ -10,9 +10,11 @@ const Main = () => {
   const dispatch = useDispatch()
   let currentUser = useSelector(state => state.session.user)
   const [navId, setNavId] = useState("col-1-guest");
+  const [sightingId, setSightingId] = useState("col-3-guest");
 
   useEffect(() => {
     currentUser !== null ? setNavId("col-1-user") : setNavId("col-1-guest");
+    currentUser !== null ? setSightingId("col-3-user") : setSightingId("col-3-guest");
   }, [currentUser])
 
   return (
@@ -24,7 +26,7 @@ const Main = () => {
         <Tags />
         <Footer/>
       </div>
-      <div id="col-3">
+      <div id={sightingId}>
         <Sightings />
       </div>
     </div>
