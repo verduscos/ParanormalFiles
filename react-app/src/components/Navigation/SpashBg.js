@@ -2,6 +2,7 @@ import React from "react";
 import LoginFormModal from "../auth/LoginFormModal";
 import SignupFormModal from "../auth/SignupFormModal";
 import logo from "./logo-paranormal-files.png";
+import Logo from './pf-logo.png';
 import './GuestNav.css';
 
 const SplashBg = () => {
@@ -10,7 +11,7 @@ const SplashBg = () => {
       <nav id="guest-nav">
         <ul>
           <li>
-          <img id="guest-nav-logo" src={logo} alt="pf-logo" />
+          <img id="guest-nav-logo" src={Logo} alt="pf-logo" />
           </li>
           <li>
           <LoginFormModal />
