@@ -7,7 +7,7 @@ import { IoAlbumsOutline } from 'react-icons/io5';
 import ProfileButton from './ProfileButton';
 import * as sessionActions from "../../store/sighting"
 import './Navigation.css'
-import logo from "./logo-paranormal-files.png"
+import Logo from "./pf-logo.png";
 import LogoutButton from '../auth/LogoutButton';
 
 const NavbarLoggedIn = () => {
@@ -41,7 +41,7 @@ const NavbarLoggedIn = () => {
       <ul>
         <li id="user-nav-home-logo">
           <NavLink to='/'>
-            <img src={logo} alt="paranormal-files-logo" />
+            <img src={Logo} alt="paranormal-files-logo" />
           </NavLink>
         </li>
         <li

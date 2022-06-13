@@ -1,7 +1,7 @@
 import React from "react";
 import LoginFormModal from "../auth/LoginFormModal";
 import SignupFormModal from "../auth/SignupFormModal";
-import logo from "./logo-paranormal-files.png";
+// import logo from "./logo-paranormal-files.png";
 import Logo from './pf-logo.png';
 import './GuestNav.css';
 
