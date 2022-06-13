@@ -120,6 +120,17 @@
   .sighting-story {
     display: -webkit-box;
   }
+
+  #sighting-tag-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .tag {
+    border-radius: 100px;
+    padding: 8px 8px;
+
+  }
 }
 
 
