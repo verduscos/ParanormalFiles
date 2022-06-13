@@ -48,12 +48,12 @@
     display: flex;
     align-items: flex-end;
     flex-direction: column;
+    border-right: .5px solid rgba(230, 230, 230, 1);
+    box-shadow: none;
     height: 100vh;
     min-width: 15vw;
     padding-right: 28px;
     position: static;
-
-    /* background-color: red; */
   }
 }
 

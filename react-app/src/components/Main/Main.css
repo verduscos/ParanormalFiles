@@ -30,8 +30,16 @@ body {
     position: fixed;
   }
 
-  #col-2 {
+  #col-2-guest {
     grid-column: 8 / 11;
+    grid-row: 2;
+    height: fit-content;
+    position: sticky;
+    top: 75px;
+  }
+
+  #col-2-user {
+    grid-column: 9 / 12;
     grid-row: 2;
     height: fit-content;
     position: sticky;
@@ -44,7 +52,7 @@ body {
   }
 
   #col-3-user {
-    grid-column: 4 / 10;
+    grid-column: 4 / 8;
     grid-row: 2;
   }
 }
