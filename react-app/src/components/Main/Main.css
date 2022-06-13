@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 #content-grid {
   display: grid;
   grid-auto-columns: auto;
@@ -35,7 +39,7 @@
   }
 
   #col-3 {
-    grid-column: 4 / 10;
+    grid-column: 3 / 10;
     grid-row: 2;
   }
 }
