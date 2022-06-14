@@ -76,15 +76,6 @@ export const searchAllSightings = (searchStr) => async (dispatch) => {
 
 }
 
-
-
-
-
-// const searchSightings = (searchStr) => ({
-//   type: SEARCH,
-//   payload: searchStr
-// })
-
 export const getAllSightings = () => async (dispatch) => {
   const response = await fetch(`/api/sightings/`);
 
