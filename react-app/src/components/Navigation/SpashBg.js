@@ -11,10 +11,10 @@ const SplashBg = () => {
       <nav id="guest-nav">
         <ul>
           <li>
-          <img id="guest-nav-logo" src={Logo} alt="pf-logo" />
+            <img id="guest-nav-logo" src={Logo} alt="pf-logo" />
           </li>
           <li>
-          <LoginFormModal />
+            <LoginFormModal />
           </li>
         </ul>
       </nav>

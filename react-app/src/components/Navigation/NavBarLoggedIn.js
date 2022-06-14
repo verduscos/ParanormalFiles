@@ -41,10 +41,10 @@ const NavbarLoggedIn = () => {
       <ul>
         <li id="user-nav-home-logo">
           <NavLink to='/'>
-            <img src={Logo} alt="paranormal-files-logo" />
+            <img src={Logo} alt="pf-logo" />
           </NavLink>
         </li>
-        <li
+        <li id="user-nav-home-btn"
           onClick={(e) => {
             fetch(e)
           }}
@@ -66,9 +66,11 @@ const NavbarLoggedIn = () => {
           className="user-nav-btn">
           <IoAlbumsOutline />
         </li>
+        <li id="user-nav-report-btn">
         <NavLink className="user-nav-btn" to='/report' activeclassname='active'>
           <IoIosAddCircleOutline />
         </NavLink>
+        </li>
         <li className="user-nav-btn">
           <ProfileButton user={currentUser} />
         </li>

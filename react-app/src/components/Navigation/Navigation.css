@@ -55,6 +55,25 @@
     padding-right: 28px;
     position: static;
   }
+
+  #user-nav-home-logo {
+    display: block;
+  }
+
+  #user-nav-home-btn {
+    margin-top: 200px;
+  }
+
+  #user-nav-report-btn {
+    border-top: .5px solid rgba(230, 230, 230, 1);
+    margin-bottom: 235px;
+    padding-top: 35px;
+  }
+
+  #user-nav-home-logo > * > img {
+    height: 75px;
+    margin-right: -25px;
+  }
 }
 
 
