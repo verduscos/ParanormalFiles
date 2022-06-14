@@ -38,21 +38,14 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/' >
-          {/* <Navigation isLoaded={loaded} /> */}
+        <Route path='/' exact={true}>
           <Main />
-          {/* <Sightings /> */}
-          {/* <Categories /> */}
         </Route>
-        <ProtectedRoute path='/mysightings' exact={true} >
-          <Navigation isLoaded={loaded} />
-          <MySightings />
-          <Categories />
-        </ProtectedRoute>
         <ProtectedRoute path='/myfavorites' exact={true} >
-          <Navigation isLoaded={loaded} />
-          <Favorites />
-          <Categories />
+          <Main />
+        </ProtectedRoute>
+        <ProtectedRoute path='/mysightings' exact={true} >
+          <Main />
         </ProtectedRoute>
         <Route path='/sightings/categories/:category' exact={true} >
           <Navigation isLoaded={loaded} />
