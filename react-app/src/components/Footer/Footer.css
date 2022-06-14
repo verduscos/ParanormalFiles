@@ -1,3 +1,7 @@
+#desktop-footer {
+  display: none;
+}
+
 #footer-container {
   margin: 0 10px 0 24px;
 }
@@ -17,4 +21,13 @@
   letter-spacing: .5px;
   list-style: none;
   padding: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  #mobile-footer {
+    display: none;
+  }
+  #desktop-footer {
+    display: block;
+  }
 }

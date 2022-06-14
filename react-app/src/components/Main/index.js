@@ -26,10 +26,15 @@ const Main = () => {
       </div>
       <div id={tagsId}>
         <Tags />
-        <Footer/>
+        <div id="desktop-footer">
+          <Footer />
+        </div>
       </div>
       <div id={sightingsId}>
         <Sightings />
+      </div>
+      <div id="mobile-footer">
+        <Footer />
       </div>
     </div>
   )
