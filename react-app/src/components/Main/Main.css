@@ -56,3 +56,8 @@ body {
     grid-row: 2;
   }
 }
+
+/* DESKTOP XL */
+@media screen and (min-width: 1024px) {
+
+}

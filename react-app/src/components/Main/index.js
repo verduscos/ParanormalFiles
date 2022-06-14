@@ -24,7 +24,7 @@ const Main = () => {
       <div id={navId}>
         <Navigation />
       </div>
-      <div id="col-2-user">
+      <div id={tagsId}>
         <Tags />
         <Footer/>
       </div>
