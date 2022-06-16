@@ -40,6 +40,22 @@
 }
 
 @media screen and (min-width: 1024px) {
+  #footer-container {
+    background-color: transparent;
+    color: rgba(41, 41, 41, 1);
+  }
+
+  .social-link > a {
+    color: rgba(41, 41, 41, 1);
+    font-size: 24px;
+    margin: 0 30px 0 0;
+   }
+
+   #footer-dev {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
   #mobile-footer {
     display: none;
   }

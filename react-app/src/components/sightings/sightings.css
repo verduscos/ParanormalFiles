@@ -8,10 +8,10 @@
 }
 
 #sighting-card {
-  border-bottom: 0.5px solid rgba(230, 230, 230, 1);
+  /* border-bottom: 0.5px solid rgba(230, 230, 230, 1); */
   display: flex;
   height: 100px;
-  margin-bottom: 32px;
+  margin-bottom: 50px;
   justify-content: space-between;
   padding-bottom: 16px;
 }
@@ -88,6 +88,7 @@
   }
 
   #sighting-card {
+    border-bottom: 0.5px solid rgba(230, 230, 230, 1);
     height: 134px;
   }
 
@@ -103,6 +104,7 @@
 /* DESKTOP */
 @media screen and (min-width: 1024px) {
   #sighting-card {
+    border-bottom: 0.5px solid rgba(230, 230, 230, 1);
     height: 100%
   }
 
