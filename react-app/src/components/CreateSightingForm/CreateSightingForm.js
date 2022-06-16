@@ -81,11 +81,12 @@ const CreateSightingForm = () => {
   return (
     <>
       <CreateNav />
-      <form onSubmit={createSighting} className="sighting-form">
-        <ul className="form-inner">
+      <form onSubmit={createSighting} id="sighting-form">
+        <div>
           {errors?.map(error => (
             <li className="error-mssg">{error}</li>
           ))}
+
           <input
             id="form-title"
             className="sighting-inputs"
@@ -93,6 +94,7 @@ const CreateSightingForm = () => {
               setTitle(e.target.value)
             }}
             type="text" value={title} placeholder="Title" />
+
           <textarea
             id="form-description"
             className="sighting-inputs"
@@ -100,8 +102,10 @@ const CreateSightingForm = () => {
               setDescription(e.target.value)
             }}
             type="text" value={description} placeholder="Tell your story...." />
+
           <select
-            className="sighting-inputs form-options"
+            id="form-select-options"
+            className="sighting-inputs"
             onChange={(e) => {
               setCategory(e.target.value)
             }}
@@ -118,7 +122,7 @@ const CreateSightingForm = () => {
             <option value="Synchronicity">Synchronicity</option>
           </select>
 
-          <div className="upload-container">
+          {/* <div className="upload-container"> */}
             <label for="file-btn" value="Upload Image" id="file-label">
               <p>Choose Image</p>
             </label>
@@ -130,9 +134,9 @@ const CreateSightingForm = () => {
               onChange={updateImage}
             />
             <p>{displayUrl}</p>
-          </div>
+          {/* </div> */}
           <button className="post-form-btn sighting-inputs cursor">Post</button>
-        </ul>
+        </div>
       </form>
     </>
   )
