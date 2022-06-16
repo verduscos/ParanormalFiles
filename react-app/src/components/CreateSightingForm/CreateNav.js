@@ -14,10 +14,13 @@ const CreateNav = () => {
     <nav id="create-nav">
       <ul>
         <div id="create-nav-link">
-        <NavLink to="/"><img  alt="paranormal-files-logo" /></NavLink>
-        <span>Draft in {currentUser.username}</span>
+          <NavLink to="/"><img alt="paranormal-files-logo" /></NavLink>
+          <span>Draft in {currentUser.username}</span>
         </div>
-        <ProfileButton />
+        {/* <ProfileButton /> */}
+        <li className="user-nav-btn">
+          <ProfileButton user={currentUser} />
+        </li>
       </ul>
     </nav>
   )
