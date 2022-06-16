@@ -83,6 +83,8 @@ const CreateSightingForm = () => {
       <CreateNav />
       <form onSubmit={createSighting} id="sighting-form">
         <div>
+          <button id="form-submit-btn" className="sighting-inputs">Publish</button>
+
           {errors?.map(error => (
             <li id="error-mssg">{error}</li>
           ))}
@@ -139,9 +141,13 @@ const CreateSightingForm = () => {
           </div>
           <p id="form-display-image-url">{displayUrl}</p>
 
-          <button id="form-submit-btn" className="sighting-inputs">Publish</button>
         </div>
       </form>
+
+      <div id="sighting-mobile-mssg">
+        <h1>Oops...</h1>
+        <h2>Please use a desktop to report your sighting!</h2>
+      </div>
     </>
   )
 }

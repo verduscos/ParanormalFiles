@@ -78,10 +78,13 @@
   line-height: 25px;
   margin-top: 35px;
   padding: 0 10px;
-  position: absolute;
+  /* position: absolute; */
 
-  top: 0;
-  right: 0;
+  float: right;
+  margin-top: -77px;
+  /* margin-right: -215px; */
+  /* top: 0;
+  right: 0; */
   width: fit-content;
 }
 
@@ -98,19 +101,10 @@
 }
 
 #form-category-image-container {
-  /* background-color: green; */
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-/* #form-image-upload-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  background-color: gray;
-} */
 
 #form-display-image-url {
   float: right;
@@ -119,4 +113,19 @@
 #error-mssg {
   color: #D10606;
   letter-spacing: .5px;
+}
+
+#sighting-mobile-mssg {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  #sighting-form {
+    display: none;
+  }
+
+  #sighting-mobile-mssg {
+    margin: 100px auto 0 auto;
+    width: 60%;
+  }
 }
