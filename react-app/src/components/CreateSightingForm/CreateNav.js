@@ -6,8 +6,7 @@ import Logo from '../Navigation/pf-logo.png';
 
 
 const CreateNav = () => {
-  let currentUser = useSelector(state => state.session.user)
-
+  let currentUser = useSelector(state => state.session.user);
 
   return (
     <nav id="create-nav">
@@ -23,6 +22,5 @@ const CreateNav = () => {
     </nav>
   )
 }
-
 
 export default CreateNav;

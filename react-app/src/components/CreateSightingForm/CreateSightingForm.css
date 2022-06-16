@@ -43,7 +43,7 @@
   width: 1050px;
   width: 100%;
   right: 0;
-  margin-top: 80px;
+  margin-top: 25px;
 }
 
 .form-inner {
@@ -85,7 +85,7 @@
   font-family: medium-content-title-font,Georgia,Cambria,"Times New Roman",Times,serif;
   font-size: 42px;
   color: rgb(212, 212, 212) !important;
-  border-bottom: 2px solid black;
+  border-bottom: .5px solid rgba(230, 230, 230, 1);
 }
 
 #form-description {
@@ -95,7 +95,7 @@
   height: 450px;
   resize: none;
   padding: 10px;
-  border-bottom: 2px solid black;
+  border-bottom: .5px solid rgba(230, 230, 230, 1);
 }
 
 .form-options {
