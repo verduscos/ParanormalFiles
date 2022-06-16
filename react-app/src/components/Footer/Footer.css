@@ -3,26 +3,39 @@
 }
 
 #footer-container {
-  /* margin: 0 10px 0 24px; */
   background-color: black;
   color: rgba(255, 255, 255, 1);
+  height: 200px;
   width: 100%;
+}
+
+#footer-dev {
+  border-bottom: .5px solid rgba(230, 230, 230, 1);
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+  width: 100%;
+}
+
+#footer-dev > p {
+  margin: 0;
 }
 
 .social-link > a {
   color: rgba(255, 255, 255, 1);
-  margin: 0 15px;
   font-size: 20px;
+  margin: 0 15px;
  }
-
 
 #footer-container > ul {
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  height: inherit;
   letter-spacing: .5px;
   list-style: none;
+  margin: 0 24px;
   padding: 0;
 }
 
