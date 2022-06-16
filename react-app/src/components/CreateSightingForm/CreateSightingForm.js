@@ -84,7 +84,7 @@ const CreateSightingForm = () => {
       <form onSubmit={createSighting} id="sighting-form">
         <div>
           {errors?.map(error => (
-            <li className="error-mssg">{error}</li>
+            <li id="error-mssg">{error}</li>
           ))}
 
           <input
@@ -122,20 +122,20 @@ const CreateSightingForm = () => {
             <option value="Synchronicity">Synchronicity</option>
           </select>
 
-          {/* <div className="upload-container"> */}
+          <div id="form-image-upload-container">
             <label for="file-btn" value="Upload Image" id="file-label">
               <p>Choose Image</p>
             </label>
             <input
-              id="file-btn"
+              id="image-upload-default-btn"
               name="file"
               type="file"
               accept="image/*"
               onChange={updateImage}
             />
             <p>{displayUrl}</p>
-          {/* </div> */}
-          <button className="post-form-btn sighting-inputs cursor">Post</button>
+          </div>
+          <button id="form-submit-btn" className="sighting-inputs">Post</button>
         </div>
       </form>
     </>
