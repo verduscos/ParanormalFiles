@@ -40,26 +40,13 @@ const CreateSightingForm = () => {
       method: "POST",
       body: formData,
     });
+
     if (res.ok) {
       const data = await res.json();
-
       setImageUrl(data.url)
-
-      // history.push("/mysightings");
-    }
-    else {
-      // setImageLoading(false);
-      // setImageLoading(false);
-      // const data = await res.json();
-      // a real app would probably use more advanced
-      // error handling
     }
     // IMAGE UPLOAD ENDS
 
-
-
-
-    // const data = await dispatch(sessionActions.createASighting(payload));
     let errorsArr = [];
 
     if (title.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
@@ -71,18 +58,13 @@ const CreateSightingForm = () => {
     if (errorsArr.length === 0) {
       history.push('/mysightings')
     }
-
-
   }
-
-
 
   const updateImage = (e) => {
     const file = e.target.files[0];
     setImage(file);
     setDisplayUrl(file["name"])
   }
-
 
   useEffect(() => {
     const payload = {
@@ -92,25 +74,18 @@ const CreateSightingForm = () => {
       category: category,
       url: imageUrl
     }
-    dispatch(sessionActions.createASighting(payload));
 
+    dispatch(sessionActions.createASighting(payload));
   }, [dispatch, imageUrl])
 
   return (
     <>
       <CreateNav />
       <form onSubmit={createSighting} className="sighting-form">
-        <div className="form-inner">
+        <ul className="form-inner">
           {errors?.map(error => (
             <li className="error-mssg">{error}</li>
           ))}
-
-          {/* <input className="sighting-inputs"
-
-          onChange={(e) => {
-            setDate(e.target.value)
-          }}
-        type="date" value={date} /> */}
           <input
             id="form-title"
             className="sighting-inputs"
@@ -156,11 +131,8 @@ const CreateSightingForm = () => {
             />
             <p>{displayUrl}</p>
           </div>
-
-
-
           <button className="post-form-btn sighting-inputs cursor">Post</button>
-        </div>
+        </ul>
       </form>
     </>
   )
