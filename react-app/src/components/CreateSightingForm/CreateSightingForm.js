@@ -103,26 +103,27 @@ const CreateSightingForm = () => {
             }}
             type="text" value={description} placeholder="Tell your story...." />
 
-          <select
-            id="form-select-options"
-            className="sighting-inputs"
-            onChange={(e) => {
-              setCategory(e.target.value)
-            }}
-            value={category}>
-            <option value="categories">Select Category</option>
-            <option value="UFOs">UFOs</option>
-            <option value="Ghosts">Ghosts</option>
-            <option value="Demons">Demons</option>
-            <option value="Angels">Angels</option>
-            <option value="Reincarnation">Reincarnation</option>
-            <option value="Monsters">Monsters</option>
-            <option value="Mandela Effect">Mandela Effect</option>
-            <option value="Time Travel">Time Travel</option>
-            <option value="Synchronicity">Synchronicity</option>
-          </select>
+          <div id="form-category-image-container">
+            <select
+              id="form-select-options"
+              className="sighting-inputs"
+              onChange={(e) => {
+                setCategory(e.target.value)
+              }}
+              value={category}>
+              <option value="categories">Select Category</option>
+              <option value="UFOs">UFOs</option>
+              <option value="Ghosts">Ghosts</option>
+              <option value="Demons">Demons</option>
+              <option value="Angels">Angels</option>
+              <option value="Reincarnation">Reincarnation</option>
+              <option value="Monsters">Monsters</option>
+              <option value="Mandela Effect">Mandela Effect</option>
+              <option value="Time Travel">Time Travel</option>
+              <option value="Synchronicity">Synchronicity</option>
+            </select>
 
-          <div id="form-image-upload-container">
+            {/* <div id="form-image-upload-container"> */}
             <label for="image-upload-default-btn" value="Upload Image" id="file-label">
               <p>Upload Image</p>
             </label>
@@ -133,8 +134,10 @@ const CreateSightingForm = () => {
               accept="image/*"
               onChange={updateImage}
             />
-            <p>{displayUrl}</p>
+            {/* </div> */}
+
           </div>
+          <p id="form-display-image-url">{displayUrl}</p>
 
           <button id="form-submit-btn" className="sighting-inputs">Publish</button>
         </div>
