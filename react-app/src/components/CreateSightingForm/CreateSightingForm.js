@@ -124,7 +124,7 @@ const CreateSightingForm = () => {
 
           <div id="form-image-upload-container">
             <label for="file-btn" value="Upload Image" id="file-label">
-              <p>Choose Image</p>
+              <p>Upload Image</p>
             </label>
             <input
               id="image-upload-default-btn"
@@ -135,7 +135,7 @@ const CreateSightingForm = () => {
             />
             <p>{displayUrl}</p>
           </div>
-          <button id="form-submit-btn" className="sighting-inputs">Post</button>
+          <button id="form-submit-btn" className="sighting-inputs">Publish</button>
         </div>
       </form>
     </>
