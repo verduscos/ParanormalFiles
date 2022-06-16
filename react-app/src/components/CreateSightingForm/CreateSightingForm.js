@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import CreateNav from "./CreateNav";
-import "./CreateSightingForm.css"
+import "./CreateSightingForm.css";
+import "./Form.css";
 
 const CreateSightingForm = () => {
   let currentUser = useSelector(state => state.session.user)
