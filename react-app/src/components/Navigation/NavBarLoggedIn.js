@@ -25,15 +25,15 @@ const NavbarLoggedIn = () => {
   const fetchFavorites = (e) => {
     e.preventDefault()
 
+    // history.push("/myfavorites")
     dispatch(sessionActions.getAllFavorites(currentUser.id));
-    history.push("/myfavorites")
   }
 
   const fetchUserSightings = (e) => {
     e.preventDefault()
 
+    // history.push("/mysightings")
     dispatch(sessionActions.getAllUserSightings(currentUser.id))
-    history.push("/mysightings")
   }
 
   return (
