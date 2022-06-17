@@ -25,24 +25,24 @@ const NavbarLoggedIn = () => {
   const fetchFavorites = (e) => {
     e.preventDefault()
 
-    // history.push("/myfavorites")
     dispatch(sessionActions.getAllFavorites(currentUser.id));
   }
 
   const fetchUserSightings = (e) => {
     e.preventDefault()
 
-    // history.push("/mysightings")
     dispatch(sessionActions.getAllUserSightings(currentUser.id))
   }
 
   return (
     <nav id="user-nav-container">
       <ul>
-        <li id="user-nav-home-logo">
-          <NavLink to='/'>
-            <img src={Logo} alt="pf-logo" />
-          </NavLink>
+        <li id="user-nav-home-logo"
+          onClick={(e) => {
+            fetch(e);
+          }}
+        >
+          <img src={Logo} alt="pf-logo" />
         </li>
         <li id="user-nav-home-btn"
           onClick={(e) => {
@@ -67,9 +67,9 @@ const NavbarLoggedIn = () => {
           <IoAlbumsOutline />
         </li>
         <li id="user-nav-report-btn">
-        <NavLink className="user-nav-btn" to='/report' activeclassname='active'>
-          <IoIosAddCircleOutline />
-        </NavLink>
+          <NavLink className="user-nav-btn" to='/report' activeclassname='active'>
+            <IoIosAddCircleOutline />
+          </NavLink>
         </li>
         <li className="user-nav-btn">
           <ProfileButton user={currentUser} />

@@ -144,10 +144,10 @@ const CreateSightingForm = () => {
         </div>
       </form>
 
-      <div id="sighting-mobile-mssg">
+      {/* <div id="sighting-mobile-mssg">
         <h1>Oops...</h1>
         <h2>Please use a desktop to report your sighting!</h2>
-      </div>
+      </div> */}
     </>
   )
 }

@@ -78,13 +78,8 @@
   line-height: 25px;
   margin-top: 35px;
   padding: 0 10px;
-  /* position: absolute; */
-
   float: right;
   margin-top: -77px;
-  /* margin-right: -215px; */
-  /* top: 0;
-  right: 0; */
   width: fit-content;
 }
 
@@ -121,11 +116,26 @@
 
 @media screen and (max-width: 1024px) {
   #sighting-form {
-    display: none;
+    /* display: none; */
   }
 
   #sighting-mobile-mssg {
+    display: block;
     margin: 100px auto 0 auto;
     width: 60%;
+  }
+}
+
+
+/* TABLET & MOBILE */
+@media screen and (max-width: 1023px) {
+  #form-submit-btn {
+    margin-top: -20px;
+  }
+
+  #sighting-form > div {
+    width: 700px;
+    width: 90%;
+    margin: 0 auto;
   }
 }
