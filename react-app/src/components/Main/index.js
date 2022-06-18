@@ -40,7 +40,6 @@ const Main = () => {
         </div>
       </div>
       <div id={sightingsId}>
-        {/* <Sightings /> */}
         {content}
       </div>
       <div id="mobile-footer">
