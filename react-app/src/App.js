@@ -41,20 +41,21 @@ function App() {
         <Route path='/' exact={true}>
           <Main />
         </Route>
-        <ProtectedRoute path='/myfavorites' exact={true} >
+        {/* <ProtectedRoute path='/myfavorites' exact={true} >
           <Main />
-        </ProtectedRoute>
-        <ProtectedRoute path='/mysightings' exact={true} >
+        </ProtectedRoute> */}
+        {/* <ProtectedRoute path='/mysightings' exact={true} >
           <Main />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <Route path='/sightings/categories/:category' exact={true} >
           <Navigation isLoaded={loaded} />
           {/* <Categories /> */}
           <Category />
         </Route>
         <Route path='/sightings/:sightingId' exact={true} >
-          <Navigation isLoaded={loaded} />
-          <SingleSighting />
+          {/* <Navigation isLoaded={loaded} /> */}
+          <Main />
+          {/* <SingleSighting /> */}
           {/* <Categories /> */}
         </Route>
         <ProtectedRoute path='/report' exact={true} >

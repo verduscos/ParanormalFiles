@@ -18,7 +18,6 @@ const CreateSightingForm = () => {
   const [imageUrl, setImageUrl] = useState("")
   const [displayUrl, setDisplayUrl] = useState("")
 
-
   useEffect(() => {
     dispatch(sessionActions.getAllSightings())
   }, [dispatch])

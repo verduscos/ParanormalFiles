@@ -1,23 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import Navigation from '../Navigation';
 import Tags from '../Tags';
+import SingleSighting from '../SingleSighting/SingleSighting';
 import Sightings from '../sightings/Sightings';
 import Footer from '../Footer'
 import './Main.css';
 
 const Main = () => {
-  const dispatch = useDispatch()
+  const params = useParams();
+  const { sightingId } = params;
   let currentUser = useSelector(state => state.session.user)
   const [navId, setNavId] = useState("col-1-guest");
   const [sightingsId, setSightingsId] = useState("col-3-guest");
   const [tagsId, setTagsId] = useState("col-2-guest");
+  const [content, setContent] = useState(<Sightings />);
 
   useEffect(() => {
     currentUser !== null ? setNavId("col-1-user") : setNavId("col-1-guest");
     currentUser !== null ? setSightingsId("col-3-user") : setSightingsId("col-3-guest");
     currentUser !== null ? setTagsId("col-2-user") : setTagsId("col-2-guest");
   }, [currentUser])
+
+  useEffect(() => {
+    sightingId ? setContent(<SingleSighting />) : setContent(<Sightings />);
+  }, [sightingId])
+
 
   return (
     <div id="content-grid">
@@ -31,7 +40,8 @@ const Main = () => {
         </div>
       </div>
       <div id={sightingsId}>
-        <Sightings />
+        {/* <Sightings /> */}
+        {content}
       </div>
       <div id="mobile-footer">
         <Footer />
