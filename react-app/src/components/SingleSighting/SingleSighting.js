@@ -137,7 +137,7 @@ const SingleSighting = () => {
         </div>
         <img src={sighting?.image_url} id="sighting-img" alt="article-img"></img>
         <p id="article-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
-        <Comments />
+        {/* <Comments /> */}
       </div>
     </div>
   )

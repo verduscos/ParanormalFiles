@@ -1,4 +1,17 @@
+#article-container {
+  width: 90%;
+  margin: 0 auto;
+  background-color: gray;
+}
+#header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+
+
+/* NOT REVISED */
 .red {
   color: #D10606;
 }
@@ -24,21 +37,14 @@
 /* LIKE BTNS */
 
 #sighting-comp-container {
-  width: 1050px;
-  margin-left: 275px;
+  /* width: 1050px; */
+  /* margin-left: 275px; */
   min-height: 95vh;
   color: rgb(221, 221, 221);
+
+  background-color: green;
 }
 
-#article-container {
-  width: 700px;
-  margin: 0 auto;
-}
-#header-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
 #sighting-date-article {
   display: flex;
@@ -62,7 +68,7 @@
 }
 
 #sighting-img {
-  width: 700px;
+  width: 100%;
   user-select: none;
 }
 
