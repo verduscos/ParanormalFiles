@@ -1,7 +1,6 @@
 #article-container {
-  width: 90%;
-  margin: 0 auto;
-  background-color: gray;
+  width: inherit;
+  margin: 0 24px;
 }
 #header-container {
   display: flex;
@@ -42,7 +41,6 @@
   min-height: 95vh;
   color: rgb(221, 221, 221);
 
-  background-color: green;
 }
 
 
