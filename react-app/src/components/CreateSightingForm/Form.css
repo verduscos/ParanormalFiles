@@ -110,22 +110,13 @@
   letter-spacing: .5px;
 }
 
-#sighting-mobile-mssg {
-  display: none;
-}
-
 @media screen and (max-width: 1024px) {
-  #sighting-form {
-    /* display: none; */
-  }
-
   #sighting-mobile-mssg {
     display: block;
     margin: 100px auto 0 auto;
     width: 60%;
   }
 }
-
 
 /* TABLET & MOBILE */
 @media screen and (max-width: 1023px) {
