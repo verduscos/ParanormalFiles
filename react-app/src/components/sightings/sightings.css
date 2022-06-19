@@ -1,3 +1,29 @@
+#loading-container {
+  /* background-color: gray; */
+  margin-top: 50px;
+  min-height:  50vh;
+  text-align: center;
+}
+
+#loading-container > svg {
+  animation-name: spin;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  color: rgba(41, 41, 41, 1);
+  height: 75px;
+  width: 75px;
+}
+
+@keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+}
+
 #sightings-container {
   background-color: white;
   font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont,
