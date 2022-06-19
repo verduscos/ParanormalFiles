@@ -36,6 +36,9 @@ function App() {
         <Route path='/' exact={true}>
           <Main />
         </Route>
+        <Route path='/favorites' exact={true}>
+          <Main />
+        </Route>
         <Route path='/sightings/categories/:category' exact={true} >
           <Navigation isLoaded={loaded} />
           <Category />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import { AiOutlineHome, AiOutlineHeart } from 'react-icons/ai';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { IoAlbumsOutline } from 'react-icons/io5';
@@ -12,6 +12,8 @@ import LogoutButton from '../auth/LogoutButton';
 
 const NavbarLoggedIn = () => {
   let currentUser = useSelector(state => state.session.user)
+  const location = useLocation();
+  console.log(location.pathname, "lkjdklasjfalsdkfjaklsdfj");
   const history = useHistory()
   const dispatch = useDispatch()
 
@@ -22,11 +24,14 @@ const NavbarLoggedIn = () => {
     history.push("/")
   }
 
-  const fetchFavorites = (e) => {
+  const fetchFavorites = async (e) => {
     e.preventDefault()
 
     // history.push("/")
-    dispatch(sessionActions.getAllFavorites(currentUser.id));
+    await history.push('/favorites')
+
+      dispatch(sessionActions.getAllFavorites(currentUser.id))
+
   }
 
   const fetchUserSightings = (e) => {
