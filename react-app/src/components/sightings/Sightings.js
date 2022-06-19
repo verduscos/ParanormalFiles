@@ -11,9 +11,6 @@ const Sightings = () => {
   let currentUser = useSelector(state => state.session.user)
   let sightings = useSelector(state => state.sightings);
   let sightingsArray = Object.values(sightings);
-  // const all = dispatch(sessionActions.getAllSightings());
-  // const [thunk, setThunk] = "all";
-
 
   const location = useLocation();
   let path = location.pathname;
@@ -26,8 +23,6 @@ const Sightings = () => {
       setLoading(false);
     }, [500])
   }
-
-
 
   useEffect(() => {
     resetLoading();
