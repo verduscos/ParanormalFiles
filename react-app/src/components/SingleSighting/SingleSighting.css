@@ -1,13 +1,18 @@
-#article-container {
-  width: inherit;
+#sighting-container {
+  color: rgba(41, 41, 41, 1);
   margin: 0 24px;
+  min-height: 95vh;
 }
-#header-container {
+
+#sighting-container > ul {
+  padding: 0;
+}
+
+#title-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
 
 
 /* NOT REVISED */
@@ -34,14 +39,6 @@
 }
 
 /* LIKE BTNS */
-
-#sighting-comp-container {
-  /* width: 1050px; */
-  /* margin-left: 275px; */
-  min-height: 95vh;
-  color: rgb(221, 221, 221);
-
-}
 
 
 #sighting-date-article {

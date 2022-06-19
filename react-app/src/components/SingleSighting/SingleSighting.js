@@ -58,7 +58,6 @@ const SingleSighting = () => {
 
   }
 
-
   const unfavorite = (e) => {
     e.preventDefault();
 
@@ -72,6 +71,26 @@ const SingleSighting = () => {
     setDisplayRemove(false)
   }
 
+  const UserEditBtns = (
+    currentUser && currentUser?.id === sighting?.user_id ?
+      <>
+        <span
+          onBlur={() => {
+            setUserBtns(!userBtns)
+          }}
+          onClick={() => {
+            setUserBtns(!userBtns)
+          }}>
+
+          <BiDotsHorizontalRounded size={25} />
+        </span>
+
+      </>
+      :
+      null
+  )
+
+  // END OF FUNCS
 
   useEffect(() => {
     dispatch(sessionActions.getAllSightings());
@@ -84,29 +103,12 @@ const SingleSighting = () => {
   }, [dispatch, sightingId])
 
   return (
-    <div id="sighting-comp-container">
-      <div id="article-container">
+    <div id="sighting-container">
+      <ul>
 
-        <div id="header-container">
+        <div id="title-container">
           <h1 id="article-title">{sighting?.title}</h1>
-
-          {currentUser && currentUser?.id === sighting?.user_id ?
-            <>
-              <span
-                onBlur={() => {
-                  setUserBtns(!userBtns)
-                }}
-                onClick={() => {
-                  setUserBtns(!userBtns)
-                }}>
-
-                <BiDotsHorizontalRounded size={25} />
-              </span>
-
-            </>
-            :
-            null
-          }
+          {UserEditBtns}
         </div>
 
         {userBtns ?
@@ -116,29 +118,30 @@ const SingleSighting = () => {
           </div>
           : null}
 
-          <div id="temp-container">
+        <div id="temp-container">
 
-        { likes[sightingId]  ?
-                <div onClick={(e) => {
-                  unfavorite(e)
-                }}
-                className="like-btns red"
-                ><AiFillHeart /></div>
-          :
-          <div onClick={(e) => {
-            favorite(e)
-          }}
-          className="like-btns"
-          ><AiOutlineHeart /></div>
-        }
+          {likes[sightingId] ?
+            <div onClick={(e) => {
+              unfavorite(e)
+            }}
+              className="like-btns red"
+            ><AiFillHeart /></div>
+            :
+            <div onClick={(e) => {
+              favorite(e)
+            }}
+              className="like-btns"
+            ><AiOutlineHeart /></div>
+          }
 
 
-        <p id="sighting-date-article">{`${sighting?.created_at.split(' ')[2]} ${sighting?.created_at.split(' ')[1]}, ${sighting?.created_at.split(' ')[3]}`}</p>
+          <p id="sighting-date-article">{`${sighting?.created_at.split(' ')[2]} ${sighting?.created_at.split(' ')[1]}, ${sighting?.created_at.split(' ')[3]}`}</p>
         </div>
         <img src={sighting?.image_url} id="sighting-img" alt="article-img"></img>
         <p id="article-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
+
         {/* <Comments /> */}
-      </div>
+      </ul>
     </div>
   )
 }

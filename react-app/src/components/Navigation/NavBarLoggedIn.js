@@ -25,6 +25,7 @@ const NavbarLoggedIn = () => {
   const fetchFavorites = (e) => {
     e.preventDefault()
 
+    // history.push("/")
     dispatch(sessionActions.getAllFavorites(currentUser.id));
   }
 
