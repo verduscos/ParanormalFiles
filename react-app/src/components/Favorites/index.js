@@ -2,9 +2,9 @@ import React from 'react';
 import
 
 
-const UserFavorites = () => {
+// const UserFavorites = () => {
 
-  return (
+//   return (
 
-  )
+//   )
 }

@@ -12,32 +12,35 @@ import LogoutButton from '../auth/LogoutButton';
 
 const NavbarLoggedIn = () => {
   let currentUser = useSelector(state => state.session.user)
-  const location = useLocation();
-  console.log(location.pathname, "lkjdklasjfalsdkfjaklsdfj");
+  // const location = useLocation();
+  // console.log(location.pathname, "lkjdklasjfalsdkfjaklsdfj");
   const history = useHistory()
   const dispatch = useDispatch()
+
+  // const [thunk, setThunk] = useState(dispatch(sessionActions.getAllSightings()));
 
   const fetch = (e) => {
     e.preventDefault()
 
-    dispatch(sessionActions.getAllSightings())
+    // dispatch(sessionActions.getAllSightings())
     history.push("/")
   }
 
-  const fetchFavorites = async (e) => {
+  const fetchFavorites =  (e) => {
     e.preventDefault()
 
-    // history.push("/")
-    await history.push('/favorites')
+     history.push('/favorites');
 
-      dispatch(sessionActions.getAllFavorites(currentUser.id))
+      // dispatch(sessionActions.getAllFavorites(currentUser.id))
 
   }
 
   const fetchUserSightings = (e) => {
     e.preventDefault()
 
-    dispatch(sessionActions.getAllUserSightings(currentUser.id))
+    history.push('/mysightings');
+
+    // dispatch(sessionActions.getAllUserSightings(currentUser.id))
   }
 
   return (
