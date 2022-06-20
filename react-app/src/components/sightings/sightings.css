@@ -1,5 +1,4 @@
 #loading-container {
-  /* background-color: gray; */
   margin-top: 50px;
   min-height:  50vh;
   text-align: center;
@@ -30,11 +29,11 @@
     "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif;
   margin: 0 24px;
+  min-height: 60vh;
   padding-top: 40px;
 }
 
 #sighting-card {
-  /* border-bottom: 0.5px solid rgba(230, 230, 230, 1); */
   display: flex;
   height: 100px;
   margin-bottom: 50px;
