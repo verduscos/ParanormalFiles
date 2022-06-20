@@ -8,6 +8,8 @@ import { getSightingLikes } from "../../store/like";
 import { getALLComments } from "../../store/comment";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"
+import { MdOutlineBookmarkAdd } from "react-icons/md";
+import { BsBookmarkPlus } from "react-icons/bs";
 import "./SingleSighting.css"
 
 
@@ -103,13 +105,18 @@ const SingleSighting = () => {
           unfavorite(e)
         }}
           className="favorite-btns red"
-        ><AiFillHeart /></div>
+        >
+          <MdOutlineBookmarkAdd size={25} />
+        </div>
         :
         <div onClick={(e) => {
           favorite(e)
         }}
           className="favorite-btns"
-        ><AiOutlineHeart /></div>
+        >
+          <MdOutlineBookmarkAdd size={25} />
+          <p>Save</p>
+        </div>
       }
     </>
   )
@@ -129,14 +136,14 @@ const SingleSighting = () => {
   return (
     <div id="sighting-container">
       <ul>
+        <li id="sighting-actions-btn-container">
+          {FavoriteBtns}
+          <div id="sighting-edit-btns">
+            {UserEditBtns}
+          </div>
+        </li>
         <li>
           <h1 id="article-title">{sighting?.title}</h1>
-        </li>
-        <li id="edit-btns">
-          {UserEditBtns}
-        </li>
-        <li id="favorite-btn-container">
-          {FavoriteBtns}
         </li>
         <li>
           <p id="sighting-date-article">{`${sighting?.created_at.split(' ')[2]} ${sighting?.created_at.split(' ')[1]}, ${sighting?.created_at.split(' ')[3]}`}</p>
