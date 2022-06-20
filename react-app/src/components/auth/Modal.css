@@ -1,0 +1,36 @@
+#signin {
+  background-color: rgb(212, 212, 212);
+  border: none;
+  border-radius: 99em;
+  color: black;
+  cursor: pointer;
+  letter-spacing: 1px;
+  outline: none;
+  padding: 9px 16px;
+  transition-duration: .2s;
+  width: 100px;
+}
+
+#signup {
+  background-color: rgb(212, 212, 212);
+  border: none;
+  border-radius: 99em;
+  color: black;
+  cursor: pointer;
+  letter-spacing: 1px;
+  margin: 0;
+  outline: none;
+  padding: 16px 20px;
+  transition-duration: .2s;
+  width:200px;
+}
+
+#signin:hover {
+  background-color: #ffffff;
+  color:rgb(54, 54, 54);
+}
+
+#signup:hover {
+  background-color: #ffffff;;
+  color:rgb(54, 54, 54);
+}

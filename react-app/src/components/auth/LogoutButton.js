@@ -4,6 +4,7 @@ import { logout } from '../../store/session';
 import { BiLogOutCircle } from 'react-icons/bi';
 
 
+
 const LogoutButton = () => {
   const dispatch = useDispatch()
   const onLogout = async (e) => {

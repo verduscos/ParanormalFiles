@@ -168,35 +168,3 @@
     padding: 0 12px;
   }
 }
-
-
-
-/* NOT IN SIGHTINGS */
-/* #sighting-form {
-  height: 750px;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  right: 30%;
-  top: 10%;
-}
-
-#sighting-date {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start !important;
-}
-
-#sighting-date > * {
-  margin: 0 5px;
-}
-
-.category-link {
-  background-color: rgba(83, 83, 83, 0.349);
-  width: 125%;
-  text-align: center;
-  border-radius: 50px;
-  padding: 2px;
-  color: rgb(221, 221, 221);
-}
- */
