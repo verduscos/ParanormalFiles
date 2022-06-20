@@ -6,7 +6,8 @@
   background-color: black;
   color: rgba(255, 255, 255, 1);
   height: 200px;
-  margin-bottom: 57px;
+  /* margin-bottom: 57px; */
+  padding-bottom: 57px;
   width: 100%;
 }
 

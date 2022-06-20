@@ -6,7 +6,6 @@ ul {
 /* remove default styling */
 
 #modal {
-    /* z-index: 100; */
     position: fixed;
     top: 0;
     right: 0;
@@ -115,29 +114,11 @@ ul {
   #logout:hover {
     background-color: rgb(189, 189, 189);
   }
-  .profile-dropdown {
-    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-    z-index: 100  ;
-  }
 
-  #profile-dropdown {
-    background-color: green !important;
-    position: absolute;
-    top: 50px;
-    right: 50px;
-  }
 
-  .profile-dropdown > * {
-    padding: 0;
-    margin-bottom: 10px;
-    margin-bottom: 0 auto;
-
-  }
 
   .errors{
     margin:10px 0px 20px 0px;
     list-style: none;
 }
+

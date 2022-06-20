@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { useHistory } from 'react-router-dom';
 import { BiLogOutCircle } from 'react-icons/bi';
+import "./ProfileButton.css";
 
 function ProfileButton({ user }) {
   const history = useHistory();
@@ -34,13 +35,15 @@ function ProfileButton({ user }) {
         <BiLogOutCircle />
       </div>
       {showMenu && (
-        <ul id="profile-dropdown">
-          <li>{user?.username}</li>
-          <li>{user?.email}</li>
-          <li>
-            <button id='logout' onClick={logout}>Logout</button>
-          </li>
-        </ul>
+        <div id="profile-dropdown">
+          <ul>
+            <li>{user?.username}</li>
+            <li>{user?.email}</li>
+            <li>
+              <button id='logout' onClick={logout}>Logout</button>
+            </li>
+          </ul>
+        </div>
       )}
     </>
   );

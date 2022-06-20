@@ -32,7 +32,7 @@ const Sightings = () => {
     } else if (path === "/favorites") {
       dispatch(sessionActions.getAllFavorites(currentUser.id));
     } else {
-      dispatch(sessionActions.getAllUserSightings(currentUser.id));
+      dispatch(sessionActions.getAllUserSightings(currentUser?.id));
     }
   }, [path])
 
