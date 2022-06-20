@@ -85,9 +85,33 @@ const SingleSighting = () => {
           <BiDotsHorizontalRounded size={25} />
         </span>
 
+        {userBtns ?
+          <ul id="user-btns">
+            <button onClick={handleDelete}>Delete</button>
+            <Link to={`/sightings/edit/${sighting.id}`}>Edit</Link>
+          </ul>
+          : null}
       </>
       :
       null
+  )
+
+  const FavoriteBtns = (
+    <>
+      {likes[sightingId] ?
+        <div onClick={(e) => {
+          unfavorite(e)
+        }}
+          className="favorite-btns red"
+        ><AiFillHeart /></div>
+        :
+        <div onClick={(e) => {
+          favorite(e)
+        }}
+          className="favorite-btns"
+        ><AiOutlineHeart /></div>
+      }
+    </>
   )
 
   // END OF FUNCS
@@ -105,41 +129,24 @@ const SingleSighting = () => {
   return (
     <div id="sighting-container">
       <ul>
-
-        <div id="title-container">
+        <li>
           <h1 id="article-title">{sighting?.title}</h1>
+        </li>
+        <li id="edit-btns">
           {UserEditBtns}
-        </div>
-
-        {userBtns ?
-          <div id="user-btns">
-            <button onClick={handleDelete}>Delete</button>
-            <Link to={`/sightings/edit/${sighting.id}`}>Edit</Link>
-          </div>
-          : null}
-
-        <div id="temp-container">
-
-          {likes[sightingId] ?
-            <div onClick={(e) => {
-              unfavorite(e)
-            }}
-              className="like-btns red"
-            ><AiFillHeart /></div>
-            :
-            <div onClick={(e) => {
-              favorite(e)
-            }}
-              className="like-btns"
-            ><AiOutlineHeart /></div>
-          }
-
-
+        </li>
+        <li id="favorite-btn-container">
+          {FavoriteBtns}
+        </li>
+        <li>
           <p id="sighting-date-article">{`${sighting?.created_at.split(' ')[2]} ${sighting?.created_at.split(' ')[1]}, ${sighting?.created_at.split(' ')[3]}`}</p>
-        </div>
-        <img src={sighting?.image_url} id="sighting-img" alt="article-img"></img>
-        <p id="article-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
-
+        </li>
+        <li>
+          <img src={sighting?.image_url} id="sighting-img" alt="article-img"></img>
+        </li>
+        <li>
+          <p id="article-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
+        </li>
         {/* <Comments /> */}
       </ul>
     </div>
