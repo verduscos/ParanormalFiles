@@ -107,6 +107,7 @@ const SingleSighting = () => {
           className="favorite-btns"
         >
           <MdOutlineBookmarkAdd size={25} />
+          <p>Unsave</p>
         </div>
         :
         <div onClick={(e) => {
