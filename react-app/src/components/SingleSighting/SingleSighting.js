@@ -88,10 +88,10 @@ const SingleSighting = () => {
         </span>
 
         {userBtns ?
-          <ul id="user-btns">
-            <button onClick={handleDelete}>Delete</button>
-            <Link to={`/sightings/edit/${sighting.id}`}>Edit</Link>
-          </ul>
+          <div id="user-btns">
+            <button className="black-btn" onClick={handleDelete}>Delete</button>
+            <Link className="black-btn" to={`/sightings/edit/${sighting.id}`}>Edit</Link>
+          </div>
           : null}
       </>
       :
@@ -104,7 +104,7 @@ const SingleSighting = () => {
         <div onClick={(e) => {
           unfavorite(e)
         }}
-          className="favorite-btns red"
+          className="favorite-btns"
         >
           <MdOutlineBookmarkAdd size={25} />
         </div>
@@ -149,10 +149,10 @@ const SingleSighting = () => {
           <p id="single-sighting-date">{`${sighting?.created_at.split(' ')[2]} ${sighting?.created_at.split(' ')[1]}, ${sighting?.created_at.split(' ')[3]}`}</p>
         </li>
         <li>
-          <img src={sighting?.image_url} id="sighting-img" alt="article-img"></img>
+          <img src={sighting?.image_url} id="single-sighting-img" alt="article-img"></img>
         </li>
         <li>
-          <p id="article-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
+          <p id="single-sighting-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
         </li>
         {/* <Comments /> */}
       </ul>
