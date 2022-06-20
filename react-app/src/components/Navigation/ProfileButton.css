@@ -1,49 +1,29 @@
 #profile-dropdown {
-  /* background-color: green; */
-  /* height: calc(100% - 56px); */
-  /* left: 0; */
-  position: absolute;
-  /* top:56px; */
-  /* bottom: 0; */
-  /* width: 100%; */
-
-  /* border: 0.5px solid rgba(230, 230, 230, 1); */
-
-  /* CIRLCLE */
-  /* margin-top: -250px;
-  margin-left: -250px;
-  border-radius: 50%;
-  height: 400px;
-  width: 400px; */
-
   background-color: #fff;
-
-  box-shadow: 0 8px 24px rgba(140,149,159,0.2);
   border: 1px solid #d0d7de;
   border-radius: 6px;
-
   bottom: 62px;
-  right: 10px;
+  box-shadow: 0 8px 24px rgba(140,149,159,0.2);
   display: flex;
+  align-items: center;
   justify-content: center;
   padding: 15px 0;
-  align-items: center;
+  position: absolute;
+  right: 10px;
 }
 
 #profile-dropdown > ul {
-  list-style: none;
-  /* background-color: gray; */
-  margin: 0 24px;
-  padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
-  font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  list-style: none;
+  margin: 0 24px;
+  padding: 0;
 }
 
 #profile-username {
   color: rgba(41, 41, 41, 1);
+  font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 16px;
   line-height: 24px;
 }
