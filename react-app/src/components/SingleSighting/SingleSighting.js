@@ -143,10 +143,10 @@ const SingleSighting = () => {
           </div>
         </li>
         <li>
-          <h1 id="article-title">{sighting?.title}</h1>
+          <h1 id="sighting-title">{sighting?.title}</h1>
         </li>
         <li>
-          <p id="sighting-date-article">{`${sighting?.created_at.split(' ')[2]} ${sighting?.created_at.split(' ')[1]}, ${sighting?.created_at.split(' ')[3]}`}</p>
+          <p id="sighting-date">{`${sighting?.created_at.split(' ')[2]} ${sighting?.created_at.split(' ')[1]}, ${sighting?.created_at.split(' ')[3]}`}</p>
         </li>
         <li>
           <img src={sighting?.image_url} id="sighting-img" alt="article-img"></img>
