@@ -44,7 +44,7 @@
   font-size: 14px;
 }
 
-#sighting-date {
+#single-sighting-date {
   color: rgba(117, 117, 117, 1);
   float: right;
   font-size: 14px;
@@ -52,8 +52,8 @@
   padding-bottom: 24px;
 }
 
-#sighting-title {
-  font-size: 32px;
+#single-sighting-title {
+  /* font-size: 32px; */
   font-weight: 700;
   line-height: 40px;
   padding-top: 24px;
