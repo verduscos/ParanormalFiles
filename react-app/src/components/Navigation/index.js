@@ -1,19 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import NavbarLoggedIn from './NavBarLoggedIn';
-import SplashBg from './SpashBg';
+import UserNav from './NavBarLoggedIn';
+import GuestNav from './GuestNav';
 import './Navigation.css';
 
 function Navigation() {
   const sessionUser = useSelector(state => state.session.user);
 
-  let userNav = (
-    <NavbarLoggedIn />
-  )
-
   return (
     <>
-      {sessionUser ? userNav : <SplashBg />}
+      {sessionUser ? <UserNav /> : <GuestNav />}
     </>
   );
 }

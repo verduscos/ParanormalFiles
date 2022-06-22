@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import Logo from './pf-logo.png';
 import './GuestNav.css';
 
-const SplashBg = () => {
+const GuestNav = () => {
   return (
     <div id="guest-nav-container">
       <nav id="guest-nav">
@@ -30,5 +30,4 @@ const SplashBg = () => {
   )
 }
 
-
-export default SplashBg
+export default GuestNav;

@@ -10,7 +10,7 @@ import './Navigation.css'
 import Logo from "./pf-logo.png";
 import LogoutButton from '../auth/LogoutButton';
 
-const NavbarLoggedIn = () => {
+const UserNav = () => {
   let currentUser = useSelector(state => state.session.user)
   // const location = useLocation();
   // console.log(location.pathname, "lkjdklasjfalsdkfjaklsdfj");
@@ -88,4 +88,4 @@ const NavbarLoggedIn = () => {
   )
 }
 
-export default NavbarLoggedIn;
+export default UserNav;
