@@ -1,7 +1,7 @@
 import React from "react";
 import LoginFormModal from "../auth/LoginFormModal";
 import SignupFormModal from "../auth/SignupFormModal";
-// import logo from "./logo-paranormal-files.png";
+import { NavLink } from "react-router-dom";
 import Logo from './pf-logo.png';
 import './GuestNav.css';
 
@@ -11,7 +11,9 @@ const SplashBg = () => {
       <nav id="guest-nav">
         <ul>
           <li>
+          <NavLink to='/'>
             <img id="guest-nav-logo" src={Logo} alt="pf-logo" />
+          </NavLink>
           </li>
           <li>
             <LoginFormModal />
