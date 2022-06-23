@@ -1,5 +1,5 @@
 #comments-container {
-  background-color: rgba(192, 187, 181, 0.479);
+  /* background-color: rgba(192, 187, 181, 0.479); */
 }
 
 #comments-container > ul {
@@ -31,56 +31,8 @@
   border-radius: 5px;
   font-size: 20px;
   line-height: 30px;
-
 }
-
-
-/* CREATE COMMENT FORM */
-.comment-textarea {
-  resize:none;
-  /* width: 500px; */
-  height: 100px;
-  outline: none;
-  border-radius: 5px;
-  background-color: rgb(207, 207, 207);
-  margin-bottom: 10px;
-}
-
-#comment-btns {
-  text-align: right;
-  /* width: 500px; */
-}
-
-#comment-btns > * {
-  border:none;
-  margin: 0 5px;
-  border-radius: 99em;
-  padding: 5px;
-  background-color: rgba(83, 83, 83, 0.349);
-  cursor: pointer;
-}
-
-#submit-comment:hover  {
-  background-color: rgba(83, 83, 83, 0.349);
-}
-
-
-/* EDITING CSS */
-.comment-btns-edit {
-  background-color: #171F26;
-  color: rgb(212, 212, 212);
-  letter-spacing: .5px;
-  padding: 8px;
-  border: none;
-  margin: 0 5px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
 
 #comment-dots {
   cursor: pointer;
 }
-
-
-/* color: #D10606; */
