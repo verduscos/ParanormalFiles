@@ -82,8 +82,9 @@ const Comments = () => {
   return (
     <div id="comments-container">
       <ul>
-        <li id="comment-header-container">
+        <li id="comments-header-container">
           <h2>Comments </h2>
+          <span>&#183;</span>
           <p id="comment-count">{commentsArray.length}</p>
         </li>
         <li>
