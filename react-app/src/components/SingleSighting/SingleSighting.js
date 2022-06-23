@@ -7,9 +7,7 @@ import Comments from "../Comments/Comments"
 import { getSightingLikes } from "../../store/like";
 import { getALLComments } from "../../store/comment";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"
 import { MdOutlineBookmarkAdd } from "react-icons/md";
-import { BsBookmarkPlus } from "react-icons/bs";
 import "./SingleSighting.css"
 
 
@@ -155,7 +153,7 @@ const SingleSighting = () => {
         <li>
           <p id="single-sighting-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
         </li>
-        {/* <Comments /> */}
+        <Comments />
       </ul>
     </div>
   )

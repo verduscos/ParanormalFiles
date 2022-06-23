@@ -67,10 +67,10 @@ const Comments = () => {
       </textarea>
       <button className="comment-btns-edit" onClick={editComment}>Update</button>
       <button className="comment-btns-edit"
-      onClick={() => {
-        displayEditForm(false)
-        setDisplayDots(true)
-      }}>Cancel</button>
+        onClick={() => {
+          displayEditForm(false)
+          setDisplayDots(true)
+        }}>Cancel</button>
     </>
   )
 
@@ -81,7 +81,7 @@ const Comments = () => {
   }, [dispatch, sightingId])
 
   return (
-    <>
+    <div id="comment-container">
 
       <div id="comment-header">
         <h3>Comments </h3>
@@ -101,7 +101,7 @@ const Comments = () => {
             <p key={`comment-${comment?.created_at}`}>{`${comment?.created_at.split(' ')[2]} ${comment.created_at.split(' ')[1]}, ${comment.created_at.split(' ')[3]}`}</p>
             {currentUser?.id === comment?.user_id && displayDots ?
               <BiDotsHorizontalRounded
-              id="comment-dots"
+                id="comment-dots"
                 value={comment.id}
                 onClick={() => {
                   setSelectedComment(comment.id)
@@ -146,7 +146,7 @@ const Comments = () => {
           {comment.user_id === currentUser?.id && editForm && selectedComment === comment.id ? editComponent : null}
         </div>
       ))}
-    </>
+    </div>
   )
 }
 

@@ -1,3 +1,7 @@
+#comment-container {
+  background-color: gray;
+}
+
 #comment-form-container {
   margin-bottom: 50px;
 }
