@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getALLComments, deleteAComment, updateAComment } from "../../store/comment";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
-import CreateCommentForm from "../CreateCommentForm/CreateCommentForm";
+import CreateCommentForm from "./CreateCommentForm";
 import "./Comments.css"
 
 const Comments = () => {
@@ -53,7 +53,9 @@ const Comments = () => {
 
   }
 
-  // EDITFORM
+  // Comment Form
+
+  // Edit Form
   const editComponent = (
     <>
       <textarea
@@ -88,10 +90,7 @@ const Comments = () => {
           <p>{commentsArray.length}</p>
         </li>
         <li>
-          {currentUser ?
-            <CreateCommentForm /> :
-            null
-          }
+          <CreateCommentForm />
         </li>
         <li>
 

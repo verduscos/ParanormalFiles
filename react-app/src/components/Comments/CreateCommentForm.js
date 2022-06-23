@@ -24,8 +24,8 @@ const CreateCommentForm = () => {
       comment: comment
     }
 
-    if (comment.length >=4) setComment("")
-    const data =  await dispatch(createAComment(payload));
+    if (comment.length >= 4) setComment("")
+    const data = await dispatch(createAComment(payload));
     if (data) {
       setErrors(data.errors)
     }
@@ -33,27 +33,31 @@ const CreateCommentForm = () => {
 
   return (
     <>
-      <form id="comment-form-container" onSubmit={createComment}>
-      {errors?.map(error => (
+      {currentUser ?
+        <form id="comment-form-container" onSubmit={createComment}>
+          {errors?.map(error => (
             <p>{error.split(":")[1]}</p>
           ))}
-        <textarea
-          className="comment-textarea"
-          value={comment}
-          onChange={(e) => {
-            setComment(e.target.value)
-          }}
-        ></textarea>
-        <div >
-          <button
-          className="comment-btns-edit"
-          onClick={(e) => {
-            e.preventDefault()
-            setComment("")
-          }}>CANCEL</button>
-          <button className="comment-btns-edit">COMMENT</button>
-        </div>
-      </form>
+          <textarea
+            className="comment-textarea"
+            value={comment}
+            onChange={(e) => {
+              setComment(e.target.value)
+            }}
+          ></textarea>
+          <div >
+            <button
+              className="comment-btns-edit"
+              onClick={(e) => {
+                e.preventDefault()
+                setComment("")
+              }}>CANCEL</button>
+            <button className="comment-btns-edit">COMMENT</button>
+          </div>
+        </form>
+        :
+        null
+      }
     </>
   )
 }
