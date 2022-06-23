@@ -85,7 +85,7 @@ const Comments = () => {
         <li id="comments-header-container">
           <h2>Comments </h2>
           <span>&#183;</span>
-          <p id="comment-count">{commentsArray.length}</p>
+          <p>{commentsArray.length}</p>
         </li>
         <li>
           {currentUser ?
