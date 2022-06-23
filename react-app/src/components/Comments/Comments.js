@@ -81,71 +81,77 @@ const Comments = () => {
   }, [dispatch, sightingId])
 
   return (
-    <div id="comment-container">
-
-      <div id="comment-header">
-        <h3>Comments </h3>
-        <p id="comment-count">{commentsArray.length}</p>
-      </div>
-
-      {/* Only show comment form if a user is logged in */}
-      {currentUser ?
-        <CreateCommentForm /> :
-        null
-      }
-
-      {commentsArray && commentsReversedArray.map(comment => (
-        <div id="comments-ul" key={`comment-${comment?.id}-card`}>
-          <div>
-            <p key={`comment-${comment?.username}`}>{comment?.username}</p>
-            <p key={`comment-${comment?.created_at}`}>{`${comment?.created_at.split(' ')[2]} ${comment.created_at.split(' ')[1]}, ${comment.created_at.split(' ')[3]}`}</p>
-            {currentUser?.id === comment?.user_id && displayDots ?
-              <BiDotsHorizontalRounded
-                id="comment-dots"
-                value={comment.id}
-                onClick={() => {
-                  setSelectedComment(comment.id)
-                  setDisplayUsrBtn(!displayUsrBtn)
-                }} />
-              : null}
-          </div>
-          <p key={`comment-${comment?.id}`}>{comment?.comment}</p>
-          {comment?.user_id === currentUser?.id ?
-            <>
-              {comment.id === selectedComment ? <p>{errors[0]}</p> : null}
-
-              {displayUsrBtn && selectedComment === comment.id ?
-                <>
-                  <button
-                    className="comment-btns-edit"
-                    onClick={() => {
-                      displayEditForm(true)
-                      setDisplayDots(false)
-                      setCommentId(comment?.id)
-                      setComment(comment?.comment)
-                      setDisplayUsrBtn(!displayUsrBtn)
-                    }}
-                  >Edit</button>
-                  <button
-                    className="comment-btns-edit"
-                    value={comment?.id}
-                    onClick={(e) => {
-                      deleteComment(e, comment?.id)
-                    }}
-                  >Delete</button>
-                </>
-                : null}
-
-
-            </>
-            :
+    <div id="comments-container">
+      <ul>
+        <li id="comment-header">
+          <h3>Comments </h3>
+          <p id="comment-count">{commentsArray.length}</p>
+        </li>
+        <li>
+          {currentUser ?
+            <CreateCommentForm /> :
             null
           }
+        </li>
+        <li>
 
-          {/* only show edit for for currently selected comment and if comment belongs to logged in user */}
-          {comment.user_id === currentUser?.id && editForm && selectedComment === comment.id ? editComponent : null}
-        </div>
-      ))}
+
+          {commentsArray && commentsReversedArray.map(comment => (
+            <div id="comments-ul" key={`comment-${comment?.id}-card`}>
+              <div>
+                <p key={`comment-${comment?.username}`}>{comment?.username}</p>
+                <p key={`comment-${comment?.created_at}`}>{`${comment?.created_at.split(' ')[2]} ${comment.created_at.split(' ')[1]}, ${comment.created_at.split(' ')[3]}`}</p>
+                {currentUser?.id === comment?.user_id && displayDots ?
+                  <BiDotsHorizontalRounded
+                    id="comment-dots"
+                    value={comment.id}
+                    onClick={() => {
+                      setSelectedComment(comment.id)
+                      setDisplayUsrBtn(!displayUsrBtn)
+                    }} />
+                  : null}
+
+
+              </div>
+              <p key={`comment-${comment?.id}`}>{comment?.comment}</p>
+              {comment?.user_id === currentUser?.id ?
+                <>
+                  {comment.id === selectedComment ? <p>{errors[0]}</p> : null}
+
+                  {displayUsrBtn && selectedComment === comment.id ?
+                    <>
+                      <button
+                        className="comment-btns-edit"
+                        onClick={() => {
+                          displayEditForm(true)
+                          setDisplayDots(false)
+                          setCommentId(comment?.id)
+                          setComment(comment?.comment)
+                          setDisplayUsrBtn(!displayUsrBtn)
+                        }}
+                      >Edit</button>
+                      <button
+                        className="comment-btns-edit"
+                        value={comment?.id}
+                        onClick={(e) => {
+                          deleteComment(e, comment?.id)
+                        }}
+                      >Delete</button>
+                    </>
+                    : null}
+
+
+                </>
+                :
+                null
+              }
+
+              {/* only show edit for for currently selected comment and if comment belongs to logged in user */}
+              {comment.user_id === currentUser?.id && editForm && selectedComment === comment.id ? editComponent : null}
+            </div>
+          ))}
+        </li>
+      </ul>
     </div>
   )
 }
