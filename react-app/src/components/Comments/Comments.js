@@ -54,7 +54,6 @@ const Comments = () => {
   }
 
   // EDITFORM
-
   const editComponent = (
     <>
       <textarea
@@ -83,8 +82,8 @@ const Comments = () => {
   return (
     <div id="comments-container">
       <ul>
-        <li id="comment-header">
-          <h3>Comments </h3>
+        <li id="comment-header-container">
+          <h2>Comments </h2>
           <p id="comment-count">{commentsArray.length}</p>
         </li>
         <li>
