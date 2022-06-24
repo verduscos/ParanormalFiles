@@ -89,7 +89,7 @@ const Comments = () => {
           <span>&#183;</span>
           <p>{commentsArray.length}</p>
         </li>
-        <li id="comment-form-container">
+        <li>
           <CreateCommentForm />
         </li>
         <li>

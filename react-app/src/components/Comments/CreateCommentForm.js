@@ -37,36 +37,38 @@ const CreateCommentForm = () => {
   return (
     <>
       {currentUser ?
-        <>
+        <div id="comment-form-container">
+          <BiUserCircle />
           {displayForm ?
-            <form id="comment-form-container" onSubmit={createComment}>
-              {errors?.map(error => (
-                <p>{error.split(":")[1]}</p>
-              ))}
-              <textarea
-                id="comment-textarea"
-                value={comment}
-                onChange={(e) => {
-                  setComment(e.target.value)
-                }}
-              ></textarea>
-              <div >
-                <button
-                  className="black-btn"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    setDisplayForm(!displayForm)
-                  }}>CANCEL</button>
-                <button className="black-btn">COMMENT</button>
-              </div>
-            </form>
+              <form id="comment-form" onSubmit={createComment}>
+                {errors?.map(error => (
+                  <p>{error.split(":")[1]}</p>
+                ))}
+                <textarea
+                  id="comment-textarea"
+                  placeholder="Add a comment..."
+                  value={comment}
+                  onChange={(e) => {
+                    setComment(e.target.value)
+                  }}
+                ></textarea>
+                <div >
+                  <button
+                    className="comment-btn"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setDisplayForm(!displayForm)
+                    }}>CANCEL</button>
+                  <button className="comment-btn blue">COMMENT</button>
+                </div>
+              </form>
             :
             <div id="comment-trigger-container">
-              <BiUserCircle />
+              {/* <BiUserCircle /> */}
               <button onClick={() => setDisplayForm(!displayForm)}>Add a comment...</button>
             </div>
           }
-        </>
+        </div>
 
         : null}
     </>
