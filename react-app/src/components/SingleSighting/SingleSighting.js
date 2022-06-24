@@ -121,7 +121,6 @@ const SingleSighting = () => {
   )
 
   // END OF FUNCS
-
   useEffect(() => {
     dispatch(sessionActions.getAllSightings());
     dispatch(getSightingLikes(currentUser?.id));
@@ -131,6 +130,8 @@ const SingleSighting = () => {
   useEffect(() => {
     dispatch(getALLComments(sightingId))
   }, [dispatch, sightingId])
+
+
 
   return (
     <div id="sighting-container">
@@ -153,7 +154,6 @@ const SingleSighting = () => {
         <li>
           <p id="single-sighting-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
         </li>
-        <Comments />
       </ul>
     </div>
   )

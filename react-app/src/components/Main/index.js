@@ -4,8 +4,10 @@ import { useParams } from 'react-router-dom';
 import Navigation from '../Navigation';
 import Tags from '../Tags';
 import SingleSighting from '../SingleSighting/SingleSighting';
+import Comments from '../Comments/Comments';
 import Sightings from '../sightings/Sightings';
 import Footer from '../Footer'
+
 import './Main.css';
 
 const Main = () => {
@@ -24,7 +26,7 @@ const Main = () => {
   }, [currentUser])
 
   useEffect(() => {
-    sightingId ? setContent(<SingleSighting />) : setContent(<Sightings />);
+    sightingId ? setContent(<><SingleSighting /> <Comments /></>) : setContent(<Sightings />);
   }, [sightingId])
 
 

@@ -1,5 +1,6 @@
 #comment-form-container {
-  background-color: green;
+  /* background-color: green; */
+  border-bottom: .5px solid rgba(230, 230, 230, 1);
 }
 
 #comment-textarea {
@@ -12,11 +13,11 @@
 
 
 #temp {
-  border-bottom: .5px solid rgba(230, 230, 230, 1);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 16px 0;
+  /* background-color: gray; */
 }
 
 #temp > svg {
@@ -35,4 +36,9 @@
   padding: 10px;
   text-align: left;
   width: 100%;
+}
+
+#comment-form-container {
+  /* background-color: gray; */
+  padding: 0 24px;
 }
