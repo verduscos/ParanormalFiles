@@ -96,10 +96,13 @@ const Comments = () => {
 
 
           {commentsArray && commentsReversedArray.map(comment => (
-            <div id="comments-ul" key={`comment-${comment?.id}-card`}>
+            <div id="comment-card" key={`comment-${comment?.id}-card`}>
               <div>
+                <div id="comment-author-container">
+
                 <p key={`comment-${comment?.username}`}>{comment?.username}</p>
                 <p key={`comment-${comment?.created_at}`}>{`${comment?.created_at.split(' ')[2]} ${comment.created_at.split(' ')[1]}, ${comment.created_at.split(' ')[3]}`}</p>
+                </div>
                 {currentUser?.id === comment?.user_id && displayDots ?
                   <BiDotsHorizontalRounded
                     id="comment-dots"
