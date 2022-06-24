@@ -99,10 +99,10 @@ const Comments = () => {
             <div id="comment-card" key={`comment-${comment?.id}-card`}>
               <div>
                 <div id="comment-author-container">
-
-                <p key={`comment-${comment?.username}`}>{comment?.username}</p>
-                <p key={`comment-${comment?.created_at}`}>{`${comment?.created_at.split(' ')[2]} ${comment.created_at.split(' ')[1]}, ${comment.created_at.split(' ')[3]}`}</p>
+                  <p key={`comment-${comment?.username}`}>{comment?.username}</p>
+                  <p key={`comment-${comment?.created_at}`}>{`${comment?.created_at.split(' ')[2]} ${comment.created_at.split(' ')[1]}, ${comment.created_at.split(' ')[3]}`}</p>
                 </div>
+                <p key={`comment-${comment?.id}`}>{comment?.comment}</p>
                 {currentUser?.id === comment?.user_id && displayDots ?
                   <BiDotsHorizontalRounded
                     id="comment-dots"
@@ -112,10 +112,7 @@ const Comments = () => {
                       setDisplayUsrBtn(!displayUsrBtn)
                     }} />
                   : null}
-
-
               </div>
-              <p key={`comment-${comment?.id}`}>{comment?.comment}</p>
               {comment?.user_id === currentUser?.id ?
                 <>
                   {comment.id === selectedComment ? <p>{errors[0]}</p> : null}

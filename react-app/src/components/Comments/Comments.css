@@ -26,20 +26,10 @@
 }
 
 /* NOT REVISED */
-#comments-card {
+#comment-card {
   border-bottom: .5px solid rgba(230, 230, 230, 1);
   padding: 0;
-  /* background-color: black; */
-  /* padding: 15px; */
-  /* margin: 15px 0; */
-  /* border-radius: 5px; */
-  /* font-size: 20px; */
-  /* line-height: 30px; */
-  /* margin-bottom: 50px; */
-
   padding: 16px 12px;
-
-  background-color: lightblue;
 }
 
 #comment-author-container {
@@ -50,4 +40,5 @@
 
 #comment-dots {
   cursor: pointer;
+  transform: rotate(-90deg);
 }
