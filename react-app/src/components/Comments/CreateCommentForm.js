@@ -61,7 +61,7 @@ const CreateCommentForm = () => {
               </div>
             </form>
             :
-            <div id="temp">
+            <div id="comment-trigger-container">
               <BiUserCircle />
               <button onClick={() => setDisplayForm(!displayForm)}>Add a comment...</button>
             </div>
