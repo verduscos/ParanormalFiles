@@ -21,8 +21,10 @@ const Comments = () => {
   const currentUser = useSelector(state => state.session.user)
   let comments = useSelector(state => state.comments)
   let commentsArray = Object.values(comments);
-  let commentsReversedArray = commentsArray.reverse()
+  // console.log(commentsArray, "HJERE")
 
+  // let commentsReversedArray = commentsArray.reverse();
+  // console.log(commentsReversedArray)
   const deleteComment = (e, id) => {
     e.preventDefault();
     // remove edit and delete btn when a comment is deleted
@@ -95,7 +97,7 @@ const Comments = () => {
         <li>
 
 
-          {commentsArray && commentsReversedArray.map(comment => (
+          {commentsArray.map(comment => (
             <div id="comment-card" key={`comment-${comment?.id}-card`}>
               <div>
                 <div id="comment-author-container">

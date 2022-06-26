@@ -30,6 +30,8 @@
   border-bottom: .5px solid rgba(230, 230, 230, 1);
   padding: 0;
   padding: 16px 12px;
+
+  background-color: green;
 }
 
 #comment-author-container {
