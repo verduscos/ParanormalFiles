@@ -27,7 +27,7 @@ def get_sightings():
     Get all sightings in DB, will use on splash page.
     """
     sightings = Sighting.query \
-    .order_by(asc(Sighting.created_at)) \
+    .order_by(desc(Sighting.created_at)) \
     .all()
 
     return {"sightings": [sighting.to_dict() for sighting in sightings]}
@@ -38,7 +38,6 @@ def get_next_sightings():
     Get next 10 records
     """
     sightings = Sighting.query.order_by(Sighting.created_at).filter(Sighting.id > 10).limit(3).all()
-
 
     return {"sightings" : [sighting.to_dict() for sighting in sightings]}
 
