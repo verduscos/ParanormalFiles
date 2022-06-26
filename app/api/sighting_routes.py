@@ -1,5 +1,6 @@
+import sqlalchemy
 from flask import Blueprint, session, request
-from sqlalchemy import desc
+from sqlalchemy import desc, asc
 from app.forms import SightingForm
 from app.models import Sighting, SightingImage, Like, User, db
 from app.s3_helpers import (
@@ -25,7 +26,9 @@ def get_sightings():
     """
     Get all sightings in DB, will use on splash page.
     """
-    sightings = Sighting.query.order_by(desc(Sighting.created_at)).all()
+    sightings = Sighting.query \
+    .order_by(asc(Sighting.created_at)) \
+    .all()
 
     return {"sightings": [sighting.to_dict() for sighting in sightings]}
 
