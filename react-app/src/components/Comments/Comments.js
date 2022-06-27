@@ -21,10 +21,8 @@ const Comments = () => {
   const currentUser = useSelector(state => state.session.user)
   let comments = useSelector(state => state.comments)
   let commentsArray = Object.values(comments);
-  // console.log(commentsArray, "HJERE")
+  commentsArray = commentsArray.reverse();
 
-  // let commentsReversedArray = commentsArray.reverse();
-  // console.log(commentsReversedArray)
   const deleteComment = (e, id) => {
     e.preventDefault();
     // remove edit and delete btn when a comment is deleted
@@ -33,7 +31,6 @@ const Comments = () => {
     dispatch(deleteAComment(id));
 
   }
-
 
   const editComment = (e, id) => {
     const payload = {

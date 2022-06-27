@@ -53,14 +53,14 @@ export const createAComment = (payload) => async (dispatch) => {
     })
   })
 
-    const data = await response.json();
+  const data = await response.json();
 
-    if (data.errors) {
-      return data
-    } else {
-      dispatch(createComment(data))
-      return data
-    }
+  if (data.errors) {
+    return data
+  } else {
+    dispatch(createComment(data))
+    return data
+  }
 }
 
 export const updateAComment = (payload) => async (dispatch) => {
@@ -91,7 +91,6 @@ export const deleteAComment = (payload) => async (dispatch) => {
   }
 }
 
-
 const commentsReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_COMMENTS:
@@ -101,19 +100,19 @@ const commentsReducer = (state = {}, action) => {
         comments1[comment.id] = comment
       })
 
-      return {  ...comments1}
+      return { ...comments1 }
     case CREATE_COMMENT:
       let comments = {}
       comments[action.payload.comment.id] = action.payload.comment
 
-      return { ...state, ...comments}
+      return { ...state, ...comments }
     case UPDATE_COMMENT:
-      let comments2 = { ...state}
+      let comments2 = { ...state }
       comments2[action.payload.comment.id] = action.payload.comment
 
       return comments2
     case DELETE_COMMENT:
-      let comments3 = { ...state}
+      let comments3 = { ...state }
 
       let id = (action.payload["delete"])
       delete comments3[id]
