@@ -46,9 +46,6 @@ def get_comments(sightingId):
         Comment.sighting_id == sightingId
     ).all()
 
-
-    # comments = Comment.query.filter(Comment.sighting_id == sightingId).all()
-
     return {"comments": [comment.to_dict() for comment in comments]}
 
 

@@ -48,9 +48,6 @@ const editSighting = (sighting) => ({
   payload: sighting
 })
 
-
-
-
 export const getAllFavorites = (Id) => async (dispatch) => {
   const response = await fetch(`/api/likes/${Id}`);
 
@@ -99,20 +96,6 @@ export const getAllSightingsByCategory = (category) => async (dispatch) => {
   dispatch(getSightingsByCategory(data.sightings));
   return data
 }
-
-
-// export const searchAllSightings = (searchStr) => async (dispatch) => {
-//   const response = await fetch(`/api/sightings/search/${searchStr}`);
-
-//   if (response.status >= 400) {
-//     throw response
-//   }
-
-//   const data = await response.json();
-//   dispatch(searchSightings(data));
-//   return data;
-
-// }
 
 export const getAllUserSightings = (userId) => async (dispatch) => {
   const response = await fetch(`/api/sightings/user/${userId}`);
@@ -234,9 +217,9 @@ const sightingReducer = (state = {}, action) => {
 
     case GET_SIGHTINGS_BY_CATEGORY:
       let category = {}
-      // action.payload.forEach(sighting => {
-      //   category[sighting.id] = sighting
-      // })
+      action.payload.forEach(sighting => {
+        category[sighting.id] = sighting
+      })
 
       return { ...category }
     case GET_USER_SIGHTINGS:
