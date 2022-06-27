@@ -2,17 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import Sightings from './components/sightings/Sightings';
 import CreateSightingForm from './components/CreateSightingForm/CreateSightingForm'
 import ImageForm from './components/ImageForm/ImageForm';
 import EditForm from './components/EditForm/EditForm';
 import { authenticate } from './store/session';
-import Navigation from './components/Navigation';
 import CreateNav from './components/CreateSightingForm/CreateNav';
-import Categories from './components/Categories/Categories';
-import Category from './components/Categories/Category';
 import NotFound from './components/NotFound/NotFound';
-import Search from './components/Search/Search';
 import Main from './components/Main';
 
 function App() {
