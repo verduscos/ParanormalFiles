@@ -120,7 +120,7 @@ const Comments = () => {
                   {displayUsrBtn && selectedComment === comment.id ?
                     <>
                       <button
-                        className="comment-btns-edit"
+                        className="comment-btn"
                         onClick={() => {
                           displayEditForm(true)
                           setDisplayDots(false)
@@ -130,7 +130,7 @@ const Comments = () => {
                         }}
                       >Edit</button>
                       <button
-                        className="comment-btns-edit"
+                        className="comment-btn blue"
                         value={comment?.id}
                         onClick={(e) => {
                           deleteComment(e, comment?.id)
