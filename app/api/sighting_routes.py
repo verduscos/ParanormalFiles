@@ -1,6 +1,6 @@
 import sqlalchemy
 from flask import Blueprint, session, request
-from sqlalchemy import desc, asc, or_
+from sqlalchemy import desc, asc, or_, func
 from app.forms import SightingForm
 from app.models import Sighting, SightingImage, Like, User, db
 from app.s3_helpers import (
@@ -181,9 +181,9 @@ def upload_image():
 def searching_sightings(searchstr, methods=["GET", "POST"]):
   search_results = Sighting.query.filter(
     or_(
-      Sighting.title.contains(searchstr),
-      Sighting.category.contains(searchstr),
-      Sighting.description.contains(searchstr)
+      func.lower(Sighting.title).contains(func.lower(searchstr)),
+      func.lower(Sighting.category).contains(func.lower(searchstr)),
+      func.lower(Sighting.description).contains(func.lower(searchstr))
       )
     ).all()
 
