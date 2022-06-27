@@ -11,6 +11,7 @@ const Sightings = () => {
   let currentUser = useSelector(state => state.session.user)
   let sightings = useSelector(state => state.sightings);
   let sightingsArray = Object.values(sightings);
+  sightingsArray = sightingsArray.reverse();
 
   const location = useLocation();
   let path = location.pathname;

@@ -40,7 +40,9 @@ def get_comments(sightingId):
     """
     Get all comments for a specific sighting.
     """
-    comments = Comment.query.order_by(Comment.created_at).join(User).filter(
+    comments = Comment.query \
+    .order_by(Comment.created_at) \
+    .join(User).filter(
         Comment.sighting_id == sightingId
     ).all()
 
