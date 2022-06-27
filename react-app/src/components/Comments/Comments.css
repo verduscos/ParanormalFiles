@@ -1,6 +1,5 @@
 #comments-container {
-  /* background-color: rgba(192, 187, 181, 0.479); */
-  /* padding: 24px 24px 0 24px; */
+  margin: 24px 0 24px 0;
 }
 
 #comments-container > ul {
@@ -25,10 +24,8 @@
   font-weight: 500;
 }
 
-/* NOT REVISED */
 #comment-card {
   border-bottom: .5px solid rgba(230, 230, 230, 1);
-  padding: 0;
   padding: 16px 12px;
 }
 
