@@ -18,14 +18,16 @@ const Search = () => {
 
   const search = async (e, searchStr) => {
     e.preventDefault();
-    dispatch(sessions.searchAllSightings(searchStr))
-    // history.push(`/sightings/search/${searchStr}`)
+
+    console.log("INSIDE search function", searchInput)
+    dispatch(sessions.searchAllSightings(searchInput))
+    history.push(`/sightings/search/${searchInput}`)
   }
 
-  useEffect(() => {
-    dispatch(sessions.searchAllSightings(string))
+  // useEffect(() => {
+  //   dispatch(sessions.searchAllSightings(string))
 
-  }, [dispatch])
+  // }, [dispatch])
 
   return (
     <>
@@ -34,7 +36,7 @@ const Search = () => {
       </h1>
       <form
         id="search-form"
-        value={searchInput}
+        // value={searchInput}
         onChange={(e) => {
           setSearchInput(e.target.value)
         }}
@@ -44,10 +46,12 @@ const Search = () => {
             search(e, searchInput)
           }}
       >
-        <AiOutlineSearch id="search-icon" />
+        {/* <AiOutlineSearch id="search-icon" /> */}
         <button>search</button>
       </form>
-      <input id="search" type="text" required />
+      <input id="search" type="text"         onChange={(e) => {
+          setSearchInput(e.target.value)
+        }} required />
     </>
     // <div id="sightings-container">
     //   <div id="sightings-inner">

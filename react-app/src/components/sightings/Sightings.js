@@ -15,7 +15,6 @@ const Sightings = () => {
 
   const location = useLocation();
   let path = location.pathname;
-  console.log(location.pathname, "lkjdklasjfalsdkfjaklsdfj");
 
   const resetLoading = () => {
     setLoading(true);
@@ -32,8 +31,10 @@ const Sightings = () => {
       dispatch(sessionActions.getAllSightings());
     } else if (path === "/favorites") {
       dispatch(sessionActions.getAllFavorites(currentUser.id));
-    } else {
+    } else if (path === "/mysightings") {
       dispatch(sessionActions.getAllUserSightings(currentUser?.id));
+    } else {
+      return;
     }
   }, [path])
 
