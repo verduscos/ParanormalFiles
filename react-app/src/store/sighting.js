@@ -8,6 +8,7 @@ const DELETE_SIGHTING = "session/DELETE_SIGHTING"
 const SEARCH = "session/SEARCH"
 
 
+
 const getFavorites = (sightings) => ({
   type: GET_FAVORITES,
   payload: sightings
@@ -48,6 +49,8 @@ const editSighting = (sighting) => ({
   payload: sighting
 })
 
+
+
 export const getAllFavorites = (Id) => async (dispatch) => {
   const response = await fetch(`/api/likes/${Id}`);
 
@@ -59,7 +62,6 @@ export const getAllFavorites = (Id) => async (dispatch) => {
   dispatch(getFavorites(data));
   return data;
 }
-
 
 export const searchAllSightings = (searchStr) => async (dispatch) => {
   const response = await fetch(`/api/sightings/search/${searchStr}`);
@@ -85,7 +87,6 @@ export const getAllSightings = () => async (dispatch) => {
   return data;
 }
 
-
 export const getAllSightingsByCategory = (category) => async (dispatch) => {
   const response = await fetch(`/api/sightings/${category}`);
   if (response.status >= 400) {
@@ -109,7 +110,6 @@ export const getAllUserSightings = (userId) => async (dispatch) => {
     return data
   }
 }
-
 
 export const createASighting = (payload) => async (dispatch) => {
   const response = await fetch(`/api/sightings/`, {
@@ -160,14 +160,6 @@ export const updateSighting = (payload) => async (dispatch) => {
   }
 }
 
-
-
-
-
-
-
-
-
 export const deleteASighting = (sightingId) => async (dispatch) => {
   const response = await fetch(`/api/sightings/${sightingId}`, {
     method: "DELETE"
@@ -178,6 +170,7 @@ export const deleteASighting = (sightingId) => async (dispatch) => {
     return
   }
 }
+
 
 
 const sightingReducer = (state = {}, action) => {
@@ -191,8 +184,6 @@ const sightingReducer = (state = {}, action) => {
 
       return { ...state, ...sightings }
 
-
-
     case SEARCH:
       let search = {}
       if (action.payload["sightings"]) {
@@ -202,7 +193,6 @@ const sightingReducer = (state = {}, action) => {
 
         return { ...search };
       }
-
 
     case GET_FAVORITES:
       let favorites = {}

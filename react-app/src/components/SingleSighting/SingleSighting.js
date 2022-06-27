@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory, Link } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import { deleteLike, likeSightingThunk } from "../../store/like";
-import Comments from "../Comments/Comments"
 import { getSightingLikes } from "../../store/like";
 import { getALLComments } from "../../store/comment";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
@@ -17,8 +16,6 @@ const SingleSighting = () => {
   const params = useParams()
   const { sightingId } = params
   const [userBtns, setUserBtns] = useState(false)
-  const [favorited, setFavorited] = useState(false)
-  const [displayRemove, setDisplayRemove] = useState(true)
   let sighting = useSelector(state => state.sightings[sightingId])
   let currentUser = useSelector(state => state.session.user)
   let likes = useSelector(state => state.likes)
@@ -54,8 +51,6 @@ const SingleSighting = () => {
 
     dispatch(likeSightingThunk(payload))
     localStorage.setItem(sighting.id, true)
-    setFavorited(true)
-
   }
 
   const unfavorite = (e) => {
@@ -68,7 +63,6 @@ const SingleSighting = () => {
 
     dispatch(deleteLike(payload))
     localStorage.removeItem(sighting.id)
-    setDisplayRemove(false)
   }
 
   const UserEditBtns = (
