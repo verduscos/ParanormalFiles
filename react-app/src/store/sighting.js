@@ -69,6 +69,7 @@ export const searchAllSightings = (searchStr) => async (dispatch) => {
     throw response
   }
 
+  console.log("HITTING THINK")
   const data = await response.json();
   dispatch(searchSightings(data));
   return data;
