@@ -42,10 +42,6 @@ function App() {
         <Route path='/mysightings' exact={true}>
           <Main />
         </Route>
-        <Route path='/sightings/categories/:category' exact={true} >
-          <Navigation isLoaded={loaded} />
-          <Category />
-        </Route>
         <Route path='/sightings/:sightingId' exact={true} >
           <Main />
         </Route>
@@ -60,14 +56,9 @@ function App() {
           <ImageForm />
         </ProtectedRoute>
         <Route path="/sightings/search/:string" exact={true}>
-          <Navigation />
-          <Sightings />
-          <Search />
-
-          <Categories />
+          <Main />
         </Route>
         <Route>
-          {/* <Navigation isLoaded={loaded} /> */}
           <NotFound />
         </Route>
       </Switch>

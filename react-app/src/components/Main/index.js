@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Navigation from '../Navigation';
+import Search from '../Search/Search';
 import Tags from '../Tags';
+import Sightings from '../sightings/Sightings';
 import SingleSighting from '../SingleSighting/SingleSighting';
 import Comments from '../Comments/Comments';
-import Sightings from '../sightings/Sightings';
 import Footer from '../Footer'
 
 import './Main.css';
@@ -36,6 +37,7 @@ const Main = () => {
         <Navigation />
       </div>
       <div id={tagsId}>
+        <Search />
         <Tags />
         <div id="desktop-footer">
           <Footer />
