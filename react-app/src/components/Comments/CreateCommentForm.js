@@ -29,8 +29,11 @@ const CreateCommentForm = () => {
 
     if (comment.length >= 4) setComment("")
     const data = await dispatch(createAComment(payload));
-    if (data) {
+    if (data.errors) {
       setErrors(data.errors)
+    } else {
+      setDisplayForm(!displayForm)
+      setErrors([]);
     }
   }
 
