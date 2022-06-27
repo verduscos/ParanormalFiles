@@ -65,8 +65,8 @@ const Comments = () => {
         }}
       >
       </textarea>
-      <button className="comment-btns-edit" onClick={editComment}>Update</button>
-      <button className="comment-btns-edit"
+      <button className="comment-btn" onClick={editComment}>Update</button>
+      <button className="comment-btn blue"
         onClick={() => {
           displayEditForm(false)
           setDisplayDots(true)

@@ -45,7 +45,7 @@ const CreateCommentForm = () => {
                   <p>{error.split(":")[1]}</p>
                 ))}
                 <textarea
-                  id="comment-textarea"
+                  className="comment-textarea"
                   placeholder="Add a comment..."
                   value={comment}
                   onChange={(e) => {
