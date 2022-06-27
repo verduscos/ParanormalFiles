@@ -42,5 +42,6 @@
 
 #comment-dots {
   cursor: pointer;
-  transform: rotate(-90deg);
+  display: flex;
+  justify-content: flex-end;
 }

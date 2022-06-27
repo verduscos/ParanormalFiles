@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getALLComments, deleteAComment, updateAComment } from "../../store/comment";
-import { BiDotsHorizontalRounded } from "react-icons/bi";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import CreateCommentForm from "./CreateCommentForm";
 import "./Comments.css"
 
@@ -103,13 +103,14 @@ const Comments = () => {
                 </div>
                 <p key={`comment-${comment?.id}`}>{comment?.comment}</p>
                 {currentUser?.id === comment?.user_id && displayDots ?
-                  <BiDotsHorizontalRounded
-                    id="comment-dots"
-                    value={comment.id}
-                    onClick={() => {
-                      setSelectedComment(comment.id)
-                      setDisplayUsrBtn(!displayUsrBtn)
-                    }} />
+                  <span id="comment-dots">
+                    <BsThreeDotsVertical
+                      value={comment.id}
+                      onClick={() => {
+                        setSelectedComment(comment.id)
+                        setDisplayUsrBtn(!displayUsrBtn)
+                      }} />
+                  </span>
                   : null}
               </div>
               {comment?.user_id === currentUser?.id ?
