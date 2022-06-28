@@ -14,7 +14,7 @@ const NotFound = () => {
           <h2 id="lost-link">There's nothing here... <Link id="home" to="/">go home.</Link></h2>
         </li>
         <li>
-          <img src="https://i.gifer.com/7VE.gif" />
+          <img id="lost-img" src="https://i.gifer.com/7VE.gif" />
         </li>
       </ul>
     </div>
