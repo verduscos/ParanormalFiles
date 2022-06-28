@@ -1,50 +1,29 @@
-#notfound-container {
-  background-color: rgba(0, 0, 0, 0.021);
-  background-color: white;
-  width: 1250px;
+#lost-container {
   width: 100%;
-  top: 0;
-  margin-top: auto;
-  position: absolute;
-  bottom: 0;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: rgb(29, 29, 29);
+  align-items: center;
+  justify-content: flex-end;
+
+  background-color: gray;
+  /* padding: 0 24px; */
+
+  /* font-family: medium-marketing-display-font,Georgia,Cambria,"Times New Roman",Times,serif!important; */
 }
 
-#notfound-inner {
-  width: 1200px;
-  margin: 0 auto;
-  height: 100%;
+#lost-container > ul {
+  background-color: linen;
 }
 
-#notfound-text {
-  margin-right: 250px;
-  margin-top: 250px;
-  margin: 250px auto 0 auto;
+#lost-header {
+  font-size: 92px!important;
 }
 
-#notfound-text > * {
-  text-align: center;
+#lost-link {
+  font-size: 34px!important;
 }
 
-#notfound-img {
-  position: absolute;
-  bottom: 0;
-  height: 500px;
-  width: 700px;
-}
-
-#home {
-  color: black;
-}
-
-#img-container {
-position: absolute;
-bottom: 0;
-height: 550px;
-width: 800px;
-z-index: 5;
+#lost-container > img {
+  width: inherit;
 }
