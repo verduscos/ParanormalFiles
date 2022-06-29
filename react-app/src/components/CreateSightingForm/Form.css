@@ -76,11 +76,16 @@
   font-weight: 400;
   height: 25px;
   line-height: 25px;
-  margin-top: 35px;
+  /* margin-top: 35px; */
   padding: 0 10px;
   float: right;
-  margin-top: -77px;
+  /* margin-top: -40px; */
   width: fit-content;
+  /* z-index: 100 !important; */
+
+  /* float: right; */
+  /* margin-left: auto; */
+  /* position: fixed; */
 }
 
 .sighting-inputs {
@@ -110,13 +115,7 @@
   letter-spacing: .5px;
 }
 
-@media screen and (max-width: 1024px) {
-  #sighting-mobile-mssg {
-    display: block;
-    margin: 100px auto 0 auto;
-    width: 60%;
-  }
-}
+
 
 /* TABLET & MOBILE */
 @media screen and (max-width: 1023px) {
