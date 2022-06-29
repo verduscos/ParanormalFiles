@@ -18,9 +18,11 @@
 }
 
 #sighting-edit-btns {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  margin-left: 15px;
 }
 
 .red {
