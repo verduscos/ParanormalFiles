@@ -119,6 +119,19 @@ const EditForm = () => {
     }
   }
 
+  const submitBtn = (
+    <>
+      {editTextOnly ? null
+        :
+        <button onClick={editSighting} className="form-submit-btn sighting-inputs">Upload</button>
+      }
+
+
+      {editTextOnly ?
+        <button onClick={editText} className="form-submit-btn sighting-inputs">Update</button>
+        : null}
+    </>
+  )
 
 
 
@@ -128,7 +141,9 @@ const EditForm = () => {
 
       <CreateNav />
       <form className="sighting-form">
-        <div className="form-inner">
+        <div>
+          {submitBtn}
+
           {errors?.map(error => (
             <li className="error-mssg">{error}</li>
           ))}
@@ -147,40 +162,42 @@ const EditForm = () => {
               setDescription(e.target.value)
             }}
             type="text" value={description} placeholder="description" />
-          <select
-            className="sighting-inputs form-options"
-            onChange={(e) => {
-              setCategory(e.target.value)
-            }}
-            value={category}>
-            <option value="categories">Update Category?</option>
-            <option value="UFOs">UFOs</option>
-            <option value="Ghosts">Ghosts</option>
-            <option value="Demons">Demons</option>
-            <option value="Angels">Angels</option>
-            <option value="Reincarnation">Reincarnation</option>
-            <option value="Monsters">Monsters</option>
-            <option value="Mandela Effect">Mandela Effect</option>
-            <option value="Time Travel">Time Travel</option>
-            <option value="Synchronicity">Synchronicity</option>
-          </select>
 
-          <div className="upload-container">
-            <label for="file-btn" value="Upload Image" id="file-label">
-              <p>Update Image?</p>
+          <div className="form-category-image-container">
+            <select
+              className="form-select-options sighting-inputs"
+              onChange={(e) => {
+                setCategory(e.target.value)
+              }}
+              value={category}>
+              <option value="categories">Update Category?</option>
+              <option value="UFOs">UFOs</option>
+              <option value="Ghosts">Ghosts</option>
+              <option value="Demons">Demons</option>
+              <option value="Angels">Angels</option>
+              <option value="Reincarnation">Reincarnation</option>
+              <option value="Monsters">Monsters</option>
+              <option value="Mandela Effect">Mandela Effect</option>
+              <option value="Time Travel">Time Travel</option>
+              <option value="Synchronicity">Synchronicity</option>
+            </select>
+
+            <label for="image-upload-default-btn" value="Upload Image" id="file-label">
+              <p>Upload Image</p>
             </label>
             <input
-              id="file-btn"
-              required
+              id="image-upload-default-btn"
+              className="image-upload-default-btn"
               name="file"
               type="file"
               accept="image/*"
               onChange={updateImage}
             />
-            <p>{displayUrl}</p>
+
+
+
           </div>
-
-
+            <p id="form-display-image-url">{displayUrl}</p>
 
           {/* <input
                 // onClick={() => {
@@ -196,15 +213,7 @@ const EditForm = () => {
                 onChange={updateImage}
               /> */}
 
-          {editTextOnly ? null
-            :
-            <button onClick={editSighting} className="post-form-btn sighting-inputs cursor">Upload</button>
-          }
 
-
-          {editTextOnly ?
-            <button onClick={editText} className="post-form-btn sighting-inputs cursor">Update</button>
-            : null}
         </div>
       </form>
     </>

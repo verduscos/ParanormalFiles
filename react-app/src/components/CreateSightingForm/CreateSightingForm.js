@@ -80,12 +80,12 @@ const CreateSightingForm = () => {
   return (
     <>
       <CreateNav />
-      <form onSubmit={createSighting} id="sighting-form">
+      <form onSubmit={createSighting} className="sighting-form">
         <div>
-          <button id="form-submit-btn" className="sighting-inputs">Publish</button>
+          <button className="form-submit-btn sighting-inputs">Publish</button>
 
           {errors?.map(error => (
-            <li id="error-mssg">{error}</li>
+            <li className="error-mssg">{error}</li>
           ))}
 
           <input
@@ -104,10 +104,10 @@ const CreateSightingForm = () => {
             }}
             type="text" value={description} placeholder="Tell your story...." />
 
-          <div id="form-category-image-container">
+          <div className="form-category-image-container">
             <select
-              id="form-select-options"
-              className="sighting-inputs"
+              // id="form-select-options"
+              className="form-select-options sighting-inputs"
               onChange={(e) => {
                 setCategory(e.target.value)
               }}
@@ -130,6 +130,7 @@ const CreateSightingForm = () => {
             </label>
             <input
               id="image-upload-default-btn"
+              className="image-upload-default-btn"
               name="file"
               type="file"
               accept="image/*"
