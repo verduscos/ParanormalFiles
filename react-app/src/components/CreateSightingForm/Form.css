@@ -47,10 +47,6 @@
   margin: 0;
 }
 
-#file-label:hover {
-  color: #D10606;
-}
-
 /* HIDE DEFAULT INPUT BUTTON */
 .image-upload-default-btn{
   display: none;
