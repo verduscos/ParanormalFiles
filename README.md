@@ -1,6 +1,8 @@
 # Paranormal Files 
 
-[Paranormal Files](https://something-medium.herokuapp.com/), loosely based on [Medium](https://medium.com/), is social platform where users can share or read about experiences with the paranormal.
+[Paranormal Files](https://something-medium.herokuapp.com/), a [Medium](https://medium.com/) clone,  is a platform where users can find paranormal reports and where users  can share their experiences by writing on any paranormal topic.
+
+This application uses Amazon S3 to allow for image upload for user reports.
 
 ![splash page](https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/splash-pf.PNG)
 
