@@ -1,13 +1,28 @@
 # Paranormal Files 
+![splash page](https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/splash-pf.PNG)
 
 [Paranormal Files](https://something-medium.herokuapp.com/), a [Medium](https://medium.com/) clone,  is a platform where users can find paranormal reports and where users  can share their experiences by writing on any paranormal topic.
 
-This application uses Amazon S3 to allow for image upload for user reports.
+# Application Architecture
+Paranormal Files is built on a React frontend and a Flask backend with a PostgreSQL database. This application utilizes Amazon S3 to allow for image upload.
 
-![splash page](https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/splash-pf.PNG)
+## Technologies Used
+<div>
+   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" height=40/>
+   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" height=40/>
+   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height=40/>
+   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height=40/>
+   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" height=40/>
+   <img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"  height=40/>
+   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original-wordmark.svg" height=40 />
+   <img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"  height=40/>
+   <img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"  height=40/>
+   <img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"  height=40/>
+   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" height=40/>
+   <img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"  height=40/>
+   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" height=40 />
+</div>
 
-# Technologies Used
-Built with React/Redux for the frontend and Python/Flask for the backend with a PostgreSQL database.
 
 # Sightings/Stories
 Users can report a sighting and share an through the implementation of Amazon Web Services S3.
