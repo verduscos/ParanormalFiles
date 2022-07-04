@@ -1,5 +1,5 @@
 # Paranormal Files 
-![splash page](https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/splash-pf.PNG)
+![splash page](https://i.imgur.com/2dERcHN.png)
 
 [Paranormal Files](https://something-medium.herokuapp.com/), a [Medium](https://medium.com/) clone,  is a platform where users can find paranormal reports and where users  can share their experiences by writing on any paranormal topic.
 
