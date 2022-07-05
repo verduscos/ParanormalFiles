@@ -25,6 +25,8 @@ Paranormal Files is built on a React frontend and a Flask backend with a Postgre
    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" height=40 />
 </div>
 
+# Home 
+<img src="https://media.giphy.com/media/MKihzXfL9HuvwjSK84/giphy.gif" width="500" />
 
 # Sightings/Stories
 Users can report a sighting and share an through the implementation of Amazon Web Services S3.
