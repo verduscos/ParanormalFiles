@@ -1,9 +1,9 @@
 # Paranormal Files 
 ![splash page](https://i.imgur.com/2dERcHN.png)
 
-[Live](https://something-medium.herokuapp.com/) | [Project Wiki](https://github.com/verduscos/medium-clone/wiki)
+[Live](https://paranormalfiles.herokuapp.com/) | [Project Wiki](https://github.com/verduscos/medium-clone/wiki)
 
-[Paranormal Files](https://something-medium.herokuapp.com/), a [Medium](https://medium.com/) clone,  is a platform where users can find paranormal reports and where users  can share their experiences by writing on any paranormal topic.
+[Paranormal Files](https://paranormalfiles.herokuapp.com/), a [Medium](https://medium.com/) clone,  is a platform where users can find paranormal reports and where users  can share their experiences by writing on any paranormal topic.
 
 # Application Architecture
 Paranormal Files is built on a React frontend and a Flask backend with a PostgreSQL database. This application utilizes Amazon S3 to allow for image upload.
@@ -25,25 +25,12 @@ Paranormal Files is built on a React frontend and a Flask backend with a Postgre
    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" height=40 />
 </div>
 
-# Home 
-<img src="https://media.giphy.com/media/MKihzXfL9HuvwjSK84/giphy.gif" width="500" />
+# Features
 
-# Sightings/Stories
-Users can report a sighting and share an through the implementation of Amazon Web Services S3.
-![sightings](https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/create-pf.PNG)
+<img src="https://media.giphy.com/media/MKihzXfL9HuvwjSK84/giphy.gif" width=600 />
 
-View of a sighting after creation
-![sightingview](https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/sighting-pf.PNG)
-
-# Commenting
-Users can comment on a sighting to share their thoughts/
-![comment](https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/commens-pf.PNG)
-
-Sign in easily as a Demo user
-![signin modal](https://medium-clone-photo-bucket.s3.us-west-1.amazonaws.com/signin-pf.PNG)
-
-## Features
-Full CRUD:
+## [Sightings](https://github.com/verduscos/medium-clone/wiki/Feature-List)
+Browse sightings or si
  * [Sightings](https://github.com/verduscos/medium-clone/wiki/Feature-List) 
  * [Comments](https://github.com/verduscos/medium-clone/wiki/Feature-List)
 
