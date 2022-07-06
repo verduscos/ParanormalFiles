@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory, Link } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
-import { deleteLike, likeSightingThunk } from "../../store/like";
-import { getSightingLikes } from "../../store/like";
+import { removeBookmark, addBookmark } from "../../store/like";
+import { getUserBookmarks } from "../../store/like";
 import { getALLComments } from "../../store/comment";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
@@ -49,7 +49,7 @@ const SingleSighting = () => {
       sighting_id: sightingId
     }
 
-    dispatch(likeSightingThunk(payload))
+    dispatch(addBookmark(payload))
     localStorage.setItem(sighting.id, true)
   }
 
@@ -61,7 +61,7 @@ const SingleSighting = () => {
       sighting_id: sightingId
     }
 
-    dispatch(deleteLike(payload))
+    dispatch(removeBookmark(payload))
     localStorage.removeItem(sighting.id)
   }
 
@@ -117,7 +117,7 @@ const SingleSighting = () => {
   // END OF FUNCS
   useEffect(() => {
     dispatch(sessionActions.getAllSightings());
-    dispatch(getSightingLikes(currentUser?.id));
+    dispatch(getUserBookmarks(currentUser?.id));
 
   }, [dispatch])
 
