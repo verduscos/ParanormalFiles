@@ -51,7 +51,7 @@ export const getSightingLikes = (sightingId) => async (dispatch) => {
 }
 
 export const likeSightingThunk = (payload) => async (dispatch) => {
-  const response = await fetch(`/api/likes/`, {
+  const response = await fetch(`/api/bookmarks/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -98,7 +98,7 @@ const likesReducer = (state = {}, action) => {
     case LIKE_SIGHTING:
       let like = { ...state }
 
-      like[action.payload.likes.id] = action.payload.likes;
+      like[action.payload.bookmarks.id] = action.payload.bookmarks;
 
       return like
 
