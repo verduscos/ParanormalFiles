@@ -1,6 +1,6 @@
-from app.models import db, Like
+from app.models import db, Bookmark
 
-def seed_likes():
+def seed_bookmarks():
     bookmark1 = Like(
         user_id=1,
         sighting_id=2,
@@ -17,12 +17,12 @@ def seed_likes():
     )
 
 
-    db.session.add(like1)
-    db.session.add(like2)
-    db.session.add(like3)
+    db.session.add(bookmark1)
+    db.session.add(bookmark2)
+    db.session.add(bookmark3)
 
     db.session.commit()
 
-def undo_likes():
+def undo_bookmarks():
     db.session.execute('TRUNCATE sightings RESTART IDENTITY CASCADE;')
     db.session.commit()

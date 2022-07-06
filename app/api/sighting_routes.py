@@ -2,7 +2,7 @@ import sqlalchemy
 from flask import Blueprint, session, request
 from sqlalchemy import desc, asc, or_, func
 from app.forms import SightingForm
-from app.models import Sighting, SightingImage, Like, User, db
+from app.models import Sighting, SightingImage, Bookmark, User, db
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 
