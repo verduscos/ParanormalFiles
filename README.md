@@ -63,7 +63,7 @@ Upcoming featues:
    FLASK_APP=app
    FLASK_ENV=development
    SECRET_KEY=<<YOUR-SECRET_KEY>>
-   DATABASE_URL=postgresql://magicbook_app:<<PASSWORD>>@localhost/magicbook_db
+   DATABASE_URL=postgresql://medium_app:password@localhost/medium_db
 ```
 
 4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
