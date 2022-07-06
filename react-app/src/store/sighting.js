@@ -52,12 +52,13 @@ const editSighting = (sighting) => ({
 
 
 export const getAllFavorites = (Id) => async (dispatch) => {
-  const response = await fetch(`/api/likes/${Id}`);
+  const response = await fetch(`/api/bookmarks/${Id}`);
 
   if (response.status >= 400) {
     throw response;
   }
 
+  console.log('LSJFLKSDJLKFJ')
   const data = await response.json();
   dispatch(getFavorites(data));
   return data;
@@ -198,12 +199,16 @@ const sightingReducer = (state = {}, action) => {
     case GET_FAVORITES:
       let favorites = {}
 
-      if (action.payload["likes"]) {
-        action.payload["likes"].forEach(sighting => {
+      console.log('HERER')
+
+
+      if (action.payload["bookmarks"]) {
+        action.payload["bookmarks"].forEach(sighting => {
           favorites[sighting.id] = sighting;
         })
       }
 
+      console.log(action.payload, 'YOYOMA')
       return favorites
 
     case GET_SIGHTINGS_BY_CATEGORY:

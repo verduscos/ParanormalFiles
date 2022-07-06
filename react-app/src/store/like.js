@@ -37,7 +37,7 @@ export const deleteLike = (payload) => async (dispatch) => {
 }
 
 export const getSightingLikes = (sightingId) => async (dispatch) => {
-  const response = await fetch(`/api/likes/${sightingId}`)
+  const response = await fetch(`/api/bookmarks/${sightingId}`)
 
   if(response.status >= 400) {
     throw response
@@ -77,13 +77,16 @@ export const likeSightingThunk = (payload) => async (dispatch) => {
 const likesReducer = (state = {}, action) => {
   switch (action.type){
     case GET_LIKES:
-      let likes = { ...state }
+      let bookmarks = { ...state }
 
-      action.payload.likes.forEach(liked => {
-        likes[liked.id] = liked
+      console.log("UYUEYURYEURYUERYUEYRUEYRUYREURYEUYR")
+      action.payload.bookmarks.forEach(bookmarked => {
+        bookmarks[bookmarked.id] = bookmarked
       })
 
-      return { ...likes }
+      console.log(bookmarks, 'XXXXXXXXDJKJFLKDJFDKL')
+
+      return { ...bookmarks }
 
     case REMOVE_LIKE:
       let likess = { ...state }
