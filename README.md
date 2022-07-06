@@ -31,11 +31,11 @@ Paranormal Files is built on a React frontend and a Flask backend with a Postgre
 
  * [Sightings](https://github.com/verduscos/medium-clone/wiki/Feature-List) 
  * [Commenting on sightings](https://github.com/verduscos/medium-clone/wiki/Feature-List)
- * Bookmarks
- * Search
+ * [Bookmarks](https://github.com/verduscos/medium-clone/wiki/Feature-List#bookmarks)
+ * [Search](https://github.com/verduscos/medium-clone/wiki/Feature-List#search)
 
 Upcoming featues:
- * Follows and custom feed
+ * Follows and feed
  * Likes
  * Tags/categories
 
