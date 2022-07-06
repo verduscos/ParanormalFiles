@@ -1,17 +1,17 @@
 from app.models import db, Bookmark
 
 def seed_bookmarks():
-    bookmark1 = Like(
+    bookmark1 = Bookmark(
         user_id=1,
         sighting_id=2,
     )
 
-    bookmark2 = Like(
+    bookmark2 = Bookmark(
         user_id=1,
         sighting_id=1,
     )
 
-    bookmark3 = Like(
+    bookmark3 = Bookmark(
         user_id=1,
         sighting_id=5,
     )
