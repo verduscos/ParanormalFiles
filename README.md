@@ -29,19 +29,15 @@ Paranormal Files is built on a React frontend and a Flask backend with a Postgre
 
 <img src="https://media.giphy.com/media/MKihzXfL9HuvwjSK84/giphy.gif" width=600 />
 
-## [Sightings](https://github.com/verduscos/medium-clone/wiki/Feature-List)
-Browse sightings or si
  * [Sightings](https://github.com/verduscos/medium-clone/wiki/Feature-List) 
- * [Comments](https://github.com/verduscos/medium-clone/wiki/Feature-List)
-
-Additional functionality:
- * [Categories](https://github.com/verduscos/medium-clone/wiki/Feature-List)
+ * [Commenting on sightings](https://github.com/verduscos/medium-clone/wiki/Feature-List)
+ * Bookmarks
+ * Search
 
 Upcoming featues:
+ * Follows and custom feed
  * Likes
- * Favorites
- * Search
- * Tags (will replace categories with tags which the user/reporter create instead of picking a category)
+ * Tags/categories
 
 ## Getting started
 
