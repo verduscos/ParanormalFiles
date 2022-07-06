@@ -1,19 +1,19 @@
 from app.models import db, Like
 
 def seed_likes():
-    like1 = Like(
+    bookmark1 = Like(
         user_id=1,
         sighting_id=2,
     )
 
-    like2 = Like(
-        user_id=2,
+    bookmark2 = Like(
+        user_id=1,
         sighting_id=1,
     )
 
-    like3 = Like(
-        user_id=3,
-        sighting_id=2,
+    bookmark3 = Like(
+        user_id=1,
+        sighting_id=5,
     )
 
 

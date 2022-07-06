@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
 
     sightings = db.relationship("Sighting", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
-    likes = db.relationship("Like", back_populates="user")
+    bookmarks = db.relationship("Bookmark", back_populates="user")
 
 
     @property
