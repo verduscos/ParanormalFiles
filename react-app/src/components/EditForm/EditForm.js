@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import CreateNav from "../CreateSightingForm/CreateNav";
 import "../CreateSightingForm/CreateSightingForm.css"
 import * as sessionActions from "../../store/sighting"
@@ -10,7 +10,7 @@ const EditForm = () => {
   const params = useParams()
   const { sightingId } = params
   let currentUser = useSelector(state => state.session.user)
-  const history = useHistory()
+  const history = useNavigate()
   const dispatch = useDispatch()
   const [title, setTitle] = useState(window.localStorage.getItem("title"))
   const [description, setDescription] = useState(window.localStorage.getItem("description"))

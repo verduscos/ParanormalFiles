@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import {  useHistory } from "react-router-dom";
+import {  useHistory, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { AiOutlineSearch } from "react-icons/ai"
 import * as sessions from "../../store/sighting"
 import "./Search.css"
 
 const Search = () => {
-  const history = useHistory();
+  const history = useNavigate();
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState("")
 
