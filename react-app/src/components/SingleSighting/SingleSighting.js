@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import { deleteLike, likeSightingThunk } from "../../store/like";
 import { getSightingLikes } from "../../store/like";
@@ -12,7 +12,7 @@ import "./SingleSighting.css"
 
 const SingleSighting = () => {
   const dispatch = useDispatch()
-  const history = useHistory()
+  const history = useNavigate()
   const params = useParams()
   const { sightingId } = params
   const [userBtns, setUserBtns] = useState(false)

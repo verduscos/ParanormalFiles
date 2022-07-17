@@ -28,10 +28,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' exact={true}>
-          <Main />
-        </Route>
-        <Route path='/favorites' exact={true}>
+        <Route path='/' element={<Main />} />
+          {/* <Main />
+        </Route> */}
+        {/* <Route path='/favorites' exact={true}>
           <Main />
         </Route>
         <Route path='/mysightings' exact={true}>
@@ -55,7 +55,7 @@ function App() {
         </Route>
         <Route>
           <NotFound />
-        </Route>
+        </Route> */}
       </Routes>
     </BrowserRouter>
   );

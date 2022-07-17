@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useHistory, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineHome, AiOutlineHeart } from 'react-icons/ai';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { IoAlbumsOutline } from 'react-icons/io5';
@@ -14,7 +14,7 @@ const UserNav = () => {
   let currentUser = useSelector(state => state.session.user)
   // const location = useLocation();
   // console.log(location.pathname, "lkjdklasjfalsdkfjaklsdfj");
-  const history = useHistory()
+  const history = useNavigate()
   const dispatch = useDispatch()
 
   // const [thunk, setThunk] = useState(dispatch(sessionActions.getAllSightings()));

@@ -1,12 +1,12 @@
 import React from 'react';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessions from "../../store/sighting"
 import './Tags.css';
 
 const Tags = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
   let sightings = useSelector(state => state.sightings);
   let sightingsArray = Object.values(sightings);
 
