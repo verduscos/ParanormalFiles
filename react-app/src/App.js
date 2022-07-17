@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import CreateSightingForm from './components/CreateSightingForm/CreateSightingForm'
@@ -27,7 +27,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Switch>
+      <Routes>
         <Route path='/' exact={true}>
           <Main />
         </Route>
@@ -56,7 +56,7 @@ function App() {
         <Route>
           <NotFound />
         </Route>
-      </Switch>
+      </Routes>
     </BrowserRouter>
   );
 }

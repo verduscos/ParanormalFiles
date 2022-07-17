@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import CreateNav from "./CreateNav";
 import "./CreateSightingForm.css";
@@ -8,7 +8,7 @@ import "./Form.css";
 
 const CreateSightingForm = () => {
   let currentUser = useSelector(state => state.session.user)
-  const history = useHistory()
+  const history = useNavigate()
   const dispatch = useDispatch()
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
