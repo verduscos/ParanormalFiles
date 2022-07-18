@@ -29,6 +29,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Main />} />
+        <Route path='favorites' element={<Main />} />
           {/* <Main />
         </Route> */}
         {/* <Route path='/favorites' exact={true}>
