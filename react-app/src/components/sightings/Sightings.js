@@ -30,6 +30,7 @@ const Sightings = () => {
     if (path === '/') {
       dispatch(sessionActions.getAllSightings());
     } else if (path === "/favorites") {
+      console.log("here you go")
       dispatch(sessionActions.getAllFavorites(currentUser.id));
     } else if (path === "/mysightings") {
       dispatch(sessionActions.getAllUserSightings(currentUser?.id));

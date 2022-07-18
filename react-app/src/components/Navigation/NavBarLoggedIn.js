@@ -25,14 +25,14 @@ const UserNav = () => {
   const fetch = (e) => {
     e.preventDefault()
 
-    // dispatch(sessionActions.getAllSightings())
-    // history.push("/")
+    dispatch(sessionActions.getAllSightings())
+    navigation("/");
   }
 
   const fetchFavorites =  (e) => {
     e.preventDefault()
 
-     navigation('favorites', {replace: true});
+     navigation('/favorites');
 
       // dispatch(sessionActions.getAllFavorites(currentUser.id))
 
