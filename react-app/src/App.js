@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import ProtectedRoute from './components/auth/ProtectedRoute';
 import CreateSightingForm from './components/CreateSightingForm/CreateSightingForm'
-import ImageForm from './components/ImageForm/ImageForm';
 import EditForm from './components/EditForm/EditForm';
 import { authenticate } from './store/session';
-import CreateNav from './components/CreateSightingForm/CreateNav';
 import NotFound from './components/NotFound/NotFound';
 import Main from './components/Main';
 
@@ -30,33 +27,12 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='favorites' element={<Main />} />
-          {/* <Main />
-        </Route> */}
-        {/* <Route path='/favorites' exact={true}>
-          <Main />
-        </Route>
-        <Route path='/mysightings' exact={true}>
-          <Main />
-        </Route>
-        <Route path='/sightings/:sightingId' exact={true} >
-          <Main />
-        </Route>
-        <ProtectedRoute path='/report' exact={true} >
-          <CreateSightingForm />
-        </ProtectedRoute>
-        <ProtectedRoute path='/sightings/edit/:sightingId' exact={true} >
-          <EditForm />
-        </ProtectedRoute>
-        <ProtectedRoute path='/sightings/:sightingId/images' exact={true} >
-          <CreateNav />
-          <ImageForm />
-        </ProtectedRoute>
-        <Route path="/sightings/search/:string" exact={true}>
-          <Main />
-        </Route>
-        <Route>
-          <NotFound />
-        </Route> */}
+        <Route path='/sightings/:sightingId' element={<Main />} />
+        <Route path='/mysightings' element={<Main />} />
+        <Route path='/report' element={<CreateSightingForm />} />
+        <Route path='/sightings/edit/:sightingId' element={<EditForm />} />
+        <Route path='/sightings/search/:string' element={<Main />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
