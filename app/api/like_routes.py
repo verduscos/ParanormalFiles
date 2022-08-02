@@ -12,7 +12,8 @@ def get_likes(userId):
   """
   likes = Like.query.filter(Like.user_id == userId).all()
 
-  return {"likes": [like.to_dict() for like in likes]}
+  print("testingsientsiegnwie1231231312313")
+  # return {"likes": [like.to_dict() for like in likes]}
 
 
 @like_routes.route("/", methods=["POST"])
