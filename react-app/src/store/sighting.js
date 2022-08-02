@@ -82,6 +82,7 @@ export const getAllSightings = () => async (dispatch) => {
 
   const data = await response.json();
   dispatch(getSightings(data.sightings));
+  console.log("inside getAllSightings")
   return data;
 }
 
@@ -99,10 +100,9 @@ export const getAllSightingsByCategory = (category) => async (dispatch) => {
 export const getAllUserSightings = (userId) => async (dispatch) => {
   const response = await fetch(`/api/sightings/user/${userId}`);
   if (response.status >= 400) {
+    console.log("inside  getAllUserSightings");
     throw response
   } else {
-
-
     const data = await response.json();
     dispatch(getSightingsByUser(data.sightings));
     return data
@@ -176,6 +176,8 @@ const sightingReducer = (state = {}, action) => {
     case GET_SIGHTINGS:
       let sightings = {}
 
+      console.log(action.payload)
+
       action.payload.forEach(sighting => {
         sightings[sighting.id] = sighting
       })
@@ -211,7 +213,7 @@ const sightingReducer = (state = {}, action) => {
 
       return { ...category }
     case GET_USER_SIGHTINGS:
-      let userSightings = {}
+      const userSightings = {}
 
       action.payload.forEach(sighting => {
         userSightings[sighting.id] = sighting
