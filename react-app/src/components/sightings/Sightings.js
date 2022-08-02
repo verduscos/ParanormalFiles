@@ -58,22 +58,22 @@ const Sightings = () => {
             : null}
 
           {sightingsArray.map((sighting, i) => (
-            <div id="sighting-card">
+            <div id="sighting-card" key={i}>
               <ul id="sighting-details" key={sighting?.id}>
                 <li key={`date-${sighting?.id}`}>
                   <h4 id="sighting-author">
                     {sighting?.username}
                   </h4>
                 </li>
-                <li>
-                  <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}`}>
+                <li key={`link-${i}`}>
+                  <Link className="link" to={`/sightings/${sighting?.id}`}>
                     <div key={`title-${sighting?.id}`}>
                       <h2 id="sighting-title">{sighting.title}</h2>
                       <p className="sighting-story">{sighting.description}</p>
                     </div>
                   </Link>
                 </li>
-                <li id="sighting-tag-container">
+                <li id="sighting-tag-container" key={`tag-${i}`}>
                   <span id="sighting-date">{`${sighting?.created_at.split(' ')[2]} ${sighting.created_at.split(' ')[1]}`}</span>
                   {/* , ${sighting.created_at.split(' ')[3]} */}
 
