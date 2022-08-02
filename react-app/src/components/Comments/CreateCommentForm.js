@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createAComment } from "../../store/comment";
 import { BiUserCircle } from "react-icons/bi";
-import { CgProfile } from "react-icons/cg";
 import "./Form.css";
 
 

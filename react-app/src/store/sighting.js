@@ -52,17 +52,13 @@ const editSighting = (sighting) => ({
 
 
 export const getAllFavorites = (Id) => async (dispatch) => {
-  console.log("90909090")
   const response = await fetch(`/api/likes/${Id}`);
-  console.log("BEFORE STATUS CHECK")
 
   if (response.status >= 400) {
     throw response;
   }
-  console.log("AFTER STATUS CHECK")
   const data = await response.json();
   dispatch(getFavorites(data));
-  console.log(data, 'DATA HERERERE');
   return data;
 }
 
@@ -71,8 +67,6 @@ export const searchAllSightings = (searchStr) => async (dispatch) => {
   if (response.status >= 400) {
     throw response
   }
-
-  console.log("HITTING THINK")
   const data = await response.json();
   dispatch(searchSightings(data));
   return data;
@@ -88,7 +82,6 @@ export const getAllSightings = () => async (dispatch) => {
 
   const data = await response.json();
   dispatch(getSightings(data.sightings));
-  console.log(data, 'DATA HERERERE');
   return data;
 }
 
@@ -198,7 +191,7 @@ const sightingReducer = (state = {}, action) => {
 
         return { ...search };
       }
-    break;
+      break;
     case GET_FAVORITES:
       let favorites = {}
 
