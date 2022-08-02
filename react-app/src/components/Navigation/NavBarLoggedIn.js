@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { AiOutlineHome, AiOutlineHeart } from 'react-icons/ai';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { IoAlbumsOutline } from 'react-icons/io5';
@@ -8,41 +8,30 @@ import ProfileButton from './ProfileButton';
 import * as sessionActions from "../../store/sighting"
 import './Navigation.css'
 import Logo from "./pf-logo.png"
-// import { useNavigation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import LogoutButton from '../auth/LogoutButton';
 
 const UserNav = () => {
   let currentUser = useSelector(state => state.session.user)
-  // const location = useLocation();
-  // console.log(location.pathname, "lkjdklasjfalsdkfjaklsdfj");
-  let navigation = useNavigate()
+  let navigate = useNavigate()
   const dispatch = useDispatch()
 
-  // const [thunk, setThunk] = useState(dispatch(sessionActions.getAllSightings()));
-
   const fetch = (e) => {
-    e.preventDefault()
-
-    dispatch(sessionActions.getAllSightings())
-    navigation("/");
+    e.preventDefault();
+    dispatch(sessionActions.getAllSightings());
+    navigate("/");
   }
 
-  const fetchFavorites =  (e) => {
-    e.preventDefault()
+  const fetchFavorites = (e) => {
+    e.preventDefault();
 
-     navigation('/favorites');
-
-      // dispatch(sessionActions.getAllFavorites(currentUser.id))
-
+    navigate('/favorites');
+    // dispatch(sessionActions.getAllFavorites(currentUser.id))
   }
 
   const fetchUserSightings = (e) => {
-    e.preventDefault()
-
-    // history.push('/mysightings');
-
+    e.preventDefault();
+    navigate('/mysightings');
     // dispatch(sessionActions.getAllUserSightings(currentUser.id))
   }
 

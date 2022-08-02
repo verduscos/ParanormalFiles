@@ -6,7 +6,7 @@ import { BiLogOutCircle } from 'react-icons/bi';
 import "./ProfileButton.css";
 
 function ProfileButton({ user }) {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -26,7 +26,7 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
-    history.push('/');
+    navigate('/');
   };
 
   return (
