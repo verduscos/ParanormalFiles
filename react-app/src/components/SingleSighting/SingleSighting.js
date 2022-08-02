@@ -119,7 +119,7 @@ const SingleSighting = () => {
     dispatch(sessionActions.getAllSightings());
     dispatch(getSightingLikes(currentUser?.id));
 
-  }, [dispatch])
+  }, [currentUser?.id, dispatch])
 
   useEffect(() => {
     dispatch(getALLComments(sightingId))

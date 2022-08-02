@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { GiSpaceSuit } from "react-icons/gi";
 import "./NotFound.css"
 
 const NotFound = () => {

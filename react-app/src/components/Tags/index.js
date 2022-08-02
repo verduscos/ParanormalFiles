@@ -1,16 +1,12 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as sessions from "../../store/sighting"
 import './Tags.css';
 
 const Tags = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
-  let sightings = useSelector(state => state.sightings);
-  let sightingsArray = Object.values(sightings);
-
-
   const tagList = ["UFOs", "Angels", "Reincarnation", "Ghosts", "Monsters", "Mandela Effect", "Time Travel", "Demons", 'Synchronicity'];
 
   const search = async (e, searchStr) => {
@@ -18,10 +14,6 @@ const Tags = () => {
 
     dispatch(sessions.searchAllSightings(searchStr))
     history.push(`/sightings/search/${searchStr}`)
-
-    // sightingsArray = sightingsArray.filter(s => s.category === searchStr);
-    // need to filter correctly, save a query
-    // console.log(sightingsArray);
   }
 
   return (
@@ -32,6 +24,7 @@ const Tags = () => {
           {tagList.map(tag => (
             <li
               onClick={(e) => search(e, tag)}
+              key={tag}
             >{tag}</li>
           ))}
         </ul>

@@ -37,7 +37,7 @@ const Sightings = () => {
     } else {
       return;
     }
-  }, [path])
+  }, [path, currentUser?.id, dispatch])
 
   const loadingIcon = (
     <div id="loading-container">
