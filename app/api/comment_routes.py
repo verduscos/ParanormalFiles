@@ -14,6 +14,7 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+
 @comment_routes.route("/<int:sightingId>", methods=["POST"])
 def create_comment(sightingId):
     """
@@ -62,7 +63,6 @@ def update_comment(commentId):
         db.session.commit()
         return {"comment": comment.to_dict()}
     return{"errors": validation_errors_to_error_messages(form.errors)}, 400
-
 
 
 @comment_routes.route("<int:commentId>", methods=["DELETE"])

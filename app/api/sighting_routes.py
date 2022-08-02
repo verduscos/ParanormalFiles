@@ -20,7 +20,6 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-
 @sighting_routes.route("/")
 def get_sightings():
     """
@@ -31,6 +30,7 @@ def get_sightings():
     .all()
 
     return {"sightings": [sighting.to_dict() for sighting in sightings]}
+
 
 @sighting_routes.route("/additional")
 def get_next_sightings():

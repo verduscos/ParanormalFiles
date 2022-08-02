@@ -11,7 +11,6 @@ def get_likes(userId):
   Get all user favorites.
   """
   likes = Like.query.filter(Like.user_id == userId).all()
-  # total_likes = len(likes)
 
   return {"likes": [like.to_dict() for like in likes]}
 
@@ -43,9 +42,6 @@ def delete_like():
   """
   Delete a like for a specific sighting.
   """
-  form = LikeForm()
-  # form["csrf_token"].data = request.cookies["csrf_token"]
-  # if form.validate_on_submit():
   searchExists = Like.query.filter(Like.user_id == request.json["user_id"], Like.sighting_id == request.json["sighting_id"]).first()
   if searchExists is not None:
     db.session.delete(searchExists)
