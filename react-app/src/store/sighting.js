@@ -198,7 +198,7 @@ const sightingReducer = (state = {}, action) => {
 
         return { ...search };
       }
-
+    break;
     case GET_FAVORITES:
       let favorites = {}
 
