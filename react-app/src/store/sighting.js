@@ -1,17 +1,15 @@
-const GET_SIGHTINGS = "session/GET_SIGHTING";
-const GET_SIGHTINGS_BY_CATEGORY = "session/GET_SIGHTINGS_BY_CATEGORY"
-const GET_USER_SIGHTINGS = "session/GET_USER_SIGHTINGS"
-const GET_FAVORITES = "session/GET_FAVORITES"
 const CREATE_SIGHTING = "session/CREATE_SIGHTING"
+const GET_SIGHTINGS = "session/GET_SIGHTING";
 const EDIT_SIGHTING = "session/EDIT_SIGHTING"
 const DELETE_SIGHTING = "session/DELETE_SIGHTING"
+const GET_USER_SIGHTINGS = "session/GET_USER_SIGHTINGS"
+const GET_USER_FAVORITES = "session/GET_FAVORITES"
 const SEARCH = "session/SEARCH"
 
 
-
-const getFavorites = (sightings) => ({
-  type: GET_FAVORITES,
-  payload: sightings
+const createSighting = (sighting) => ({
+  type: CREATE_SIGHTING,
+  payload: sighting
 })
 
 const getSightings = (sightings) => ({
@@ -19,23 +17,8 @@ const getSightings = (sightings) => ({
   payload: sightings
 })
 
-const searchSightings = (searchStr) => ({
-  type: SEARCH,
-  payload: searchStr
-})
-
-const getSightingsByCategory = (sightings) => ({
-  type: GET_SIGHTINGS_BY_CATEGORY,
-  payload: sightings
-})
-
-const getSightingsByUser = (sightings) => ({
-  type: GET_USER_SIGHTINGS,
-  payload: sightings
-})
-
-const createSighting = (sighting) => ({
-  type: CREATE_SIGHTING,
+const editSighting = (sighting) => ({
+  type: EDIT_SIGHTING,
   payload: sighting
 })
 
@@ -44,9 +27,19 @@ const deleteSighting = (sightingId) => ({
   payload: sightingId
 })
 
-const editSighting = (sighting) => ({
-  type: EDIT_SIGHTING,
-  payload: sighting
+const getSightingsByUser = (sightings) => ({
+  type: GET_USER_SIGHTINGS,
+  payload: sightings
+})
+
+const getFavorites = (sightings) => ({
+  type: GET_USER_FAVORITES,
+  payload: sightings
+})
+
+const searchSightings = (searchStr) => ({
+  type: SEARCH,
+  payload: searchStr
 })
 
 
@@ -84,17 +77,6 @@ export const getAllSightings = () => async (dispatch) => {
   dispatch(getSightings(data.sightings));
   console.log("inside getAllSightings")
   return data;
-}
-
-export const getAllSightingsByCategory = (category) => async (dispatch) => {
-  const response = await fetch(`/api/sightings/${category}`);
-  if (response.status >= 400) {
-    throw response
-  }
-
-  const data = await response.json();
-  dispatch(getSightingsByCategory(data.sightings));
-  return data
 }
 
 export const getAllUserSightings = (userId) => async (dispatch) => {
@@ -194,8 +176,8 @@ const sightingReducer = (state = {}, action) => {
         })
         return search;
       }
-      
-    case GET_FAVORITES:
+
+    case GET_USER_FAVORITES:
       let favorites = {}
 
       if (action.payload["likes"]) {
@@ -206,13 +188,6 @@ const sightingReducer = (state = {}, action) => {
 
       return favorites
 
-    case GET_SIGHTINGS_BY_CATEGORY:
-      let category = {}
-      action.payload.forEach(sighting => {
-        category[sighting.id] = sighting
-      })
-
-      return { ...category }
     case GET_USER_SIGHTINGS:
       const userSightings = {}
 
