@@ -79,7 +79,7 @@ const Comments = () => {
           <p>{commentsArray.length}</p>
         </li>
         <li>
-          <CreateCommentForm />
+          <CreateCommentForm currentUser={currentUser} sightingId={sightingId} />
         </li>
         <li>
 
