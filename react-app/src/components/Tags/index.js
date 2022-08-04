@@ -6,14 +6,14 @@ import './Tags.css';
 
 const Tags = () => {
   const dispatch = useDispatch();
-  const history = useNavigate();
+  const navigate = useNavigate();
   const tagList = ["UFOs", "Angels", "Reincarnation", "Ghosts", "Monsters", "Mandela Effect", "Time Travel", "Demons", 'Synchronicity'];
 
   const search = async (e, searchStr) => {
     e.preventDefault();
 
-    dispatch(sessions.searchAllSightings(searchStr))
-    history.push(`/sightings/search/${searchStr}`)
+    dispatch(sessions.searchAllSightings(searchStr));
+    navigate(`/sightings/search/${searchStr}`);
   }
 
   return (
