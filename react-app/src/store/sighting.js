@@ -69,8 +69,8 @@ export const searchAllSightings = (searchStr) => async (dispatch) => {
   }
   const data = await response.json();
   dispatch(searchSightings(data));
+  console.log(data, "HERERERE")
   return data;
-
 }
 
 export const getAllSightings = () => async (dispatch) => {
@@ -185,15 +185,16 @@ const sightingReducer = (state = {}, action) => {
       return { ...state, ...sightings }
 
     case SEARCH:
-      let search = {}
-      if (action.payload["sightings"]) {
+      const search = { ...state }
+      if (action.payload["error"]) {
+        return {};
+      } else  {
         action.payload["sightings"].forEach(sighting => {
           search[sighting.id] = sighting
         })
-
-        return { ...search };
+        return search;
       }
-      break;
+      
     case GET_FAVORITES:
       let favorites = {}
 
