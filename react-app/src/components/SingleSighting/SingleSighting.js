@@ -6,6 +6,7 @@ import { deleteLike, likeSightingThunk } from "../../store/like";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import "./SingleSighting.css"
+import Comments from "../Comments/Comments";
 
 
 const SingleSighting = () => {

@@ -6,6 +6,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import CreateCommentForm from "./CreateCommentForm";
 import "./Comments.css"
 
+
 const Comments = () => {
   const dispatch = useDispatch();
   const params = useParams()
@@ -17,19 +18,16 @@ const Comments = () => {
   const [selectedComment, setSelectedComment] = useState(null)
   const [displayUsrBtn, setDisplayUsrBtn] = useState(false);
   const [displayDots, setDisplayDots] = useState(true)
-
   const currentUser = useSelector(state => state.session.user)
   let comments = useSelector(state => state.comments)
   let commentsArray = Object.values(comments);
   commentsArray = commentsArray.reverse();
 
+
   const deleteComment = (e, id) => {
     e.preventDefault();
-    // remove edit and delete btn when a comment is deleted
     setDisplayUsrBtn(!displayUsrBtn)
-
     dispatch(deleteAComment(id));
-
   }
 
   const editComment = (e, id) => {
@@ -37,24 +35,18 @@ const Comments = () => {
       comment_id: commentId,
       comment: comment
     }
-
     if (comment.length >= 4) {
       // Remove editCommentForm on submission, reset comment and error mssgs
       setDisplayDots(true)
       displayEditForm(!editForm);
       setComment("")
       setErrors([]);
-
       dispatch(updateAComment(payload))
     } else {
       setErrors(["Comment must be longer than 3 characters"])
     }
-
   }
 
-  // Comment Form
-
-  // Edit Form
   const editComponent = (
     <>
       <textarea
@@ -74,10 +66,8 @@ const Comments = () => {
     </>
   )
 
-
   useEffect(() => {
-    dispatch(getALLComments(sightingId))
-
+    dispatch(getALLComments(sightingId));
   }, [dispatch, sightingId])
 
   return (

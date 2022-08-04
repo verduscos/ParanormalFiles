@@ -6,10 +6,9 @@ import { BiUserCircle } from "react-icons/bi";
 import "./Form.css";
 
 
-
 const CreateCommentForm = () => {
-  const params = useParams();
   let currentUser = useSelector(state => state.session.user)
+  const params = useParams();
   const { sightingId } = params;
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([])
@@ -19,7 +18,6 @@ const CreateCommentForm = () => {
 
   const createComment = async (e) => {
     e.preventDefault();
-
     const payload = {
       user_id: currentUser.id,
       sighting_id: sightingId,
@@ -66,7 +64,6 @@ const CreateCommentForm = () => {
               </form>
             :
             <div id="comment-trigger-container">
-              {/* <BiUserCircle /> */}
               <button onClick={() => setDisplayForm(!displayForm)}>Add a comment...</button>
             </div>
           }
