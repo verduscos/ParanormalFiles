@@ -43,52 +43,14 @@ const searchSightings = (searchStr) => ({
 })
 
 
-
-export const getAllFavorites = (Id) => async (dispatch) => {
-  const response = await fetch(`/api/likes/${Id}`);
-
+export const getAllSightings = () => async (dispatch) => {
+  const response = await fetch(`/api/sightings/`);
   if (response.status >= 400) {
     throw response;
   }
   const data = await response.json();
-  dispatch(getFavorites(data));
-  return data;
-}
-
-export const searchAllSightings = (searchStr) => async (dispatch) => {
-  const response = await fetch(`/api/sightings/search/${searchStr}`);
-  if (response.status >= 400) {
-    throw response
-  }
-  const data = await response.json();
-  dispatch(searchSightings(data));
-  console.log(data, "HERERERE")
-  return data;
-}
-
-export const getAllSightings = () => async (dispatch) => {
-  const response = await fetch(`/api/sightings/`);
-
-  if (response.status >= 400) {
-    throw response
-  }
-
-  const data = await response.json();
   dispatch(getSightings(data.sightings));
-  console.log("inside getAllSightings")
   return data;
-}
-
-export const getAllUserSightings = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/sightings/user/${userId}`);
-  if (response.status >= 400) {
-    console.log("inside  getAllUserSightings");
-    throw response
-  } else {
-    const data = await response.json();
-    dispatch(getSightingsByUser(data.sightings));
-    return data
-  }
 }
 
 export const createASighting = (payload) => async (dispatch) => {
@@ -109,10 +71,10 @@ export const createASighting = (payload) => async (dispatch) => {
   })
   const data = await response.json()
   if (data.errors) {
-    return data
+    return data;
   } else {
-    dispatch(createSighting(data))
-    return data
+    dispatch(createSighting(data));
+    return data;
   }
 }
 
@@ -133,10 +95,10 @@ export const updateSighting = (payload) => async (dispatch) => {
 
   const data = await response.json()
   if (data.errors) {
-    return data
+    return data;
   } else {
-    dispatch(editSighting(data))
-    return data
+    dispatch(editSighting(data));
+    return data;
   }
 }
 
@@ -146,25 +108,51 @@ export const deleteASighting = (sightingId) => async (dispatch) => {
   })
   if (response.ok) {
     const data = await response.json();
-    dispatch(deleteSighting(data))
-    return
+    dispatch(deleteSighting(data));
+    return;
   }
 }
 
+export const getAllUserSightings = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/sightings/user/${userId}`);
+  if (response.status >= 400) {
+    throw response;
+  } else {
+    const data = await response.json();
+    dispatch(getSightingsByUser(data.sightings));
+    return data;
+  }
+}
+
+export const getAllFavorites = (Id) => async (dispatch) => {
+  const response = await fetch(`/api/likes/${Id}`);
+  if (response.status >= 400) {
+    throw response;
+  }
+  const data = await response.json();
+  dispatch(getFavorites(data));
+  return data;
+}
+
+export const searchAllSightings = (searchStr) => async (dispatch) => {
+  const response = await fetch(`/api/sightings/search/${searchStr}`);
+  if (response.status >= 400) {
+    throw response;
+  }
+  const data = await response.json();
+  dispatch(searchSightings(data));
+  return data;
+}
 
 
 const sightingReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_SIGHTINGS:
-      let sightings = {}
-
-      console.log(action.payload)
-
+      const sightings = { ...state }
       action.payload.forEach(sighting => {
-        sightings[sighting.id] = sighting
+        sightings[sighting.id] = sighting;
       })
-
-      return { ...state, ...sightings }
+      return sightings;
 
     case SEARCH:
       const search = { ...state }
@@ -179,38 +167,35 @@ const sightingReducer = (state = {}, action) => {
 
     case GET_USER_FAVORITES:
       let favorites = {}
-
       if (action.payload["likes"]) {
         action.payload["likes"].forEach(sighting => {
           favorites[sighting.id] = sighting;
         })
       }
-
       return favorites
 
     case GET_USER_SIGHTINGS:
       const userSightings = {}
-
       action.payload.forEach(sighting => {
         userSightings[sighting.id] = sighting
       })
-
       return { ...userSightings }
+
     case CREATE_SIGHTING:
       state[action.payload.id] = action.payload
       return { ...state }
+
     case EDIT_SIGHTING:
       let updated = { ...state }
       updated[action.payload.id] = action.payload
-
       return { ...updated }
+
     case DELETE_SIGHTING:
       let updatedSightings = { ...state }
-
       let id = (action.payload["found"])
       delete updatedSightings[id];
-
       return updatedSightings
+
     default:
       return state
   }
