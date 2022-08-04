@@ -1,18 +1,17 @@
-const GET_COMMENTS = "session/GET_COMMENTS"
 const CREATE_COMMENT = "session/CREATE_COMMENT"
+const GET_SIGHTING_COMMENTS = "session/GET_COMMENTS"
 const UPDATE_COMMENT = "session/UPDATE_COMMENT"
 const DELETE_COMMENT = "session/DELETE_ACTION"
-
-
-const getComments = (comments, userLeftComment) => ({
-  type: GET_COMMENTS,
-  payload: comments,
-  userLeftComment: userLeftComment
-})
 
 const createComment = (comment) => ({
   type: CREATE_COMMENT,
   payload: comment
+})
+
+const getComments = (comments, userLeftComment) => ({
+  type: GET_SIGHTING_COMMENTS,
+  payload: comments,
+  userLeftComment: userLeftComment
 })
 
 const updateCommnet = (comment) => ({
@@ -26,20 +25,6 @@ const deleteComment = (commentId) => ({
 })
 
 
-export const getALLComments = (sightingId) => async (dispatch) => {
-  const response = await fetch(`/api/comments/${sightingId}`)
-
-  if (response.status >= 400) {
-    throw response
-  }
-
-  const data = await response.json();
-
-  dispatch(getComments(data));
-  return data;
-
-}
-
 export const createAComment = (payload) => async (dispatch) => {
   const response = await fetch(`/api/comments/${payload.sighting_id}`, {
     method: "POST",
@@ -52,15 +37,23 @@ export const createAComment = (payload) => async (dispatch) => {
       comment: payload.comment
     })
   })
-
   const data = await response.json();
-
   if (data.errors) {
-    return data
+    return data;
   } else {
-    dispatch(createComment(data))
-    return data
+    dispatch(createComment(data));
+    return data;
   }
+}
+
+export const getALLComments = (sightingId) => async (dispatch) => {
+  const response = await fetch(`/api/comments/${sightingId}`)
+  if (response.status >= 400) {
+    throw response;
+  }
+  const data = await response.json();
+  dispatch(getComments(data));
+  return data;
 }
 
 export const updateAComment = (payload) => async (dispatch) => {
@@ -74,38 +67,36 @@ export const updateAComment = (payload) => async (dispatch) => {
       comment: payload.comment
     })
   })
-
-  const data = await response.json()
-  dispatch(updateCommnet(data))
+  const data = await response.json();
+  dispatch(updateCommnet(data));
 }
 
 export const deleteAComment = (payload) => async (dispatch) => {
   const response = await fetch(`/api/comments/${payload}`, {
     method: "DELETE",
   })
-
   if (response.ok) {
     const data = await response.json();
-    dispatch(deleteComment(data))
-    return
+    dispatch(deleteComment(data));
+    return;
   }
 }
 
 const commentsReducer = (state = {}, action) => {
   switch (action.type) {
-    case GET_COMMENTS:
-      let comments1 = {}
-
+    case CREATE_COMMENT: {
+      const newState = { ...state }
+      newState[action.payload.comment.id] = action.payload.comment;
+      return newState;
+    }
+    case GET_SIGHTING_COMMENTS: {
+      const newState = {}
       action.payload.comments.forEach(comment => {
-        comments1[comment.id] = comment
+        newState[comment.id] = comment
       })
+      return { ...newState }
+    }
 
-      return { ...comments1 }
-    case CREATE_COMMENT:
-      let comments = {}
-      comments[action.payload.comment.id] = action.payload.comment
-
-      return { ...state, ...comments }
     case UPDATE_COMMENT:
       let comments2 = { ...state }
       comments2[action.payload.comment.id] = action.payload.comment
