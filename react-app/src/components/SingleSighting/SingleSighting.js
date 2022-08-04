@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import { deleteLike, likeSightingThunk } from "../../store/like";
-import { getSightingLikes } from "../../store/like";
-import { getALLComments } from "../../store/comment";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import "./SingleSighting.css"
@@ -20,9 +18,10 @@ const SingleSighting = () => {
   let currentUser = useSelector(state => state.session.user)
   let likes = useSelector(state => state.likes)
 
-  useEffect(() => {
-    dispatch(sessionActions.getAllSightings())
 
+  useEffect(() => {
+    dispatch(sessionActions.getAllSightings());
+    // dispatch(getSightingLikes(currentUser?.id));
   }, [dispatch])
 
 
@@ -115,16 +114,6 @@ const SingleSighting = () => {
   )
 
   // END OF FUNCS
-  useEffect(() => {
-    dispatch(sessionActions.getAllSightings());
-    dispatch(getSightingLikes(currentUser?.id));
-
-  }, [currentUser?.id, dispatch])
-
-  useEffect(() => {
-    dispatch(getALLComments(sightingId))
-  }, [dispatch, sightingId])
-
 
 
   return (
