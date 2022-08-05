@@ -32,13 +32,12 @@ def get_sightings():
     return {"sightings": [sighting.to_dict() for sighting in sightings]}
 
 
-@sighting_routes.route("/additional")
-def get_next_sightings():
+@sighting_routes.route("/additional/<string:id>")
+def get_next_sightings(id):
     """
     Get next 10 records
     """
-    sightings = Sighting.query.order_by(Sighting.created_at).filter(Sighting.id > 10).limit(3).all()
-
+    sightings = Sighting.query.order_by(Sighting.created_at).filter(Sighting.id > id).limit(10).all()
     return {"sightings" : [sighting.to_dict() for sighting in sightings]}
 
 
