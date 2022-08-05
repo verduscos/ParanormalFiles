@@ -1,5 +1,6 @@
 const CREATE_SIGHTING = "session/CREATE_SIGHTING"
-const GET_SIGHTINGS = "session/GET_SIGHTING";
+const GET_SIGHTINGS = "session/GET_SIGHTING"
+const GET_MORE_SIGHTINGS = "session/GET_MORE_SIGHTINGS"
 const EDIT_SIGHTING = "session/EDIT_SIGHTING"
 const DELETE_SIGHTING = "session/DELETE_SIGHTING"
 const GET_USER_SIGHTINGS = "session/GET_USER_SIGHTINGS"
@@ -14,6 +15,11 @@ const createSighting = (sighting) => ({
 
 const getSightings = (sightings) => ({
   type: GET_SIGHTINGS,
+  payload: sightings
+})
+
+const getMoreSightings = (sightings) => ({
+  type: GET_MORE_SIGHTINGS,
   payload: sightings
 })
 
@@ -50,6 +56,13 @@ export const getAllSightings = () => async (dispatch) => {
   }
   const data = await response.json();
   dispatch(getSightings(data.sightings));
+  return data;
+}
+
+export const getAdditionalSightings = (id) => async (dispatch) => {
+  const response = await fetch(`/api/sightings/additional/${id}`);
+  const data = await response.json();
+  dispatch(getMoreSightings(data.sightings));
   return data;
 }
 
@@ -153,6 +166,15 @@ const sightingReducer = (state = {}, action) => {
         sightings[sighting.id] = sighting;
       })
       return sightings;
+
+    case GET_MORE_SIGHTINGS: {
+      const sightings = { ...state };
+
+      action.payload.forEach(sighting => {
+        sightings[sighting.id] = sighting;
+      })
+      return sightings;
+    }
 
     case SEARCH:
       const search = { ...state }

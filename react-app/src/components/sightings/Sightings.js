@@ -11,7 +11,9 @@ const Sightings = () => {
   let currentUser = useSelector(state => state.session.user)
   let sightings = useSelector(state => state.sightings);
   let sightingsArray = Object.values(sightings);
+  let id = sightingsArray[0]?.id;
   sightingsArray = sightingsArray.reverse();
+
 
   const location = useLocation();
   let path = location.pathname;
@@ -38,6 +40,11 @@ const Sightings = () => {
       return;
     }
   }, [path, currentUser?.id, dispatch])
+
+  const fetchMoreSightings = (e, id) => {
+    e.preventDefault();
+    dispatch(sessionActions.getAdditionalSightings(id));
+  }
 
   const loadingIcon = (
     <div id="loading-container">
@@ -87,6 +94,8 @@ const Sightings = () => {
               </Link>
             </div>
           ))}
+
+          <button onClick={ e => (fetchMoreSightings(e, id))}>Load more sightings</button>
         </div>
 
 
