@@ -23,11 +23,11 @@ def validation_errors_to_error_messages(validation_errors):
 @sighting_routes.route("/")
 def get_sightings():
     """
-    Get all sightings in DB, will use on splash page.
+    Get latest 10 records
     """
     sightings = Sighting.query \
-    .order_by(desc(Sighting.created_at)) \
-    .all()
+      .order_by(Sighting.id.desc()) \
+      .limit(10)
 
     return {"sightings": [sighting.to_dict() for sighting in sightings]}
 
@@ -35,9 +35,13 @@ def get_sightings():
 @sighting_routes.route("/additional/<string:id>")
 def get_next_sightings(id):
     """
-    Get next 10 records
+    Get next 10 latest records
     """
-    sightings = Sighting.query.order_by(Sighting.created_at).filter(Sighting.id > id).limit(10).all()
+    sightings = Sighting.query \
+      .order_by(Sighting.id.desc()) \
+      .filter(Sighting.id < id) \
+      .limit(10)
+
     return {"sightings" : [sighting.to_dict() for sighting in sightings]}
 
 
