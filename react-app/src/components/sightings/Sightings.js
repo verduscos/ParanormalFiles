@@ -8,6 +8,7 @@ import "./sightings.css"
 const Sightings = () => {
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true);
+  const [displayFetchBtn, setDisplayFetchBtn] = useState(false);
   let currentUser = useSelector(state => state.session.user)
   let sightings = useSelector(state => state.sightings);
   let sightingsArray = Object.values(sightings);
@@ -31,13 +32,13 @@ const Sightings = () => {
 
     if (path === '/') {
       dispatch(sessionActions.getAllSightings());
+      setDisplayFetchBtn(true);
     } else if (path === "/favorites") {
-      console.log("here you go")
       dispatch(sessionActions.getAllFavorites(currentUser.id));
+      setDisplayFetchBtn(false);
     } else if (path === "/mysightings") {
       dispatch(sessionActions.getAllUserSightings(currentUser?.id));
-    } else {
-      return;
+      setDisplayFetchBtn(false);
     }
   }, [path, currentUser?.id, dispatch])
 
@@ -45,6 +46,16 @@ const Sightings = () => {
     e.preventDefault();
     dispatch(sessionActions.getAdditionalSightings(id));
   }
+
+  const fetchBtn = (
+    <>
+      {
+        displayFetchBtn ?
+          <button id="fetch-btn" onClick={e => (fetchMoreSightings(e, id))}>Load more sightings</button> :
+          null
+      }
+    </>
+  )
 
   const loadingIcon = (
     <div id="loading-container">
@@ -94,8 +105,7 @@ const Sightings = () => {
               </Link>
             </div>
           ))}
-
-          <button onClick={ e => (fetchMoreSightings(e, id))}>Load more sightings</button>
+          {fetchBtn}
         </div>
 
 
