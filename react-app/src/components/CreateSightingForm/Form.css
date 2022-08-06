@@ -105,13 +105,19 @@
 
 /* TABLET & MOBILE */
 @media screen and (max-width: 1023px) {
-  #form-submit-btn {
-    margin-top: -20px;
+  .sighting-form {
+    margin: 25px 24px 0 24px;
+    max-width: 740px;
+    width: 90%;
   }
 
   #sighting-form > div {
     width: 700px;
     width: 90%;
     margin: 0 auto;
+  }
+
+  #form-submit-btn {
+    margin-top: -20px;
   }
 }
