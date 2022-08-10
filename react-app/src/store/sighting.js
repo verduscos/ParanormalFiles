@@ -158,20 +158,24 @@ export const searchAllSightings = (searchStr) => async (dispatch) => {
 }
 
 
-const sightingReducer = (state = {}, action) => {
+const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
   switch (action.type) {
     case GET_SIGHTINGS:
       const sightings = { ...state }
       action.payload.forEach(sighting => {
-        sightings[sighting.id] = sighting;
+        sightings.all[sighting.id] = sighting;
       })
       return sightings;
 
     case GET_MORE_SIGHTINGS: {
       const sightings = { ...state };
+      if (action.payload.length < 1) {
+        sightings.exhausted = true;
+        return sightings;
+      }
 
       action.payload.forEach(sighting => {
-        sightings[sighting.id] = sighting;
+        sightings.all[sighting.id] = sighting;
       })
       return sightings;
     }

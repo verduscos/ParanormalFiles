@@ -9,9 +9,10 @@ const Sightings = () => {
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true);
   const [displayFetchBtn, setDisplayFetchBtn] = useState(false);
-  let currentUser = useSelector(state => state.session.user)
-  let sightings = useSelector(state => state.sightings);
-  let sightingsArray = Object.values(sightings);
+  const currentUser = useSelector(state => state.session.user)
+  const sightings = useSelector(state => state.sightings);
+  const exhausted = useSelector(state => state.sightings.exhausted);
+  let sightingsArray = Object.values(sightings?.all);
   let id = sightingsArray[0]?.id;
   sightingsArray = sightingsArray.reverse();
 
@@ -26,6 +27,10 @@ const Sightings = () => {
       setLoading(false);
     }, [500])
   }
+
+  useEffect(() => {
+    if (exhausted) setDisplayFetchBtn(false);
+  }, [exhausted])
 
   useEffect(() => {
     resetLoading();
@@ -92,7 +97,7 @@ const Sightings = () => {
                   </Link>
                 </li>
                 <li id="sighting-tag-container" key={`tag-${i}`}>
-                  <span id="sighting-date">{`${sighting?.created_at.split(' ')[2]} ${sighting.created_at.split(' ')[1]}`}</span>
+                  <span id="sighting-date">{`${sighting?.created_at?.split(' ')[2]} ${sighting?.created_at?.split(' ')[1]}`}</span>
                   {/* , ${sighting.created_at.split(' ')[3]} */}
 
                   <Link className="link tag" to={`/sightings/categories/${sighting?.category}`}>
