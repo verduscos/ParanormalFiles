@@ -183,10 +183,10 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
     case SEARCH:
       const search = { ...state }
       if (action.payload["error"]) {
-        return {};
+        return { all: {}, exhausted: true };
       } else  {
         action.payload["sightings"].forEach(sighting => {
-          search[sighting.id] = sighting
+          search.all[sighting.id] = sighting
         })
         return search;
       }
