@@ -8,7 +8,7 @@ import "./sightings.css"
 const Sightings = () => {
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true);
-  const [displayFetchBtn, setDisplayFetchBtn] = useState(false);
+  const [displayFetchBtn, setDisplayFetchBtn] = useState(true);
   const currentUser = useSelector(state => state.session.user)
   const sightings = useSelector(state => state.sightings);
   const exhausted = useSelector(state => state.sightings.exhausted);

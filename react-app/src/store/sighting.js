@@ -157,7 +157,6 @@ export const searchAllSightings = (searchStr) => async (dispatch) => {
   return data;
 }
 
-
 const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
   switch (action.type) {
     case GET_SIGHTINGS:
@@ -181,9 +180,9 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
     }
 
     case SEARCH:
-      const search = { all: {}, exhausted: true }
+      const search = { all: {}, exhausted: false }
       if (action.payload["error"]) {
-        return { all: {}, exhausted: true };
+        return search;
       } else  {
         action.payload["sightings"].forEach(sighting => {
           search.all[sighting.id] = sighting
