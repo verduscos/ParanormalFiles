@@ -181,7 +181,7 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
     }
 
     case SEARCH:
-      const search = { ...state }
+      const search = { all: {}, exhausted: true }
       if (action.payload["error"]) {
         return { all: {}, exhausted: true };
       } else  {

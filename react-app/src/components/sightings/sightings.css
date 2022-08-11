@@ -101,6 +101,7 @@
   border: none;
   border-radius: 99em;
   color: rgba(117, 117, 117, 1);
+  cursor: pointer;
   display: block;
   margin: 75px auto 66px auto;
   padding: 20px;

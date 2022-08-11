@@ -35,7 +35,7 @@ const Sightings = () => {
   useEffect(() => {
     resetLoading();
 
-    if (path === '/') {
+    if (path === "/") {
       dispatch(sessionActions.getAllSightings());
       setDisplayFetchBtn(true);
     } else if (path === "/favorites") {
@@ -43,6 +43,8 @@ const Sightings = () => {
       setDisplayFetchBtn(false);
     } else if (path === "/mysightings") {
       dispatch(sessionActions.getAllUserSightings(currentUser?.id));
+      setDisplayFetchBtn(false);
+    } else {
       setDisplayFetchBtn(false);
     }
   }, [path, currentUser?.id, dispatch])
@@ -71,15 +73,12 @@ const Sightings = () => {
   return (
     <>
       {loading ? loadingIcon :
-
-
         <div id="sightings-container">
           {!sightingsArray.length ?
             <>
               <h2>No results found.</h2>
             </>
             : null}
-
           {sightingsArray.map((sighting, i) => (
             <div id="sighting-card" key={i}>
               <ul id="sighting-details" key={sighting?.id}>
@@ -98,9 +97,7 @@ const Sightings = () => {
                 </li>
                 <li id="sighting-tag-container" key={`tag-${i}`}>
                   <span id="sighting-date">{`${sighting?.created_at?.split(' ')[2]} ${sighting?.created_at?.split(' ')[1]}`}</span>
-                  {/* , ${sighting.created_at.split(' ')[3]} */}
-
-                  <Link className="link tag" to={`/sightings/categories/${sighting?.category}`}>
+                  <Link className="link tag" to={`/sightings/search/${sighting?.category}`}>
                     <p className="category-link" key={`category-${sighting?.id}`} >{sighting?.category}</p>
                   </Link>
                 </li>
@@ -112,9 +109,6 @@ const Sightings = () => {
           ))}
           {fetchBtn}
         </div>
-
-
-
       }
     </>
   )
