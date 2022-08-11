@@ -56,7 +56,7 @@ const Sightings = () => {
     <>
       {
         displayFetchBtn ?
-          <button id="fetch-btn" onClick={e => (fetchMoreSightings(e, id))}>Load more sightings</button> :
+          <button id="fetch-btn" onClick={e => (fetchMoreSightings(e, id))} >Load more sightings</button> :
           null
       }
     </>

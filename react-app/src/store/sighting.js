@@ -192,7 +192,7 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
       }
 
     case GET_USER_FAVORITES:
-      let favorites = {}
+      let favorites = { }
       if (action.payload["likes"]) {
         action.payload["likes"].forEach(sighting => {
           favorites[sighting.id] = sighting;
@@ -201,9 +201,9 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
       return favorites
 
     case GET_USER_SIGHTINGS:
-      const userSightings = {}
+      const userSightings = { all: {} }
       action.payload.forEach(sighting => {
-        userSightings[sighting.id] = sighting
+        userSightings.all[sighting.id] = sighting
       })
       return { ...userSightings }
 
