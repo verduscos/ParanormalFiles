@@ -24,6 +24,7 @@ const SingleSighting = ( { test } ) => {
   useEffect(() => {
     dispatch(sessionActions.getAllSightings());
     // dispatch(getSightingLikes(currentUser?.id));
+    // dispatch(sessionActions.getCurrentSightingThunk);
   }, [dispatch])
 
 

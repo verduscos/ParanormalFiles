@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes, useOutletContext } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import * as sessionActions from "../../store/sighting"
 import "./sightings.css"
 import SingleSighting from "../SingleSighting/SingleSighting";
 
 const Sightings = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [displayFetchBtn, setDisplayFetchBtn] = useState(true);
@@ -19,6 +19,14 @@ const Sightings = () => {
   let id = sightingsArray[0]?.id;
   sightingsArray = sightingsArray.reverse();
 
+  const test = (e, id) => {
+    e.preventDefault();
+    console.log("in test", sightings.all[id]);
+    setSelectedSighting(sightings.all[id]);
+    navigate(`/sightings/${id}`);
+    // console.log(selectedSighting);
+    dispatch(sessionActions.getCurrentSightingThunk(sightings.all[id]));
+  }
 
   const location = useLocation();
   let path = location.pathname;
@@ -85,7 +93,9 @@ const Sightings = () => {
             </>
             : null}
           {sightingsArray.map((sighting, i) => (
-            <div id="sighting-card" key={i}>
+            <div id="sighting-card" key={i} onClick={(e) => {
+              test(e, sighting?.id);
+            }}>
               <ul id="sighting-details" key={sighting?.id}>
                 <li key={`date-${sighting?.id}`}>
                   <h4 id="sighting-author">
@@ -93,23 +103,23 @@ const Sightings = () => {
                   </h4>
                 </li>
                 <li key={`link-${i}`}>
-                  <Link className="link" to={`/sightings/${sighting?.id}`}>
+                  <div className="link">
                     <div key={`title-${sighting?.id}`}>
                       <h2 id="sighting-title">{sighting.title}</h2>
                       <p className="sighting-story">{sighting.description}</p>
                     </div>
-                  </Link>
+                  </div>
                 </li>
                 <li id="sighting-tag-container" key={`tag-${i}`}>
                   <span id="sighting-date">{`${sighting?.created_at?.split(' ')[2]} ${sighting?.created_at?.split(' ')[1]}`}</span>
-                  <Link className="link tag" to={`/sightings/search/${sighting?.category}`}>
+                  {/* <Link className="link tag" to={`/sightings/search/${sighting?.category}`}>
                     <p className="category-link" key={`category-${sighting?.id}`} >{sighting?.category}</p>
-                  </Link>
+                  </Link> */}
                 </li>
               </ul>
-              <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
+              {/* <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
                 <img className="sighting-img" src={sighting?.image_url} alt="sighting-img"></img>
-              </Link>
+              </Link> */}
             </div>
           ))}
           {fetchBtn}
