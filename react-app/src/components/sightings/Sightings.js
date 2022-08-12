@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes, useOutletContext } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from 'react-router-dom'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import * as sessionActions from "../../store/sighting"
 import "./sightings.css"
+import SingleSighting from "../SingleSighting/SingleSighting";
 
 const Sightings = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [displayFetchBtn, setDisplayFetchBtn] = useState(true);
+  const [selectedSighting, setSelectedSighting] = useState({ ass: "boobies" });
   const currentUser = useSelector(state => state.session.user)
   const sightings = useSelector(state => state.sightings);
   const exhausted = useSelector(state => state.sightings.exhausted);
@@ -63,6 +66,8 @@ const Sightings = () => {
       }
     </>
   )
+
+
 
   const loadingIcon = (
     <div id="loading-container">

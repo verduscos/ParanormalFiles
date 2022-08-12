@@ -6,6 +6,7 @@ const DELETE_SIGHTING = "session/DELETE_SIGHTING"
 const GET_USER_SIGHTINGS = "session/GET_USER_SIGHTINGS"
 const GET_USER_FAVORITES = "session/GET_FAVORITES"
 const SEARCH = "session/SEARCH"
+const GET_CURRENT_SIGHTING = "session/GET_CURRENT_SIGHTING";
 
 
 const createSighting = (sighting) => ({
@@ -48,6 +49,10 @@ const searchSightings = (searchStr) => ({
   payload: searchStr
 })
 
+const getCurrentSighting = (sighting) => ({
+  type: GET_CURRENT_SIGHTING,
+  payload: sighting
+})
 
 export const getAllSightings = () => async (dispatch) => {
   const response = await fetch(`/api/sightings/`);
@@ -147,6 +152,11 @@ export const getAllFavorites = (Id) => async (dispatch) => {
   return data;
 }
 
+export const getCurrentSightingThunk = (sighting) => async (dispatch) => {
+  dispatch(getCurrentSighting)
+  return sighting;
+}
+
 export const searchAllSightings = (searchStr) => async (dispatch) => {
   const response = await fetch(`/api/sightings/search/${searchStr}`);
   if (response.status >= 400) {
@@ -221,6 +231,12 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
       delete updatedSightings[id];
       return updatedSightings
 
+
+      case GET_CURRENT_SIGHTING: {
+        const current = { current: {} };
+        current.current = action.payload;
+        return current;
+      }
     default:
       return state
   }

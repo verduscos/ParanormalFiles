@@ -9,7 +9,7 @@ import "./SingleSighting.css"
 import Comments from "../Comments/Comments";
 
 
-const SingleSighting = () => {
+const SingleSighting = ( { test } ) => {
   const dispatch = useDispatch()
   const history = useNavigate()
   const params = useParams()
@@ -19,6 +19,7 @@ const SingleSighting = () => {
   let currentUser = useSelector(state => state.session.user)
   let likes = useSelector(state => state.likes)
 
+  console.log("I AM HERE", test);
 
   useEffect(() => {
     dispatch(sessionActions.getAllSightings());

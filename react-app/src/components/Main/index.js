@@ -9,6 +9,7 @@ import SingleSighting from '../SingleSighting/SingleSighting';
 import Comments from '../Comments/Comments';
 import Footer from '../Footer'
 
+
 import './Main.css';
 
 const Main = () => {
