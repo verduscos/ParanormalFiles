@@ -19,6 +19,9 @@ const SingleSighting = ( { test } ) => {
   let current = useSelector(state => state.sightings.current);
   let currentUser = useSelector(state => state.session.user)
   let likes = useSelector(state => state.likes)
+  let one = window.localStorage.getItem("currentSighting");
+
+  let currentSighting;
 
   console.log("I AM HERE", test);
 
@@ -30,8 +33,7 @@ const SingleSighting = ( { test } ) => {
       console.log("current from state returns");
       window.localStorage.setItem("currentSighting", JSON.stringify(current));
     } else {
-      current = JSON.parse(window.localStorage.getItem("currentSighting"));
-      console.log(current, "in else")
+      currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
     }
     // dispatch(sessionActions.getAllSightings());
     // dispatch(getSightingLikes(currentUser?.id));
@@ -129,6 +131,9 @@ const SingleSighting = ( { test } ) => {
 
   // END OF FUNCS
 
+  console.log(current, "in else")
+  one = JSON.parse(one);
+  console.log(one);
 
   return (
     <div id="sighting-container">
@@ -140,7 +145,7 @@ const SingleSighting = ( { test } ) => {
           </div>
         </li>
         <li>
-          <h1 id="single-sighting-title">{sighting?.title}</h1>
+          <h1 id="single-sighting-title">{one.title}</h1>
         </li>
         <li>
           <p id="single-sighting-date">{`${sighting?.created_at.split(' ')[2]} ${sighting?.created_at.split(' ')[1]}, ${sighting?.created_at.split(' ')[3]}`}</p>
