@@ -27,11 +27,11 @@ const SingleSighting = ( { test } ) => {
     if (current) {
       window.localStorage.setItem("currentSighting", JSON.stringify(current));
     }
+    // sighting === unde/fined ? currentSighting  = currentSighting : currentSighting = sighting;
   }, [dispatch])
 
-
-
-
+console.log("state", sighting?.title);
+console.log("localstorage", currentSighting);
 
   const handleDelete = (e) => {
     e.preventDefault();

@@ -11,7 +11,6 @@ const Sightings = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [displayFetchBtn, setDisplayFetchBtn] = useState(true);
-  const [selectedSighting, setSelectedSighting] = useState({ ass: "boobies" });
   const currentUser = useSelector(state => state.session.user)
   const sightings = useSelector(state => state.sightings);
   const exhausted = useSelector(state => state.sightings.exhausted);
@@ -21,10 +20,7 @@ const Sightings = () => {
 
   const test = (e, id) => {
     e.preventDefault();
-    console.log("in test", sightings.all[id]);
-    setSelectedSighting(sightings.all[id]);
     navigate(`/sightings/${id}`);
-    // console.log(selectedSighting);
     dispatch(sessionActions.getCurrentSightingThunk(sightings.all[id]));
   }
 
@@ -112,14 +108,14 @@ const Sightings = () => {
                 </li>
                 <li id="sighting-tag-container" key={`tag-${i}`}>
                   <span id="sighting-date">{`${sighting?.created_at?.split(' ')[2]} ${sighting?.created_at?.split(' ')[1]}`}</span>
-                  {/* <Link className="link tag" to={`/sightings/search/${sighting?.category}`}>
+                  <Link className="link tag" to={`/sightings/search/${sighting?.category}`}>
                     <p className="category-link" key={`category-${sighting?.id}`} >{sighting?.category}</p>
-                  </Link> */}
+                  </Link>
                 </li>
               </ul>
-              {/* <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
+              <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
                 <img className="sighting-img" src={sighting?.image_url} alt="sighting-img"></img>
-              </Link> */}
+              </Link>
             </div>
           ))}
           {fetchBtn}
