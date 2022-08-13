@@ -19,33 +19,17 @@ const SingleSighting = ( { test } ) => {
   let current = useSelector(state => state.sightings.current);
   let currentUser = useSelector(state => state.session.user)
   let likes = useSelector(state => state.likes)
-  let one = window.localStorage.getItem("currentSighting");
+  let currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
 
-  let currentSighting;
 
-  console.log("I AM HERE", test);
-
-  console.log(typeof JSON.stringify(current));
-  // window.localStorage.setItem("currentSighting", JSON.stringify(current));
 
   useEffect(() => {
     if (current) {
-      console.log("current from state returns");
       window.localStorage.setItem("currentSighting", JSON.stringify(current));
-    } else {
-      currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
     }
-    // dispatch(sessionActions.getAllSightings());
-    // dispatch(getSightingLikes(currentUser?.id));
-    // dispatch(sessionActions.getCurrentSightingThunk);
   }, [dispatch])
 
 
-
-  window.localStorage.setItem("title", sighting?.title)
-  window.localStorage.setItem("description", sighting?.description)
-  window.localStorage.setItem("category", sighting?.category)
-  window.localStorage.setItem("image_url", sighting?.image_url)
 
 
 
@@ -131,9 +115,7 @@ const SingleSighting = ( { test } ) => {
 
   // END OF FUNCS
 
-  console.log(current, "in else")
-  one = JSON.parse(one);
-  console.log(one);
+
 
   return (
     <div id="sighting-container">
@@ -145,16 +127,16 @@ const SingleSighting = ( { test } ) => {
           </div>
         </li>
         <li>
-          <h1 id="single-sighting-title">{one.title}</h1>
+          <h1 id="single-sighting-title">{currentSighting.title}</h1>
         </li>
         <li>
-          <p id="single-sighting-date">{`${sighting?.created_at.split(' ')[2]} ${sighting?.created_at.split(' ')[1]}, ${sighting?.created_at.split(' ')[3]}`}</p>
+          <p id="single-sighting-date">{`${currentSighting.created_at.split(' ')[2]} ${currentSighting.created_at.split(' ')[1]}, ${currentSighting.created_at.split(' ')[3]}`}</p>
         </li>
         <li>
-          <img src={sighting?.image_url} id="single-sighting-img" alt="article-img"></img>
+          <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
         </li>
         <li>
-          <p id="single-sighting-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
+          <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>
         </li>
       </ul>
     </div>
