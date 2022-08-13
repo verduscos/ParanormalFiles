@@ -16,13 +16,24 @@ const SingleSighting = ( { test } ) => {
   const { sightingId } = params
   const [userBtns, setUserBtns] = useState(false)
   let sighting = useSelector(state => state.sightings[sightingId])
+  let current = useSelector(state => state.sightings.current);
   let currentUser = useSelector(state => state.session.user)
   let likes = useSelector(state => state.likes)
 
   console.log("I AM HERE", test);
 
+  console.log(typeof JSON.stringify(current));
+  // window.localStorage.setItem("currentSighting", JSON.stringify(current));
+
   useEffect(() => {
-    dispatch(sessionActions.getAllSightings());
+    if (current) {
+      console.log("current from state returns");
+      window.localStorage.setItem("currentSighting", JSON.stringify(current));
+    } else {
+      current = JSON.parse(window.localStorage.getItem("currentSighting"));
+      console.log(current, "in else")
+    }
+    // dispatch(sessionActions.getAllSightings());
     // dispatch(getSightingLikes(currentUser?.id));
     // dispatch(sessionActions.getCurrentSightingThunk);
   }, [dispatch])
