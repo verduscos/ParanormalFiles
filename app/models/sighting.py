@@ -18,6 +18,8 @@ class Sighting(db.Model):
     comments = db.relationship("Comment", cascade="all, delete", passive_deletes=True, back_populates="sighting")
     sighting_images = db.relationship("SightingImage",  cascade="all, delete", passive_deletes=True, back_populates="sighting", lazy='dynamic')
     likes = db.relationship("Like", cascade="all, delete", passive_deletes=True, back_populates="sighting")
+    bookmarks = db.relationship("Bookmark", cascade="all, delete", passive_deletes=True, back_populates="sighting")
+
 
 
     def to_dict(self):
