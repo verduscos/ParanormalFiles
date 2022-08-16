@@ -21,7 +21,12 @@ const SingleSighting = ({ scrollToTop }) => {
   let currentSighting;
 
   const setSighting = () => {
-    current ? currentSighting = current : currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
+    if (current) {
+      currentSighting = current
+      window.localStorage.setItem("currentSighting", JSON.stringify(currentSighting));
+    } else {
+      currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
+    }
   };
 
   setSighting();
