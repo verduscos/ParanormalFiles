@@ -18,18 +18,27 @@ const SingleSighting = ( { test } ) => {
   let current = useSelector(state => state.sightings.current);
   let currentUser = useSelector(state => state.session.user)
   let likes = useSelector(state => state.likes)
-  let currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
+  // let currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
+  let currentSighting;
+
+  const setSighting = () => {
+    current ? currentSighting = current : currentSighting =JSON.parse(window.localStorage.getItem("currentSighting"));
+  };
+
+  setSighting();
 
 
+  console.log("not in useEffect", current)
 
   useEffect(() => {
     if (current) {
+      console.log("inside useEffect", current);
       window.localStorage.setItem("currentSighting", JSON.stringify(current));
     }
-  }, [current, dispatch])
+  }, [current])
 
-console.log("state", sighting?.title);
-console.log("localstorage", currentSighting);
+// console.log("state", sighting?.title);
+// console.log("localstorage", currentSighting);
 
   const handleDelete = (e) => {
     e.preventDefault();

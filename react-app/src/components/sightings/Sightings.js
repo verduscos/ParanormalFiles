@@ -107,9 +107,9 @@ const Sightings = () => {
                 </li>
                 <li id="sighting-tag-container" key={`tag-${i}`}>
                   <span id="sighting-date">{`${sighting?.created_at?.split(' ')[2]} ${sighting?.created_at?.split(' ')[1]}`}</span>
-                  <Link className="link tag" to={`/sightings/search/${sighting?.category}`}>
+                  {/* <Link className="link tag" to={`/sightings/search/${sighting?.category}`}>
                     <p className="category-link" key={`category-${sighting?.id}`} >{sighting?.category}</p>
-                  </Link>
+                  </Link> */}
                 </li>
               </ul>
               <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
