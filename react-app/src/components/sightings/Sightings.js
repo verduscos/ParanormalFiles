@@ -4,7 +4,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import * as sessionActions from "../../store/sighting"
 import "./sightings.css"
-import SingleSighting from "../SingleSighting/SingleSighting";
 
 const Sightings = () => {
   const navigate = useNavigate();
