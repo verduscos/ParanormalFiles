@@ -8,7 +8,7 @@ import { MdOutlineBookmarkAdd } from "react-icons/md";
 import "./SingleSighting.css"
 
 
-const SingleSighting = () => {
+const SingleSighting = ( {scrollToTop} ) => {
   const dispatch = useDispatch()
   const history = useNavigate()
   const params = useParams()
@@ -23,7 +23,13 @@ const SingleSighting = () => {
   const setSighting = () => {
     current ? currentSighting = current : currentSighting =JSON.parse(window.localStorage.getItem("currentSighting"));
   };
+
   setSighting();
+  scrollToTop();
+
+  // useEffect(() => {
+  //   window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+  // }, []);
 
 
   const handleDelete = (e) => {
