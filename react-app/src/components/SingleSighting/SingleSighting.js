@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import { deleteLike, likeSightingThunk } from "../../store/like";
-import { getSightingLikes } from "../../store/like";
-import { getALLComments } from "../../store/comment";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import "./SingleSighting.css"
@@ -20,27 +18,15 @@ const SingleSighting = ({ scrollToTop }) => {
   let current = useSelector(state => state.sightings.current);
   let currentUser = useSelector(state => state.session.user)
   let likes = useSelector(state => state.likes)
+  let currentSighting;
 
-  useEffect(() => {
-    dispatch(sessionActions.getAllSightings())
+  const setSighting = () => {
+    current ? currentSighting = current : currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
+  };
 
-  }, [dispatch])
+  setSighting();
+  scrollToTop();
 
-
-
-  window.localStorage.setItem("title", sighting?.title)
-  window.localStorage.setItem("description", sighting?.description)
-  window.localStorage.setItem("category", sighting?.category)
-  window.localStorage.setItem("image_url", sighting?.image_url)
-
-
-
-  const handleDelete = (e) => {
-    e.preventDefault();
-    dispatch(sessionActions.deleteASighting(sightingId))
-
-    history.push("/mysightings")
-  }
 
   const favorite = (e) => {
     e.preventDefault();
@@ -48,7 +34,6 @@ const SingleSighting = ({ scrollToTop }) => {
       user_id: currentUser.id,
       sighting_id: sightingId
     }
-
     dispatch(likeSightingThunk(payload))
     localStorage.setItem(sighting.id, true)
   }
@@ -59,7 +44,6 @@ const SingleSighting = ({ scrollToTop }) => {
       user_id: currentUser.id,
       sighting_id: sightingId
     }
-
     dispatch(deleteLike(payload))
     localStorage.removeItem(sighting.id)
   }
@@ -118,19 +102,6 @@ const SingleSighting = ({ scrollToTop }) => {
       }
     </>
   )
-
-  // END OF FUNCS
-  useEffect(() => {
-    dispatch(sessionActions.getAllSightings());
-    dispatch(getSightingLikes(currentUser?.id));
-
-  }, [dispatch])
-
-  useEffect(() => {
-    dispatch(getALLComments(sightingId))
-  }, [dispatch, sightingId])
-
-
 
   return (
     <div id="sighting-container">

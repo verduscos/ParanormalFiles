@@ -25,11 +25,6 @@
   display: none;
 }
 
-#nav-logo {
-  object-fit: contain;
-  width: 50px;
-}
-
 #user-nav-home-logo > img {
   color: rgb(212, 212, 212);
   height: 75px;
