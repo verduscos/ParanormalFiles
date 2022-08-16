@@ -6,7 +6,6 @@ import { deleteLike, likeSightingThunk } from "../../store/like";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import "./SingleSighting.css"
-import Comments from "../Comments/Comments";
 
 
 const SingleSighting = ( { test } ) => {
@@ -27,8 +26,7 @@ const SingleSighting = ( { test } ) => {
     if (current) {
       window.localStorage.setItem("currentSighting", JSON.stringify(current));
     }
-    // sighting === unde/fined ? currentSighting  = currentSighting : currentSighting = sighting;
-  }, [dispatch])
+  }, [current, dispatch])
 
 console.log("state", sighting?.title);
 console.log("localstorage", currentSighting);
