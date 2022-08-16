@@ -49,10 +49,38 @@ const searchSightings = (searchStr) => ({
   payload: searchStr
 })
 
+<<<<<<< HEAD
+export const getAllFavorites = (Id) => async (dispatch) => {
+  const response = await fetch(`/api/bookmarks/${Id}`);
+
+  if (response.status >= 400) {
+    throw response;
+  }
+
+  console.log('LSJFLKSDJLKFJ')
+  const data = await response.json();
+  dispatch(getFavorites(data));
+  return data;
+}
+
+export const searchAllSightings = (searchStr) => async (dispatch) => {
+  const response = await fetch(`/api/sightings/search/${searchStr}`);
+  if (response.status >= 400) {
+    throw response
+  }
+
+  console.log("HITTING THINK")
+  const data = await response.json();
+  dispatch(searchSightings(data));
+  return data;
+
+}
+=======
 const getCurrentSighting = (sighting) => ({
   type: GET_CURRENT_SIGHTING,
   payload: sighting
 })
+>>>>>>> main
 
 export const getAllSightings = () => async (dispatch) => {
   const response = await fetch(`/api/sightings/`);
@@ -201,6 +229,21 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
         return search;
       }
 
+<<<<<<< HEAD
+    case GET_FAVORITES:
+      let favorites = {}
+
+      console.log('HERER')
+
+
+      if (action.payload["bookmarks"]) {
+        action.payload["bookmarks"].forEach(sighting => {
+          favorites[sighting.id] = sighting;
+        })
+      }
+
+      console.log(action.payload, 'YOYOMA')
+=======
     case GET_USER_FAVORITES:
       let favorites = { }
       if (action.payload["likes"]) {
@@ -208,6 +251,7 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
           favorites[sighting.id] = sighting;
         })
       }
+>>>>>>> main
       return favorites
 
     case GET_USER_SIGHTINGS:

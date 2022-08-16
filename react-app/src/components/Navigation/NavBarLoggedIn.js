@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { AiOutlineHome, AiOutlineHeart } from 'react-icons/ai';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { IoAlbumsOutline } from 'react-icons/io5';
+import { MdOutlineBookmarkAdd } from "react-icons/md";
 import ProfileButton from './ProfileButton';
 import * as sessionActions from "../../store/sighting"
 import './Navigation.css'
@@ -43,7 +44,7 @@ const UserNav = () => {
             fetch(e);
           }}
         >
-          <img src={Logo} alt="pf-logo" />
+          <img id="nav-logo" src={Logo} alt="pf-logo" />
         </li>
         <li id="user-nav-home-btn"
           onClick={(e) => {
@@ -57,7 +58,7 @@ const UserNav = () => {
             fetchFavorites(e)
           }}
           className="user-nav-btn">
-          <AiOutlineHeart />
+          <MdOutlineBookmarkAdd />
         </li>
 
         <li

@@ -1,25 +1,25 @@
-const GET_LIKES = "session/GET_LIKES"
-const LIKE_SIGHTING = "session/LIKE_SIGHTING"
-const REMOVE_LIKE = "session/REMOVE_SIGHTING"
+const GET_BOOKMARKS = "session/GET_BOOKMARKS"
+const ADD_BOOKMARK = "session/ADD_BOOKMARK"
+const REMOVE_BOOKMARK = "session/REMOVE_BOOKMARK"
 
-const getLikes = (sightingId) => ({
-  type:GET_LIKES,
+const getBookmarks = (sightingId) => ({
+  type:GET_BOOKMARKS,
   payload: sightingId
 })
 
-const likeSighting = (sighting) => ({
-  type: LIKE_SIGHTING,
+const bookmarkSighting = (sighting) => ({
+  type: ADD_BOOKMARK,
   payload: sighting
 })
 
-const removeSighting = (sighting) => ({
-  type: REMOVE_LIKE,
+const removeBookmarkSighting = (sighting) => ({
+  type: REMOVE_BOOKMARK,
   payload: sighting
 })
 
 
-export const deleteLike = (payload) => async (dispatch) => {
-  const response = await fetch(`/api/likes/`, {
+export const removeBookmark = (payload) => async (dispatch) => {
+  const response = await fetch(`/api/bookmarks/`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -31,13 +31,13 @@ export const deleteLike = (payload) => async (dispatch) => {
   })
   if (response.ok) {
     const data = await response.json();
-    dispatch(removeSighting(data))
+    dispatch(removeBookmarkSighting(data))
     return
   }
 }
 
-export const getSightingLikes = (sightingId) => async (dispatch) => {
-  const response = await fetch(`/api/likes/${sightingId}`)
+export const getUserBookmarks = (sightingId) => async (dispatch) => {
+  const response = await fetch(`/api/bookmarks/${sightingId}`)
 
   if(response.status >= 400) {
     throw response
@@ -45,13 +45,12 @@ export const getSightingLikes = (sightingId) => async (dispatch) => {
 
   const data = await response.json();
 
-  dispatch(getLikes(data));
+  dispatch(getBookmarks(data));
   return data;
-
 }
 
-export const likeSightingThunk = (payload) => async (dispatch) => {
-  const response = await fetch(`/api/likes/`, {
+export const addBookmark = (payload) => async (dispatch) => {
+  const response = await fetch(`/api/bookmarks/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -65,37 +64,34 @@ export const likeSightingThunk = (payload) => async (dispatch) => {
 
   const data = await response.json();
 
-  dispatch(likeSighting(data));
+  dispatch(bookmarkSighting(data));
   return data;
-
 }
-
-
 
 
 
 const likesReducer = (state = {}, action) => {
   switch (action.type){
-    case GET_LIKES:
-      let likes = { ...state }
+    case GET_BOOKMARKS:
+      let bookmarks = { ...state }
 
-      action.payload.likes.forEach(liked => {
-        likes[liked.id] = liked
+      action.payload.bookmarks.forEach(bookmarked => {
+        bookmarks[bookmarked.id] = bookmarked
       })
 
-      return { ...likes }
+      return { ...bookmarks }
 
-    case REMOVE_LIKE:
+    case REMOVE_BOOKMARK:
       let likess = { ...state }
       let id = action.payload["deleted"]
 
       delete likess[id];
       return likess
 
-    case LIKE_SIGHTING:
+    case ADD_BOOKMARK:
       let like = { ...state }
 
-      like[action.payload.likes.id] = action.payload.likes;
+      like[action.payload.bookmarks.id] = action.payload.bookmarks;
 
       return like
 
