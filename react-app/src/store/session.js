@@ -1,4 +1,3 @@
-// constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 
@@ -24,10 +23,10 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-
     dispatch(setUser(data));
   }
 }
+
 
 export const login = (email, password) => async (dispatch) => {
   const response = await fetch('/api/auth/login', {
@@ -40,7 +39,6 @@ export const login = (email, password) => async (dispatch) => {
       password
     })
   });
-
 
   if (response.ok) {
     const data = await response.json();
@@ -56,6 +54,7 @@ export const login = (email, password) => async (dispatch) => {
   }
 
 }
+
 
 export const logout = () => async (dispatch) => {
   const response = await fetch('/api/auth/logout', {
@@ -96,6 +95,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
     return ['An error occurred. Please try again.']
   }
 }
+
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {

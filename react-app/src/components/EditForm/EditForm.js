@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import CreateNav from "../CreateSightingForm/CreateNav";
 import "../CreateSightingForm/CreateSightingForm.css"
 import * as sessionActions from "../../store/sighting"
@@ -9,9 +9,9 @@ import * as sessionActions from "../../store/sighting"
 const EditForm = () => {
   const params = useParams()
   const { sightingId } = params
-  let currentUser = useSelector(state => state.session.user)
-  const history = useHistory()
+  const history = useNavigate()
   const dispatch = useDispatch()
+  let currentUser = useSelector(state => state.session.user)
   const [title, setTitle] = useState(window.localStorage.getItem("title"))
   const [description, setDescription] = useState(window.localStorage.getItem("description"))
   const [category, setCategory] = useState(window.localStorage.getItem("category"))
@@ -47,19 +47,12 @@ const EditForm = () => {
 
     }
     else {
-      const data = await res.json();
       // TODO
       // a real app would probably use more advanced
       // error handling
     }
     // IMAGE UPLOAD ENDS
 
-    // const data = await dispatch(sessionActions.updateSighting(payload));
-    // if (data.errors) {
-    //   setErrors(data.errors)
-    // } else {
-    // history.push("/")
-    // }
 
 
     let errorsArr = [];
@@ -93,7 +86,7 @@ const EditForm = () => {
     }
     dispatch(sessionActions.updateSighting(payload))
 
-  }, [dispatch, imageUrl])
+  }, [imageUrl, dispatch])
 
   const editText = (e) => {
     e.preventDefault()

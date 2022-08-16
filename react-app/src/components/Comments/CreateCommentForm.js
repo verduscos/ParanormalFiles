@@ -1,17 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { createAComment } from "../../store/comment";
 import { BiUserCircle } from "react-icons/bi";
-import { CgProfile } from "react-icons/cg";
 import "./Form.css";
 
 
-
-const CreateCommentForm = () => {
-  const params = useParams();
-  let currentUser = useSelector(state => state.session.user)
-  const { sightingId } = params;
+const CreateCommentForm = ( {currentUser, sightingId} ) => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([])
   const [comment, setComment] = useState("");
@@ -20,7 +14,6 @@ const CreateCommentForm = () => {
 
   const createComment = async (e) => {
     e.preventDefault();
-
     const payload = {
       user_id: currentUser.id,
       sighting_id: sightingId,
@@ -67,7 +60,6 @@ const CreateCommentForm = () => {
               </form>
             :
             <div id="comment-trigger-container">
-              {/* <BiUserCircle /> */}
               <button onClick={() => setDisplayForm(!displayForm)}>Add a comment...</button>
             </div>
           }

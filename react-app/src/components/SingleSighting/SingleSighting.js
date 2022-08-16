@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
-import { removeBookmark, addBookmark } from "../../store/like";
-import { getUserBookmarks } from "../../store/like";
+import { deleteLike, likeSightingThunk } from "../../store/like";
+import { getSightingLikes } from "../../store/like";
 import { getALLComments } from "../../store/comment";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import "./SingleSighting.css"
 
 
-const SingleSighting = () => {
+const SingleSighting = ({ scrollToTop }) => {
   const dispatch = useDispatch()
-  const history = useHistory()
+  const history = useNavigate()
   const params = useParams()
   const { sightingId } = params
   const [userBtns, setUserBtns] = useState(false)
   let sighting = useSelector(state => state.sightings[sightingId])
+  let current = useSelector(state => state.sightings.current);
   let currentUser = useSelector(state => state.session.user)
   let likes = useSelector(state => state.likes)
 
@@ -43,26 +44,30 @@ const SingleSighting = () => {
 
   const favorite = (e) => {
     e.preventDefault();
-
     const payload = {
       user_id: currentUser.id,
       sighting_id: sightingId
     }
 
-    dispatch(addBookmark(payload))
+    dispatch(likeSightingThunk(payload))
     localStorage.setItem(sighting.id, true)
   }
 
   const unfavorite = (e) => {
     e.preventDefault();
-
     const payload = {
       user_id: currentUser.id,
       sighting_id: sightingId
     }
 
-    dispatch(removeBookmark(payload))
+    dispatch(deleteLike(payload))
     localStorage.removeItem(sighting.id)
+  }
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.deleteASighting(sightingId))
+    history.push("/mysightings")
   }
 
   const UserEditBtns = (
@@ -117,7 +122,7 @@ const SingleSighting = () => {
   // END OF FUNCS
   useEffect(() => {
     dispatch(sessionActions.getAllSightings());
-    dispatch(getUserBookmarks(currentUser?.id));
+    dispatch(getSightingLikes(currentUser?.id));
 
   }, [dispatch])
 
@@ -137,16 +142,16 @@ const SingleSighting = () => {
           </div>
         </li>
         <li>
-          <h1 id="single-sighting-title">{sighting?.title}</h1>
+          <h1 id="single-sighting-title">{currentSighting.title}</h1>
         </li>
         <li>
-          <p id="single-sighting-date">{`${sighting?.created_at.split(' ')[2]} ${sighting?.created_at.split(' ')[1]}, ${sighting?.created_at.split(' ')[3]}`}</p>
+          <p id="single-sighting-date">{`${currentSighting.created_at.split(' ')[2]} ${currentSighting.created_at.split(' ')[1]}, ${currentSighting.created_at.split(' ')[3]}`}</p>
         </li>
         <li>
-          <img src={sighting?.image_url} id="single-sighting-img" alt="article-img"></img>
+          <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
         </li>
         <li>
-          <p id="single-sighting-body">{sighting?.description.replace(/\n+/g, '\n\n')}</p>
+          <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>
         </li>
       </ul>
     </div>

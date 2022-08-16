@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import * as sessionActions from "../../store/sighting"
 import "./sightings.css"
 
 const Sightings = () => {
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-  let currentUser = useSelector(state => state.session.user)
-  let sightings = useSelector(state => state.sightings);
-  let sightingsArray = Object.values(sightings);
+  const [displayFetchBtn, setDisplayFetchBtn] = useState(true);
+  const currentUser = useSelector(state => state.session.user)
+  const sightings = useSelector(state => state.sightings);
+  const exhausted = useSelector(state => state.sightings.exhausted);
+  let sightingsArray = Object.values(sightings?.all);
+  let id = sightingsArray[0]?.id;
   sightingsArray = sightingsArray.reverse();
+
+  const test = (e, id) => {
+    e.preventDefault();
+    navigate(`/sightings/${id}`);
+    dispatch(sessionActions.getCurrentSightingThunk(sightings.all[id]));
+  }
 
   const location = useLocation();
   let path = location.pathname;
@@ -25,18 +35,42 @@ const Sightings = () => {
   }
 
   useEffect(() => {
+    if (exhausted) setDisplayFetchBtn(false);
+  }, [exhausted])
+
+  useEffect(() => {
     resetLoading();
 
-    if (path === '/') {
+    if (path === "/") {
       dispatch(sessionActions.getAllSightings());
+      setDisplayFetchBtn(true);
     } else if (path === "/favorites") {
       dispatch(sessionActions.getAllFavorites(currentUser.id));
+      setDisplayFetchBtn(false);
     } else if (path === "/mysightings") {
       dispatch(sessionActions.getAllUserSightings(currentUser?.id));
+      setDisplayFetchBtn(false);
     } else {
-      return;
+      setDisplayFetchBtn(false);
     }
-  }, [path])
+  }, [path, currentUser?.id, dispatch])
+
+  const fetchMoreSightings = (e, id) => {
+    e.preventDefault();
+    dispatch(sessionActions.getAdditionalSightings(id));
+  }
+
+  const fetchBtn = (
+    <>
+      {
+        displayFetchBtn ?
+          <button id="fetch-btn" onClick={e => (fetchMoreSightings(e, id))} >Load more sightings</button> :
+          null
+      }
+    </>
+  )
+
+
 
   const loadingIcon = (
     <div id="loading-container">
@@ -47,38 +81,35 @@ const Sightings = () => {
   return (
     <>
       {loading ? loadingIcon :
-
-
         <div id="sightings-container">
           {!sightingsArray.length ?
             <>
               <h2>No results found.</h2>
             </>
             : null}
-
           {sightingsArray.map((sighting, i) => (
-            <div id="sighting-card">
+            <div id="sighting-card" key={i} onClick={(e) => {
+              test(e, sighting?.id);
+            }}>
               <ul id="sighting-details" key={sighting?.id}>
                 <li key={`date-${sighting?.id}`}>
                   <h4 id="sighting-author">
                     {sighting?.username}
                   </h4>
                 </li>
-                <li>
-                  <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}`}>
+                <li key={`link-${i}`}>
+                  <div className="link">
                     <div key={`title-${sighting?.id}`}>
                       <h2 id="sighting-title">{sighting.title}</h2>
                       <p className="sighting-story">{sighting.description}</p>
                     </div>
-                  </Link>
+                  </div>
                 </li>
-                <li id="sighting-tag-container">
-                  <span id="sighting-date">{`${sighting?.created_at.split(' ')[2]} ${sighting.created_at.split(' ')[1]}`}</span>
-                  {/* , ${sighting.created_at.split(' ')[3]} */}
-
-                  <Link className="link tag" to={`/sightings/categories/${sighting?.category}`}>
+                <li id="sighting-tag-container" key={`tag-${i}`}>
+                  <span id="sighting-date">{`${sighting?.created_at?.split(' ')[2]} ${sighting?.created_at?.split(' ')[1]}`}</span>
+                  {/* <Link className="link tag" to={`/sightings/search/${sighting?.category}`}>
                     <p className="category-link" key={`category-${sighting?.id}`} >{sighting?.category}</p>
-                  </Link>
+                  </Link> */}
                 </li>
               </ul>
               <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
@@ -86,10 +117,8 @@ const Sightings = () => {
               </Link>
             </div>
           ))}
+          {fetchBtn}
         </div>
-
-
-
       }
     </>
   )

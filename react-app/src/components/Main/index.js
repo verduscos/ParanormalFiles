@@ -9,6 +9,7 @@ import SingleSighting from '../SingleSighting/SingleSighting';
 import Comments from '../Comments/Comments';
 import Footer from '../Footer'
 
+
 import './Main.css';
 
 const Main = () => {
@@ -20,6 +21,10 @@ const Main = () => {
   const [tagsId, setTagsId] = useState("col-2-guest");
   const [content, setContent] = useState(<Sightings />);
 
+  const scrollToTop = () => {
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+  }
+
   useEffect(() => {
     currentUser !== null ? setNavId("col-1-user") : setNavId("col-1-guest");
     currentUser !== null ? setSightingsId("col-3-user") : setSightingsId("col-3-guest");
@@ -27,7 +32,7 @@ const Main = () => {
   }, [currentUser])
 
   useEffect(() => {
-    sightingId ? setContent(<><SingleSighting /> <Comments /></>) : setContent(<Sightings />);
+    sightingId ? setContent(<><SingleSighting scrollToTop={scrollToTop} /> <Comments /></>) : setContent(<Sightings scrollToTop={scrollToTop} />);
   }, [sightingId])
 
 
