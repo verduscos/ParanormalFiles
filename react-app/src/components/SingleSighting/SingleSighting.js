@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
@@ -8,7 +8,7 @@ import { MdOutlineBookmarkAdd } from "react-icons/md";
 import "./SingleSighting.css"
 
 
-const SingleSighting = ( {scrollToTop} ) => {
+const SingleSighting = ({ scrollToTop }) => {
   const dispatch = useDispatch()
   const history = useNavigate()
   const params = useParams()
@@ -21,45 +21,37 @@ const SingleSighting = ( {scrollToTop} ) => {
   let currentSighting;
 
   const setSighting = () => {
-    current ? currentSighting = current : currentSighting =JSON.parse(window.localStorage.getItem("currentSighting"));
+    current ? currentSighting = current : currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
   };
 
   setSighting();
   scrollToTop();
 
-  // useEffect(() => {
-  //   window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-  // }, []);
-
-
-  const handleDelete = (e) => {
-    e.preventDefault();
-    dispatch(sessionActions.deleteASighting(sightingId))
-    history.push("/mysightings")
-  }
 
   const favorite = (e) => {
     e.preventDefault();
-
     const payload = {
       user_id: currentUser.id,
       sighting_id: sightingId
     }
-
     dispatch(likeSightingThunk(payload))
     localStorage.setItem(sighting.id, true)
   }
 
   const unfavorite = (e) => {
     e.preventDefault();
-
     const payload = {
       user_id: currentUser.id,
       sighting_id: sightingId
     }
-
     dispatch(deleteLike(payload))
     localStorage.removeItem(sighting.id)
+  }
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.deleteASighting(sightingId))
+    history.push("/mysightings")
   }
 
   const UserEditBtns = (
@@ -110,10 +102,6 @@ const SingleSighting = ( {scrollToTop} ) => {
       }
     </>
   )
-
-  // END OF FUNCS
-
-
 
   return (
     <div id="sighting-container">
