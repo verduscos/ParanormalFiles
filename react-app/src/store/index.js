@@ -4,11 +4,13 @@ import session from './session'
 import sightingReducer from './sighting'
 import commentsReducer from './comment'
 import likesReducer from './like';
+import bookmarksReducer from './bookmark';
 
 const rootReducer = combineReducers({
   session,
   sightings: sightingReducer,
   comments: commentsReducer,
+  bookmarks: bookmarksReducer,
   likes: likesReducer,
 });
 

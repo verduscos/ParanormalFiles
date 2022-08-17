@@ -142,8 +142,8 @@ export const getAllUserSightings = (userId) => async (dispatch) => {
   }
 }
 
-export const getAllFavorites = (Id) => async (dispatch) => {
-  const response = await fetch(`/api/likes/${Id}`);
+export const getBookmarks = (Id) => async (dispatch) => {
+  const response = await fetch(`/api/bookmarks/${Id}`);
   if (response.status >= 400) {
     throw response;
   }
@@ -202,13 +202,14 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
       }
 
     case GET_USER_FAVORITES:
-      let favorites = { }
-      if (action.payload["likes"]) {
-        action.payload["likes"].forEach(sighting => {
-          favorites[sighting.id] = sighting;
+      let bookmarks = { all: {}, exhausted: false }
+
+      if (action.payload["bookmarks"]) {
+        action.payload["bookmarks"].forEach(sighting => {
+          bookmarks.all[sighting.id] = sighting;
         })
       }
-      return favorites
+      return bookmarks;
 
     case GET_USER_SIGHTINGS:
       const userSightings = { all: {} }

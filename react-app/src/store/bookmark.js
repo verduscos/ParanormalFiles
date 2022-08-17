@@ -17,6 +17,12 @@ const bookmarksReducer = (state = {}, action) => {
       const bookmarks = { ...state };
 
       console.log(bookmarks, "inside reducer");
+      return bookmarks;
     }
+    default:
+      return state;
   }
 }
+
+
+export default bookmarksReducer;
