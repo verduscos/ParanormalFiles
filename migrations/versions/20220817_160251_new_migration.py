@@ -1,8 +1,8 @@
-"""empty message
+"""new migration
 
-Revision ID: d5a08289e7fa
-Revises:
-Create Date: 2022-02-21 11:03:01.120900
+Revision ID: 48eb9d2932d9
+Revises: 
+Create Date: 2022-08-17 16:02:51.553035
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd5a08289e7fa'
+revision = '48eb9d2932d9'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -39,6 +39,16 @@ def upgrade():
     sa.Column('image_url', sa.String(length=1000), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('bookmarks',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('sighting_id', sa.Integer(), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.Column('updated_at', sa.DateTime(), nullable=False),
+    sa.ForeignKeyConstraint(['sighting_id'], ['sightings.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -80,7 +90,7 @@ def downgrade():
     op.drop_table('sighting_images')
     op.drop_table('likes')
     op.drop_table('comments')
-    # op.drop_table('bookmarks')
+    op.drop_table('bookmarks')
     op.drop_table('sightings')
     op.drop_table('users')
     # ### end Alembic commands ###
