@@ -153,7 +153,6 @@ export const getBookmarks = (Id) => async (dispatch) => {
 }
 
 export const getCurrentSightingThunk = (sighting) => async (dispatch) => {
-  console.log("INSDIE OF THE THUNK")
   dispatch(getCurrentSighting(sighting));
   return sighting;
 }
@@ -235,10 +234,8 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
 
 
       case GET_CURRENT_SIGHTING: {
-        console.log("YOYOMA")
         const current = { ...state };
         current["current"] = action.payload;
-        console.log("YOYOYO@@@")
         return current;
       }
     default:
