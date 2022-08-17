@@ -40,7 +40,7 @@ const SingleSighting = ({ scrollToTop }) => {
       sighting_id: sightingId
     }
     dispatch(likeSightingThunk(payload))
-    localStorage.setItem(sighting.id, true)
+    localStorage.setItem(sightingId, true)
   }
 
   const unfavorite = (e) => {
