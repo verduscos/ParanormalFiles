@@ -1,7 +1,7 @@
 """empty message
 
 Revision ID: d5a08289e7fa
-Revises: 
+Revises:
 Create Date: 2022-02-21 11:03:01.120900
 
 """
@@ -80,6 +80,7 @@ def downgrade():
     op.drop_table('sighting_images')
     op.drop_table('likes')
     op.drop_table('comments')
+    # op.drop_table('bookmarks')
     op.drop_table('sightings')
     op.drop_table('users')
     # ### end Alembic commands ###
