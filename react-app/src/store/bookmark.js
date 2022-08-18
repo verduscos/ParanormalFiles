@@ -36,7 +36,6 @@ export const createBookmark = (bookmark) => async (dispatch) => {
   });
   const data = await res.json();
   dispatch(addBookmark(data));
-  return data;
 }
 
 export const deleteBookmark = (bookmark) => async (dispatch) => {
@@ -50,11 +49,8 @@ export const deleteBookmark = (bookmark) => async (dispatch) => {
         sighting_id: parseInt(bookmark.sighting_id)
       })
   })
-  if (res.ok) {
     const data = await res.json();
     dispatch(removeBookmark(data))
-    return
-  }
 }
 
 const bookmarksReducer = (state = {}, action) => {
@@ -65,10 +61,13 @@ const bookmarksReducer = (state = {}, action) => {
     //   console.log(bookmarks, "inside reducer");
     //   return bookmarks;
     // }
+    case CREATE_BOOKMARK : {
+      const bookmarks = { ...state };
+      return bookmarks;
+    }
     case REMOVE_BOOKMARK : {
       const bookmarks = { ...state };
-      console.log(bookmarks);
-      console.log(action.payload);
+      return bookmarks;
     }
     default:
       return state;

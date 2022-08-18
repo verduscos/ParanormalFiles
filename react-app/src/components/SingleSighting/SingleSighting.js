@@ -17,14 +17,17 @@ const SingleSighting = ({ scrollToTop }) => {
   const params = useParams()
   const { sightingId } = params
   const [userBtns, setUserBtns] = useState(false)
+  const [userBookmarked, setUserBookmarked] = useState(false);
   let sighting = useSelector(state => state.sightings[sightingId])
   let current = useSelector(state => state.sightings.current);
   let currentUser = useSelector(state => state.session.user)
   let bookmarks = useSelector(state => state.session.bookmarks);
   let likes = useSelector(state => state.likes.total)
   let currentSighting;
+  let tets = localStorage.getItem(`${sightingId}`);
 
   useEffect(() => {
+    localStorage.getItem(`${sightingId}`) === sightingId ? setUserBookmarked(true) : setUserBookmarked(false);
     dispatch(getSightingLikes(sightingId));
   }, [dispatch])
 
@@ -48,7 +51,8 @@ const SingleSighting = ({ scrollToTop }) => {
       sighting_id: sightingId
     }
     dispatch(createBookmark(payload));
-    localStorage.setItem(sightingId, true)
+    setUserBookmarked(true);
+    localStorage.setItem(sightingId, sightingId);
   }
 
   const unfavorite = (e) => {
@@ -57,8 +61,9 @@ const SingleSighting = ({ scrollToTop }) => {
       user_id: currentUser.id,
       sighting_id: sightingId
     }
-    dispatch(deleteBookmark(payload))
-    localStorage.removeItem(sightingId)
+    dispatch(deleteBookmark(payload));
+    setUserBookmarked(false);
+    localStorage.removeItem(sightingId);
   }
 
   const handleDelete = (e) => {
@@ -91,10 +96,10 @@ const SingleSighting = ({ scrollToTop }) => {
       :
       null
   )
-
+console.log(localStorage.getItem(`${sightingId}`), "LOCAL STORATE HRER", sightingId);
   const FavoriteBtns = (
     <>
-      {/* {localStorage.getItem(`${sightingId}`) ? */}
+      { userBookmarked ?
         <div onClick={(e) => {
           unfavorite(e)
         }}
@@ -103,7 +108,7 @@ const SingleSighting = ({ scrollToTop }) => {
           <MdOutlineBookmarkAdd size={25} />
           <p>Unsave</p>
         </div>
-        {/* : */}
+        :
         <div onClick={(e) => {
           favorite(e)
         }}
@@ -112,7 +117,7 @@ const SingleSighting = ({ scrollToTop }) => {
           <MdOutlineBookmarkAdd size={25} />
           <p>Save</p>
         </div>
-      {/* } */}
+      }
     </>
   )
 
