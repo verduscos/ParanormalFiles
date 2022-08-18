@@ -4,7 +4,6 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import { getSightingLikes, deleteLike, likeSightingThunk } from "../../store/like";
 import { deleteBookmark, createBookmark } from "../../store/bookmark";
-
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
@@ -21,10 +20,8 @@ const SingleSighting = ({ scrollToTop }) => {
   let sighting = useSelector(state => state.sightings[sightingId])
   let current = useSelector(state => state.sightings.current);
   let currentUser = useSelector(state => state.session.user)
-  let bookmarks = useSelector(state => state.session.bookmarks);
   let likes = useSelector(state => state.likes.total)
   let currentSighting;
-  let tets = localStorage.getItem(`${sightingId}`);
 
   useEffect(() => {
     localStorage.getItem(`${sightingId}`) === sightingId ? setUserBookmarked(true) : setUserBookmarked(false);
@@ -96,10 +93,10 @@ const SingleSighting = ({ scrollToTop }) => {
       :
       null
   )
-console.log(localStorage.getItem(`${sightingId}`), "LOCAL STORATE HRER", sightingId);
+
   const FavoriteBtns = (
     <>
-      { userBookmarked ?
+      {userBookmarked ?
         <div onClick={(e) => {
           unfavorite(e)
         }}
