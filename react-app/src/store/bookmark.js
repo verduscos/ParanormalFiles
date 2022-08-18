@@ -8,7 +8,7 @@ const REMOVE_BOOKMARK = "session/REMOVE_BOOKMARK"
 
 const removeBookmark = (bookmark) => ({
   type: REMOVE_BOOKMARK,
-  payload: bookmark
+  bookmark: bookmark
 })
 
 // export const fetchBookmarks = (sightingId) => async (dispatch) => {
@@ -28,10 +28,11 @@ export const deleteBookmark = (bookmark) => async (dispatch) => {
         sighting_id: parseInt(bookmark.sighting_id)
       })
   })
-  const data = await res.json();
-
-  dispatch(removeBookmark(data));
-  return data;
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(removeBookmark(data))
+    return
+  }
 }
 
 const bookmarksReducer = (state = {}, action) => {

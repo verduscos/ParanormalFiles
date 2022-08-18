@@ -94,7 +94,7 @@ const SingleSighting = ({ scrollToTop }) => {
 
   const FavoriteBtns = (
     <>
-      {localStorage.getItem(`${sightingId}`) ?
+      {/* {localStorage.getItem(`${sightingId}`) ? */}
         <div onClick={(e) => {
           unfavorite(e)
         }}
@@ -103,7 +103,7 @@ const SingleSighting = ({ scrollToTop }) => {
           <MdOutlineBookmarkAdd size={25} />
           <p>Unsave</p>
         </div>
-        :
+        {/* : */}
         <div onClick={(e) => {
           favorite(e)
         }}
@@ -112,7 +112,7 @@ const SingleSighting = ({ scrollToTop }) => {
           <MdOutlineBookmarkAdd size={25} />
           <p>Save</p>
         </div>
-      }
+      {/* } */}
     </>
   )
 

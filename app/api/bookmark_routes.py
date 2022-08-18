@@ -41,9 +41,11 @@ def delete_bookmark():
   """
   Delete a bookmark for a specific sighting.
   """
-  form = Bookmark()
+  # form = Bookmark()
   # form["csrf_token"].data = request.cookies["csrf_token"]
   # if form.validate_on_submit():
+  print(request.json)
+  print("DELETE ROUTE")
   searchExists = Bookmark.query.filter(Bookmark.user_id == request.json["user_id"], Bookmark.sighting_id == request.json["sighting_id"]).first()
   if searchExists is not None:
     db.session.delete(searchExists)
