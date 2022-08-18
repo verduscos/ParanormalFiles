@@ -5,6 +5,7 @@ import * as sessionActions from "../../store/sighting"
 import { getSightingLikes, deleteLike, likeSightingThunk } from "../../store/like";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
+import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 import "./SingleSighting.css"
 
 
@@ -131,9 +132,13 @@ const SingleSighting = ({ scrollToTop }) => {
         <li>
           <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
         </li>
-        <li>
-          <h4>Likes:{likes}</h4>
+        <li key="likes">
+          <FiThumbsUp />
+          <h4>{likes}</h4>
         </li>
+        {/* <li>
+          <FiThumbsDown />
+        </li> */}
         <li>
           <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>
         </li>
