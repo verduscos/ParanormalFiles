@@ -1,14 +1,14 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from 'react-router-dom';
-import { AiOutlineHome, AiOutlineHeart } from 'react-icons/ai';
+import { useNavigate, NavLink } from 'react-router-dom';
+import { AiOutlineHome } from 'react-icons/ai';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { IoAlbumsOutline } from 'react-icons/io5';
+import { BsBookmarks } from "react-icons/bs"
 import ProfileButton from './ProfileButton';
-import * as sessionActions from "../../store/sighting"
-import './Navigation.css'
+import { getAllSightings, getBookmarks, getAllUserSightings } from "../../store/sighting"
 import Logo from "./pf-logo.png"
-import { useNavigate } from "react-router-dom";
+import './Navigation.css'
 
 
 const UserNav = () => {
@@ -18,21 +18,18 @@ const UserNav = () => {
 
   const fetch = (e) => {
     e.preventDefault();
-    dispatch(sessionActions.getAllSightings());
-    navigate("/");
+    // dispatch(getAllSightings());
   }
 
   const fetchFavorites = (e) => {
     e.preventDefault();
-
-    navigate('/favorites');
-    dispatch(sessionActions.getBookmarks(currentUser.id))
+    dispatch(getBookmarks(currentUser.id))
   }
 
   const fetchUserSightings = (e) => {
     e.preventDefault();
     navigate('/mysightings');
-    dispatch(sessionActions.getAllUserSightings(currentUser.id))
+    dispatch(getAllUserSightings(currentUser.id))
   }
 
   return (
@@ -45,19 +42,23 @@ const UserNav = () => {
         >
           <img src={Logo} alt="pf-logo" />
         </li>
-        <li id="user-nav-home-btn"
+        <li id="user-nav-home-btn" className="user-nav-btn"
           onClick={(e) => {
             fetch(e)
           }}
-          className="user-nav-btn">
-          <AiOutlineHome />
+        >
+          <NavLink to="/" >
+            <AiOutlineHome />
+          </NavLink>
         </li>
         <li
           onClick={(e) => {
             fetchFavorites(e)
           }}
           className="user-nav-btn">
-          <AiOutlineHeart />
+          <NavLink to="/bookmarks">
+            <BsBookmarks />
+          </NavLink>
         </li>
 
         <li

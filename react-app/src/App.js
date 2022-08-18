@@ -26,7 +26,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="favorites" element={<Main />} />
+        <Route path="bookmarks" element={<Main />} />
         <Route path="/sightings/:sightingId" element={<Main />} />
         <Route path="/mysightings" element={<Main />} />
         <Route path="/report" element={<CreateSightingForm />} />

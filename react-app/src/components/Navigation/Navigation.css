@@ -1,4 +1,7 @@
 /* USER NAV */
+.active {
+  color: red !important;
+}
 #user-nav-container {
   background-color: rgba(255, 255, 255, 1);
   bottom: 0;
