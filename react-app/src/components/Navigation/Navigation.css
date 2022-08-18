@@ -1,6 +1,6 @@
 /* USER NAV */
 .active {
-  color: red !important;
+  color: black !important;
 }
 #user-nav-container {
   background-color: rgba(255, 255, 255, 1);

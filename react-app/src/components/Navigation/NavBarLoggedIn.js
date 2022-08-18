@@ -1,75 +1,43 @@
 import React from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { NavLink } from 'react-router-dom';
 import { AiOutlineHome } from 'react-icons/ai';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { IoAlbumsOutline } from 'react-icons/io5';
 import { BsBookmarks } from "react-icons/bs"
 import ProfileButton from './ProfileButton';
-import { getAllSightings, getBookmarks, getAllUserSightings } from "../../store/sighting"
 import Logo from "./pf-logo.png"
 import './Navigation.css'
 
 
 const UserNav = () => {
-  let currentUser = useSelector(state => state.session.user)
-  let navigate = useNavigate()
-  const dispatch = useDispatch()
-
-  const fetch = (e) => {
-    e.preventDefault();
-    // dispatch(getAllSightings());
-  }
-
-  const fetchFavorites = (e) => {
-    e.preventDefault();
-    dispatch(getBookmarks(currentUser.id))
-  }
-
-  const fetchUserSightings = (e) => {
-    e.preventDefault();
-    navigate('/mysightings');
-    dispatch(getAllUserSightings(currentUser.id))
-  }
+  const currentUser = useSelector(state => state.session.user);
 
   return (
     <nav id="user-nav-container">
       <ul>
-        <li id="user-nav-home-logo"
-          onClick={(e) => {
-            fetch(e);
-          }}
-        >
-          <img src={Logo} alt="pf-logo" />
+        <li id="user-nav-home-logo">
+          <NavLink to="/">
+            <img src={Logo} alt="pf-logo" />
+          </NavLink>
         </li>
-        <li id="user-nav-home-btn" className="user-nav-btn"
-          onClick={(e) => {
-            fetch(e)
-          }}
-        >
-          <NavLink to="/" >
+        <li id="user-nav-home-btn" className="user-nav-btn">
+          <NavLink to="/" className="user-nav-btn">
             <AiOutlineHome />
           </NavLink>
         </li>
-        <li
-          onClick={(e) => {
-            fetchFavorites(e)
-          }}
-          className="user-nav-btn">
-          <NavLink to="/bookmarks">
+        <li>
+          <NavLink to="/bookmarks" className="user-nav-btn">
             <BsBookmarks />
           </NavLink>
         </li>
-
-        <li
-          onClick={(e) => {
-            fetchUserSightings(e)
-          }}
-          className="user-nav-btn">
-          <IoAlbumsOutline />
+        <li>
+          <NavLink to="/mysightings" className="user-nav-btn">
+            <IoAlbumsOutline />
+          </NavLink>
         </li>
         <li id="user-nav-report-btn">
-          <NavLink className="user-nav-btn" to='/report' activeclassname='active'>
+          <NavLink to='/report' className="user-nav-btn">
             <IoIosAddCircleOutline />
           </NavLink>
         </li>
