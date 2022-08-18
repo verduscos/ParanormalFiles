@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import { getSightingLikes, deleteLike, likeSightingThunk } from "../../store/like";
-import { deleteBookmark } from "../../store/bookmark";
+import { deleteBookmark, createBookmark } from "../../store/bookmark";
 
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
@@ -47,7 +47,7 @@ const SingleSighting = ({ scrollToTop }) => {
       user_id: currentUser.id,
       sighting_id: sightingId
     }
-    // dispatch(boo(payload))
+    dispatch(createBookmark(payload));
     localStorage.setItem(sightingId, true)
   }
 

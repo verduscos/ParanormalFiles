@@ -1,4 +1,5 @@
 // const GET_BOOKMARKS = "session/GET_BOOKMARK"
+const CREATE_BOOKMARK = "session/CREATE_BOOKMARK"
 const REMOVE_BOOKMARK = "session/REMOVE_BOOKMARK"
 
 // const getBookmarks = (sightingId) => ({
@@ -6,9 +7,14 @@ const REMOVE_BOOKMARK = "session/REMOVE_BOOKMARK"
 //   package: sightingId
 // })
 
+const addBookmark = (bookmark) => ({
+  type: CREATE_BOOKMARK,
+  bookmark
+})
+
 const removeBookmark = (bookmark) => ({
   type: REMOVE_BOOKMARK,
-  bookmark: bookmark
+  bookmark
 })
 
 // export const fetchBookmarks = (sightingId) => async (dispatch) => {
@@ -16,6 +22,22 @@ const removeBookmark = (bookmark) => ({
 //   const data = await res.json();
 //   dispatch(getBookmarks(data));
 // }
+
+export const createBookmark = (bookmark) => async (dispatch) => {
+  const res = await fetch(`/api/bookmarks/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      user_id: bookmark.user_id,
+      sighting_id: bookmark.sighting_id
+    })
+  });
+  const data = await res.json();
+  dispatch(addBookmark(data));
+  return data;
+}
 
 export const deleteBookmark = (bookmark) => async (dispatch) => {
   const res = await fetch(`/api/bookmarks/`, {
