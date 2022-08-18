@@ -14,7 +14,6 @@ def get_bookmarks(userId):
 
   return {"bookmarks": [bookmark.to_dict() for bookmark in bookmarks]}
 
-
 @bookmark_routes.route("/", methods=["POST"])
 def post_bookmark():
   """

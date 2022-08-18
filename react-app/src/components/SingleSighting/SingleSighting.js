@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import { getSightingLikes, deleteLike, likeSightingThunk } from "../../store/like";
+import { deleteBookmark } from "../../store/bookmark";
+
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
@@ -18,8 +20,8 @@ const SingleSighting = ({ scrollToTop }) => {
   let sighting = useSelector(state => state.sightings[sightingId])
   let current = useSelector(state => state.sightings.current);
   let currentUser = useSelector(state => state.session.user)
+  let bookmarks = useSelector(state => state.session.bookmarks);
   let likes = useSelector(state => state.likes.total)
-  console.log("likes herer", likes);
   let currentSighting;
 
   useEffect(() => {
@@ -45,7 +47,7 @@ const SingleSighting = ({ scrollToTop }) => {
       user_id: currentUser.id,
       sighting_id: sightingId
     }
-    dispatch(likeSightingThunk(payload))
+    // dispatch(boo(payload))
     localStorage.setItem(sightingId, true)
   }
 
@@ -55,8 +57,8 @@ const SingleSighting = ({ scrollToTop }) => {
       user_id: currentUser.id,
       sighting_id: sightingId
     }
-    dispatch(deleteLike(payload))
-    localStorage.removeItem(sighting.id)
+    dispatch(deleteBookmark(payload))
+    localStorage.removeItem(sightingId)
   }
 
   const handleDelete = (e) => {
@@ -92,7 +94,7 @@ const SingleSighting = ({ scrollToTop }) => {
 
   const FavoriteBtns = (
     <>
-      {likes[sightingId] ?
+      {localStorage.getItem(`${sightingId}`) ?
         <div onClick={(e) => {
           unfavorite(e)
         }}
