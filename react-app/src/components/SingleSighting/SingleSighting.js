@@ -17,7 +17,8 @@ const SingleSighting = ({ scrollToTop }) => {
   let sighting = useSelector(state => state.sightings[sightingId])
   let current = useSelector(state => state.sightings.current);
   let currentUser = useSelector(state => state.session.user)
-  let likes = useSelector(state => state.likes)
+  let likes = useSelector(state => state.likes.total)
+  console.log("likes herer", likes);
   let currentSighting;
 
   useEffect(() => {
@@ -129,6 +130,9 @@ const SingleSighting = ({ scrollToTop }) => {
         </li>
         <li>
           <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
+        </li>
+        <li>
+          <h4>Likes:{likes}</h4>
         </li>
         <li>
           <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>

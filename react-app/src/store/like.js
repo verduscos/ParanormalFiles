@@ -38,7 +38,7 @@ export const deleteLike = (payload) => async (dispatch) => {
 
 export const getSightingLikes = (sightingId) => async (dispatch) => {
   const response = await fetch(`/api/likes/${sightingId}`)
-
+  console.log("INSIDE LIKES THUNK");
   if(response.status >= 400) {
     throw response
   }
@@ -74,15 +74,11 @@ export const likeSightingThunk = (payload) => async (dispatch) => {
 
 
 
-const likesReducer = (state = {}, action) => {
+const likesReducer = (state = { total : 0}, action) => {
   switch (action.type){
     case GET_LIKES:
       let likes = { ...state }
-
-      action.payload.likes.forEach(liked => {
-        likes[liked.id] = liked
-      })
-
+      likes.total = action.payload.likes;
       return { ...likes }
 
     case REMOVE_LIKE:
