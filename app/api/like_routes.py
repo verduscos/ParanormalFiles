@@ -5,15 +5,14 @@ from app.models import Like, User, db
 like_routes = Blueprint("likes", __name__)
 
 
-@like_routes.route("/<int:userId>")
-def get_likes(userId):
+@like_routes.route("/<int:sightingId>")
+def get_likes(sightingId):
   """
-  Get all user favorites.
+  Get likes for a sighting.
   """
-  likes = Like.query.filter(Like.user_id == userId).all()
+  likes = Like.query.filter(Like.sighting_id == sightingId).count()
 
-  print("testingsientsiegnwie1231231312313")
-  # return {"likes": [like.to_dict() for like in likes]}
+  return {"likes": likes}
 
 
 @like_routes.route("/", methods=["POST"])

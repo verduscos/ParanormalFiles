@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
-import { deleteLike, likeSightingThunk } from "../../store/like";
+import { getSightingLikes, deleteLike, likeSightingThunk } from "../../store/like";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import "./SingleSighting.css"
@@ -19,6 +19,10 @@ const SingleSighting = ({ scrollToTop }) => {
   let currentUser = useSelector(state => state.session.user)
   let likes = useSelector(state => state.likes)
   let currentSighting;
+
+  useEffect(() => {
+    dispatch(getSightingLikes(sightingId));
+  }, [dispatch])
 
   const setSighting = () => {
     if (current) {
