@@ -18,7 +18,7 @@ const Sightings = () => {
   let id = sightingsArray[0]?.id;
   sightingsArray = sightingsArray.reverse();
 
-  const test = (e, id) => {
+  const setCurrentSighting = (e, id) => {
     e.preventDefault();
     navigate(`/sightings/${id}`);
     dispatch(sessionActions.getCurrentSightingThunk(sightings.all[id]));
@@ -71,8 +71,6 @@ const Sightings = () => {
     </>
   )
 
-
-
   const loadingIcon = (
     <div id="loading-container">
       <AiOutlineLoading3Quarters />
@@ -89,9 +87,7 @@ const Sightings = () => {
             </>
             : null}
           {sightingsArray.map((sighting, i) => (
-            <div id="sighting-card" key={i} onClick={(e) => {
-              test(e, sighting?.id);
-            }}>
+            <div id="sighting-card" key={i}>
               <ul id="sighting-details" key={sighting?.id}>
                 <li key={`date-${sighting?.id}`}>
                   <h4 id="sighting-author">
@@ -100,7 +96,10 @@ const Sightings = () => {
                 </li>
                 <li key={`link-${i}`}>
                   <div className="link">
-                    <div key={`title-${sighting?.id}`}>
+                    <div key={`title-${sighting?.id}`}
+                      onClick={(e) => {
+                        setCurrentSighting(e, sighting?.id);
+                      }}>
                       <h2 id="sighting-title">{sighting.title}</h2>
                       <p className="sighting-story">{sighting.description}</p>
                     </div>
@@ -108,9 +107,9 @@ const Sightings = () => {
                 </li>
                 <li id="sighting-tag-container" key={`tag-${i}`}>
                   <span id="sighting-date">{`${sighting?.created_at?.split(' ')[2]} ${sighting?.created_at?.split(' ')[1]}`}</span>
-                  {/* <Link className="link tag" to={`/sightings/search/${sighting?.category}`}>
+                  <Link className="link tag" to={`/sightings/search/${sighting?.category}`}>
                     <p className="category-link" key={`category-${sighting?.id}`} >{sighting?.category}</p>
-                  </Link> */}
+                  </Link>
                 </li>
               </ul>
               <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>

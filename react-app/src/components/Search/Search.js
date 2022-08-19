@@ -1,19 +1,23 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
-import { AiOutlineSearch } from "react-icons/ai"
-import * as sessions from "../../store/sighting"
-import "./Search.css"
+import { useNavigate, useParams } from "react-router-dom";
+import {searchAllSightings } from "../../store/sighting";
+import { AiOutlineSearch } from "react-icons/ai";
+import "./Search.css";
 
 const Search = () => {
   let navigate = useNavigate();
+  let { string } = useParams();
   const dispatch = useDispatch();
-  const [searchInput, setSearchInput] = useState("")
+  const [searchInput, setSearchInput] = useState("");
+
+  useEffect(() => {
+    dispatch(searchAllSightings(string));
+  }, [string])
 
   const search = async (e) => {
     e.preventDefault();
-
-    dispatch(sessions.searchAllSightings(searchInput))
+    dispatch(searchAllSightings(searchInput));
     navigate(`/sightings/search/${searchInput}`);
   }
 
