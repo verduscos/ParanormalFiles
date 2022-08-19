@@ -30,11 +30,6 @@ const CreateSightingForm = () => {
     const formData = new FormData();
     formData.append("image", image);
 
-    // TODO
-    // aws uploads can be a bit slow—displaying
-    // some sort of loading message is a good idea
-    // setImageLoading(true);
-
     const res = await fetch(`/api/sightings/image`, {
       method: "POST",
       body: formData,
@@ -106,7 +101,6 @@ const CreateSightingForm = () => {
 
           <div className="form-category-image-container">
             <select
-              // id="form-select-options"
               className="form-select-options sighting-inputs"
               onChange={(e) => {
                 setCategory(e.target.value)
@@ -123,8 +117,6 @@ const CreateSightingForm = () => {
               <option value="Time Travel">Time Travel</option>
               <option value="Synchronicity">Synchronicity</option>
             </select>
-
-            {/* <div id="form-image-upload-container"> */}
             <label for="image-upload-default-btn" value="Upload Image" id="file-label">
               <p>Upload Image</p>
             </label>
@@ -136,8 +128,6 @@ const CreateSightingForm = () => {
               accept="image/*"
               onChange={updateImage}
             />
-            {/* </div> */}
-
           </div>
           <p id="form-display-image-url">{displayUrl}</p>
 

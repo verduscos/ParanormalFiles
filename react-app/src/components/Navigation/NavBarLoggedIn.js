@@ -12,7 +12,6 @@ import './Navigation.css'
 
 const UserNav = () => {
   const currentUser = useSelector(state => state.session.user);
-
   return (
     <nav id="user-nav-container">
       <ul>
