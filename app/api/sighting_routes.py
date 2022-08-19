@@ -1,3 +1,4 @@
+import re
 import sqlalchemy
 from flask import Blueprint, session, request
 from sqlalchemy import desc, asc, or_, func
@@ -118,6 +119,7 @@ def update_sighting(id):
 
     print("INSIDE API ROUTE")
     print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    print(request.json["image_url"])
 
     if form.validate_on_submit():
         updated_sighting = Sighting.update(

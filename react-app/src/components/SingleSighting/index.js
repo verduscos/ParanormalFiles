@@ -40,6 +40,7 @@ const SingleSighting = ({ scrollToTop }) => {
   scrollToTop();
 
 
+
   const favorite = (e) => {
     e.preventDefault();
     const payload = {
@@ -130,7 +131,7 @@ const SingleSighting = ({ scrollToTop }) => {
           <h1 id="single-sighting-title">{currentSighting.title}</h1>
         </li>
         <li>
-          <p id="single-sighting-date">{`${currentSighting.created_at.split(' ')[2]} ${currentSighting.created_at.split(' ')[1]}, ${currentSighting.created_at.split(' ')[3]}`}</p>
+          {/* <p id="single-sighting-date">{`${currentSighting?.created_at.split(' ')[2]} ${currentSighting.created_at?.split(' ')[1]}, ${currentSighting?.created_at.split(' ')[3]}`}</p> */}
         </li>
         <li>
           <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>

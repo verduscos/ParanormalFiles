@@ -16,28 +16,18 @@ const EditForm = () => {
   const [title, setTitle] = useState(currentSighting.title);
   const [description, setDescription] = useState(currentSighting.description);
   const [category, setCategory] = useState(currentSighting.category);
-  const [imageUrl, setImageUrl] = useState(currentSighting.imageUrl);
+  const [imageUrl, setImageUrl] = useState(currentSighting.image_url);
   const [errors, setErrors] = useState([])
   const [image, setImage] = useState(null);
   const [editTextOnly, setEditTextOnly] = useState(true)
   const [displayUrl, setDisplayUrl] = useState("")
 
 
-  console.log("inside editFORM", currentSighting);
-
-
-
   const editSighting = async (e) => {
     e.preventDefault()
-
-
     // IMAGE UPLOAD STARTS
     const formData = new FormData();
     formData.append("image", image);
-
-    // TODO
-    // aws uploads can be a bit slow—displaying
-    // some sort of loading message is a good idea
 
     const res = await fetch(`/api/sightings/image`, {
       method: "POST",
@@ -46,31 +36,27 @@ const EditForm = () => {
     if (res.ok) {
       const data = await res.json();
       setImageUrl(data.url)
-
-
-
     }
-    else {
-      // TODO
-      // a real app would probably use more advanced
-      // error handling
+
+    const payload = {
+      sighting_id: sightingId,
+      user_id: currentUser.id,
+      title: title,
+      description: description,
+      category: category,
+      image_url: imageUrl
     }
-    // IMAGE UPLOAD ENDS
-
-
 
     let errorsArr = [];
-
     if (title?.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
     if (description?.length <= 4) errorsArr.push("Description must be at least 5 characters long.")
     if (category?.length < 1) errorsArr.push("Please choose a category.")
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
+      window.localStorage.setItem("currentSighting", JSON.stringify(payload));
       navigate(`/sightings/${sightingId}`);
     }
-
   }
-
 
   const updateImage = (e) => {
     const file = e.target.files[0];
@@ -88,6 +74,7 @@ const EditForm = () => {
       category: category,
       image_url: imageUrl
     }
+    // window.localStorage.setItem("currentSighting", JSON.stringify(payload));
     dispatch(sessionActions.updateSighting(payload))
 
   }, [imageUrl, dispatch])
@@ -111,6 +98,8 @@ const EditForm = () => {
     // if (imageUrl?.length < 1) errorsArr.push("Please upload an image.")
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
+      console.log("INSIDE  editTEXT 6666666")
+      window.localStorage.setItem("currentSighting", JSON.stringify(payload));
       dispatch(sessionActions.updateSighting(payload))
       navigate(`/sightings/${sightingId}`);
     }
@@ -179,7 +168,7 @@ const EditForm = () => {
               <option value="Synchronicity">Synchronicity</option>
             </select>
 
-            <label for="image-upload-default-btn" value="Upload Image" id="file-label">
+            <label htmlFor="image-upload-default-btn" value="Upload Image" id="file-label">
               <p>Upload Image</p>
             </label>
             <input
