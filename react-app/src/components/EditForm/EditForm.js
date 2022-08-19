@@ -9,17 +9,21 @@ import * as sessionActions from "../../store/sighting"
 const EditForm = () => {
   const params = useParams()
   const { sightingId } = params
-  const history = useNavigate()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   let currentUser = useSelector(state => state.session.user)
-  const [title, setTitle] = useState(window.localStorage.getItem("title"))
-  const [description, setDescription] = useState(window.localStorage.getItem("description"))
-  const [category, setCategory] = useState(window.localStorage.getItem("category"))
-  const [imageUrl, setImageUrl] = useState(window.localStorage.getItem("image_url"))
+  const currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));;
+  const [title, setTitle] = useState(currentSighting.title);
+  const [description, setDescription] = useState(currentSighting.description);
+  const [category, setCategory] = useState(currentSighting.category);
+  const [imageUrl, setImageUrl] = useState(currentSighting.imageUrl);
   const [errors, setErrors] = useState([])
   const [image, setImage] = useState(null);
   const [editTextOnly, setEditTextOnly] = useState(true)
   const [displayUrl, setDisplayUrl] = useState("")
+
+
+  console.log("inside editFORM", currentSighting);
 
 
 
@@ -62,7 +66,7 @@ const EditForm = () => {
     if (category?.length < 1) errorsArr.push("Please choose a category.")
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
-      history.push(`/sightings/${sightingId}`)
+      navigate(`/sightings/${sightingId}`);
     }
 
   }
@@ -82,7 +86,7 @@ const EditForm = () => {
       title: title,
       description: description,
       category: category,
-      url: imageUrl
+      image_url: imageUrl
     }
     dispatch(sessionActions.updateSighting(payload))
 
@@ -97,7 +101,7 @@ const EditForm = () => {
       title: title,
       description: description,
       category: category,
-      url: imageUrl
+      image_url: imageUrl
     }
     let errorsArr = [];
 
@@ -108,7 +112,7 @@ const EditForm = () => {
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
       dispatch(sessionActions.updateSighting(payload))
-      history.push(`/sightings/${sightingId}`)
+      navigate(`/sightings/${sightingId}`);
     }
   }
 

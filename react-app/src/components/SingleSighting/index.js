@@ -12,15 +12,14 @@ import "./SingleSighting.css"
 
 const SingleSighting = ({ scrollToTop }) => {
   const dispatch = useDispatch()
-  const history = useNavigate()
+  const navigate = useNavigate()
   const params = useParams()
   const { sightingId } = params
   const [userBtns, setUserBtns] = useState(false)
   const [userBookmarked, setUserBookmarked] = useState(false);
-  let sighting = useSelector(state => state.sightings[sightingId])
   let current = useSelector(state => state.sightings.current);
-  let currentUser = useSelector(state => state.session.user)
-  let likes = useSelector(state => state.likes.total)
+  let currentUser = useSelector(state => state.session.user);
+  let likes = useSelector(state => state.likes.total);
   let currentSighting;
 
   useEffect(() => {
@@ -65,12 +64,12 @@ const SingleSighting = ({ scrollToTop }) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    dispatch(sessionActions.deleteASighting(sightingId))
-    history.push("/mysightings")
+    dispatch(sessionActions.deleteASighting(sightingId));
+    navigate("/mysightings");
   }
 
   const UserEditBtns = (
-    currentUser && currentUser?.id === sighting?.user_id ?
+    currentUser && currentUser?.id === currentSighting?.user_id ?
       <>
         <span
           onBlur={() => {
@@ -86,7 +85,7 @@ const SingleSighting = ({ scrollToTop }) => {
         {userBtns ?
           <div id="user-btns">
             <button className="black-btn" onClick={handleDelete}>Delete</button>
-            <Link className="black-btn" to={`/sightings/edit/${sighting.id}`}>Edit</Link>
+            <Link className="black-btn" to={`/sightings/edit/${currentSighting.id}`}>Edit</Link>
           </div>
           : null}
       </>

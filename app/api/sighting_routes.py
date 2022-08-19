@@ -116,6 +116,9 @@ def update_sighting(id):
     form["csrf_token"].data = request.cookies["csrf_token"]
     sighting = Sighting.query.get(id)
 
+    print("INSIDE API ROUTE")
+    print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+
     if form.validate_on_submit():
         updated_sighting = Sighting.update(
             sighting=sighting,

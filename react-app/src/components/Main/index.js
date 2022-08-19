@@ -5,7 +5,7 @@ import Navigation from '../Navigation';
 import Search from '../Search/Search';
 import Tags from '../Tags';
 import Sightings from '../sightings/Sightings';
-import SingleSighting from '../SingleSighting/SingleSighting';
+import SingleSighting from '../SingleSighting/';
 import Comments from '../Comments/Comments';
 import Footer from '../Footer'
 
