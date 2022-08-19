@@ -8,7 +8,7 @@ import "./Form.css";
 
 const CreateSightingForm = () => {
   let currentUser = useSelector(state => state.session.user)
-  const history = useNavigate()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
@@ -55,7 +55,7 @@ const CreateSightingForm = () => {
     setErrors(errorsArr)
 
     if (errorsArr.length === 0) {
-      history.push('/mysightings')
+      navigate('/mysightings');
     }
   }
 
