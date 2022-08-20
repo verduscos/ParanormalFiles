@@ -74,7 +74,6 @@ const EditForm = () => {
       category: category,
       image_url: imageUrl
     }
-    // window.localStorage.setItem("currentSighting", JSON.stringify(payload));
     dispatch(sessionActions.updateSighting(payload))
 
   }, [imageUrl, dispatch])
@@ -95,13 +94,11 @@ const EditForm = () => {
     if (title?.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
     if (description?.length <= 4) errorsArr.push("Description must be at least 5 characters long.")
     if (category?.length < 1) errorsArr.push("Please choose a category.")
-    // if (imageUrl?.length < 1) errorsArr.push("Please upload an image.")
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
-      console.log("INSIDE  editTEXT 6666666")
-      window.localStorage.setItem("currentSighting", JSON.stringify(payload));
       dispatch(sessionActions.updateSighting(payload))
       navigate(`/sightings/${sightingId}`);
+      window.localStorage.setItem("currentSighting", JSON.stringify(payload));
     }
   }
 

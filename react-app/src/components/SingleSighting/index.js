@@ -21,8 +21,6 @@ const SingleSighting = ({ scrollToTop }) => {
   let currentUser = useSelector(state => state.session.user);
   let likes = useSelector(state => state.likes.total);
   let currentSighting;
-  let one = JSON.parse(window.localStorage.getItem("currentSighting"));
-  one ? currentSighting = one : currentSighting = current;
 
 
   useEffect(() => {
@@ -31,7 +29,19 @@ const SingleSighting = ({ scrollToTop }) => {
   }, [dispatch])
 
   const setSighting = () => {
+    let localSighting;
+    let localStorageRes = window.localStorage.getItem("currentSighting");
+    console.log(localStorageRes)
+    // const localSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
+    if (localStorageRes !== "undefined") {
+      localSighting = JSON.parse(localStorageRes);
+    }
+    current === undefined ? currentSighting = localSighting : currentSighting = current;
     window.localStorage.setItem("currentSighting", JSON.stringify(currentSighting));
+
+    console.log("local",localSighting);
+    console.log(current)
+    // window.localStorage.setItem("currentSighting", JSON.stringify(currentSighting));
     // console.log(current, "current here");
     // if (current !== undefined) {
     //   currentSighting = current
