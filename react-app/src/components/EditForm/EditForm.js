@@ -105,6 +105,7 @@ const EditForm = () => {
     }
   }
 
+  console.log(title)
   const submitBtn = (
     <>
       {editTextOnly ? null

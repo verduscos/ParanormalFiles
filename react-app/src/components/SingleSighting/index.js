@@ -21,6 +21,9 @@ const SingleSighting = ({ scrollToTop }) => {
   let currentUser = useSelector(state => state.session.user);
   let likes = useSelector(state => state.likes.total);
   let currentSighting;
+  let one = JSON.parse(window.localStorage.getItem("currentSighting"));
+  one ? currentSighting = one : currentSighting = current;
+
 
   useEffect(() => {
     localStorage.getItem(`${sightingId}`) === sightingId ? setUserBookmarked(true) : setUserBookmarked(false);
@@ -28,12 +31,14 @@ const SingleSighting = ({ scrollToTop }) => {
   }, [dispatch])
 
   const setSighting = () => {
-    if (current) {
-      currentSighting = current
-      window.localStorage.setItem("currentSighting", JSON.stringify(currentSighting));
-    } else {
-      currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
-    }
+    window.localStorage.setItem("currentSighting", JSON.stringify(currentSighting));
+    // console.log(current, "current here");
+    // if (current !== undefined) {
+    //   currentSighting = current
+    //   window.localStorage.setItem("currentSighting", JSON.stringify(currentSighting));
+    // } else {
+    //   currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
+    // }
   };
 
   setSighting();
