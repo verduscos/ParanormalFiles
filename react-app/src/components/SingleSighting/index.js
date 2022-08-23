@@ -26,9 +26,8 @@ const SingleSighting = ({ scrollToTop }) => {
 
 
   useEffect(() => {
-    // localStorage.getItem(`${sightingId}`) === sightingId ? setUserBookmarked(true) : setUserBookmarked(false);
     dispatch(getSightingLikes(sightingId));
-    dispatch(getSighting(sightingId));
+    if (currentSighting === undefined) dispatch(getSighting(sightingId));
   }, [params, dispatch])
 
   scrollToTop();
@@ -119,25 +118,29 @@ const SingleSighting = ({ scrollToTop }) => {
             {UserEditBtns}
           </div>
         </li>
-        <li>
-          <h1 id="single-sighting-title">{currentSighting?.title}</h1>
-        </li>
-        <li>
-          {/* <p id="single-sighting-date">{`${currentSighting?.created_at.split(' ')[2]} ${currentSighting.created_at?.split(' ')[1]}, ${currentSighting?.created_at.split(' ')[3]}`}</p> */}
-        </li>
-        <li>
-          <img src={currentSighting?.image_url} id="single-sighting-img" alt="article-img"></img>
-        </li>
-        <li key="likes">
-          <FiThumbsUp />
-          <h4>{likes}</h4>
-        </li>
-        {/* <li>
-          <FiThumbsDown />
-        </li> */}
-        <li>
-          <p id="single-sighting-body">{currentSighting?.description.replace(/\n+/g, '\n\n')}</p>
-        </li>
+        {currentSighting ?
+          <>
+            <li>
+              <h1 id="single-sighting-title">{currentSighting.title}</h1>
+            </li>
+            <li>
+              {/* <p id="single-sighting-date">{`${currentSighting?.created_at.split(' ')[2]} ${currentSighting.created_at?.split(' ')[1]}, ${currentSighting?.created_at.split(' ')[3]}`}</p> */}
+            </li>
+            <li>
+              <img src={currentSighting?.image_url} id="single-sighting-img" alt="article-img"></img>
+            </li>
+            <li key="likes">
+              <FiThumbsUp />
+              <h4>{likes}</h4>
+            </li>
+            {/* <li>
+        <FiThumbsDown />
+      </li> */}
+            <li>
+              <p id="single-sighting-body">{currentSighting?.description.replace(/\n+/g, '\n\n')}</p>
+            </li>
+          </>
+          : null}
       </ul>
     </div>
   )
