@@ -71,14 +71,15 @@ export const getAllSightings = () => async (dispatch) => {
 }
 
 export const getSighting = (id) => async (dispatch) => {
-  const res = await fetch(`api/sighting/${id}`);
+  console.log('YOYOUOYOYOMAs')
+  const res = await fetch(`/api/sightings/${id}`);
   if (res.status >= 400) throw res;
   const data = await res.json();
   dispatch(getSightingById(data));
 }
 
 export const getAdditionalSightings = (id) => async (dispatch) => {
-  const response = await fetch(`/api/sightings/additional/${id}`);
+  const response = await fetch(`/sightings/additional/${id}`);
   const data = await response.json();
   dispatch(getMoreSightings(data.sightings));
   return data;
@@ -190,9 +191,9 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
       return sightings;
 
 
-    case GET_SIGHTING_BY_ID : {
+    case GET_SIGHTING_BY_ID: {
       const sighting = { ...state };
-      console.log("SIGHTING STATWE,", action.payload)
+      sighting.current = action.payload.sighting;
       return sighting;
     }
 

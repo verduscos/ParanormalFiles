@@ -29,7 +29,7 @@ const SingleSighting = ({ scrollToTop }) => {
     // localStorage.getItem(`${sightingId}`) === sightingId ? setUserBookmarked(true) : setUserBookmarked(false);
     dispatch(getSightingLikes(sightingId));
     dispatch(getSighting(sightingId));
-  }, [dispatch])
+  }, [params, dispatch])
 
   scrollToTop();
 
