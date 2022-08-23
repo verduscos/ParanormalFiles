@@ -22,6 +22,22 @@ const EditForm = () => {
   const [editTextOnly, setEditTextOnly] = useState(true)
   const [displayUrl, setDisplayUrl] = useState("")
 
+  console.log(imageUrl)
+
+
+  useEffect(() => {
+    const payload = {
+      sighting_id: sightingId,
+      user_id: currentUser.id,
+      title: title,
+      description: description,
+      category: category,
+      image_url: imageUrl
+    }
+    dispatch(sessionActions.updateSighting(payload))
+    console.log(imageUrl);
+  }, [imageUrl, dispatch])
+
 
   const editSighting = async (e) => {
     e.preventDefault()
@@ -65,19 +81,6 @@ const EditForm = () => {
     setDisplayUrl(file["name"])
   }
 
-  useEffect(() => {
-    const payload = {
-      sighting_id: sightingId,
-      user_id: currentUser.id,
-      title: title,
-      description: description,
-      category: category,
-      image_url: imageUrl
-    }
-    dispatch(sessionActions.updateSighting(payload))
-
-  }, [imageUrl, dispatch])
-
   const editText = (e) => {
     e.preventDefault()
 
@@ -97,8 +100,8 @@ const EditForm = () => {
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
       dispatch(sessionActions.updateSighting(payload))
-      navigate(`/sightings/${sightingId}`);
       window.localStorage.setItem("currentSighting", JSON.stringify(payload));
+      navigate(`/sightings/${sightingId}`);
     }
   }
 

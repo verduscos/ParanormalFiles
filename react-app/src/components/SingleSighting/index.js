@@ -37,10 +37,13 @@ const SingleSighting = ({ scrollToTop }) => {
       localSighting = JSON.parse(localStorageRes);
     }
     current === undefined ? currentSighting = localSighting : currentSighting = current;
-    window.localStorage.setItem("currentSighting", JSON.stringify(currentSighting));
+    if (localStorageRes === "undefined") {
+      window.localStorage.setItem("currentSighting", JSON.stringify(currentSighting));
+    }
 
     console.log("local",localSighting);
     console.log(current)
+    console.log(currentSighting)
     // window.localStorage.setItem("currentSighting", JSON.stringify(currentSighting));
     // console.log(current, "current here");
     // if (current !== undefined) {
