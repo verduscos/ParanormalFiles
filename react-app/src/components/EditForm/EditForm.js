@@ -74,13 +74,6 @@ const EditForm = () => {
     }
   }
 
-  const updateImage = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
-    setEditTextOnly(false)
-    setDisplayUrl(file["name"])
-  }
-
   const editText = (e) => {
     e.preventDefault()
 
@@ -100,9 +93,16 @@ const EditForm = () => {
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
       dispatch(sessionActions.updateSighting(payload))
-      window.localStorage.setItem("currentSighting", JSON.stringify(payload));
+      // window.localStorage.setItem("currentSighting", JSON.stringify(payload));
       navigate(`/sightings/${sightingId}`);
     }
+  }
+
+  const updateImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+    setEditTextOnly(false)
+    setDisplayUrl(file["name"])
   }
 
   console.log(title)
@@ -115,7 +115,7 @@ const EditForm = () => {
 
 
       {editTextOnly ?
-        <button onClick={editText} className="form-submit-btn sighting-inputs">Update</button>
+        <button onClick={editSighting} className="form-submit-btn sighting-inputs">Update</button>
         : null}
     </>
   )
