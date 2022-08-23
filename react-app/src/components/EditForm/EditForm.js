@@ -69,7 +69,7 @@ const EditForm = () => {
     if (category?.length < 1) errorsArr.push("Please choose a category.")
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
-      window.localStorage.setItem("currentSighting", JSON.stringify(payload));
+      // window.localStorage.setItem("currentSighting", JSON.stringify(payload));
       navigate(`/sightings/${sightingId}`);
     }
   }

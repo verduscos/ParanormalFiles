@@ -73,7 +73,7 @@ def get_sighting_by_id(id):
     Return a sighting by id.
     """
     sighting = Sighting.query.get(id)
-    return sighting.to_dict()
+    return {"sighting": sighting.to_dict() }
 
 
 @sighting_routes.route("/<int:id>/images")
@@ -116,10 +116,6 @@ def update_sighting(id):
     form = SightingForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     sighting = Sighting.query.get(id)
-
-    print("INSIDE API ROUTE")
-    print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-    print(request.json["image_url"])
 
     if form.validate_on_submit():
         updated_sighting = Sighting.update(

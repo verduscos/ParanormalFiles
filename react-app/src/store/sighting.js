@@ -1,4 +1,5 @@
 const CREATE_SIGHTING = "session/CREATE_SIGHTING"
+const GET_SIGHTING_BY_ID = "session/GET_SIGHTING_BY_ID"
 const GET_SIGHTINGS = "session/GET_SIGHTING"
 const GET_MORE_SIGHTINGS = "session/GET_MORE_SIGHTINGS"
 const EDIT_SIGHTING = "session/EDIT_SIGHTING"
@@ -17,6 +18,11 @@ const createSighting = (sighting) => ({
 const getSightings = (sightings) => ({
   type: GET_SIGHTINGS,
   payload: sightings
+})
+
+const getSightingById = (sighting) => ({
+  type: GET_SIGHTING_BY_ID,
+  payload: sighting
 })
 
 const getMoreSightings = (sightings) => ({
@@ -62,6 +68,13 @@ export const getAllSightings = () => async (dispatch) => {
   const data = await response.json();
   dispatch(getSightings(data.sightings));
   return data;
+}
+
+export const getSighting = (id) => async (dispatch) => {
+  const res = await fetch(`api/sighting/${id}`);
+  if (res.status >= 400) throw res;
+  const data = await res.json();
+  dispatch(getSightingById(data));
 }
 
 export const getAdditionalSightings = (id) => async (dispatch) => {
@@ -175,6 +188,13 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
         sightings.all[sighting.id] = sighting;
       })
       return sightings;
+
+
+    case GET_SIGHTING_BY_ID : {
+      const sighting = { ...state };
+      console.log("SIGHTING STATWE,", action.payload)
+      return sighting;
+    }
 
     case GET_MORE_SIGHTINGS: {
       const sightings = { ...state };

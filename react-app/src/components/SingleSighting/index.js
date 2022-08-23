@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
+import { getSighting } from "../../store/sighting";
 import { getSightingLikes, deleteLike, likeSightingThunk } from "../../store/like";
 import { deleteBookmark, createBookmark } from "../../store/bookmark";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
@@ -17,47 +18,20 @@ const SingleSighting = ({ scrollToTop }) => {
   const { sightingId } = params
   const [userBtns, setUserBtns] = useState(false)
   const [userBookmarked, setUserBookmarked] = useState(false);
-  let current = useSelector(state => state.sightings.current);
+  let currentSighting = useSelector(state => state.sightings.current);
+  // const currentSighting = use
   let currentUser = useSelector(state => state.session.user);
   let likes = useSelector(state => state.likes.total);
-  let currentSighting;
+  // let currentSighting;
 
 
   useEffect(() => {
-    localStorage.getItem(`${sightingId}`) === sightingId ? setUserBookmarked(true) : setUserBookmarked(false);
+    // localStorage.getItem(`${sightingId}`) === sightingId ? setUserBookmarked(true) : setUserBookmarked(false);
     dispatch(getSightingLikes(sightingId));
+    dispatch(getSighting(sightingId));
   }, [dispatch])
 
-  const setSighting = () => {
-    let localSighting;
-    let localStorageRes = window.localStorage.getItem("currentSighting");
-    console.log(localStorageRes)
-    // const localSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
-    if (localStorageRes !== "undefined") {
-      localSighting = JSON.parse(localStorageRes);
-    }
-    current === undefined ? currentSighting = localSighting : currentSighting = current;
-    if (localStorageRes === "undefined") {
-      window.localStorage.setItem("currentSighting", JSON.stringify(currentSighting));
-    }
-
-    console.log("local",localSighting);
-    console.log(current)
-    console.log(currentSighting)
-    // window.localStorage.setItem("currentSighting", JSON.stringify(currentSighting));
-    // console.log(current, "current here");
-    // if (current !== undefined) {
-    //   currentSighting = current
-    //   window.localStorage.setItem("currentSighting", JSON.stringify(currentSighting));
-    // } else {
-    //   currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
-    // }
-  };
-
-  setSighting();
   scrollToTop();
-
-
 
   const favorite = (e) => {
     e.preventDefault();
@@ -146,13 +120,13 @@ const SingleSighting = ({ scrollToTop }) => {
           </div>
         </li>
         <li>
-          <h1 id="single-sighting-title">{currentSighting.title}</h1>
+          <h1 id="single-sighting-title">{currentSighting?.title}</h1>
         </li>
         <li>
           {/* <p id="single-sighting-date">{`${currentSighting?.created_at.split(' ')[2]} ${currentSighting.created_at?.split(' ')[1]}, ${currentSighting?.created_at.split(' ')[3]}`}</p> */}
         </li>
         <li>
-          <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
+          <img src={currentSighting?.image_url} id="single-sighting-img" alt="article-img"></img>
         </li>
         <li key="likes">
           <FiThumbsUp />
@@ -162,7 +136,7 @@ const SingleSighting = ({ scrollToTop }) => {
           <FiThumbsDown />
         </li> */}
         <li>
-          <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>
+          <p id="single-sighting-body">{currentSighting?.description.replace(/\n+/g, '\n\n')}</p>
         </li>
       </ul>
     </div>
