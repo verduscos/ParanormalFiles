@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import * as sessionActions from "../../store/sighting"
+import { deleteASighting } from "../../store/sighting";
 import { getSighting } from "../../store/sighting";
 import { getSightingLikes, deleteLike, likeSightingThunk } from "../../store/like";
 import { deleteBookmark, createBookmark } from "../../store/bookmark";
@@ -16,8 +16,9 @@ const SingleSighting = ({ scrollToTop }) => {
   const navigate = useNavigate()
   const params = useParams()
   const { sightingId } = params
-  const [userBtns, setUserBtns] = useState(false)
+  const isBookmarked = window.localStorage.getItem(sightingId);
   const [userBookmarked, setUserBookmarked] = useState(false);
+  const [userBtns, setUserBtns] = useState(false)
   const currentUser = useSelector(state => state.session.user);
   const currentSighting = useSelector(state => state.sightings.current);
   const likes = useSelector(state => state.likes.total);
@@ -28,33 +29,25 @@ const SingleSighting = ({ scrollToTop }) => {
     scrollToTop();
     dispatch(getSightingLikes(sightingId));
     if (currentSighting === undefined) dispatch(getSighting(sightingId));
+    if (isBookmarked) setUserBookmarked(true);
   }, [params, dispatch])
 
 
   const addBookmark = (e) => {
     e.preventDefault();
-    // const payload = {
-    //   user_id: currentUser.id,
-    //   sighting_id: sightingId
-    // }
     dispatch(createBookmark(payload));
-    localStorage.setItem(sightingId, sightingId);
     setUserBookmarked(true);
+    localStorage.setItem(sightingId, sightingId);
   }
 
   const removeBookmark = () => {
-    // const payload = {
-    //   user_id: currentUser.id,
-    //   sighting_id: sightingId
-    // }
     dispatch(deleteBookmark(payload));
     setUserBookmarked(false);
     localStorage.removeItem(sightingId);
   }
 
-  const handleDelete = (e) => {
-    e.preventDefault();
-    dispatch(sessionActions.deleteASighting(sightingId));
+  const deleteSighting = () => {
+    dispatch(deleteASighting(sightingId));
     navigate("/mysightings");
   }
 
@@ -74,7 +67,7 @@ const SingleSighting = ({ scrollToTop }) => {
 
         {userBtns ?
           <div id="user-btns">
-            <button className="black-btn" onClick={handleDelete}>Delete</button>
+            <button className="black-btn" onClick={deleteSighting()}>Delete</button>
             <Link className="black-btn" to={`/sightings/edit/${currentSighting.id}`}>Edit</Link>
           </div>
           : null}
@@ -83,27 +76,18 @@ const SingleSighting = ({ scrollToTop }) => {
       null
   )
 
-  const FavoriteBtns = (
+  const Bookmark = (
     <>
-      {userBookmarked ?
-        <div onClick={(e) => {
-          removeBookmark();
-        }}
-          className="favorite-btns"
-        >
+      { userBookmarked ?
+        <div onClick={(e) => {removeBookmark(e)}} className="favorite-btns" >
           <MdOutlineBookmarkAdd size={25} />
           <p>Unsave</p>
         </div>
         :
-        <div onClick={(e) => {
-          addBookmark(e);
-        }}
-          className="favorite-btns"
-        >
+        <div onClick={(e) => {addBookmark(e)}} className="favorite-btns" >
           <MdOutlineBookmarkAdd size={25} />
           <p>Save</p>
-        </div>
-      }
+        </div>}
     </>
   )
 
@@ -111,7 +95,7 @@ const SingleSighting = ({ scrollToTop }) => {
     <div id="sighting-container">
       <ul>
         <li id="sighting-actions-btn-container">
-          {FavoriteBtns}
+          {Bookmark}
           <div id="sighting-edit-btns">
             {UserEditBtns}
           </div>
