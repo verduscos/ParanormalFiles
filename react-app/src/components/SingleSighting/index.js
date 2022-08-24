@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { getSighting, deleteASighting } from "../../store/sighting";
-import { getSightingLikes, deleteLike, likeSightingThunk } from "../../store/like";
 import { deleteBookmark, createBookmark } from "../../store/bookmark";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
-import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
+// import { getSightingLikes, deleteLike, likeSightingThunk } from "../../store/like";
+// import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 import "./SingleSighting.css"
 
 
@@ -20,7 +20,7 @@ const SingleSighting = ({ scrollToTop }) => {
   const [userBtns, setUserBtns] = useState(false);
   const { sightingId } = params;
   const isBookmarked = window.localStorage.getItem(sightingId);
-  const likes = useSelector(state => state.likes.total);
+  // const likes = useSelector(state => state.likes.total);
   const payload = { userId: currentUser.id, sightingId };
 
 
@@ -43,10 +43,15 @@ const SingleSighting = ({ scrollToTop }) => {
     navigate("/mysightings");
   }
 
+  const editSighting = () => {
+    window.localStorage.setItem("currentSighting", JSON.stringify(currentSighting));
+    navigate(`/sightings/edit/${currentSighting.id}`);
+  }
+
   useEffect(() => {
     scrollToTop();
     dispatch(getSighting(sightingId));
-    dispatch(getSightingLikes(sightingId));
+    // dispatch(getSightingLikes(sightingId));
     if (isBookmarked) setUserBookmarked(true);
   }, [dispatch])
 
@@ -55,12 +60,12 @@ const SingleSighting = ({ scrollToTop }) => {
       {userBookmarked ?
         <div onClick={(e) => { removeBookmark(e) }} className="favorite-btns" >
           <MdOutlineBookmarkAdd size={25} />
-          <p>Unsave</p>
+          <p>Remove Bookmark</p>
         </div>
         :
         <div onClick={(e) => { addBookmark(e) }} className="favorite-btns" >
           <MdOutlineBookmarkAdd size={25} />
-          <p>Save</p>
+          <p>Bookmark</p>
         </div>}
     </>
   )
@@ -74,8 +79,8 @@ const SingleSighting = ({ scrollToTop }) => {
         </span>
         {userBtns ?
           <div id="user-btns">
-            <button className="black-btn" onClick={(e) => { deleteSighting(e) }}>Delete</button>
-            <Link className="black-btn" to={`/sightings/edit/${currentSighting.id}`}>Edit</Link>
+            <button className="black-btn" onClick={(e) => deleteSighting(e) }>Delete</button>
+            <button className="black-btn" onClick={(e) => editSighting(e)}>Edit</button>
           </div>
           : null}
       </>
