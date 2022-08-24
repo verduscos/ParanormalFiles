@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { deleteASighting } from "../../store/sighting";
-import { getSighting } from "../../store/sighting";
+import { getSighting, deleteASighting } from "../../store/sighting";
 import { getSightingLikes, deleteLike, likeSightingThunk } from "../../store/like";
 import { deleteBookmark, createBookmark } from "../../store/bookmark";
 import { BiDotsHorizontalRounded } from "react-icons/bi";

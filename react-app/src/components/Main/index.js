@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Navigation from '../Navigation';
-import Search from '../Search/Search';
+import Search from '../Search/';
 import Tags from '../Tags';
-import Sightings from '../sightings/Sightings';
+import Sightings from '../Sightings';
 import SingleSighting from '../SingleSighting/';
 import Comments from '../Comments/Comments';
 import Footer from '../Footer'
@@ -15,7 +15,7 @@ import './Main.css';
 const Main = () => {
   const params = useParams();
   const { sightingId } = params;
-  let currentUser = useSelector(state => state.session.user)
+  const currentUser = useSelector(state => state.session.user)
   const [navId, setNavId] = useState("col-1-guest");
   const [sightingsId, setSightingsId] = useState("col-3-guest");
   const [tagsId, setTagsId] = useState("col-2-guest");
