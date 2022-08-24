@@ -19,29 +19,12 @@ const EditForm = () => {
   const [imageUrl, setImageUrl] = useState(currentSighting.image_url);
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState([])
-  const [editTextOnly, setEditTextOnly] = useState(true)
   const [displayUrl, setDisplayUrl] = useState("")
 
 
-  // useEffect(() => {
-  //   const payload = {
-  //     sighting_id: sightingId,
-  //     user_id: currentUser.id,
-  //     title: title,
-  //     description: description,
-  //     category: category,
-  //     image_url: imageUrl
-  //   }
-  //   dispatch(sessionActions.updateSighting(payload))
-  // }, [imageUrl, dispatch])
-
-
-  const editSighting = async (e) => {
-    e.preventDefault()
-    // IMAGE UPLOAD STARTS
+  useEffect(async () => {
     const formData = new FormData();
     formData.append("image", image);
-
     const res = await fetch(`/api/sightings/image`, {
       method: "POST",
       body: formData,
@@ -49,9 +32,17 @@ const EditForm = () => {
     if (res.ok) {
       const data = await res.json();
       setImageUrl(data.url)
-      console.log("NEW URL", data.url);
     }
+  }, [image, dispatch])
 
+  const updateImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+    setDisplayUrl(file["name"]);
+  }
+
+  const editSighting = async (e) => {
+    e.preventDefault()
     const payload = {
       sighting_id: sightingId,
       user_id: currentUser.id,
@@ -61,63 +52,16 @@ const EditForm = () => {
       image_url: imageUrl
     }
 
-    let errorsArr = [];
-    if (title?.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
-    if (description?.length <= 4) errorsArr.push("Description must be at least 5 characters long.")
-    if (category?.length < 1) errorsArr.push("Please choose a category.")
+    const errorsArr = [];
+    if (title.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
+    if (description.length <= 4) errorsArr.push("Description must be at least 5 characters long.")
+    if (category.length < 1) errorsArr.push("Please choose a category.")
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
-      // window.localStorage.setItem("currentSighting", JSON.stringify(payload));
-      // navigate(`/sightings/${sightingId}`);
-      dispatch(sessionActions.updateSighting(payload))
-
+      navigate(`/sightings/${sightingId}`);
+      dispatch(sessionActions.updateSighting(payload));
     }
   }
-
-  // const editText = (e) => {
-  //   e.preventDefault()
-
-  //   const payload = {
-  //     sighting_id: sightingId,
-  //     user_id: currentUser.id,
-  //     title: title,
-  //     description: description,
-  //     category: category,
-  //     image_url: imageUrl
-  //   }
-  //   let errorsArr = [];
-
-  //   if (title?.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
-  //   if (description?.length <= 4) errorsArr.push("Description must be at least 5 characters long.")
-  //   if (category?.length < 1) errorsArr.push("Please choose a category.")
-  //   setErrors(errorsArr)
-  //   if (errorsArr.length === 0) {
-  //     dispatch(sessionActions.updateSighting(payload))
-  //     // window.localStorage.setItem("currentSighting", JSON.stringify(payload));
-  //     navigate(`/sightings/${sightingId}`);
-  //   }
-  // }
-
-  const updateImage = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
-    setEditTextOnly(false)
-    setDisplayUrl(file["name"])
-  }
-
-  const submitBtn = (
-    <>
-      {editTextOnly ? null
-        :
-        <button onClick={editSighting} className="form-submit-btn sighting-inputs">Upload</button>
-      }
-
-
-      {editTextOnly ?
-        <button onClick={editSighting} className="form-submit-btn sighting-inputs">Update</button>
-        : null}
-    </>
-  )
 
 
 
@@ -127,34 +71,32 @@ const EditForm = () => {
 
       <CreateNav />
       <form className="sighting-form">
-        <div>
-          {submitBtn}
-
+        <ul>
+          <button onClick={editSighting} className="form-submit-btn sighting-inputs">Update</button>
           {errors?.map(error => (
+
             <li className="error-mssg">{error}</li>
           ))}
+
           <input
             id="form-title"
             className="sighting-inputs"
-            onChange={(e) => {
-              setTitle(e.target.value)
-            }}
-            type="text" value={title} placeholder="Title" />
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
+            type="text"
+            placeholder="Title" />
           <textarea
-
             id="form-description"
             className="sighting-inputs"
-            onChange={(e) => {
-              setDescription(e.target.value)
-            }}
-            type="text" value={description} placeholder="description" />
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+            type="text"
+            placeholder="description" />
 
           <div className="form-category-image-container">
             <select
               className="form-select-options sighting-inputs"
-              onChange={(e) => {
-                setCategory(e.target.value)
-              }}
+              onChange={(e) => setCategory(e.target.value)}
               value={category}>
               <option value="categories">Update Category?</option>
               <option value="UFOs">UFOs</option>
@@ -179,28 +121,10 @@ const EditForm = () => {
               accept="image/*"
               onChange={updateImage}
             />
-
-
-
           </div>
-            <p id="form-display-image-url">{displayUrl}</p>
 
-          {/* <input
-                // onClick={() => {
-                //   setEditTextOnly(false)
-                // }}
-                // value={test}
-                // onChange={(e) => {
-                //   setTest(e.target.value)
-                // }}
-                id="file-btn"
-                type="file"
-                accept="image/*"
-                onChange={updateImage}
-              /> */}
-
-
-        </div>
+          <p id="form-display-image-url">{displayUrl}</p>
+        </ul>
       </form>
     </>
   )
