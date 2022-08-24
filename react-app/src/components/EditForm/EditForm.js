@@ -11,32 +11,29 @@ const EditForm = () => {
   const { sightingId } = params
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  let currentUser = useSelector(state => state.session.user)
-  const currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));;
+  const currentUser = useSelector(state => state.session.user)
+  const currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
   const [title, setTitle] = useState(currentSighting.title);
   const [description, setDescription] = useState(currentSighting.description);
   const [category, setCategory] = useState(currentSighting.category);
   const [imageUrl, setImageUrl] = useState(currentSighting.image_url);
-  const [errors, setErrors] = useState([])
   const [image, setImage] = useState(null);
+  const [errors, setErrors] = useState([])
   const [editTextOnly, setEditTextOnly] = useState(true)
   const [displayUrl, setDisplayUrl] = useState("")
 
-  console.log(imageUrl)
 
-
-  useEffect(() => {
-    const payload = {
-      sighting_id: sightingId,
-      user_id: currentUser.id,
-      title: title,
-      description: description,
-      category: category,
-      image_url: imageUrl
-    }
-    dispatch(sessionActions.updateSighting(payload))
-    console.log(imageUrl);
-  }, [imageUrl, dispatch])
+  // useEffect(() => {
+  //   const payload = {
+  //     sighting_id: sightingId,
+  //     user_id: currentUser.id,
+  //     title: title,
+  //     description: description,
+  //     category: category,
+  //     image_url: imageUrl
+  //   }
+  //   dispatch(sessionActions.updateSighting(payload))
+  // }, [imageUrl, dispatch])
 
 
   const editSighting = async (e) => {
@@ -52,6 +49,7 @@ const EditForm = () => {
     if (res.ok) {
       const data = await res.json();
       setImageUrl(data.url)
+      console.log("NEW URL", data.url);
     }
 
     const payload = {
@@ -70,33 +68,35 @@ const EditForm = () => {
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
       // window.localStorage.setItem("currentSighting", JSON.stringify(payload));
-      navigate(`/sightings/${sightingId}`);
-    }
-  }
-
-  const editText = (e) => {
-    e.preventDefault()
-
-    const payload = {
-      sighting_id: sightingId,
-      user_id: currentUser.id,
-      title: title,
-      description: description,
-      category: category,
-      image_url: imageUrl
-    }
-    let errorsArr = [];
-
-    if (title?.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
-    if (description?.length <= 4) errorsArr.push("Description must be at least 5 characters long.")
-    if (category?.length < 1) errorsArr.push("Please choose a category.")
-    setErrors(errorsArr)
-    if (errorsArr.length === 0) {
+      // navigate(`/sightings/${sightingId}`);
       dispatch(sessionActions.updateSighting(payload))
-      // window.localStorage.setItem("currentSighting", JSON.stringify(payload));
-      navigate(`/sightings/${sightingId}`);
+
     }
   }
+
+  // const editText = (e) => {
+  //   e.preventDefault()
+
+  //   const payload = {
+  //     sighting_id: sightingId,
+  //     user_id: currentUser.id,
+  //     title: title,
+  //     description: description,
+  //     category: category,
+  //     image_url: imageUrl
+  //   }
+  //   let errorsArr = [];
+
+  //   if (title?.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
+  //   if (description?.length <= 4) errorsArr.push("Description must be at least 5 characters long.")
+  //   if (category?.length < 1) errorsArr.push("Please choose a category.")
+  //   setErrors(errorsArr)
+  //   if (errorsArr.length === 0) {
+  //     dispatch(sessionActions.updateSighting(payload))
+  //     // window.localStorage.setItem("currentSighting", JSON.stringify(payload));
+  //     navigate(`/sightings/${sightingId}`);
+  //   }
+  // }
 
   const updateImage = (e) => {
     const file = e.target.files[0];
@@ -105,7 +105,6 @@ const EditForm = () => {
     setDisplayUrl(file["name"])
   }
 
-  console.log(title)
   const submitBtn = (
     <>
       {editTextOnly ? null
