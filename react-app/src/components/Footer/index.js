@@ -5,8 +5,6 @@ import { FaUserCircle } from "react-icons/fa";
 import "./Footer.css"
 
 const Footer = () => {
-
-
   return (
     <footer id="footer-container">
       <ul>
@@ -18,10 +16,6 @@ const Footer = () => {
           <a href={"https://verduscos.github.io/portfolio/"} target="_blank" rel="noreferrer"><FaUserCircle /></a>
           <a href={"https://www.linkedin.com/in/eddie-verdusco/"} target="_blank" rel="noreferrer"><BsLinkedin /></a>
         </li>
-        {/* <li className='social-link' key="portfolio-link">
-        </li>
-        <li className='social-link' key="linkedin-link">
-        </li> */}
       </ul>
     </footer>
   )

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import CreateSightingForm from "./components/CreateSightingForm/CreateSightingForm"
 import EditForm from "./components/EditForm/EditForm";
 import { authenticate } from "./store/session";
-import NotFound from "./components/NotFound/NotFound";
+import NotFound from "./components/NotFound/";
 import Main from "./components/Main";
 
 function App() {
