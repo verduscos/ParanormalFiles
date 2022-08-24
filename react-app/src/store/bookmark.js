@@ -30,8 +30,8 @@ export const createBookmark = (bookmark) => async (dispatch) => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      user_id: bookmark.user_id,
-      sighting_id: bookmark.sighting_id
+      user_id: bookmark.userId,
+      sighting_id: bookmark.sightingId
     })
   });
   const data = await res.json();
@@ -45,8 +45,8 @@ export const deleteBookmark = (bookmark) => async (dispatch) => {
       "Content-Type": "application/json",
     },
       body: JSON.stringify({
-        user_id: parseInt(bookmark.user_id),
-        sighting_id: parseInt(bookmark.sighting_id)
+        user_id: parseInt(bookmark["userId"]),
+        sighting_id: parseInt(bookmark["sightingId"])
       })
   })
     const data = await res.json();

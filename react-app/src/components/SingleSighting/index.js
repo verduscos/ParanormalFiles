@@ -18,37 +18,35 @@ const SingleSighting = ({ scrollToTop }) => {
   const { sightingId } = params
   const [userBtns, setUserBtns] = useState(false)
   const [userBookmarked, setUserBookmarked] = useState(false);
-  let currentSighting = useSelector(state => state.sightings.current);
-  // const currentSighting = use
-  let currentUser = useSelector(state => state.session.user);
-  let likes = useSelector(state => state.likes.total);
-  // let currentSighting;
+  const currentUser = useSelector(state => state.session.user);
+  const currentSighting = useSelector(state => state.sightings.current);
+  const likes = useSelector(state => state.likes.total);
+  const payload = { userId: currentUser.id, sightingId }
 
 
   useEffect(() => {
+    scrollToTop();
     dispatch(getSightingLikes(sightingId));
     if (currentSighting === undefined) dispatch(getSighting(sightingId));
   }, [params, dispatch])
 
-  scrollToTop();
 
-  const favorite = (e) => {
+  const addBookmark = (e) => {
     e.preventDefault();
-    const payload = {
-      user_id: currentUser.id,
-      sighting_id: sightingId
-    }
+    // const payload = {
+    //   user_id: currentUser.id,
+    //   sighting_id: sightingId
+    // }
     dispatch(createBookmark(payload));
-    setUserBookmarked(true);
     localStorage.setItem(sightingId, sightingId);
+    setUserBookmarked(true);
   }
 
-  const unfavorite = (e) => {
-    e.preventDefault();
-    const payload = {
-      user_id: currentUser.id,
-      sighting_id: sightingId
-    }
+  const removeBookmark = () => {
+    // const payload = {
+    //   user_id: currentUser.id,
+    //   sighting_id: sightingId
+    // }
     dispatch(deleteBookmark(payload));
     setUserBookmarked(false);
     localStorage.removeItem(sightingId);
@@ -89,7 +87,7 @@ const SingleSighting = ({ scrollToTop }) => {
     <>
       {userBookmarked ?
         <div onClick={(e) => {
-          unfavorite(e)
+          removeBookmark();
         }}
           className="favorite-btns"
         >
@@ -98,7 +96,7 @@ const SingleSighting = ({ scrollToTop }) => {
         </div>
         :
         <div onClick={(e) => {
-          favorite(e)
+          addBookmark(e);
         }}
           className="favorite-btns"
         >
@@ -118,16 +116,16 @@ const SingleSighting = ({ scrollToTop }) => {
             {UserEditBtns}
           </div>
         </li>
-        {currentSighting ?
+        {currentSighting !== undefined ?
           <>
             <li>
               <h1 id="single-sighting-title">{currentSighting.title}</h1>
             </li>
             <li>
-              {/* <p id="single-sighting-date">{`${currentSighting?.created_at.split(' ')[2]} ${currentSighting.created_at?.split(' ')[1]}, ${currentSighting?.created_at.split(' ')[3]}`}</p> */}
+              <p id="single-sighting-date">{`${currentSighting.created_at.split(' ')[2]} ${currentSighting.created_at.split(' ')[1]}, ${currentSighting.created_at.split(' ')[3]}`}</p>
             </li>
             <li>
-              <img src={currentSighting?.image_url} id="single-sighting-img" alt="article-img"></img>
+              <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
             </li>
             <li key="likes">
               <FiThumbsUp />
@@ -137,7 +135,7 @@ const SingleSighting = ({ scrollToTop }) => {
         <FiThumbsDown />
       </li> */}
             <li>
-              <p id="single-sighting-body">{currentSighting?.description.replace(/\n+/g, '\n\n')}</p>
+              <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>
             </li>
           </>
           : null}
