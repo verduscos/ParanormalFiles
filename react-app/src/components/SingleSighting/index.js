@@ -38,7 +38,8 @@ const SingleSighting = ({ scrollToTop }) => {
     localStorage.removeItem(sightingId);
   }
 
-  const deleteSighting = () => {
+  const deleteSighting = (e) => {
+    e.preventDefault();
     dispatch(deleteASighting(sightingId));
     navigate("/mysightings");
   }
@@ -65,20 +66,16 @@ const SingleSighting = ({ scrollToTop }) => {
     </>
   )
 
-  const UserEditBtns = (
+  const UserBtns = (
     currentUser && currentUser?.id === currentSighting?.user_id ?
       <>
         <span
-          // onBlur={() => {
-          // setUserBtns(!userBtns)}}
-          onClick={(e) => {
-            e.preventDefault();
-            setUserBtns(!userBtns) }}>
+          onClick={() => { setUserBtns(!userBtns) }}>
           <BiDotsHorizontalRounded size={25} />
         </span>
         {userBtns ?
           <div id="user-btns">
-            <button className="black-btn" onClick={deleteSighting()}>Delete</button>
+            <button className="black-btn" onClick={(e) => { deleteSighting(e) }}>Delete</button>
             <Link className="black-btn" to={`/sightings/edit/${currentSighting.id}`}>Edit</Link>
           </div>
           : null}
@@ -93,7 +90,7 @@ const SingleSighting = ({ scrollToTop }) => {
         <li id="sighting-actions-btn-container">
           {Bookmark}
           <div id="sighting-edit-btns">
-            {UserEditBtns}
+            {UserBtns}
           </div>
         </li>
         {currentSighting !== undefined ?
@@ -108,12 +105,11 @@ const SingleSighting = ({ scrollToTop }) => {
               <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
             </li>
             <li key="likes">
+              {/*
               <FiThumbsUp />
               <h4>{likes}</h4>
+              */}
             </li>
-            {/* <li>
-        <FiThumbsDown />
-      </li> */}
             <li>
               <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>
             </li>
@@ -123,6 +119,5 @@ const SingleSighting = ({ scrollToTop }) => {
     </div>
   )
 }
-
 
 export default SingleSighting;
