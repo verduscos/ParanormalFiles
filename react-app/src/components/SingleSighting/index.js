@@ -12,25 +12,17 @@ import "./SingleSighting.css"
 
 
 const SingleSighting = ({ scrollToTop }) => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const params = useParams()
-  const { sightingId } = params
-  const isBookmarked = window.localStorage.getItem(sightingId);
-  const [userBookmarked, setUserBookmarked] = useState(false);
-  const [userBtns, setUserBtns] = useState(false)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const params = useParams();
   const currentUser = useSelector(state => state.session.user);
   const currentSighting = useSelector(state => state.sightings.current);
+  const [userBookmarked, setUserBookmarked] = useState(false);
+  const [userBtns, setUserBtns] = useState(false);
+  const { sightingId } = params;
+  const isBookmarked = window.localStorage.getItem(sightingId);
   const likes = useSelector(state => state.likes.total);
-  const payload = { userId: currentUser.id, sightingId }
-
-
-  useEffect(() => {
-    scrollToTop();
-    dispatch(getSightingLikes(sightingId));
-    if (currentSighting === undefined) dispatch(getSighting(sightingId));
-    if (isBookmarked) setUserBookmarked(true);
-  }, [params, dispatch])
+  const payload = { userId: currentUser.id, sightingId };
 
 
   const addBookmark = (e) => {
@@ -51,20 +43,39 @@ const SingleSighting = ({ scrollToTop }) => {
     navigate("/mysightings");
   }
 
+  useEffect(() => {
+    scrollToTop();
+    dispatch(getSighting(sightingId));
+    dispatch(getSightingLikes(sightingId));
+    if (isBookmarked) setUserBookmarked(true);
+  }, [dispatch])
+
+  const Bookmark = (
+    <>
+      {userBookmarked ?
+        <div onClick={(e) => { removeBookmark(e) }} className="favorite-btns" >
+          <MdOutlineBookmarkAdd size={25} />
+          <p>Unsave</p>
+        </div>
+        :
+        <div onClick={(e) => { addBookmark(e) }} className="favorite-btns" >
+          <MdOutlineBookmarkAdd size={25} />
+          <p>Save</p>
+        </div>}
+    </>
+  )
+
   const UserEditBtns = (
     currentUser && currentUser?.id === currentSighting?.user_id ?
       <>
         <span
-          onBlur={() => {
-            setUserBtns(!userBtns)
-          }}
-          onClick={() => {
-            setUserBtns(!userBtns)
-          }}>
-
+          // onBlur={() => {
+          // setUserBtns(!userBtns)}}
+          onClick={(e) => {
+            e.preventDefault();
+            setUserBtns(!userBtns) }}>
           <BiDotsHorizontalRounded size={25} />
         </span>
-
         {userBtns ?
           <div id="user-btns">
             <button className="black-btn" onClick={deleteSighting()}>Delete</button>
@@ -74,21 +85,6 @@ const SingleSighting = ({ scrollToTop }) => {
       </>
       :
       null
-  )
-
-  const Bookmark = (
-    <>
-      { userBookmarked ?
-        <div onClick={(e) => {removeBookmark(e)}} className="favorite-btns" >
-          <MdOutlineBookmarkAdd size={25} />
-          <p>Unsave</p>
-        </div>
-        :
-        <div onClick={(e) => {addBookmark(e)}} className="favorite-btns" >
-          <MdOutlineBookmarkAdd size={25} />
-          <p>Save</p>
-        </div>}
-    </>
   )
 
   return (

@@ -193,6 +193,7 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
 
     case GET_SIGHTING_BY_ID: {
       const sighting = { ...state };
+      console.log(action.payload["sighting"]);
       sighting.current = action.payload.sighting;
       return sighting;
     }
