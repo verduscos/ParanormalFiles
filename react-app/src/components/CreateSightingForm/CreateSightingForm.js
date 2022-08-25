@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
@@ -32,48 +32,27 @@ const CreateSightingForm = () => {
     }
   }
 
-  const createSighting = async (e) => {
-    e.preventDefault()
-    if (image !== null) createImageUrl();
-
-    // const errorsArr = [];
-
-    // if (title.length < 4) {
-    //   errorsArr.push("Title must be at least 4 characters long.")
-    // } else if (description.length < 4) {
-    //   errorsArr.push("Description must be at least 4 characters long.")
-    // } else if (!category.length) {
-    //   errorsArr.push("Please choose a category.")
-    // }
-    // setErrors(errorsArr);
-
-    // if (errorsArr.length === 0) {
-      // console.log("NO ERRORS HERE")
-
-      const payload = {
-        user_id: currentUser.id,
-        title: title,
-        description: description,
-        category: category,
-        url: imageUrl
-      }
-
-      const data = await dispatch(sessionActions.createASighting(payload));
-
-      if (!data.errors) navigate("/mysightings");
-      else setErrors(data.errors.map(error => error.split(":")[1]));
-
-      console.log(data,"YOYOMA HERE")
-      // navigate('/mysightings');
-    // }
-  }
-
   const updateImage = (e) => {
     const file = e.target.files[0];
     setImage(file);
     setDisplayUrl(file["name"])
   }
 
+  const createSighting = async (e) => {
+    e.preventDefault()
+    if (image !== null) createImageUrl();
+    const payload = {
+      user_id: currentUser.id,
+      title: title,
+      description: description,
+      category: category,
+      url: imageUrl
+    }
+
+    const res = await dispatch(sessionActions.createASighting(payload));
+    if (!res.errors) navigate("/mysightings");
+    else setErrors(res.errors.map(error => error.split(":")[1]));
+  }
 
   return (
     <>
