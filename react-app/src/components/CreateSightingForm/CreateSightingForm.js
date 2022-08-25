@@ -15,7 +15,7 @@ const CreateSightingForm = () => {
   const [category, setCategory] = useState("")
   const [errors, setErrors] = useState([])
   const [image, setImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState("")
+  const [imageUrl, setImageUrl] = useState(null)
   const [displayUrl, setDisplayUrl] = useState("")
 
   useEffect(() => {
@@ -23,10 +23,7 @@ const CreateSightingForm = () => {
   }, [dispatch])
 
 
-  const createSighting = async (e) => {
-    e.preventDefault()
-
-    // IMAGE UPLOAD STARTS
+  const createImageUrl = async () => {
     const formData = new FormData();
     formData.append("image", image);
 
@@ -39,6 +36,26 @@ const CreateSightingForm = () => {
       const data = await res.json();
       setImageUrl(data.url)
     }
+  }
+
+  const createSighting = async (e) => {
+    e.preventDefault()
+
+    if (image !== null) createImageUrl();
+
+    // IMAGE UPLOAD STARTS
+    // const formData = new FormData();
+    // formData.append("image", image);
+
+    // const res = await fetch(`/api/sightings/image`, {
+    //   method: "POST",
+    //   body: formData,
+    // });
+
+    // if (res.ok) {
+    //   const data = await res.json();
+    //   setImageUrl(data.url)
+    // }
     // IMAGE UPLOAD ENDS
 
     let errorsArr = [];
@@ -46,10 +63,21 @@ const CreateSightingForm = () => {
     if (title.length < 4) errorsArr.push("Title must be at least 4 characters long.")
     if (description.length < 4) errorsArr.push("Description must be at least 4 characters long.")
     if (category.length < 1) errorsArr.push("Please choose a category.")
-    if (displayUrl.length < 1) errorsArr.push("Please choose an image.")
+    // if (displayUrl.length < 1) errorsArr.push("Please choose an image.")
     setErrors(errorsArr)
 
     if (errorsArr.length === 0) {
+      console.log("NO ERRORS HERE")
+
+      const payload = {
+        user_id: currentUser.id,
+        title: title,
+        description: description,
+        category: category,
+        url: imageUrl
+      }
+
+      dispatch(sessionActions.createASighting(payload));
       navigate('/mysightings');
     }
   }
@@ -60,17 +88,17 @@ const CreateSightingForm = () => {
     setDisplayUrl(file["name"])
   }
 
-  useEffect(() => {
-    const payload = {
-      user_id: currentUser.id,
-      title: title,
-      description: description,
-      category: category,
-      url: imageUrl
-    }
+  // useEffect(() => {
+  //   const payload = {
+  //     user_id: currentUser.id,
+  //     title: title,
+  //     description: description,
+  //     category: category,
+  //     url: imageUrl
+  //   }
 
-    dispatch(sessionActions.createASighting(payload));
-  }, [dispatch, imageUrl])
+  //   dispatch(sessionActions.createASighting(payload));
+  // }, [dispatch, imageUrl])
 
   return (
     <>
