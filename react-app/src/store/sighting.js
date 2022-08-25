@@ -71,7 +71,6 @@ export const getAllSightings = () => async (dispatch) => {
 }
 
 export const getSighting = (id) => async (dispatch) => {
-  console.log('YOYOUOYOYOMAs')
   const res = await fetch(`/api/sightings/${id}`);
   if (res.status >= 400) throw res;
   const data = await res.json();
@@ -189,7 +188,7 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
         sightings.all[sighting.id] = sighting;
       })
       return sightings;
-      
+
     case GET_SIGHTING_BY_ID: {
       const sighting = { ...state };
       sighting.current = action.payload.sighting;

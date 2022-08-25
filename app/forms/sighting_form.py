@@ -18,14 +18,14 @@ class SightingForm(FlaskForm):
         "Title",
         validators=[
             DataRequired("Provide a title."),
-            Length(min=5, max=100, message="Title must be between 5 - 100 characters.")
+            Length(min=5, max=100, message="Title must be between 5-100 characters.")
         ]
     )
     description = StringField(
         "Description",
         validators=[
             DataRequired("Story cannot be empty"),
-            Length(min=5, max=2000, message="Description must be between 5 - 2000 characters.")
+            Length(min=5, max=2000, message="Description must be between 5-2000 characters.")
         ]
     )
     category = StringField(

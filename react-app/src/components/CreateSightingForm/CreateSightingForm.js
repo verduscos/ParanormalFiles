@@ -7,9 +7,9 @@ import "./CreateSightingForm.css";
 import "./Form.css";
 
 const CreateSightingForm = () => {
-  let currentUser = useSelector(state => state.session.user)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const currentUser = useSelector(state => state.session.user)
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState("")
@@ -18,20 +18,14 @@ const CreateSightingForm = () => {
   const [imageUrl, setImageUrl] = useState(null)
   const [displayUrl, setDisplayUrl] = useState("")
 
-  useEffect(() => {
-    dispatch(sessionActions.getAllSightings())
-  }, [dispatch])
-
 
   const createImageUrl = async () => {
     const formData = new FormData();
     formData.append("image", image);
-
     const res = await fetch(`/api/sightings/image`, {
       method: "POST",
       body: formData,
     });
-
     if (res.ok) {
       const data = await res.json();
       setImageUrl(data.url)
@@ -40,34 +34,21 @@ const CreateSightingForm = () => {
 
   const createSighting = async (e) => {
     e.preventDefault()
-
     if (image !== null) createImageUrl();
 
-    // IMAGE UPLOAD STARTS
-    // const formData = new FormData();
-    // formData.append("image", image);
+    // const errorsArr = [];
 
-    // const res = await fetch(`/api/sightings/image`, {
-    //   method: "POST",
-    //   body: formData,
-    // });
-
-    // if (res.ok) {
-    //   const data = await res.json();
-    //   setImageUrl(data.url)
+    // if (title.length < 4) {
+    //   errorsArr.push("Title must be at least 4 characters long.")
+    // } else if (description.length < 4) {
+    //   errorsArr.push("Description must be at least 4 characters long.")
+    // } else if (!category.length) {
+    //   errorsArr.push("Please choose a category.")
     // }
-    // IMAGE UPLOAD ENDS
+    // setErrors(errorsArr);
 
-    let errorsArr = [];
-
-    if (title.length < 4) errorsArr.push("Title must be at least 4 characters long.")
-    if (description.length < 4) errorsArr.push("Description must be at least 4 characters long.")
-    if (category.length < 1) errorsArr.push("Please choose a category.")
-    // if (displayUrl.length < 1) errorsArr.push("Please choose an image.")
-    setErrors(errorsArr)
-
-    if (errorsArr.length === 0) {
-      console.log("NO ERRORS HERE")
+    // if (errorsArr.length === 0) {
+      // console.log("NO ERRORS HERE")
 
       const payload = {
         user_id: currentUser.id,
@@ -77,9 +58,14 @@ const CreateSightingForm = () => {
         url: imageUrl
       }
 
-      dispatch(sessionActions.createASighting(payload));
-      navigate('/mysightings');
-    }
+      const data = await dispatch(sessionActions.createASighting(payload));
+
+      if (!data.errors) navigate("/mysightings");
+      else setErrors(data.errors.map(error => error.split(":")[1]));
+
+      console.log(data,"YOYOMA HERE")
+      // navigate('/mysightings');
+    // }
   }
 
   const updateImage = (e) => {
@@ -88,17 +74,6 @@ const CreateSightingForm = () => {
     setDisplayUrl(file["name"])
   }
 
-  // useEffect(() => {
-  //   const payload = {
-  //     user_id: currentUser.id,
-  //     title: title,
-  //     description: description,
-  //     category: category,
-  //     url: imageUrl
-  //   }
-
-  //   dispatch(sessionActions.createASighting(payload));
-  // }, [dispatch, imageUrl])
 
   return (
     <>
@@ -158,12 +133,10 @@ const CreateSightingForm = () => {
             />
           </div>
           <p id="form-display-image-url">{displayUrl}</p>
-
         </div>
       </form>
     </>
   )
 }
-
 
 export default CreateSightingForm;
