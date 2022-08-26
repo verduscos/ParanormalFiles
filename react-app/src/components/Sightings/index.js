@@ -18,6 +18,8 @@ const Sightings = () => {
   let id = sightingsArray[0]?.id;
   sightingsArray = sightingsArray.reverse();
 
+  console.log(id);
+
   const setCurrentSighting = (e, id) => {
     e.preventDefault();
     navigate(`/sightings/${id}`);

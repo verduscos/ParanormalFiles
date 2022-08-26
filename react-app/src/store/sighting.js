@@ -78,10 +78,9 @@ export const getSighting = (id) => async (dispatch) => {
 }
 
 export const getAdditionalSightings = (id) => async (dispatch) => {
-  const response = await fetch(`/sightings/additional/${id}`);
+  const response = await fetch(`/api/sightings/additional/${id}`);
   const data = await response.json();
   dispatch(getMoreSightings(data.sightings));
-  return data;
 }
 
 export const createASighting = (payload) => async (dispatch) => {
