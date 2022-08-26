@@ -18,8 +18,6 @@ const Sightings = () => {
   let id = sightingsArray[0]?.id;
   sightingsArray = sightingsArray.reverse();
 
-  console.log(id);
-
   const setCurrentSighting = (e, id) => {
     e.preventDefault();
     navigate(`/sightings/${id}`);
@@ -114,9 +112,11 @@ const Sightings = () => {
                   </Link>
                 </li>
               </ul>
-              <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
-                <img className="sighting-img" src={sighting?.image_url} alt="sighting-img"></img>
-              </Link>
+              {sighting?.image_url !== null ?
+                <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
+                  <img className="sighting-img" src={sighting?.image_url} alt="sighting-img"></img>
+                </Link>
+                : null}
             </div>
           ))}
           {fetchBtn}

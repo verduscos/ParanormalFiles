@@ -244,11 +244,11 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
       updated[action.payload.id] = action.payload
       return { ...updated }
 
-    case DELETE_SIGHTING:
-      let updatedSightings = { ...state }
-      let id = (action.payload["found"])
-      delete updatedSightings[id];
-      return updatedSightings
+    // case DELETE_SIGHTING:
+    //   let updatedSightings = { ...state }
+      // let id = (action.payload["found"])
+      // delete updatedSightings[id];
+      // return updatedSightings
 
 
       case GET_CURRENT_SIGHTING: {

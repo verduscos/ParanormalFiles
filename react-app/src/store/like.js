@@ -38,16 +38,12 @@ export const deleteLike = (payload) => async (dispatch) => {
 
 export const getSightingLikes = (sightingId) => async (dispatch) => {
   const response = await fetch(`/api/likes/${sightingId}`)
-  console.log("INSIDE LIKES THUNK");
   if(response.status >= 400) {
     throw response
   }
-
   const data = await response.json();
-
   dispatch(getLikes(data));
   return data;
-
 }
 
 export const likeSightingThunk = (payload) => async (dispatch) => {

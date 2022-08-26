@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
@@ -17,6 +17,12 @@ const CreateSightingForm = () => {
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null)
   const [displayUrl, setDisplayUrl] = useState("")
+  const [allowSubmit, setAllowSubmit] = useState(false);
+
+
+  useEffect(() => {
+    if (imageUrl !== null) setAllowSubmit(true);
+  }, [imageUrl])
 
 
   const createImageUrl = async () => {
@@ -50,8 +56,8 @@ const CreateSightingForm = () => {
     }
 
     const res = await dispatch(sessionActions.createASighting(payload));
-    if (!res.errors) navigate("/mysightings");
-    else setErrors(res.errors.map(error => error.split(":")[1]));
+    // if (!res.errors) navigate("/mysightings");
+    setErrors(res.errors.map(error => error.split(":")[1]));
   }
 
   return (
@@ -59,7 +65,7 @@ const CreateSightingForm = () => {
       <CreateNav />
       <form onSubmit={createSighting} className="sighting-form">
         <div>
-          <button className="form-submit-btn sighting-inputs">Publish</button>
+          <button className="form-submit-btn sighting-inputs" disabled={allowSubmit ? false : true } >Publish</button>
 
           {errors?.map(error => (
             <li className="error-mssg">{error}</li>

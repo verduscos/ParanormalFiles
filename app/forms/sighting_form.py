@@ -24,7 +24,7 @@ class SightingForm(FlaskForm):
     description = StringField(
         "Description",
         validators=[
-            DataRequired("Story cannot be empty"),
+            DataRequired("You should talk about your experience!"),
             Length(min=5, max=2000, message="Description must be between 5-2000 characters.")
         ]
     )
