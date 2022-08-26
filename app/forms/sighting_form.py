@@ -31,10 +31,13 @@ class SightingForm(FlaskForm):
     category = StringField(
         "Category",
         validators=[
-            DataRequired("Please choose a category")
+            DataRequired("Please choose a category.")
         ]
     )
 
     image_url = StringField(
-      "Image"
+      "Image",
+      validators=[
+        DataRequired("Please upload an image.")
+      ]
     )

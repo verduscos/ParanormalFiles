@@ -24,7 +24,6 @@ const CreateSightingForm = () => {
 
   useEffect(async () => {
     if (displayUrl !== "") setLoading(true);
-
     const formData = new FormData();
     formData.append("image", image);
     const res = await fetch(`/api/sightings/image`, {
@@ -41,23 +40,12 @@ const CreateSightingForm = () => {
 
 
   const loadingIcon = (
-    <div id="loading-container">
-      <AiOutlineLoading3Quarters />
-    </div>
+    loading ?
+      <div id="loading-container">
+        < AiOutlineLoading3Quarters />
+      </div >
+      : null
   )
-
-  const createImageUrl = async () => {
-    const formData = new FormData();
-    formData.append("image", image);
-    const res = await fetch(`/api/sightings/image`, {
-      method: "POST",
-      body: formData,
-    });
-    if (res.ok) {
-      const data = await res.json();
-      setImageUrl(data.url)
-    }
-  }
 
   const updateImage = (e) => {
     const file = e.target.files[0];
@@ -85,8 +73,7 @@ const CreateSightingForm = () => {
       <CreateNav />
       <form onSubmit={createSighting} className="sighting-form">
         <div>
-          {/* className="form-submit-btn sighting-inputs" */}
-          <button  disabled={allowSubmit ? false : true } >Publish</button>
+          <button className="form-submit-btn sighting-inputs" >Publish</button>
 
           {errors?.map(error => (
             <li className="error-mssg">{error}</li>
@@ -139,15 +126,8 @@ const CreateSightingForm = () => {
             />
           </div>
           <p id="form-display-image-url">{displayUrl}</p>
-
-          { loading ?
-          loadingIcon
-        : <h1>off</h1>}
-          {imageUrl ?
-          <img src={imageUrl} /> :
-          null
-          }
-
+          {loadingIcon}
+          {imageUrl ? <img src={imageUrl} /> : null}
         </div>
       </form>
     </>
