@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import CreateNav from "./CreateNav";
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import "./CreateSightingForm.css";
 import "./Form.css";
 
@@ -10,20 +11,40 @@ const CreateSightingForm = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.session.user)
+  const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState("")
   const [errors, setErrors] = useState([])
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState(null)
   const [displayUrl, setDisplayUrl] = useState("")
   const [allowSubmit, setAllowSubmit] = useState(false);
 
 
-  useEffect(() => {
-    if (imageUrl !== null) setAllowSubmit(true);
-  }, [imageUrl])
+  useEffect(async () => {
+    if (displayUrl !== "") setLoading(true);
 
+    const formData = new FormData();
+    formData.append("image", image);
+    const res = await fetch(`/api/sightings/image`, {
+      method: "POST",
+      body: formData,
+    });
+    if (res.ok) {
+      const data = await res.json();
+      setImageUrl(data.url);
+      setAllowSubmit(true);
+      setLoading(false);
+    }
+  }, [image, dispatch])
+
+
+  const loadingIcon = (
+    <div id="loading-container">
+      <AiOutlineLoading3Quarters />
+    </div>
+  )
 
   const createImageUrl = async () => {
     const formData = new FormData();
@@ -46,7 +67,6 @@ const CreateSightingForm = () => {
 
   const createSighting = async (e) => {
     e.preventDefault()
-    if (image !== null) createImageUrl();
     const payload = {
       user_id: currentUser.id,
       title: title,
@@ -56,8 +76,8 @@ const CreateSightingForm = () => {
     }
 
     const res = await dispatch(sessionActions.createASighting(payload));
-    // if (!res.errors) navigate("/mysightings");
-    setErrors(res.errors.map(error => error.split(":")[1]));
+    if (!res.errors) navigate("/mysightings");
+    else setErrors(res.errors.map(error => error.split(":")[1]));
   }
 
   return (
@@ -65,7 +85,8 @@ const CreateSightingForm = () => {
       <CreateNav />
       <form onSubmit={createSighting} className="sighting-form">
         <div>
-          <button className="form-submit-btn sighting-inputs" disabled={allowSubmit ? false : true } >Publish</button>
+          {/* className="form-submit-btn sighting-inputs" */}
+          <button  disabled={allowSubmit ? false : true } >Publish</button>
 
           {errors?.map(error => (
             <li className="error-mssg">{error}</li>
@@ -118,6 +139,15 @@ const CreateSightingForm = () => {
             />
           </div>
           <p id="form-display-image-url">{displayUrl}</p>
+
+          { loading ?
+          loadingIcon
+        : <h1>off</h1>}
+          {imageUrl ?
+          <img src={imageUrl} /> :
+          null
+          }
+
         </div>
       </form>
     </>
