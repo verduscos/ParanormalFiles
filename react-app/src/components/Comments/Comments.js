@@ -67,7 +67,9 @@ const Comments = () => {
   )
 
   useEffect(() => {
-    dispatch(getALLComments(sightingId));
+    if (sightingId !== undefined) {
+      dispatch(getALLComments(sightingId));
+    }
   }, [dispatch, sightingId])
 
   return (
