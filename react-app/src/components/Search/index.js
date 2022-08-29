@@ -12,7 +12,7 @@ const Search = () => {
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
-    dispatch(searchAllSightings(string));
+    if (string !== undefined) dispatch(searchAllSightings(string));
   }, [string])
 
   const search = async (e) => {
