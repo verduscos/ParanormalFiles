@@ -19,7 +19,6 @@ const CreateSightingForm = () => {
   const [image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState(null)
   const [displayUrl, setDisplayUrl] = useState("")
-  const [allowSubmit, setAllowSubmit] = useState(false);
 
 
   useEffect(async () => {
@@ -33,7 +32,6 @@ const CreateSightingForm = () => {
     if (res.ok) {
       const data = await res.json();
       setImageUrl(data.url);
-      setAllowSubmit(true);
       setLoading(false);
     }
   }, [image, dispatch])

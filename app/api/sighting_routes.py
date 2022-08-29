@@ -149,7 +149,7 @@ def delete_sighting(id):
         db.session.commit()
 
         return {"found": f"{id}"}
-    return {errors: "Sighting not found."}, 400
+    return {"errors": "Sighting not found."}, 400
 
 
 # IMAGES
