@@ -16,7 +16,11 @@ const CreateNav = () => {
           <span>Draft in {currentUser.username}</span>
         </li>
         <li className="user-nav-btn">
-          <ProfileButton user={currentUser} />
+          {/*
+          TODO:
+          use boolean to determin which id to use in nav
+          */}
+          <ProfileButton user={currentUser} createnav={true} />
         </li>
       </ul>
     </nav>
