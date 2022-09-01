@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import CreateNav from "./CreateNav";
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
-import "./CreateSightingForm.css";
 import "./Form.css";
 
 const CreateSightingForm = () => {
@@ -125,7 +124,12 @@ const CreateSightingForm = () => {
           </div>
           <p id="form-display-image-url">{displayUrl}</p>
           {loadingIcon}
-          {imageUrl ? <img src={imageUrl} /> : null}
+          {imageUrl ?
+          <>
+          <p>Image preview:</p>
+          <img src={imageUrl} />
+          </>
+          : null}
         </div>
       </form>
     </>

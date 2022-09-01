@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import CreateNav from "../CreateSightingForm/CreateNav";
-import "../CreateSightingForm/CreateSightingForm.css"
+import "../CreateSightingForm/Form.css"
 import * as sessionActions from "../../store/sighting"
 
 
