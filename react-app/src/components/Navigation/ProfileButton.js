@@ -9,8 +9,6 @@ function ProfileButton({ user, createnav }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  console.log(createnav, "YOYOYMA")
-  console.log(user)
 
   useEffect(() => {
     if (!showMenu) return;
@@ -36,7 +34,7 @@ function ProfileButton({ user, createnav }) {
         <BiLogOutCircle />
       </div>
       {showMenu && (
-        <div id={ createnav ? "createnav" : "profile-dropdown"}>
+        <div id={ createnav ? "createnav" : "profile-dropdown" }>
           <ul>
             <li id="profile-username">{user?.username}</li>
             <li id="profile-email">{user?.email}</li>
