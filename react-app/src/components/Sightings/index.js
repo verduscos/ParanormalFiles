@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import * as sessionActions from "../../store/sighting"
-import * as bookmarkActions from "../../store/bookmark";
 import "./sightings.css"
 
 const Sightings = () => {

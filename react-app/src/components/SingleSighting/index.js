@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getSighting, deleteASighting } from "../../store/sighting";
 import { deleteBookmark, createBookmark } from "../../store/bookmark";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
