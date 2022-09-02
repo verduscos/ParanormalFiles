@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { BiLogOutCircle } from 'react-icons/bi';
 import "./ProfileButton.css";
 
-function ProfileButton({ user }) {
+function ProfileButton({ user, createnav }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-
+  console.log(createnav, "YOYOYMA")
+  console.log(user)
 
   useEffect(() => {
     if (!showMenu) return;
@@ -35,7 +36,7 @@ function ProfileButton({ user }) {
         <BiLogOutCircle />
       </div>
       {showMenu && (
-        <div id="profile-dropdown">
+        <div id={ createnav ? "createnav" : "profile-dropdown"}>
           <ul>
             <li id="profile-username">{user?.username}</li>
             <li id="profile-email">{user?.email}</li>

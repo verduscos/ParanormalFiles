@@ -12,6 +12,23 @@
   right: 10px;
 }
 
+#createnav {
+  background-color: #fff;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  /* bottom: 62px; */
+  box-shadow: 0 8px 24px rgba(140,149,159,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0;
+  position: absolute;
+  /* right: 10px; */
+  margin-top: 100px;
+  list-style-type: none;
+  /* margin-right: 2500px; */
+}
+
 #profile-dropdown > ul {
   display: flex;
   flex-direction: column;
