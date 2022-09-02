@@ -143,7 +143,10 @@
 @media screen and (min-width: 1024px) {
   #sighting-card {
     border-bottom: 0.5px solid rgba(230, 230, 230, 1);
-    height: 100%
+    height: 100%;
+  /* todo
+    card overlapping with right col around 1000px vw
+  */
   }
 
   #sighting-title {
