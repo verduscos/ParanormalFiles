@@ -21,7 +21,7 @@ const SingleSighting = ({ scrollToTop }) => {
   const { sightingId } = params;
   const isBookmarked = window.localStorage.getItem(sightingId);
   // const likes = useSelector(state => state.likes.total);
-  const payload = { userId: currentUser.id, sightingId };
+  const payload = { userId: currentUser?.id, sightingId };
 
 
   const addBookmark = (e) => {
