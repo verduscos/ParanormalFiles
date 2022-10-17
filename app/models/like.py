@@ -18,10 +18,6 @@ class Like(db.Model):
         "id": self.sighting.id,
         "sighting_id": self.sighting_id,
         "user_id": self.user_id,
-        "title":  self.sighting.title,
-        "description": self.sighting.description,
         "created_at": self.sighting.created_at,
-        "category": self.sighting.category,
-        "image_url": self.sighting.image_url,
-        "username": self.sighting.user.username
+        "updated_at": self.sighting.updated_at,
       }

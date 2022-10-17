@@ -6,7 +6,7 @@ import { deleteBookmark, createBookmark } from "../../store/bookmark";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 // import { getSightingLikes, deleteLike, likeSightingThunk } from "../../store/like";
-// import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
+import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 import "./SingleSighting.css"
 
 
@@ -79,7 +79,7 @@ const SingleSighting = ({ scrollToTop }) => {
         </span>
         {userBtns ?
           <div id="user-btns">
-            <button className="black-btn" onClick={(e) => deleteSighting(e) }>Delete</button>
+            <button className="black-btn" onClick={(e) => deleteSighting(e)}>Delete</button>
             <button className="black-btn" onClick={(e) => editSighting(e)}>Edit</button>
           </div>
           : null}
@@ -109,10 +109,8 @@ const SingleSighting = ({ scrollToTop }) => {
               <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
             </li>
             <li key="likes">
-              {/*
               <FiThumbsUp />
-              <h4>{likes}</h4>
-              */}
+              <h4>{currentSighting.likes}</h4>
             </li>
             <li>
               <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>
