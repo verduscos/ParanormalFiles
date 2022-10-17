@@ -3,4 +3,5 @@ from .signup_form import SignUpForm
 from .sighting_form import SightingForm
 from .comment_form import CommentForm
 from .like_form import LikeForm
+from .dislike_form import DislikeForm
 from .bookmark_form import BookmarkForm

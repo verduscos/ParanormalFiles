@@ -1,3 +1,4 @@
+from turtle import back
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -17,6 +18,7 @@ class User(db.Model, UserMixin):
     sightings = db.relationship("Sighting", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
     likes = db.relationship("Like", back_populates="user")
+    dislikes = db.relationship("Dislike", back_populates="user")
     bookmarks = db.relationship("Bookmark", back_populates="user")
 
 
