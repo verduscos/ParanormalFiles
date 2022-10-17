@@ -22,19 +22,16 @@ def post_like():
   """
   form = LikeForm()
   form["csrf_token"].data = request.cookies["csrf_token"]
+
   if form.validate_on_submit():
-    searchExists = Like.query.filter(Like.user_id == request.json["user_id"], Like.sighting_id == request.json["sighting_id"]).first()
-    if searchExists is None:
-      like = Like(
-        user_id=request.json["user_id"],
-        sighting_id=request.json["sighting_id"]
-      )
-      db.session.add(like)
-      db.session.commit()
-
-      return { "likes" : like.to_dict() }
-
-  return { "likes" : "post to likes failed." }
+    like = Like(
+      user_id=request.json["user_id"],
+      sighting_id=request.json["sighting_id"]
+    )
+    db.session.add(like)
+    db.session.commit()
+    return { "likes" : "post successful" }
+  return { "likes" : "post failed." }
 
 
 @like_routes.route("/", methods=["DELETE"])

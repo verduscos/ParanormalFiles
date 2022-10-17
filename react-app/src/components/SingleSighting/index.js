@@ -5,7 +5,7 @@ import { getSighting, deleteASighting } from "../../store/sighting";
 import { deleteBookmark, createBookmark } from "../../store/bookmark";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
-// import { getSightingLikes, deleteLike, likeSightingThunk } from "../../store/like";
+import { likeSighting } from "../../store/like";
 import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 import "./SingleSighting.css"
 
@@ -23,6 +23,10 @@ const SingleSighting = ({ scrollToTop }) => {
   // const likes = useSelector(state => state.likes.total);
   const payload = { userId: currentUser?.id, sightingId };
 
+  const like = (e) => {
+    e.preventDefault();
+    dispatch(likeSighting(sightingId, currentUser.id));
+  }
 
   const addBookmark = (e) => {
     e.preventDefault();
@@ -109,7 +113,7 @@ const SingleSighting = ({ scrollToTop }) => {
               <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
             </li>
             <li key="likes">
-              <FiThumbsUp />
+              <FiThumbsUp onClick={(e) => like(e)}/>
               <h4>{currentSighting.likes}</h4>
             </li>
             <li key="likes">
