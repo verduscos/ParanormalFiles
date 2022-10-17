@@ -26,18 +26,15 @@ class Sighting(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            # "date" : self.date,
-            # "location": self.location,
             "title": self.title,
             "description": self.description,
             "category": self.category,
             "image_url": self.image_url,
-            # No longer using sighting_images for capstone
-            # "sighting_images": [sighting_image.image_url for sighting_image in self.sighting_images],
+            "sighting_images": [sighting_image.image_url for sighting_image in self.sighting_images],
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "username": self.user.username,
-            # "likes": self.likes
+            "likes": len(self.likes)
 
         }
 
