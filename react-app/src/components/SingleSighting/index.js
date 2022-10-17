@@ -112,6 +112,10 @@ const SingleSighting = ({ scrollToTop }) => {
               <FiThumbsUp />
               <h4>{currentSighting.likes}</h4>
             </li>
+            <li key="likes">
+              <FiThumbsDown />
+              <h4>{currentSighting.dislikes}</h4>
+            </li>
             <li>
               <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>
             </li>

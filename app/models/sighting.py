@@ -35,8 +35,8 @@ class Sighting(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "username": self.user.username,
-            "likes": len(self.likes)
-
+            "likes": len(self.likes),
+            "dislikes": len(self.dislikes)
         }
 
     @staticmethod
