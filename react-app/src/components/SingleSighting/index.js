@@ -5,7 +5,7 @@ import { getSighting, deleteASighting } from "../../store/sighting";
 import { deleteBookmark, createBookmark } from "../../store/bookmark";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
-import { likeSighting } from "../../store/like";
+import { likeSighting, removeLikeSighting } from "../../store/like";
 import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 import "./SingleSighting.css"
 
@@ -17,15 +17,26 @@ const SingleSighting = ({ scrollToTop }) => {
   const currentUser = useSelector(state => state.session.user);
   const currentSighting = useSelector(state => state.sightings.current);
   const [userBookmarked, setUserBookmarked] = useState(false);
+  const [userLiked, setUserLiked] = useState(false);
   const [userBtns, setUserBtns] = useState(false);
   const { sightingId } = params;
   const isBookmarked = window.localStorage.getItem(sightingId);
-  // const likes = useSelector(state => state.likes.total);
+  const isLiked = window.localStorage.getItem("liked")
   const payload = { userId: currentUser?.id, sightingId };
+
 
   const like = (e) => {
     e.preventDefault();
     dispatch(likeSighting(sightingId, currentUser.id));
+    localStorage.setItem("liked", true);
+    setUserLiked(true);
+  }
+
+  const dislike = (e) => {
+    e.preventDefault();
+    dispatch(removeLikeSighting(sightingId, currentUser.id));
+    localStorage.removeItem("liked");
+    setUserLiked(false);
   }
 
   const addBookmark = (e) => {
@@ -54,10 +65,10 @@ const SingleSighting = ({ scrollToTop }) => {
 
   useEffect(() => {
     scrollToTop();
-    dispatch(getSighting(sightingId));
-    // dispatch(getSightingLikes(sightingId));
+    dispatch(getSighting(sightingId))
     if (isBookmarked) setUserBookmarked(true);
-  }, [dispatch])
+    if (isLiked) setUserLiked(true);
+  }, [dispatch, userLiked])
 
   const Bookmark = (
     <>
@@ -113,10 +124,10 @@ const SingleSighting = ({ scrollToTop }) => {
               <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
             </li>
             <li key="likes">
-              <FiThumbsUp onClick={(e) => like(e)}/>
-              <h4>{currentSighting.likes}</h4>
+              <FiThumbsUp onClick={userLiked ? (e) => dislike(e) : (e) => like(e)}/>
+              <h4 key="like-num">{currentSighting.likes}</h4>
             </li>
-            <li key="likes">
+            <li key="dislikes">
               <FiThumbsDown />
               <h4>{currentSighting.dislikes}</h4>
             </li>

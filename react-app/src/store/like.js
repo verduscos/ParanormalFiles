@@ -12,15 +12,15 @@ const removeLikeSightingAction = (sighting) => ({
 })
 
 
-export const removeLikeSighting = (payload) => async (dispatch) => {
+export const removeLikeSighting = (sighitngId, userId) => async (dispatch) => {
   const response = await fetch(`/api/likes/`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
       body: JSON.stringify({
-        user_id: parseInt(payload.user_id),
-        sighting_id: parseInt(payload.sighting_id)
+        user_id: userId,
+        sighting_id: sighitngId
       })
   })
   if (response.ok) {
