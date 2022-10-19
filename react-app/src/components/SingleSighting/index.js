@@ -5,7 +5,7 @@ import { getSighting, deleteASighting } from "../../store/sighting";
 import { deleteBookmark, createBookmark } from "../../store/bookmark";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
-import { likeSighting, removeLikeSighting, dislikeSighting } from "../../store/like";
+import { likeSighting, removeLikeSighting, dislikeSighting, removeDislikeSighting } from "../../store/like";
 import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 import { BsHandThumbsUp, BsFillHandThumbsUpFill, BsHandThumbsDown, BsFillHandThumbsDownFill, BsHandThumbsUpFill } from "react-icons/bs";
 import "./SingleSighting.css"
@@ -24,6 +24,7 @@ const SingleSighting = ({ scrollToTop }) => {
   const { sightingId } = params;
   const isBookmarked = window.localStorage.getItem(sightingId);
   const isLiked = window.localStorage.getItem("liked")
+  const isDisliked = window.localStorage.getItem("disliked")
   const payload = { userId: currentUser?.id, sightingId };
 
 
@@ -46,6 +47,13 @@ const SingleSighting = ({ scrollToTop }) => {
     dispatch(dislikeSighting(sightingId, currentUser.id));
     localStorage.setItem("disliked", currentSighting?.id);
     setUserDisliked(true);
+  }
+
+  const removeDislike = (e) => {
+    e.preventDefault();
+    dispatch(removeDislikeSighting(sightingId, currentUser?.id));
+    localStorage.removeItem("disliked");
+    setUserDisliked(false);
   }
 
   const addBookmark = (e) => {
@@ -77,7 +85,8 @@ const SingleSighting = ({ scrollToTop }) => {
     dispatch(getSighting(sightingId))
     if (isBookmarked) setUserBookmarked(true);
     if (isLiked === sightingId) setUserLiked(true);
-  }, [dispatch, isLiked])
+    if (isDisliked === sightingId) setUserDisliked(true);
+  }, [dispatch, userLiked])
 
 
   const Bookmark = (
@@ -138,7 +147,7 @@ const SingleSighting = ({ scrollToTop }) => {
               <h4 key="like-num">{currentSighting.likes}</h4>
             </li>
             <li key="dislikes">
-              <FiThumbsDown />
+              { userDisliked ? < BsFillHandThumbsDownFill onClick={(e) => removeDislike(e)} /> : <BsHandThumbsDown onClick={(e) => dislike(e)} />}
               <h4>{currentSighting.dislikes}</h4>
             </li>
             <li>

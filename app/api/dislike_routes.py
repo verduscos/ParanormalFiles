@@ -14,12 +14,11 @@ def get_dislikes(sightingId):
   return {"dislikes": dislikes}
 
 
-@dislike_routes.route("", methods=["POST"])
+@dislike_routes.route("/", methods=["POST"])
 def post_dislike():
   """
   Post a dislike.
   """
-  print("DISLIKE POST")
   form = DislikeForm()
   form["csrf_token"].data = request.cookies["csrf_token"]
   if form.validate_on_submit():
@@ -33,3 +32,18 @@ def post_dislike():
       db.session.commit()
       return { "dislikes" : "post successful" }
   return { "dislikes" : "post failed." }
+
+
+@dislike_routes.route("/", methods=["DELETE"])
+def delete_dislike():
+  """
+  Delete a dislike for a specific sighting.
+  """
+  print("DELETE DISLIKE--------------------------------------------")
+  searchExists = Dislike.query.filter(Dislike.user_id == request.json["user_id"], Dislike.sighting_id == request.json["sighting_id"]).first()
+  if searchExists is not None:
+    db.session.delete(searchExists)
+    db.session.commit()
+    return { "deleted" : searchExists.sighting_id }
+
+  return { "likes" : "delete to likes failed." }
