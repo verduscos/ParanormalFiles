@@ -20,13 +20,13 @@ def post_like():
   """
   Post a like to a specific sighting.
   """
+  print("POST ROUTE--------------------------------------")
   form = LikeForm()
   form["csrf_token"].data = request.cookies["csrf_token"]
 
   if form.validate_on_submit():
     alreadyLike = Like.query.filter(Like.sighting_id == request.json["sighting_id"], Like.sighting_id == request.json["sighting_id"]).first()
     if alreadyLike is None:
-      print("-------LIKED----------")
       like = Like(
         user_id=request.json["user_id"],
         sighting_id=request.json["sighting_id"]
@@ -34,11 +34,6 @@ def post_like():
       db.session.add(like)
       db.session.commit()
       return { "likes" : "post successful" }
-    else:
-      print("-------DISLIKED----------")
-      db.session.delete(alreadyLike)
-      db.session.commit()
-      return { "deleted" : alreadyLike.sighting_id }
   return { "likes" : "post failed." }
 
 
@@ -47,6 +42,7 @@ def delete_like():
   """
   Delete a like for a specific sighting.
   """
+  print("DELETE ROUTE--------------------------------------------")
   searchExists = Like.query.filter(Like.user_id == request.json["user_id"], Like.sighting_id == request.json["sighting_id"]).first()
   if searchExists is not None:
     db.session.delete(searchExists)

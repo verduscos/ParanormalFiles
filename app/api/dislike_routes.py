@@ -14,12 +14,22 @@ def get_dislikes(sightingId):
   return {"dislikes": dislikes}
 
 
-@dislike_routes.route("/<int:sightingId>")
-def post_dislike(sightingId):
+@dislike_routes.route("", methods=["POST"])
+def post_dislike():
   """
   Post a dislike.
   """
+  print("DISLIKE POST")
   form = DislikeForm()
   form["csrf_token"].data = request.cookies["csrf_token"]
   if form.validate_on_submit():
-    searchExists = Like.query.filter(Like.user_id == request.json["user_id"], Like.sighting_id == request.json["sighting_id"]).first()
+    alreadyDisliked = Dislike.query.filter(Dislike.user_id == request.json["user_id"], Dislike.sighting_id == request.json["sighting_id"]).first()
+    if alreadyDisliked is None:
+      like = Dislike(
+        user_id=request.json["user_id"],
+        sighting_id=request.json["sighting_id"]
+      )
+      db.session.add(like)
+      db.session.commit()
+      return { "dislikes" : "post successful" }
+  return { "dislikes" : "post failed." }

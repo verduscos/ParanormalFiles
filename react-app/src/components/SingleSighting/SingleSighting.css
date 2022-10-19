@@ -49,11 +49,6 @@
   user-select: none;
 }
 
-.active {
-  color: black;
-  background-color: black;
-}
-
 #single-sighting-body {
   font-size: 18px;
   line-height: 28px;
