@@ -30,6 +30,7 @@ const SingleSighting = ({ scrollToTop }) => {
 
   const like = (e) => {
     e.preventDefault();
+    if (userDisliked) removeDislike(e);
     dispatch(likeSighting(sightingId, currentUser.id));
     localStorage.setItem("liked", currentSighting?.id);
     setUserLiked(true);
@@ -44,6 +45,7 @@ const SingleSighting = ({ scrollToTop }) => {
 
   const dislike = (e) => {
     e.preventDefault();
+    if (userLiked) removeLike(e);
     dispatch(dislikeSighting(sightingId, currentUser.id));
     localStorage.setItem("disliked", currentSighting?.id);
     setUserDisliked(true);
@@ -82,11 +84,11 @@ const SingleSighting = ({ scrollToTop }) => {
 
   useEffect(() => {
     scrollToTop();
-    dispatch(getSighting(sightingId))
     if (isBookmarked) setUserBookmarked(true);
     if (isLiked === sightingId) setUserLiked(true);
     if (isDisliked === sightingId) setUserDisliked(true);
-  }, [dispatch, userLiked])
+    dispatch(getSighting(sightingId));
+  }, [dispatch, userLiked, userDisliked])
 
 
   const Bookmark = (
