@@ -144,14 +144,18 @@ const SingleSighting = ({ scrollToTop }) => {
             <li key="sighting-image">
               <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
             </li>
-            <li key="sighitng-likes">
-              { userLiked ? <BsHandThumbsUpFill onClick={(e) => removeLike(e)} /> : <BsHandThumbsUp onClick={(e) => like(e)} /> }
-              <h4 key="like-count">{currentSighting.likes}</h4>
-            </li>
-            <li key="sighting-dislikes">
-              { userDisliked ? < BsFillHandThumbsDownFill onClick={(e) => removeDislike(e)} /> : <BsHandThumbsDown onClick={(e) => dislike(e)} />}
-              <h4>{currentSighting.dislikes}</h4>
-            </li>
+
+            <div id="sighting-likes-container">
+              <li key="sighitng-likes">
+                {userLiked ? <BsHandThumbsUpFill onClick={(e) => removeLike(e)} /> : <BsHandThumbsUp onClick={(e) => like(e)} />}
+                <h4 key="like-count">{currentSighting.likes}</h4>
+              </li>
+              <li key="sighting-dislikes">
+                {userDisliked ? < BsFillHandThumbsDownFill onClick={(e) => removeDislike(e)} /> : <BsHandThumbsDown onClick={(e) => dislike(e)} />}
+                <h4>{currentSighting.dislikes}</h4>
+              </li>
+            </div>
+
             <li key="sighting-body">
               <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>
             </li>

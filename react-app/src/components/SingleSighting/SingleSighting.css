@@ -49,6 +49,22 @@
   user-select: none;
 }
 
+#sighting-likes-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#sighting-likes-container > li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 15px 0 15px;
+}
+
+#sighting-likes-container > li > * {
+  margin: 0 5px;
+}
+
 #single-sighting-body {
   font-size: 18px;
   line-height: 28px;
