@@ -88,7 +88,7 @@ const SingleSighting = ({ scrollToTop }) => {
     if (isLiked === sightingId) setUserLiked(true);
     if (isDisliked === sightingId) setUserDisliked(true);
     dispatch(getSighting(sightingId));
-  }, [dispatch, userLiked, userDisliked])
+  }, [userLiked, userDisliked])
 
 
   const Bookmark = (
@@ -127,7 +127,7 @@ const SingleSighting = ({ scrollToTop }) => {
   return (
     <div id="sighting-container">
       <ul>
-        <li id="sighting-actions-btn-container">
+        <li id="sighting-actions-btn-container" key="user-actions">
           {Bookmark}
           <div id="sighting-edit-btns">
             {UserBtns}
@@ -135,24 +135,24 @@ const SingleSighting = ({ scrollToTop }) => {
         </li>
         {currentSighting !== undefined ?
           <>
-            <li>
+            <li key="sighting-title">
               <h1 id="single-sighting-title">{currentSighting.title}</h1>
             </li>
-            <li>
+            <li key="sighting-date">
               <p id="single-sighting-date">{`${currentSighting.created_at.split(' ')[2]} ${currentSighting.created_at.split(' ')[1]}, ${currentSighting.created_at.split(' ')[3]}`}</p>
             </li>
-            <li>
+            <li key="sighting-image">
               <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
             </li>
-            <li key="likes">
+            <li key="sighitng-likes">
               { userLiked ? <BsHandThumbsUpFill onClick={(e) => removeLike(e)} /> : <BsHandThumbsUp onClick={(e) => like(e)} /> }
-              <h4 key="like-num">{currentSighting.likes}</h4>
+              <h4 key="like-count">{currentSighting.likes}</h4>
             </li>
-            <li key="dislikes">
+            <li key="sighting-dislikes">
               { userDisliked ? < BsFillHandThumbsDownFill onClick={(e) => removeDislike(e)} /> : <BsHandThumbsDown onClick={(e) => dislike(e)} />}
               <h4>{currentSighting.dislikes}</h4>
             </li>
-            <li>
+            <li key="sighting-body">
               <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>
             </li>
           </>
