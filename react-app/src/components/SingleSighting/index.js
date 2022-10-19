@@ -7,6 +7,7 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { likeSighting, removeLikeSighting } from "../../store/like";
 import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
+import { BsHandThumbsUp, BsFillHandThumbsUpFill, BsHandThumbsDown, BsFillHandThumbsDownFill, BsHandThumbsUpFill } from "react-icons/bs";
 import "./SingleSighting.css"
 
 
@@ -24,22 +25,23 @@ const SingleSighting = ({ scrollToTop }) => {
   const isLiked = window.localStorage.getItem("liked")
   const payload = { userId: currentUser?.id, sightingId };
 
+  const [isVisible, setIsVisible] = useState(true);
+
 
   const like = (e) => {
     e.preventDefault();
-    if (userLiked) {
-      dispatch(likeSighting(sightingId, currentUser.id));
-      localStorage.setItem("liked", currentSighting.id);
-      setUserLiked(true);
-    } else {
-      dispatch(removeLikeSighting(sightingId, currentUser.id));
-      localStorage.removeItem("liked");
-      setUserLiked(false);
-    }
+    dispatch(likeSighting(sightingId, currentUser.id));
+    dispatch(getSighting(sightingId));
+    localStorage.setItem("liked", currentSighting?.id);
+    setUserLiked(true);
   }
 
   const dislike = (e) => {
     e.preventDefault();
+    dispatch(removeLikeSighting(sightingId, currentUser.id));
+    dispatch(getSighting(sightingId));
+    localStorage.removeItem("liked");
+    setUserLiked(false);
   }
 
   const addBookmark = (e) => {
@@ -70,8 +72,8 @@ const SingleSighting = ({ scrollToTop }) => {
     scrollToTop();
     dispatch(getSighting(sightingId))
     if (isBookmarked) setUserBookmarked(true);
-    if (isLiked == currentSighting?.id) setUserLiked(true);
-  }, [dispatch, userLiked, isLiked])
+    if (isLiked === currentSighting?.id) setUserLiked(true);
+  }, [dispatch, userLiked])
 
   const Bookmark = (
     <>
@@ -127,7 +129,8 @@ const SingleSighting = ({ scrollToTop }) => {
               <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
             </li>
             <li key="likes">
-              <FiThumbsUp onClick={userLiked ? (e) => like(e) : (e) => like(e)}/>
+              { userLiked ? <BsHandThumbsUpFill onClick={(e) => dislike(e)} /> : <BsHandThumbsUp onClick={(e) => like(e)} /> }
+              {/* <FiThumbsUp className={ userLiked ? "active" : "active" } onClick={userLiked ? (e) => dislike(e) : (e) => like(e)}/> */}
               <h4 key="like-num">{currentSighting.likes}</h4>
             </li>
             <li key="dislikes">
