@@ -24,13 +24,21 @@ def post_like():
   form["csrf_token"].data = request.cookies["csrf_token"]
 
   if form.validate_on_submit():
-    like = Like(
-      user_id=request.json["user_id"],
-      sighting_id=request.json["sighting_id"]
-    )
-    db.session.add(like)
-    db.session.commit()
-    return { "likes" : "post successful" }
+    alreadyLike = Like.query.filter(Like.sighting_id == request.json["sighting_id"], Like.sighting_id == request.json["sighting_id"]).first()
+    if alreadyLike is None:
+      print("-------LIKED----------")
+      like = Like(
+        user_id=request.json["user_id"],
+        sighting_id=request.json["sighting_id"]
+      )
+      db.session.add(like)
+      db.session.commit()
+      return { "likes" : "post successful" }
+    else:
+      print("-------DISLIKED----------")
+      db.session.delete(alreadyLike)
+      db.session.commit()
+      return { "deleted" : alreadyLike.sighting_id }
   return { "likes" : "post failed." }
 
 

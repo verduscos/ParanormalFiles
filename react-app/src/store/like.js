@@ -31,7 +31,6 @@ export const removeLikeSighting = (sighitngId, userId) => async (dispatch) => {
 }
 
 export const likeSighting = (sighitngId, userId) => async (dispatch) => {
-  console.log(userId, sighitngId)
   const response = await fetch(`/api/likes/`, {
     method: "POST",
     headers: {
@@ -61,7 +60,7 @@ const likesReducer = (state = { likes : 0}, action) => {
       return likes
     case LIKE_SIGHTING: {
       const likes = { ...state }
-      likes[action.payload.likes.id] = action.payload.likes;
+      likes[action.payload.likes?.id] = action.payload.likes;
 
       return likes;
     }

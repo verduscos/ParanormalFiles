@@ -27,16 +27,19 @@ const SingleSighting = ({ scrollToTop }) => {
 
   const like = (e) => {
     e.preventDefault();
-    dispatch(likeSighting(sightingId, currentUser.id));
-    localStorage.setItem("liked", true);
-    setUserLiked(true);
+    if (userLiked) {
+      dispatch(likeSighting(sightingId, currentUser.id));
+      localStorage.setItem("liked", currentSighting.id);
+      setUserLiked(true);
+    } else {
+      dispatch(removeLikeSighting(sightingId, currentUser.id));
+      localStorage.removeItem("liked");
+      setUserLiked(false);
+    }
   }
 
   const dislike = (e) => {
     e.preventDefault();
-    dispatch(removeLikeSighting(sightingId, currentUser.id));
-    localStorage.removeItem("liked");
-    setUserLiked(false);
   }
 
   const addBookmark = (e) => {
@@ -67,8 +70,8 @@ const SingleSighting = ({ scrollToTop }) => {
     scrollToTop();
     dispatch(getSighting(sightingId))
     if (isBookmarked) setUserBookmarked(true);
-    if (isLiked) setUserLiked(true);
-  }, [dispatch, userLiked])
+    if (isLiked == currentSighting?.id) setUserLiked(true);
+  }, [dispatch, userLiked, isLiked])
 
   const Bookmark = (
     <>
@@ -124,7 +127,7 @@ const SingleSighting = ({ scrollToTop }) => {
               <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
             </li>
             <li key="likes">
-              <FiThumbsUp onClick={userLiked ? (e) => dislike(e) : (e) => like(e)}/>
+              <FiThumbsUp onClick={userLiked ? (e) => like(e) : (e) => like(e)}/>
               <h4 key="like-num">{currentSighting.likes}</h4>
             </li>
             <li key="dislikes">
