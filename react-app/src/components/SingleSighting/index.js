@@ -25,8 +25,6 @@ const SingleSighting = ({ scrollToTop }) => {
   const isLiked = window.localStorage.getItem("liked")
   const payload = { userId: currentUser?.id, sightingId };
 
-  const [isVisible, setIsVisible] = useState(true);
-
 
   const like = (e) => {
     e.preventDefault();
@@ -36,7 +34,7 @@ const SingleSighting = ({ scrollToTop }) => {
     setUserLiked(true);
   }
 
-  const dislike = (e) => {
+  const removeLike = (e) => {
     e.preventDefault();
     dispatch(removeLikeSighting(sightingId, currentUser.id));
     dispatch(getSighting(sightingId));
@@ -72,8 +70,9 @@ const SingleSighting = ({ scrollToTop }) => {
     scrollToTop();
     dispatch(getSighting(sightingId))
     if (isBookmarked) setUserBookmarked(true);
-    if (isLiked === currentSighting?.id) setUserLiked(true);
-  }, [dispatch, userLiked])
+    if (isLiked === sightingId) setUserLiked(true);
+  }, [dispatch, isLiked])
+
 
   const Bookmark = (
     <>
@@ -129,8 +128,7 @@ const SingleSighting = ({ scrollToTop }) => {
               <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
             </li>
             <li key="likes">
-              { userLiked ? <BsHandThumbsUpFill onClick={(e) => dislike(e)} /> : <BsHandThumbsUp onClick={(e) => like(e)} /> }
-              {/* <FiThumbsUp className={ userLiked ? "active" : "active" } onClick={userLiked ? (e) => dislike(e) : (e) => like(e)}/> */}
+              { userLiked ? <BsHandThumbsUpFill onClick={(e) => removeLike(e)} /> : <BsHandThumbsUp onClick={(e) => like(e)} /> }
               <h4 key="like-num">{currentSighting.likes}</h4>
             </li>
             <li key="dislikes">
