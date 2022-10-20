@@ -147,14 +147,31 @@ const SingleSighting = ({ scrollToTop }) => {
               <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
             </li>
             <div id="sighting-likes-container">
-              <li key="sighitng-likes">
-                {userLiked ? <BsHandThumbsUpFill onClick={(e) => removeLike(e)} /> : <BsHandThumbsUp onClick={(e) => like(e)} />}
-                <h4 key="like-count">{currentSighting.likes}</h4>
-              </li>
-              <li key="sighting-dislikes">
-                {userDisliked ? < BsFillHandThumbsDownFill onClick={(e) => removeDislike(e)} /> : <BsHandThumbsDown onClick={(e) => dislike(e)} />}
-                <h4>{currentSighting.dislikes}</h4>
-              </li>
+              {
+                userLiked ?
+                  <li key="sighting-likes" onClick={(e) => removeLike(e)}>
+                    < BsHandThumbsUpFill />
+                    <h4>{currentSighting.likes}</h4>
+                  </li>
+                  :
+                  <li key="sighting-likes" onClick={(e) => like(e)}>
+                    <BsHandThumbsUp />
+                    <h4>{currentSighting.likes}</h4>
+                  </li>
+              }
+
+              {
+                userDisliked ?
+                  <li key="sighting-dislikes" onClick={(e) => removeDislike(e)}>
+                    < BsFillHandThumbsDownFill />
+                    <h4>{currentSighting.dislikes}</h4>
+                  </li>
+                  :
+                  <li key="sighting-dislikes" onClick={(e) => dislike(e)}>
+                    <BsHandThumbsDown />
+                    <h4>{currentSighting.dislikes}</h4>
+                  </li>
+              }
             </div>
             <li key="sighting-body">
               <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>
