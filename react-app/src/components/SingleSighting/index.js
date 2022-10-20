@@ -33,6 +33,7 @@ const SingleSighting = ({ scrollToTop }) => {
     if (userDisliked) removeDislike(e);
     dispatch(likeSighting(sightingId, currentUser.id));
     localStorage.setItem("liked", currentSighting?.id);
+    currentSighting.likes = String(parseInt(currentSighting.likes) + 1);
     setUserLiked(true);
   }
 
@@ -40,6 +41,7 @@ const SingleSighting = ({ scrollToTop }) => {
     e.preventDefault();
     dispatch(removeLikeSighting(sightingId, currentUser.id));
     localStorage.removeItem("liked");
+    currentSighting.likes = String(parseInt(currentSighting.likes) - 1);
     setUserLiked(false);
   }
 
@@ -48,6 +50,7 @@ const SingleSighting = ({ scrollToTop }) => {
     if (userLiked) removeLike(e);
     dispatch(dislikeSighting(sightingId, currentUser.id));
     localStorage.setItem("disliked", currentSighting?.id);
+    currentSighting.dislikes = String(parseInt(currentSighting.dislikes) + 1);
     setUserDisliked(true);
   }
 
@@ -55,6 +58,7 @@ const SingleSighting = ({ scrollToTop }) => {
     e.preventDefault();
     dispatch(removeDislikeSighting(sightingId, currentUser?.id));
     localStorage.removeItem("disliked");
+    currentSighting.dislikes = String(parseInt(currentSighting.dislikes) - 1);
     setUserDisliked(false);
   }
 
@@ -88,7 +92,7 @@ const SingleSighting = ({ scrollToTop }) => {
     if (isLiked === sightingId) setUserLiked(true);
     if (isDisliked === sightingId) setUserDisliked(true);
     dispatch(getSighting(sightingId));
-  }, [userLiked, userDisliked])
+  }, [dispatch])
 
 
   const Bookmark = (
