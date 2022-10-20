@@ -23,6 +23,16 @@ def seed_likes():
 
     db.session.commit()
 
+    # for n in range(15):
+    #   like = Like(
+    #     user_id=1,
+    #     sighting_id=n,
+    #   )
+
+    #   db.session.add(like)
+    #   db.session.commit()
+
+
 def undo_likes():
     db.session.execute('TRUNCATE sightings RESTART IDENTITY CASCADE;')
     db.session.commit()
