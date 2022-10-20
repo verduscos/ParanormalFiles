@@ -89,29 +89,7 @@ export const removeDislikeSighting = (sighitngId, userId) => async (dispatch) =>
   })
   if (response.ok) {
     const data = await response.json();
-    dispatch(removeLikeSightingAction(data))
+    dispatch(removeDislikeSightingAction(data))
     return
   }
 }
-
-const likesReducer = (state = { likes : 0}, action) => {
-  switch (action.type){
-    case REMOVE_LIKE:
-      const likes = { ...state }
-      const id = action.payload["deleted"]
-
-      delete likes[id];
-      return likes
-    case LIKE_SIGHTING: {
-      const likes = { ...state }
-      likes[action.payload.likes?.id] = action.payload.likes;
-
-      return likes;
-    }
-    default:
-      return state;
-  }
-}
-
-
-export default likesReducer;

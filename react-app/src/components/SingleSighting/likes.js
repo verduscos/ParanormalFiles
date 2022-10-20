@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { getSighting, deleteASighting } from "../../store/sighting";
-import { deleteBookmark, createBookmark } from "../../store/bookmark";
-import { BiDotsHorizontalRounded } from "react-icons/bi";
-import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { likeSighting, removeLikeSighting, dislikeSighting, removeDislikeSighting } from "../../store/like";
-import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
-import { BsHandThumbsUp, BsFillHandThumbsUpFill, BsHandThumbsDown, BsFillHandThumbsDownFill, BsHandThumbsUpFill } from "react-icons/bs";
+import { BsHandThumbsUp, BsHandThumbsDown, BsFillHandThumbsDownFill, BsHandThumbsUpFill } from "react-icons/bs";
 import "./SingleSighting.css"
 
 
@@ -17,16 +12,9 @@ const Likes = () => {
   const params = useParams();
   const currentUser = useSelector(state => state.session.user);
   const currentSighting = useSelector(state => state.sightings.current);
-  const [userBookmarked, setUserBookmarked] = useState(false);
   const [userLiked, setUserLiked] = useState(false);
   const [userDisliked, setUserDisliked] = useState(false);
-  const [userBtns, setUserBtns] = useState(false);
   const { sightingId } = params;
-  const isBookmarked = window.localStorage.getItem(sightingId);
-  const isLiked = window.localStorage.getItem("liked")
-  const isDisliked = window.localStorage.getItem("disliked")
-  const payload = { userId: currentUser?.id, sightingId };
-
 
   const like = (e) => {
     e.preventDefault();

@@ -3,7 +3,6 @@ import thunk from 'redux-thunk';
 import session from './session'
 import sightingReducer from './sighting'
 import commentsReducer from './comment'
-import likesReducer from './like';
 import bookmarksReducer from './bookmark';
 
 const rootReducer = combineReducers({
@@ -11,7 +10,6 @@ const rootReducer = combineReducers({
   sightings: sightingReducer,
   comments: commentsReducer,
   bookmarks: bookmarksReducer,
-  likes: likesReducer,
 });
 
 
