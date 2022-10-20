@@ -51,7 +51,14 @@
 
 #sighting-likes-container {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#like-actions {
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
 }
 
 #sighting-likes-container > li {
@@ -63,8 +70,22 @@
   user-select: none;
 }
 
-#sighting-likes-container > li > * {
+#like-actions > li {
   margin: 0 5px;
+  display: flex;
+  align-items: center;
+}
+
+#like-actions > li > * {
+  margin: 0 10px;
+}
+
+meter {
+  width: 150px;
+}
+
+meter::-webkit-meter-optimum-value {
+  background: black;
 }
 
 #single-sighting-body {
