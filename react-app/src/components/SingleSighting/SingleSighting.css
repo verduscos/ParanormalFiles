@@ -53,6 +53,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  margin-top: 10px;
 }
 
 #like-actions {
@@ -61,19 +62,12 @@
   width: 150px;
 }
 
-#sighting-likes-container > li {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 5px 15px 0 15px;
-  cursor: pointer;
-  user-select: none;
-}
-
 #like-actions > li {
   margin: 0 5px;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  user-select: none;
 }
 
 #like-actions > li > * {
