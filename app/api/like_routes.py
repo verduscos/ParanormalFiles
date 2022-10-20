@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, session, request
 from app.forms import LikeForm
 from app.models import Like, db
 
@@ -11,9 +11,8 @@ def post_like():
   """
   form = LikeForm()
   form["csrf_token"].data = request.cookies["csrf_token"]
-
   if form.validate_on_submit():
-    alreadyLike = Like.query.filter(Like.sighting_id == request.json["sighting_id"], Like.sighting_id == request.json["sighting_id"]).first()
+    alreadyLike = Like.query.filter(Like.user_id == request.json["user_id"], Like.sighting_id == request.json["sighting_id"]).first()
     if alreadyLike is None:
       like = Like(
         user_id=request.json["user_id"],
@@ -23,6 +22,7 @@ def post_like():
       db.session.commit()
       return { "likes" : "post successful" }
   return { "likes" : "post failed." }
+
 
 @like_routes.route("/", methods=["DELETE"])
 def delete_like():
