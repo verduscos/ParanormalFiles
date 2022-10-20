@@ -104,4 +104,5 @@ def downgrade():
     op.drop_table('bookmarks')
     op.drop_table('sightings')
     op.drop_table('users')
+
     # ### end Alembic commands ###
