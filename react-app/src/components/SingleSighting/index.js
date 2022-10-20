@@ -93,6 +93,7 @@ const SingleSighting = ({ scrollToTop }) => {
     dispatch(getSighting(sightingId));
   }, [])
 
+
   const Bookmark = (
     <>
       {userBookmarked ?
