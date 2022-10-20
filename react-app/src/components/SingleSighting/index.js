@@ -10,6 +10,8 @@ import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 import { BsHandThumbsUp, BsFillHandThumbsUpFill, BsHandThumbsDown, BsFillHandThumbsDownFill, BsHandThumbsUpFill } from "react-icons/bs";
 import "./SingleSighting.css"
 
+import Likes from "./funcs";
+
 
 const SingleSighting = ({ scrollToTop }) => {
   const dispatch = useDispatch();
@@ -26,41 +28,6 @@ const SingleSighting = ({ scrollToTop }) => {
   const isLiked = window.localStorage.getItem("liked")
   const isDisliked = window.localStorage.getItem("disliked")
   const payload = { userId: currentUser?.id, sightingId };
-
-
-  const like = (e) => {
-    e.preventDefault();
-    if (userDisliked) removeDislike(e);
-    dispatch(likeSighting(sightingId, currentUser.id));
-    localStorage.setItem("liked", currentSighting?.id);
-    currentSighting.likes = String(parseInt(currentSighting.likes) + 1);
-    setUserLiked(true);
-  }
-
-  const removeLike = (e) => {
-    e.preventDefault();
-    dispatch(removeLikeSighting(sightingId, currentUser.id));
-    localStorage.removeItem("liked");
-    currentSighting.likes = String(parseInt(currentSighting.likes) - 1);
-    setUserLiked(false);
-  }
-
-  const dislike = (e) => {
-    e.preventDefault();
-    if (userLiked) removeLike(e);
-    dispatch(dislikeSighting(sightingId, currentUser.id));
-    localStorage.setItem("disliked", currentSighting?.id);
-    currentSighting.dislikes = String(parseInt(currentSighting.dislikes) + 1);
-    setUserDisliked(true);
-  }
-
-  const removeDislike = (e) => {
-    e.preventDefault();
-    dispatch(removeDislikeSighting(sightingId, currentUser?.id));
-    localStorage.removeItem("disliked");
-    currentSighting.dislikes = String(parseInt(currentSighting.dislikes) - 1);
-    setUserDisliked(false);
-  }
 
   const addBookmark = (e) => {
     e.preventDefault();
@@ -148,18 +115,9 @@ const SingleSighting = ({ scrollToTop }) => {
             <li key="sighting-image">
               <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
             </li>
-
-            <div id="sighting-likes-container">
-              <li key="sighitng-likes">
-                {userLiked ? <BsHandThumbsUpFill onClick={(e) => removeLike(e)} /> : <BsHandThumbsUp onClick={(e) => like(e)} />}
-                <h4 key="like-count">{currentSighting.likes}</h4>
-              </li>
-              <li key="sighting-dislikes">
-                {userDisliked ? < BsFillHandThumbsDownFill onClick={(e) => removeDislike(e)} /> : <BsHandThumbsDown onClick={(e) => dislike(e)} />}
-                <h4>{currentSighting.dislikes}</h4>
-              </li>
-            </div>
-
+            <li key="sighting-likes">
+              <Likes />
+            </li>
             <li key="sighting-body">
               <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>
             </li>
