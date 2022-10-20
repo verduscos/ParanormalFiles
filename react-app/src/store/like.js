@@ -1,100 +1,95 @@
-const GET_LIKES = "session/GET_LIKES"
 const LIKE_SIGHTING = "session/LIKE_SIGHTING"
 const REMOVE_LIKE = "session/REMOVE_SIGHTING"
+const DISLIKE_SIGHTING = "session/DISLIKE_SIGHITNG"
+const REMOVE_DISLIKE = "session/REMOVE_DISLIKE"
 
-const getLikes = (sightingId) => ({
-  type:GET_LIKES,
-  payload: sightingId
-})
-
-const likeSighting = (sighting) => ({
+const likeSightingAction = (sighting) => ({
   type: LIKE_SIGHTING,
   payload: sighting
 })
 
-const removeSighting = (sighting) => ({
+const removeLikeSightingAction = (sighting) => ({
   type: REMOVE_LIKE,
   payload: sighting
 })
 
+const dislikeSightingAction = (sighting) => ({
+  type: DISLIKE_SIGHTING,
+  payload: sighting
+})
 
-export const deleteLike = (payload) => async (dispatch) => {
+const removeDislikeSightingAction = (sighting) => ({
+  type: REMOVE_DISLIKE,
+  payload: sighting
+})
+
+
+export const removeLikeSighting = (sighitngId, userId) => async (dispatch) => {
   const response = await fetch(`/api/likes/`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
       body: JSON.stringify({
-        user_id: parseInt(payload.user_id),
-        sighting_id: parseInt(payload.sighting_id)
+        user_id: userId,
+        sighting_id: sighitngId
       })
   })
   if (response.ok) {
     const data = await response.json();
-    dispatch(removeSighting(data))
+    dispatch(removeLikeSightingAction(data))
     return
   }
 }
 
-export const getSightingLikes = (sightingId) => async (dispatch) => {
-  const response = await fetch(`/api/likes/${sightingId}`)
-  if(response.status >= 400) {
-    throw response
-  }
-  const data = await response.json();
-  dispatch(getLikes(data));
-  return data;
-}
-
-export const likeSightingThunk = (payload) => async (dispatch) => {
+export const likeSighting = (sighitngId, userId) => async (dispatch) => {
   const response = await fetch(`/api/likes/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      user_id: payload.user_id,
-      sighting_id: payload.sighting_id
+      user_id: userId,
+      sighting_id: sighitngId
     })
   });
 
+  const data = await response.json();
+  dispatch(likeSightingAction(data));
+  return data;
+}
+
+export const dislikeSighting = (sighitngId, userId) => async (dispatch) => {
+  const response = await fetch(`/api/dislikes/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      user_id: userId,
+      sighting_id: sighitngId
+    })
+  });
 
   const data = await response.json();
-
-  dispatch(likeSighting(data));
+  dispatch(dislikeSightingAction(data));
   return data;
-
 }
 
-
-
-
-
-const likesReducer = (state = { total : 0}, action) => {
-  switch (action.type){
-    case GET_LIKES:
-      let likes = { ...state }
-      likes.total = action.payload.likes;
-      return { ...likes }
-
-    case REMOVE_LIKE:
-      let likess = { ...state }
-      let id = action.payload["deleted"]
-
-      delete likess[id];
-      return likess
-
-    case LIKE_SIGHTING:
-      let like = { ...state }
-
-      like[action.payload.likes.id] = action.payload.likes;
-
-      return like
-
-    default:
-      return state;
+export const removeDislikeSighting = (sighitngId, userId) => async (dispatch) => {
+  const response = await fetch(`/api/dislikes/`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+      body: JSON.stringify({
+        user_id: userId,
+        sighting_id: sighitngId
+      })
+  })
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(removeDislikeSightingAction(data))
+    return
   }
 }
-
-
-export default likesReducer;

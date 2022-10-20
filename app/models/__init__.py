@@ -4,4 +4,5 @@ from .sighting import Sighting
 from .comment import Comment
 from .sighting_images import SightingImage
 from .like import Like
+from .dislike import Dislike
 from .bookmark import Bookmark
