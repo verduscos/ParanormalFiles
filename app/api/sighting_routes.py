@@ -95,8 +95,6 @@ def create_sighting():
     if form.validate_on_submit():
         sighting = Sighting(
             user_id=request.json["user_id"],
-            # date=request.json["date"],
-            # location=request.json["location"],
             title=request.json["title"],
             description=request.json["description"],
             category=request.json["category"],
@@ -120,10 +118,6 @@ def update_sighting(id):
     if form.validate_on_submit():
         updated_sighting = Sighting.update(
             sighting=sighting,
-            user_id=request.json["user_id"],
-            # Will use this after capstone, need more time
-            # date=request.json["date"],
-            # location=request.json["location"],
             title=request.json["title"],
             description=request.json["description"],
             category=request.json["category"],

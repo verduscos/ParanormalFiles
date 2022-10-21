@@ -13,7 +13,7 @@ const Search = () => {
 
   useEffect(() => {
     if (string !== undefined) dispatch(searchAllSightings(string));
-  }, [string])
+  }, [dispatch, string])
 
   const search = async (e) => {
     e.preventDefault();

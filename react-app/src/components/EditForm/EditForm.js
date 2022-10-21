@@ -22,17 +22,34 @@ const EditForm = () => {
   const [displayUrl, setDisplayUrl] = useState("")
 
 
-  useEffect(async () => {
+  console.log(title)
+  console.log("LSKDJFKSaDJ")
+
+  useEffect(() => {
     const formData = new FormData();
     formData.append("image", image);
-    const res = await fetch(`/api/sightings/image`, {
-      method: "POST",
-      body: formData,
-    });
-    if (res.ok) {
-      const data = await res.json();
-      setImageUrl(data.url)
-    }
+    const fetchData = async () => {
+      const res = await fetch(`/api/sightings/image`, {
+        method: "POST",
+        body: formData,
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setImageUrl(data.url)
+      }
+   }
+
+   fetchData();
+
+
+    // const res = await fetch(`/api/sightings/image`, {
+    //   method: "POST",
+    //   body: formData,
+    // });
+    // if (res.ok) {
+    //   const data = await res.json();
+    //   setImageUrl(data.url)
+    // }
   }, [image, dispatch])
 
   const updateImage = (e) => {
@@ -53,8 +70,8 @@ const EditForm = () => {
     }
 
     const errorsArr = [];
-    if (title.length <= 4) errorsArr.push("Title must be at least 4 characters long.")
-    if (description.length <= 4) errorsArr.push("Description must be at least 5 characters long.")
+    if (title.length < 4) errorsArr.push("Title must be at least 4 characters long.")
+    if (description.length < 5) errorsArr.push("Description must be at least 5 characters long.")
     if (category.length < 1) errorsArr.push("Please choose a category.")
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
