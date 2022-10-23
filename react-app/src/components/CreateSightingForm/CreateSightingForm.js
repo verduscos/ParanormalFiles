@@ -127,7 +127,7 @@ const CreateSightingForm = () => {
           {imageUrl ?
           <>
           <p>Image preview:</p>
-          <img src={imageUrl} />
+          <img src={imageUrl} alt="sighting preview" />
           </>
           : null}
         </div>
