@@ -5,7 +5,6 @@ import CreateNav from "../CreateSightingForm/CreateNav";
 import "../CreateSightingForm/Form.css"
 import * as sessionActions from "../../store/sighting"
 
-
 const EditForm = () => {
   const params = useParams()
   const { sightingId } = params
@@ -21,10 +20,6 @@ const EditForm = () => {
   const [errors, setErrors] = useState([])
   const [displayUrl, setDisplayUrl] = useState("")
 
-
-  console.log(title)
-  console.log("LSKDJFKSaDJ")
-
   useEffect(() => {
     const formData = new FormData();
     formData.append("image", image);
@@ -37,19 +32,8 @@ const EditForm = () => {
         const data = await res.json();
         setImageUrl(data.url)
       }
-   }
-
-   fetchData();
-
-
-    // const res = await fetch(`/api/sightings/image`, {
-    //   method: "POST",
-    //   body: formData,
-    // });
-    // if (res.ok) {
-    //   const data = await res.json();
-    //   setImageUrl(data.url)
-    // }
+    }
+    fetchData();
   }, [image, dispatch])
 
   const updateImage = (e) => {
@@ -80,12 +64,8 @@ const EditForm = () => {
     }
   }
 
-
-
   return (
     <>
-
-
       <CreateNav />
       <form className="sighting-form">
         <ul>
@@ -94,7 +74,6 @@ const EditForm = () => {
 
             <li className="error-mssg">{error}</li>
           ))}
-
           <input
             id="form-title"
             className="sighting-inputs"
@@ -109,7 +88,6 @@ const EditForm = () => {
             value={description}
             type="text"
             placeholder="description" />
-
           <div className="form-category-image-container">
             <select
               className="form-select-options sighting-inputs"
@@ -126,7 +104,6 @@ const EditForm = () => {
               <option value="Time Travel">Time Travel</option>
               <option value="Synchronicity">Synchronicity</option>
             </select>
-
             <label htmlFor="image-upload-default-btn" value="Upload Image" id="file-label">
               <p>Upload Image</p>
             </label>
@@ -139,13 +116,11 @@ const EditForm = () => {
               onChange={updateImage}
             />
           </div>
-
           <p id="form-display-image-url">{displayUrl}</p>
         </ul>
       </form>
     </>
   )
 }
-
 
 export default EditForm;
