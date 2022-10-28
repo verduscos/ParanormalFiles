@@ -5,8 +5,6 @@ class Sighting(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    # date = db.Column(db.String(15), nullable=True)
-    # location = db.Column(db.String(50), nullable=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(5000), nullable=False)
     category = db.Column(db.String(50), nullable=False)
@@ -20,7 +18,6 @@ class Sighting(db.Model):
     likes = db.relationship("Like", cascade="all, delete", passive_deletes=True, back_populates="sighting")
     dislikes = db.relationship("Dislike", cascade="all, delete", passive_deletes=True, back_populates="sighting")
     bookmarks = db.relationship("Bookmark", cascade="all, delete", passive_deletes=True, back_populates="sighting")
-
 
 
     def to_dict(self):
