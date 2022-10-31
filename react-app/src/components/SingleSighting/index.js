@@ -147,6 +147,11 @@ const SingleSighting = ({ scrollToTop }) => {
             <li key="sighting-image">
               <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
             </li>
+            <li key="sighting-tags">
+              {currentSighting.sighting_tags.map((tag) => (
+                <p>{tag.title}</p>
+              ))}
+            </li>
             <div id="sighting-likes-container">
               <div id="like-actions">
 

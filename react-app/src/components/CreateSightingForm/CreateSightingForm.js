@@ -59,7 +59,7 @@ const CreateSightingForm = () => {
       description: description,
       category: "test",
       url: imageUrl,
-      tags: [...tags.split(", ")]
+      tags: [...tags.split(" ")]
     }
 
     console.log(title)
