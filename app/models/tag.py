@@ -5,6 +5,9 @@ class Tag(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   title = db.Column(db.String(25), nullable=False)
 
+  sighting_tags = db.relationship("SightingTag", back_populates="tags")
+
+
   def to_dict(self):
     return {
         "id": self.id,

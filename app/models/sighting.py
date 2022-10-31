@@ -17,6 +17,7 @@ class Sighting(db.Model):
     sighting_images = db.relationship("SightingImage",  cascade="all, delete", passive_deletes=True, back_populates="sighting", lazy='dynamic')
     likes = db.relationship("Like", cascade="all, delete", passive_deletes=True, back_populates="sighting")
     dislikes = db.relationship("Dislike", cascade="all, delete", passive_deletes=True, back_populates="sighting")
+    sighting_tags = db.relationship("SightingTag", back_populates="sighting")
     bookmarks = db.relationship("Bookmark", cascade="all, delete", passive_deletes=True, back_populates="sighting")
 
 
@@ -33,7 +34,9 @@ class Sighting(db.Model):
             "updated_at": self.updated_at,
             "username": self.user.username,
             "likes": len(self.likes),
-            "dislikes": len(self.dislikes)
+            "dislikes": len(self.dislikes),
+            "comments": [comment.to_dict() for comment in self.comments],
+            "sighting_tags": [tag.to_dict() for tag in self.sighting_tags]
         }
 
     @staticmethod
