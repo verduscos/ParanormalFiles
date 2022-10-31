@@ -156,7 +156,6 @@ def delete_sighting(id):
     """
     sighting = Sighting.query.get(id)
     if sighting:
-
         db.session.delete(sighting)
         db.session.commit()
 
