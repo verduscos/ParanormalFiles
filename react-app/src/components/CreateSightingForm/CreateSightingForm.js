@@ -18,7 +18,13 @@ const CreateSightingForm = () => {
   const [image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState(null)
   const [displayUrl, setDisplayUrl] = useState("")
+  const [tags, setTags] = useState("")
 
+  console.log(tags, "HERRERE")
+  const regex = /^(([a-z]+,\s)+)[a-z]+$/;
+  const str = "one"
+  console.log(str)
+  console.log("TESTLLLL", regex.test(str))
 
   useEffect(async () => {
     if (displayUrl !== "") setLoading(true);
@@ -56,9 +62,9 @@ const CreateSightingForm = () => {
       user_id: currentUser.id,
       title: title,
       description: description,
-      category: category,
+      category: "test",
       url: imageUrl,
-      tags: ["one", "two", "three"]
+      tags: [...tags.split(", ")]
     }
 
     console.log(title)
@@ -96,7 +102,14 @@ const CreateSightingForm = () => {
             type="text" value={description} placeholder="Tell your story...." />
 
           <div className="form-category-image-container">
-            <select
+            <input type="text"
+            // className="form-select-options sighting-inputs"
+            onChange={(e) => {
+              setTags(e.target.value)
+            }}
+
+            />
+            {/* <select
               className="form-select-options sighting-inputs"
               onChange={(e) => {
                 setCategory(e.target.value)
@@ -112,7 +125,7 @@ const CreateSightingForm = () => {
               <option value="Mandela Effect">Mandela Effect</option>
               <option value="Time Travel">Time Travel</option>
               <option value="Synchronicity">Synchronicity</option>
-            </select>
+            </select> */}
             <label for="image-upload-default-btn" value="Upload Image" id="file-label">
               <p>Upload Image</p>
             </label>
