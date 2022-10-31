@@ -6,7 +6,7 @@ def seed_sighting_tags():
     tag_id=3
   )
   tag2 = SightingTag(
-    sighting_id=2,
+    sighting_id=1,
     tag_id=4
   )
   tag3 = SightingTag(

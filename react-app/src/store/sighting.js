@@ -96,7 +96,8 @@ export const createASighting = (payload) => async (dispatch) => {
       description: payload.description,
       category: payload.category,
       location: payload.location,
-      image_url: payload.url
+      image_url: payload.url,
+      tags: payload.tags
     })
   })
   const data = await response.json()

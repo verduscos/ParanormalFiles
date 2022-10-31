@@ -57,8 +57,11 @@ const CreateSightingForm = () => {
       title: title,
       description: description,
       category: category,
-      url: imageUrl
+      url: imageUrl,
+      tags: ["one", "two", "three"]
     }
+
+    console.log(title)
 
     const res = await dispatch(sessionActions.createASighting(payload));
     if (!res.errors) navigate("/mysightings");

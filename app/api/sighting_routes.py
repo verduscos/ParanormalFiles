@@ -3,7 +3,7 @@ import sqlalchemy
 from flask import Blueprint, session, request
 from sqlalchemy import desc, asc, or_, func
 from app.forms import SightingForm
-from app.models import Sighting, SightingImage, User, db
+from app.models import Sighting, SightingImage, User, db, Tag, SightingTag
 # likes
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -98,10 +98,28 @@ def create_sighting():
             title=request.json["title"],
             description=request.json["description"],
             category=request.json["category"],
-            image_url=request.json["image_url"]
+            image_url=request.json["image_url"],
         )
+        tag_ids = []
         db.session.add(sighting)
         db.session.commit()
+        for tag in request.json["tags"]:
+          tag_res = Tag.query.filter(Tag.title == tag).first()
+          if tag_res:
+              tag_ids.append(tag_res.id)
+          else:
+              new_tag = Tag(title=tag)
+              db.session.add(new_tag)
+              db.session.commit()
+              tag_id = Tag.query.filter(Tag.title == tag).first()
+              tag_ids.append(tag_id.id)
+        for id in tag_ids:
+          test = SightingTag(
+            sighting_id=sighting.id,
+            tag_id=id
+          )
+          db.session.add(test)
+          db.session.commit()
         return sighting.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
