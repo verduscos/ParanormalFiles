@@ -7,6 +7,7 @@ from .dislikes import seed_dislikes, undo_dislikes
 from .bookmarks import seed_bookmarks, undo_bookmarks
 from .sighting_images import seed_sighting_images, undo_sighting_images
 from .tags import seed_tags, undo_tags
+from .sighting_tags import seed_sighting_tags, undo_sighting_tags
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -24,6 +25,7 @@ def seed():
     seed_bookmarks()
     seed_sighting_images()
     seed_tags()
+    seed_sighting_tags()
     # Add other seed functions here
 
 
@@ -38,4 +40,5 @@ def undo():
     undo_bookmarks()
     undo_sighting_images()
     undo_tags()
+    undo_sighting_tags()
     # Add other undo functions here
