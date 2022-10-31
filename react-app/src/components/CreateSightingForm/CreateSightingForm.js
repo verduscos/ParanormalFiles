@@ -19,12 +19,7 @@ const CreateSightingForm = () => {
   const [imageUrl, setImageUrl] = useState(null)
   const [displayUrl, setDisplayUrl] = useState("")
   const [tags, setTags] = useState("")
-
-  console.log(tags, "HERRERE")
-  const regex = /^(([a-z]+,\s)+)[a-z]+$/;
-  const str = "one"
-  console.log(str)
-  console.log("TESTLLLL", regex.test(str))
+  const regex = /^(([a-z]+\s*)+)[a-z]+$/i;
 
   useEffect(async () => {
     if (displayUrl !== "") setLoading(true);
