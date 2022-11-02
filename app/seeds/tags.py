@@ -21,11 +21,36 @@ def seed_tags():
         title="sasquatch",
       )
 
+      tag6 = Tag(
+        title="angels",
+      )
+
+      tag7 = Tag(
+        title="monsters",
+      )
+
+      tag8 = Tag(
+        title="psychics",
+      )
+
+      tag9 = Tag(
+        title="mandela",
+      )
+
+      tag10 = Tag(
+        title="timetravel",
+      )
+
       db.session.add(tag1)
       db.session.add(tag2)
       db.session.add(tag3)
       db.session.add(tag4)
       db.session.add(tag5)
+      db.session.add(tag6)
+      db.session.add(tag7)
+      db.session.add(tag8)
+      db.session.add(tag9)
+      db.session.add(tag10)
       db.session.commit()
 
 def undo_tags():
