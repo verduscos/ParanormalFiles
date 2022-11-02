@@ -198,12 +198,31 @@ def searching_sightings(searchstr, methods=["GET", "POST"]):
   search_results = Sighting.query.filter(
     or_(
       func.lower(Sighting.title).contains(func.lower(searchstr)),
-      func.lower(Sighting.category).contains(func.lower(searchstr)),
+      # func.lower(Sighting.category).contains(func.lower(searchstr)),
       func.lower(Sighting.description).contains(func.lower(searchstr))
       )
     ).all()
 
+  tag_id = Tag.query.filter(Tag.title == func.lower(searchstr)).first()
+  # print(tag_id.title)
+  # print(tag_id.id)
+
+# only get tagged when object is not None
+  tagged = SightingTag.query.filter(SightingTag.tag_id == tag_id.id).all()
+  tagged_dict_list = [id.to_dict() for id in tagged]
+  # print(test, 'THIS IS TEST')
+  one = []
+  for tag in tagged_dict_list:
+    current = Sighting.query.get(tag["sighting_id"])
+    one.append(current)
+
+  print(one)
+  test2 = [x.to_dict() for x in one]
+  print(len(test2))
+  print("-------------------------------------------------------------------------------------")
+
   results = { "sightings": [ search.to_dict() for search in  search_results]}
+  results["sightings"].extend(test2)
   if len(results['sightings']) > 0:
     return results
   else :
