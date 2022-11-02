@@ -7,6 +7,7 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { likeSighting, removeLikeSighting, dislikeSighting, removeDislikeSighting } from "../../store/like";
 import { BsHandThumbsUp, BsHandThumbsDown, BsFillHandThumbsDownFill, BsHandThumbsUpFill } from "react-icons/bs";
+import * as sessions from "../../store/sighting"
 import "./SingleSighting.css"
 
 
@@ -26,6 +27,12 @@ const SingleSighting = ({ scrollToTop }) => {
   const isDisliked = window.localStorage.getItem("disliked")
   const payload = { userId: currentUser?.id, sightingId };
 
+  const search = async (e, searchStr) => {
+    e.preventDefault();
+
+    dispatch(sessions.searchAllSightings(searchStr));
+    navigate(`/sightings/search/${searchStr}`);
+  }
 
   const like = (e) => {
     e.preventDefault();
@@ -149,7 +156,7 @@ const SingleSighting = ({ scrollToTop }) => {
             </li>
             <li id="sighting-tags" key="sighting-tags">
               {currentSighting.sighting_tags.map((tag) => (
-                <p className="categories-list-item">{tag.title}</p>
+                <p onClick={(e) => search(e, tag.title)} className="categories-list-item">{tag.title}</p>
               ))}
             </li>
             <div id="sighting-likes-container">

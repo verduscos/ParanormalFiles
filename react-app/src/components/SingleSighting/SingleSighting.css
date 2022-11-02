@@ -49,6 +49,11 @@
   user-select: none;
 }
 
+#sighting-tags {
+  display: flex;
+  background-color: blue;
+}
+
 #sighting-likes-container {
   display: flex;
   flex-direction: column;
