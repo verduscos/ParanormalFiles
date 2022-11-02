@@ -24,6 +24,7 @@ const Tags = () => {
           {tagList.map(tag => (
             <li
               onClick={(e) => search(e, tag)}
+              className="categories-list-item"
               key={tag}
             >{tag}</li>
           ))}
