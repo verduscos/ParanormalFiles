@@ -17,7 +17,6 @@ const Search = () => {
 
   const search = async (e) => {
     e.preventDefault();
-    dispatch(searchAllSightings(searchInput));
     navigate(`/sightings/search/${searchInput}`);
   }
 

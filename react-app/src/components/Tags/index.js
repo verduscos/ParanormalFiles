@@ -11,8 +11,6 @@ const Tags = () => {
 
   const search = async (e, searchStr) => {
     e.preventDefault();
-
-    dispatch(sessions.searchAllSightings(searchStr));
     navigate(`/sightings/search/${searchStr}`);
   }
 

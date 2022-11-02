@@ -26,14 +26,7 @@ const SingleSighting = ({ scrollToTop }) => {
   const isLiked = window.localStorage.getItem("liked")
   const isDisliked = window.localStorage.getItem("disliked")
   const payload = { userId: currentUser?.id, sightingId };
-
-  const search = async (e, searchStr) => {
-    e.preventDefault();
-
-    dispatch(sessions.searchAllSightings(searchStr));
-    navigate(`/sightings/search/${searchStr}`);
-  }
-
+  
   const like = (e) => {
     e.preventDefault();
     if (userDisliked) removeDislike(e);
