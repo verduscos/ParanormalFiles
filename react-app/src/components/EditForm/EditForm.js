@@ -19,7 +19,7 @@ const EditForm = () => {
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState([])
   const [displayUrl, setDisplayUrl] = useState("")
-  const [tags, setTags] = useState(currentSighting.sighting_tags)
+  const [tags, setTags] = useState(currentSighting.sighting_tags.join(" "))
 
 
   useEffect(() => {
@@ -46,27 +46,33 @@ const EditForm = () => {
 
   const editSighting = async (e) => {
     e.preventDefault()
+    const addTags = []
+
+    tags.split(" ").forEach(tag => {
+      if (!currentSighting.sighting_tags.includes(tag)) {
+        addTags.push(tag);
+      }
+    })
     const payload = {
       sighting_id: sightingId,
       user_id: currentUser.id,
       title: title,
       description: description,
       image_url: imageUrl,
-      tags: tags
+      tags: addTags
     }
 
     const errorsArr = [];
     if (title.length < 4) errorsArr.push("Title must be at least 4 characters long.")
     if (description.length < 5) errorsArr.push("Description must be at least 5 characters long.")
-    if (category.length < 1) errorsArr.push("Please choose a category.")
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
-      navigate(`/sightings/${sightingId}`);
-      dispatch(sessionActions.updateSighting(payload));
+      // navigate(`/sightings/${sightingId}`);
+      // dispatch(sessionActions.updateSighting(payload));
+      console.log(addTags)
     }
   }
 
-  console.log(currentSighting.sighting_tags)
   return (
     <>
       <CreateNav />
@@ -96,7 +102,7 @@ const EditForm = () => {
             onChange={(e) => {
               setTags(e.target.value)
             }}
-            value={tags.join(" ")}
+            value={tags}
             />
             <label htmlFor="image-upload-default-btn" value="Upload Image" id="file-label">
               <p>Upload Image</p>
