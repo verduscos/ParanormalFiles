@@ -13,7 +13,6 @@ const CreateSightingForm = () => {
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
-  const [category, setCategory] = useState("")
   const [errors, setErrors] = useState([])
   const [image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState(null)
@@ -57,7 +56,6 @@ const CreateSightingForm = () => {
       user_id: currentUser.id,
       title: title,
       description: description,
-      category: "test",
       url: imageUrl,
       tags: [...tags.split(" ")]
     }
@@ -104,23 +102,6 @@ const CreateSightingForm = () => {
             }}
 
             />
-            {/* <select
-              className="form-select-options sighting-inputs"
-              onChange={(e) => {
-                setCategory(e.target.value)
-              }}
-              value={category}>
-              <option value="categories">Select Category</option>
-              <option value="UFOs">UFOs</option>
-              <option value="Ghosts">Ghosts</option>
-              <option value="Demons">Demons</option>
-              <option value="Angels">Angels</option>
-              <option value="Reincarnation">Reincarnation</option>
-              <option value="Monsters">Monsters</option>
-              <option value="Mandela Effect">Mandela Effect</option>
-              <option value="Time Travel">Time Travel</option>
-              <option value="Synchronicity">Synchronicity</option>
-            </select> */}
             <label for="image-upload-default-btn" value="Upload Image" id="file-label">
               <p>Upload Image</p>
             </label>

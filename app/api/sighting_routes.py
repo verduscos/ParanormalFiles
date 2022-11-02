@@ -73,7 +73,7 @@ def get_sighting_by_id(id):
     Return a sighting by id.
     """
     sighting = Sighting.query.get(id)
-    return {"sighting": sighting.to_dict() }
+    return {"sighting": sighting.to_dict()}
 
 
 @sighting_routes.route("/<int:id>/images")
@@ -97,7 +97,6 @@ def create_sighting():
             user_id=request.json["user_id"],
             title=request.json["title"],
             description=request.json["description"],
-            category=request.json["category"],
             image_url=request.json["image_url"],
         )
         tag_ids = []
@@ -138,7 +137,6 @@ def update_sighting(id):
             sighting=sighting,
             title=request.json["title"],
             description=request.json["description"],
-            category=request.json["category"],
             image_url=request.json["image_url"]
         )
 
