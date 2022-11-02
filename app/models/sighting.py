@@ -7,7 +7,6 @@ class Sighting(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(5000), nullable=False)
-    category = db.Column(db.String(50), nullable=False)
     image_url = db.Column(db.String(1000), nullable=True)
     created_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
     updated_at = db.Column(db.DateTime, default=db.func.now(), nullable=False)
@@ -27,7 +26,6 @@ class Sighting(db.Model):
             "user_id": self.user_id,
             "title": self.title,
             "description": self.description,
-            "category": self.category,
             "image_url": self.image_url,
             "sighting_images": [sighting_image.image_url for sighting_image in self.sighting_images],
             "created_at": self.created_at,
