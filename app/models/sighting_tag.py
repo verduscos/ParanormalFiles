@@ -10,9 +10,4 @@ class SightingTag(db.Model):
   tags = db.relationship("Tag", back_populates="sighting_tags")
 
   def to_dict(self):
-    return {
-        "id": self.id,
-        "sighting_id": self.sighting_id,
-        "tag_id": self.tag_id,
-        "title": self.tags.title
-    }
+    return self.tags.title

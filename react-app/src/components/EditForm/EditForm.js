@@ -19,6 +19,8 @@ const EditForm = () => {
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState([])
   const [displayUrl, setDisplayUrl] = useState("")
+  const [tags, setTags] = useState(currentSighting.sighting_tags)
+
 
   useEffect(() => {
     const formData = new FormData();
@@ -49,8 +51,8 @@ const EditForm = () => {
       user_id: currentUser.id,
       title: title,
       description: description,
-      category: category,
-      image_url: imageUrl
+      image_url: imageUrl,
+      tags: tags
     }
 
     const errorsArr = [];
@@ -64,6 +66,7 @@ const EditForm = () => {
     }
   }
 
+  console.log(currentSighting.sighting_tags)
   return (
     <>
       <CreateNav />
@@ -89,21 +92,12 @@ const EditForm = () => {
             type="text"
             placeholder="description" />
           <div className="form-category-image-container">
-            <select
-              className="form-select-options sighting-inputs"
-              onChange={(e) => setCategory(e.target.value)}
-              value={category}>
-              <option value="categories">Update Category?</option>
-              <option value="UFOs">UFOs</option>
-              <option value="Ghosts">Ghosts</option>
-              <option value="Demons">Demons</option>
-              <option value="Angels">Angels</option>
-              <option value="Reincarnation">Reincarnation</option>
-              <option value="Monsters">Monsters</option>
-              <option value="Mandela Effect">Mandela Effect</option>
-              <option value="Time Travel">Time Travel</option>
-              <option value="Synchronicity">Synchronicity</option>
-            </select>
+          <input type="text"
+            onChange={(e) => {
+              setTags(e.target.value)
+            }}
+            value={tags.join(" ")}
+            />
             <label htmlFor="image-upload-default-btn" value="Upload Image" id="file-label">
               <p>Upload Image</p>
             </label>
