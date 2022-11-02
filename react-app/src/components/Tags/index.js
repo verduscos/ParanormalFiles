@@ -7,7 +7,7 @@ import './Tags.css';
 const Tags = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const tagList = ["UFOs", "Angels", "Reincarnation", "Ghosts", "Monsters", "Mandela Effect", "Time Travel", "Demons", 'Synchronicity'];
+  const tagList = ["UFOs", "Angels", "Reincarnation", "Ghosts", "Monsters", "Demons", 'Synchronicity'];
 
   const search = async (e, searchStr) => {
     e.preventDefault();

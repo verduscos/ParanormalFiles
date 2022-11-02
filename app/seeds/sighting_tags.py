@@ -6,7 +6,7 @@ def seed_sighting_tags():
     tag_id=3
   )
   tag2 = SightingTag(
-    sighting_id=1,
+    sighting_id=2,
     tag_id=4
   )
   tag3 = SightingTag(
@@ -24,7 +24,7 @@ def seed_sighting_tags():
 
   tag6 = SightingTag(
     sighting_id=6,
-    tag_id=1
+    tag_id=4
   )
 
   tag7 = SightingTag(
@@ -69,8 +69,19 @@ def seed_sighting_tags():
 
   tag15 = SightingTag(
     sighting_id=15,
+    tag_id=2
+  )
+
+  tag16 = SightingTag(
+    sighting_id=12,
+    tag_id=5
+  )
+
+  tag17 = SightingTag(
+    sighting_id=1,
     tag_id=10
   )
+
 
   db.session.add(tag1)
   db.session.add(tag2)
@@ -87,6 +98,8 @@ def seed_sighting_tags():
   db.session.add(tag13)
   db.session.add(tag14)
   db.session.add(tag15)
+  db.session.add(tag16)
+  db.session.add(tag17)
   db.session.commit()
 
 def undo_sighting_tags():

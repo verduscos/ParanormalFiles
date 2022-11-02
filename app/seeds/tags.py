@@ -18,7 +18,7 @@ def seed_tags():
       )
 
       tag5 = Tag(
-        title="sasquatch",
+        title="synchronicity",
       )
 
       tag6 = Tag(
@@ -38,7 +38,7 @@ def seed_tags():
       )
 
       tag10 = Tag(
-        title="timetravel",
+        title="reincarnation",
       )
 
       db.session.add(tag1)
