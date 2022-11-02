@@ -49,21 +49,6 @@
   user-select: none;
 }
 
-#tags-likes-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.sighting-tag {
-  margin: 0 4px 4px 0;
-  margin: 0;
-}
-
-#sighting-tags {
-  display: flex;
-}
-
 #sighting-likes-container {
   display: flex;
   flex-direction: column;
