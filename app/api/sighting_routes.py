@@ -198,31 +198,22 @@ def searching_sightings(searchstr, methods=["GET", "POST"]):
   search_results = Sighting.query.filter(
     or_(
       func.lower(Sighting.title).contains(func.lower(searchstr)),
-      # func.lower(Sighting.category).contains(func.lower(searchstr)),
       func.lower(Sighting.description).contains(func.lower(searchstr))
       )
     ).all()
 
-  tag_id = Tag.query.filter(Tag.title == func.lower(searchstr)).first()
-  # print(tag_id.title)
-  # print(tag_id.id)
-
-# only get tagged when object is not None
-  tagged = SightingTag.query.filter(SightingTag.tag_id == tag_id.id).all()
-  tagged_dict_list = [id.to_dict() for id in tagged]
-  # print(test, 'THIS IS TEST')
-  one = []
-  for tag in tagged_dict_list:
+  # find tag that matches string to get tag_id
+  tag = Tag.query.filter(Tag.title == func.lower(searchstr)).first()
+  # find all instances of our target tag being used in our join table
+  tagged_sightings = []
+  if tag:
+    tagged = SightingTag.query.filter(SightingTag.tag_id == tag.id).all()
+    tagged_sightings = [id.to_dict() for id in tagged]
+  for tag in tagged_sightings:
     current = Sighting.query.get(tag["sighting_id"])
-    one.append(current)
-
-  print(one)
-  test2 = [x.to_dict() for x in one]
-  print(len(test2))
-  print("-------------------------------------------------------------------------------------")
+    search_results.append(current)
 
   results = { "sightings": [ search.to_dict() for search in  search_results]}
-  results["sightings"].extend(test2)
   if len(results['sightings']) > 0:
     return results
   else :
