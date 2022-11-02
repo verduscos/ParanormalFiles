@@ -60,8 +60,6 @@ const CreateSightingForm = () => {
       tags: [...tags.split(" ")]
     }
 
-    console.log(title)
-
     const res = await dispatch(sessionActions.createASighting(payload));
     if (!res.errors) navigate("/mysightings");
     else setErrors(res.errors.map(error => error.split(":")[1]));

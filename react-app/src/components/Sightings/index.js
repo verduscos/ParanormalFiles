@@ -53,7 +53,7 @@ const Sightings = () => {
     } else {
       setDisplayFetchBtn(false);
     }
-  }, [path, currentUser?.id, dispatch])
+  }, [path, currentUser?.id])
 
   const fetchMoreSightings = (e, id) => {
     e.preventDefault();
