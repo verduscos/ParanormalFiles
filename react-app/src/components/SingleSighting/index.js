@@ -154,42 +154,44 @@ const SingleSighting = ({ scrollToTop }) => {
             <li key="sighting-image">
               <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
             </li>
-            <li id="sighting-tags" key="sighting-tags">
-              {currentSighting.sighting_tags.map((tag) => (
-                <p onClick={(e) => search(e, tag.title)} className="categories-list-item">{tag.title}</p>
-              ))}
-            </li>
-            <div id="sighting-likes-container">
-              <div id="like-actions">
+            <li id="tags-likes-container">
+              <li id="sighting-tags" key="sighting-tags">
+                {currentSighting.sighting_tags.map((tag) => (
+                  <p onClick={(e) => search(e, tag.title)} className="sighting-tag categories-list-item">{tag.title}</p>
+                ))}
+              </li>
+              <div id="sighting-likes-container">
+                <div id="like-actions">
 
-                {
-                  userLiked ?
-                    <li key="sighting-likes" onClick={(e) => removeLike(e)}>
-                      < BsHandThumbsUpFill />
-                      <h4>{currentSighting.likes}</h4>
-                    </li>
-                    :
-                    <li key="sighting-likes" onClick={(e) => like(e)}>
-                      <BsHandThumbsUp />
-                      <h4>{currentSighting.likes}</h4>
-                    </li>
-                }
+                  {
+                    userLiked ?
+                      <li key="sighting-likes" onClick={(e) => removeLike(e)}>
+                        < BsHandThumbsUpFill />
+                        <h4>{currentSighting.likes}</h4>
+                      </li>
+                      :
+                      <li key="sighting-likes" onClick={(e) => like(e)}>
+                        <BsHandThumbsUp />
+                        <h4>{currentSighting.likes}</h4>
+                      </li>
+                  }
 
-                {
-                  userDisliked ?
-                    <li key="sighting-dislikes" onClick={(e) => removeDislike(e)}>
-                      < BsFillHandThumbsDownFill />
-                      <h4>{currentSighting.dislikes}</h4>
-                    </li>
-                    :
-                    <li key="sighting-dislikes" onClick={(e) => dislike(e)}>
-                      <BsHandThumbsDown />
-                      <h4>{currentSighting.dislikes}</h4>
-                    </li>
-                }
+                  {
+                    userDisliked ?
+                      <li key="sighting-dislikes" onClick={(e) => removeDislike(e)}>
+                        < BsFillHandThumbsDownFill />
+                        <h4>{currentSighting.dislikes}</h4>
+                      </li>
+                      :
+                      <li key="sighting-dislikes" onClick={(e) => dislike(e)}>
+                        <BsHandThumbsDown />
+                        <h4>{currentSighting.dislikes}</h4>
+                      </li>
+                  }
+                </div>
+                <meter max={String(parseInt(currentSighting.dislikes) + parseInt(currentSighting.likes))} value={String(parseInt(currentSighting.likes))}></meter>
               </div>
-              <meter max={String(parseInt(currentSighting.dislikes) + parseInt(currentSighting.likes))} value={String(parseInt(currentSighting.likes))}></meter>
-            </div>
+            </li>
             <li key="sighting-body">
               <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>
             </li>
