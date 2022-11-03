@@ -14,15 +14,16 @@ const EditForm = () => {
   const currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
   const [title, setTitle] = useState(currentSighting.title);
   const [description, setDescription] = useState(currentSighting.description);
-  const [category, setCategory] = useState(currentSighting.category);
   const [imageUrl, setImageUrl] = useState(currentSighting.image_url);
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState([])
   const [displayUrl, setDisplayUrl] = useState("")
   const [tags, setTags] = useState(currentSighting.sighting_tags.join(" "))
+  const [removeTags, setRemoveTags] = useState([]);
 
 
   useEffect(() => {
+    if (image === null) return;
     const formData = new FormData();
     formData.append("image", image);
     const fetchData = async () => {
@@ -36,7 +37,7 @@ const EditForm = () => {
       }
     }
     fetchData();
-  }, [image, dispatch])
+  }, [image])
 
   const updateImage = (e) => {
     const file = e.target.files[0];
@@ -47,29 +48,43 @@ const EditForm = () => {
   const editSighting = async (e) => {
     e.preventDefault()
     const addTags = []
+    let includesOldTags = true;
 
     tags.split(" ").forEach(tag => {
-      if (!currentSighting.sighting_tags.includes(tag)) {
+      if (!currentSighting.sighting_tags.includes(tag) && tag !== "") {
         addTags.push(tag);
       }
+      if (currentSighting.sighting_tags.includes(tag)) includesOldTags = false;
     })
+    const removeTagsArr = [];
+    currentSighting.sighting_tags.forEach(tag => {
+      if (!tags.split(" ").includes(tag)) removeTags.push(tag);
+    })
+    setRemoveTags(removeTagsArr);
     const payload = {
       sighting_id: sightingId,
       user_id: currentUser.id,
       title: title,
       description: description,
       image_url: imageUrl,
-      tags: addTags
+      tags: addTags,
+      removeTags: removeTags
     }
 
     const errorsArr = [];
     if (title.length < 4) errorsArr.push("Title must be at least 4 characters long.")
     if (description.length < 5) errorsArr.push("Description must be at least 5 characters long.")
+    if ((addTags[0] === " " || !addTags.length) && includesOldTags) errorsArr.push("Add at least one tag.")
+
+    console.log(addTags[0])
+    console.log(addTags)
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
       // navigate(`/sightings/${sightingId}`);
       // dispatch(sessionActions.updateSighting(payload));
       console.log(addTags)
+      console.log("REMOVE", removeTags)
+      // console.log(tags)
     }
   }
 
@@ -80,8 +95,7 @@ const EditForm = () => {
         <ul>
           <button onClick={editSighting} className="form-submit-btn sighting-inputs">Update</button>
           {errors?.map(error => (
-
-            <li className="error-mssg">{error}</li>
+            <li className="error-mssg" key={error}>{error}</li>
           ))}
           <input
             id="form-title"
@@ -98,11 +112,11 @@ const EditForm = () => {
             type="text"
             placeholder="description" />
           <div className="form-category-image-container">
-          <input type="text"
-            onChange={(e) => {
-              setTags(e.target.value)
-            }}
-            value={tags}
+            <input type="text"
+              onChange={(e) => {
+                setTags(e.target.value)
+              }}
+              value={tags}
             />
             <label htmlFor="image-upload-default-btn" value="Upload Image" id="file-label">
               <p>Upload Image</p>
