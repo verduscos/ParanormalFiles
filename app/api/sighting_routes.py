@@ -133,6 +133,9 @@ def update_sighting(id):
     sighting = Sighting.query.get(id)
 
     if form.validate_on_submit():
+        print("---------------------------------------------------------")
+        print(request.json["removeTags"])
+        print(request.json["tags"])
         updated_sighting = Sighting.update(
             sighting=sighting,
             title=request.json["title"],
@@ -142,6 +145,16 @@ def update_sighting(id):
 
         db.session.add(updated_sighting)
         db.session.commit()
+
+        # if len(request.json["removeTags"]):
+          # get the Id of each tag title
+          # by tag_id and sighting_id, delete that row in SightingTags
+        # if len(request.json["tags"]):
+          # check if tag exists in Tags
+            # or
+          # create a tag entry
+          # # create record using tag_id and sighting_id
+
 
         return sighting.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400

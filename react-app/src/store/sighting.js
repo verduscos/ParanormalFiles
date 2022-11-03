@@ -117,7 +117,9 @@ export const updateSighting = (payload) => async (dispatch) => {
       title: payload.title,
       description: payload.description,
       category: payload.category,
-      image_url: payload.image_url
+      image_url: payload.image_url,
+      tags: payload.tags,
+      removeTags: payload.removeTags
     })
   })
 

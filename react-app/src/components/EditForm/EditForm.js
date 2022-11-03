@@ -81,7 +81,7 @@ const EditForm = () => {
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
       // navigate(`/sightings/${sightingId}`);
-      // dispatch(sessionActions.updateSighting(payload));
+      dispatch(sessionActions.updateSighting(payload));
       console.log(addTags)
       console.log("REMOVE", removeTags)
       // console.log(tags)
