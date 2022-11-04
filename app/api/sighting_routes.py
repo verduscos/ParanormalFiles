@@ -146,8 +146,13 @@ def update_sighting(id):
         db.session.add(updated_sighting)
         db.session.commit()
 
-        # if len(request.json["removeTags"]):
+        if len(request.json["removeTags"]):
           # get the Id of each tag title
+          for tag in request.json["removeTags"]:
+            tag_obj = Tag.query.filter(Tag.title == tag).first()
+            print("TAG ---------------", tag_obj.id, tag_obj.title)
+            sighting_tag_record = SightingTag.query.filter(SightingTag.sighting_id == id, SightingTag.tag_id == tag_obj.id).first()
+            print("RECORD ============", sighting_tag_record.id)
           # by tag_id and sighting_id, delete that row in SightingTags
         # if len(request.json["tags"]):
           # check if tag exists in Tags
