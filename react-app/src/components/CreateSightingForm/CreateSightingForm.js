@@ -93,10 +93,6 @@ const CreateSightingForm = () => {
             type="text" value={description} placeholder="Tell your story...." />
 
           <div className="form-category-image-container">
-            {/* <div className="tags-container"> */}
-            {/* <label>
-              <p className="tags-label">Tags: </p>
-            </label> */}
             <input
               type="text"
               onChange={(e) => {
@@ -105,7 +101,6 @@ const CreateSightingForm = () => {
               className="tags-input"
               placeholder="Add tags so readers know about your story!"
               />
-              {/* </div> */}
             <label for="image-upload-default-btn" value="Upload Image" id="file-label">
               <p>Upload Image</p>
             </label>
@@ -119,7 +114,6 @@ const CreateSightingForm = () => {
             />
           </div>
           <div id="preview-container">
-            {/* <p id="form-display-image-url">{displayUrl}</p> */}
             {loadingIcon}
             {imageUrl ?
               <>

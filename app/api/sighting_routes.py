@@ -232,16 +232,16 @@ def searching_sightings(searchstr, methods=["GET", "POST"]):
       )
     ).all()
 
-  # find tag that matches string to get tag_id
-  tag = Tag.query.filter(Tag.title == func.lower(searchstr)).first()
+  # find tag id for searchstr
+  tag = Tag.query.filter(Tag.title == searchstr.lower()).first()
   # find all instances of our target tag being used in our join table
   tagged_sightings = []
   if tag:
     tagged = SightingTag.query.filter(SightingTag.tag_id == tag.id).all()
-    tagged_sightings = [id.to_dict() for id in tagged]
-  for tag in tagged_sightings:
-    current = Sighting.query.get(tag["sighting_id"])
-    search_results.append(current)
+    tagged_sightings = [id.to_dict_all() for id in tagged]
+    for tag in tagged_sightings:
+      current = Sighting.query.get(tag["sighting_id"])
+      search_results.append(current)
 
   results = { "sightings": [ search.to_dict() for search in  search_results]}
   if len(results['sightings']) > 0:

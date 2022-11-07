@@ -11,3 +11,10 @@ class SightingTag(db.Model):
 
   def to_dict(self):
     return self.tags.title
+
+  def to_dict_all(self):
+    return {
+    "id": self.id,
+    "sighting_id": self.sighting_id,
+    "tag_id": self.tag_id,
+  }
