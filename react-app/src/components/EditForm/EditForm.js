@@ -116,6 +116,7 @@ const EditForm = () => {
                 setTags(e.target.value)
               }}
               value={tags}
+              className="tags-input"
             />
             <label htmlFor="image-upload-default-btn" value="Upload Image" id="file-label">
               <p>Upload Image</p>

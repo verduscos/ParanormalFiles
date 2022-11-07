@@ -93,12 +93,12 @@ const CreateSightingForm = () => {
             type="text" value={description} placeholder="Tell your story...." />
 
           <div className="form-category-image-container">
-            <input type="text"
-            // className="form-select-options sighting-inputs"
-            onChange={(e) => {
-              setTags(e.target.value)
-            }}
-
+            <input
+              type="text"
+              onChange={(e) => {
+                setTags(e.target.value)
+              }}
+              className="tags-input"
             />
             <label for="image-upload-default-btn" value="Upload Image" id="file-label">
               <p>Upload Image</p>
@@ -112,14 +112,16 @@ const CreateSightingForm = () => {
               onChange={updateImage}
             />
           </div>
-          <p id="form-display-image-url">{displayUrl}</p>
-          {loadingIcon}
-          {imageUrl ?
-          <>
-          <p>Image preview:</p>
-          <img src={imageUrl} alt="sighting preview" />
-          </>
-          : null}
+          <div id="preview-container">
+            {/* <p id="form-display-image-url">{displayUrl}</p> */}
+            {loadingIcon}
+            {imageUrl ?
+              <>
+                <p className="image-title">Image preview:</p>
+                <img className="image-preview" src={imageUrl} alt="sighting preview" />
+              </>
+              : null}
+          </div>
         </div>
       </form>
     </>
