@@ -133,9 +133,6 @@ def update_sighting(id):
     sighting = Sighting.query.get(id)
 
     if form.validate_on_submit():
-        print("---------------------------------------------------------")
-        print("REMOVE", request.json["removeTags"])
-        print("ADD", request.json["tags"])
         updated_sighting = Sighting.update(
             sighting=sighting,
             title=request.json["title"],
@@ -150,32 +147,34 @@ def update_sighting(id):
           # get the Id of each tag title
           for tag in request.json["removeTags"]:
             tag_obj = Tag.query.filter(Tag.title == tag).first()
-            print("TAG ---------------", tag_obj.id, tag_obj.title)
             sighting_tag_record = SightingTag.query.filter(SightingTag.sighting_id == id, SightingTag.tag_id == tag_obj.id).first()
-            print("RECORD ============", sighting_tag_record.title)
           # by tag_id and sighting_id, delete that row in SightingTags
             db.session.delete(sighting_tag_record)
             db.session.commit()
         if len(request.json["tags"]):
           # check if tag exists in Tags
           for tag in request.json["tags"]:
-          #   print(tag, "TAGGGG")
             tag_exists = Tag.query.filter(Tag.title == tag).first()
             if tag_exists:
-              print("TAG EXISTS ============= ", tag_exists.title, tag_exists.id)
               new_sighting_tag = SightingTag(
                 sighting_id=id,
                 tag_id=tag_exists.id
               )
               db.session.add(new_sighting_tag)
               db.session.commit()
-
-              print("NEW TAG ID TEST HERE 0-0-0-0-0--==-=-=-=-=-=-=-=", new_sighting_tag.id, new_sighting_tag.tag_id)
               # or
             # create a tag entry
+            else:
+              new_tag = Tag(title=tag)
+              db.session.add(new_tag)
+              db.session.commit()
             # # create record using tag_id and sighting_id
-
-
+              new_sighting_tag = SightingTag(
+                sighting_id=id,
+                tag_id=new_tag.id
+              )
+              db.session.add(new_sighting_tag)
+              db.session.commit()
         return sighting.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 

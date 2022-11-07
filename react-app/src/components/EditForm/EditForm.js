@@ -48,9 +48,13 @@ const EditForm = () => {
   const editSighting = async (e) => {
     e.preventDefault()
     const addTags = []
+    const errorsArr = [];
     let includesOldTags = true;
+    const uniqueTags = new Set(tags.split(" "))
+    let  uniqueTagsArr = Array.from(uniqueTags)
+    uniqueTagsArr = uniqueTagsArr.join(" ")
 
-    tags.split(" ").forEach(tag => {
+    uniqueTagsArr.split(" ").forEach(tag => {
       if (!currentSighting.sighting_tags.includes(tag) && tag !== "") {
         addTags.push(tag);
       }
@@ -58,9 +62,10 @@ const EditForm = () => {
     })
     const removeTagsArr = [];
     currentSighting.sighting_tags.forEach(tag => {
-      if (!tags.split(" ").includes(tag)) removeTags.push(tag);
+      if (!uniqueTagsArr.split(" ").includes(tag)) removeTags.push(tag);
     })
     setRemoveTags(removeTagsArr);
+
     const payload = {
       sighting_id: sightingId,
       user_id: currentUser.id,
@@ -71,20 +76,14 @@ const EditForm = () => {
       removeTags: removeTags
     }
 
-    const errorsArr = [];
     if (title.length < 4) errorsArr.push("Title must be at least 4 characters long.")
     if (description.length < 5) errorsArr.push("Description must be at least 5 characters long.")
     if ((addTags[0] === " " || !addTags.length) && includesOldTags) errorsArr.push("Add at least one tag.")
 
-    console.log(addTags[0])
-    console.log(addTags)
     setErrors(errorsArr)
     if (errorsArr.length === 0) {
-      // navigate(`/sightings/${sightingId}`);
+      navigate(`/sightings/${sightingId}`);
       dispatch(sessionActions.updateSighting(payload));
-      console.log(addTags)
-      console.log("REMOVE", removeTags)
-      // console.log(tags)
     }
   }
 
