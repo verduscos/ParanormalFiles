@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import CreateNav from "../CreateSightingForm/CreateNav";
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import "../CreateSightingForm/Form.css"
 import * as sessionActions from "../../store/sighting"
 
@@ -12,6 +13,7 @@ const EditForm = () => {
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.session.user)
   const currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
+  const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState(currentSighting.title);
   const [description, setDescription] = useState(currentSighting.description);
   const [imageUrl, setImageUrl] = useState(currentSighting.image_url);
@@ -24,6 +26,7 @@ const EditForm = () => {
 
   useEffect(() => {
     if (image === null) return;
+    if (displayUrl !== "") setLoading(true);
     const formData = new FormData();
     formData.append("image", image);
     const fetchData = async () => {
@@ -34,10 +37,19 @@ const EditForm = () => {
       if (res.ok) {
         const data = await res.json();
         setImageUrl(data.url)
+        setLoading(false);
       }
     }
     fetchData();
   }, [image])
+
+  const loadingIcon = (
+    loading ?
+      <div id="loading-container">
+        < AiOutlineLoading3Quarters />
+      </div >
+      : null
+  )
 
   const updateImage = (e) => {
     const file = e.target.files[0];
@@ -129,6 +141,15 @@ const EditForm = () => {
               accept="image/*"
               onChange={updateImage}
             />
+          </div>
+          <div id="preview-container">
+            {loadingIcon}
+            {imageUrl ?
+              <>
+                <p className="image-title">Image preview:</p>
+                <img className="image-preview" src={imageUrl} alt="sighting preview" />
+              </>
+              : null}
           </div>
           <p id="form-display-image-url">{displayUrl}</p>
         </ul>
