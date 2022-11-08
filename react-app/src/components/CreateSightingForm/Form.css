@@ -37,13 +37,10 @@
   margin: 25px auto 0 auto;
   max-width: 740px;
   width: 100%;
-
   display: flex;
-  /* background: gray; */
 }
 
-#sighting-form > div {
-  width: 700px;
+#sighting-form-inner {
   width: inherit;
   margin: 0 auto;
 }
@@ -59,14 +56,11 @@
   color: black !important;
   font-family: medium-content-title-font,Georgia,Cambria,"Times New Roman",Times,serif !important;
   min-height: 50px;
-  /* max-height: 500px; */
   height: 150px;
-  /* resize: none; */
+  resize: none;
   overflow: hidden;
   padding: 10px 0;
   border-bottom: .5px solid rgba(230, 230, 230, 1);
-
-  /* background-color: red; */
 }
 
 #file-label {

@@ -76,7 +76,7 @@ const CreateSightingForm = () => {
     <>
       <CreateNav />
       <form onSubmit={createSighting} className="sighting-form">
-        <div>
+        <div id="sighting-form-inner">
           <button className="form-submit-btn sighting-inputs" >Publish</button>
 
           {errors?.map(error => (
@@ -131,17 +131,23 @@ const CreateSightingForm = () => {
 
               <input
                 type="text"
-                onChange={(e) => {
+                onSubmit={(e) => {
                   setTags(e.target.value)
                 }}
                 className="tags-input"
-                placeholder="Help others find your story! Add some tags!"
+                placeholder="Add a tag..."
               />
               <p>
-                <i>Use a space to seperate your tags</i>
+
+                <i>Press enter to add a tag.</i>
               </p>
             </div>
+            {/* <div>
 
+              <p>
+                Add or change tags (up to 5) so readers know what your story is about
+              </p>
+            </div> */}
           </div>
           {/* <div id="preview-container">
             {loadingIcon}
