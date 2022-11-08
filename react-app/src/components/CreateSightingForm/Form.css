@@ -37,6 +37,9 @@
   margin: 25px auto 0 auto;
   max-width: 740px;
   width: 100%;
+
+  display: flex;
+  /* background: gray; */
 }
 
 #sighting-form > div {
@@ -56,11 +59,14 @@
   color: black !important;
   font-family: medium-content-title-font,Georgia,Cambria,"Times New Roman",Times,serif !important;
   min-height: 50px;
-  max-height: 500px;
-  height: 450px;
-  resize: none;
+  /* max-height: 500px; */
+  height: 150px;
+  /* resize: none; */
+  overflow: hidden;
   padding: 10px 0;
   border-bottom: .5px solid rgba(230, 230, 230, 1);
+
+  /* background-color: red; */
 }
 
 #file-label {

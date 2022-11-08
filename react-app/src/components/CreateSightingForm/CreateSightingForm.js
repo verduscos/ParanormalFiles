@@ -65,6 +65,13 @@ const CreateSightingForm = () => {
     else setErrors(res.errors.map(error => error.split(":")[1]));
   }
 
+  const autosize = (e) => {
+    e.target.style.height = 'inherit';
+    e.target.style.height = `${e.target.scrollHeight}px`;
+    // In case you have a limitation
+    // e.target.style.height = `${Math.min(e.target.scrollHeight, limit)}px`;
+  }
+
   return (
     <>
       <CreateNav />
@@ -84,36 +91,59 @@ const CreateSightingForm = () => {
             }}
             type="text" value={title} placeholder="Title" />
 
+
+          <label for="image-upload-default-btn" value="Upload Image" id="file-label">
+            <p>Upload Image</p>
+          </label>
+          <input
+            id="image-upload-default-btn"
+            className="image-upload-default-btn"
+            name="file"
+            type="file"
+            accept="image/*"
+            onChange={updateImage}
+          />
+          {imageUrl ?
+            <div id="preview-container">
+              <>
+                {/* <p className="image-title">Image preview:</p> */}
+                <img className="image-preview" src={imageUrl} alt="sighting preview" />
+              </>
+            </div>
+            :
+            loadingIcon
+
+          }
+
           <textarea
             id="form-description"
             className="sighting-inputs"
+            onKeyDown={(e) => {
+              autosize(e)
+            }}
             onChange={(e) => {
               setDescription(e.target.value)
             }}
             type="text" value={description} placeholder="Tell your story...." />
 
           <div className="form-category-image-container">
-            <input
-              type="text"
-              onChange={(e) => {
-                setTags(e.target.value)
-              }}
-              className="tags-input"
-              placeholder="Add tags so readers know about your story!"
+            <div>
+
+              <input
+                type="text"
+                onChange={(e) => {
+                  setTags(e.target.value)
+                }}
+                className="tags-input"
+                placeholder="Help others find your story! Add some tags!"
               />
-            <label for="image-upload-default-btn" value="Upload Image" id="file-label">
-              <p>Upload Image</p>
-            </label>
-            <input
-              id="image-upload-default-btn"
-              className="image-upload-default-btn"
-              name="file"
-              type="file"
-              accept="image/*"
-              onChange={updateImage}
-            />
+              <p>
+                <i>Use a space to seperate your tags</i>
+              </p>
+            </div>
+
           </div>
-          <div id="preview-container">
+          {/* <div id="preview-container">
             {loadingIcon}
             {imageUrl ?
               <>
@@ -121,8 +151,11 @@ const CreateSightingForm = () => {
                 <img className="image-preview" src={imageUrl} alt="sighting preview" />
               </>
               : null}
-          </div>
+          </div> */}
         </div>
+
+
+
       </form>
     </>
   )
