@@ -161,20 +161,28 @@ const CreateSightingForm = () => {
             placeholder="Add a tag..."
           />
           <p>
-
-            <i>Press nter to add a tag.</i>
+            <i>Press enter to add a tag.</i>
           </p>
         </div>
-        <div>
+
+        <ul id="tag-container">
+          {tags.map(tag => (
+            <li
+              className="categories-list-item"
+              key={tag}
+            >{tag}</li>
+          ))}
+        </ul>
+
+        {/* <div id="tag-container">
           {tags.map((tag, index) => {
             return (
               <p key={index}>
                 {tag}
               </p>
-
             )
           })}
-        </div>
+        </div> */}
       </div>
     </>
   )
