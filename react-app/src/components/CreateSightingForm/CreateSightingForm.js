@@ -19,7 +19,7 @@ const CreateSightingForm = () => {
   const [displayUrl, setDisplayUrl] = useState("")
   const [tags, setTags] = useState([])
   // const regex = /^(([a-z]+\s*)+)[a-z]+$/i;
-  const regex = /^[a-z]*(\s[a-z]+)?$/i
+  const regex = /^[a-z]+(\s[a-z]+)?$/i
   console.log(tags)
 
 
@@ -151,7 +151,7 @@ const CreateSightingForm = () => {
             type="text"
             onKeyPress={(e) => {
               if (e.key === 'Enter') {
-                if (regex.test(e.target.value) && e.target.value[0] !== " ") setTags(current => [...current, e.target.value]);
+                if (regex.test(e.target.value) && !tags.includes(e.target.value)) setTags(current => [...current, e.target.value]);
               }
             }}
             onKeyUp={(e) => {
