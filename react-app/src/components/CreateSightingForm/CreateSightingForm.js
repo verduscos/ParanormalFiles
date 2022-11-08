@@ -17,8 +17,11 @@ const CreateSightingForm = () => {
   const [image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState(null)
   const [displayUrl, setDisplayUrl] = useState("")
-  const [tags, setTags] = useState("")
-  const regex = /^(([a-z]+\s*)+)[a-z]+$/i;
+  const [tags, setTags] = useState([])
+  // const regex = /^(([a-z]+\s*)+)[a-z]+$/i;
+  const regex = /^[a-z]*(\s[a-z]+)?$/i
+  console.log(tags)
+
 
   useEffect(async () => {
     if (displayUrl !== "") setLoading(true);
@@ -126,29 +129,7 @@ const CreateSightingForm = () => {
             }}
             type="text" value={description} placeholder="Tell your story...." />
 
-          <div className="form-category-image-container">
-            <div>
 
-              <input
-                type="text"
-                onSubmit={(e) => {
-                  setTags(e.target.value)
-                }}
-                className="tags-input"
-                placeholder="Add a tag..."
-              />
-              <p>
-
-                <i>Press enter to add a tag.</i>
-              </p>
-            </div>
-            {/* <div>
-
-              <p>
-                Add or change tags (up to 5) so readers know what your story is about
-              </p>
-            </div> */}
-          </div>
           {/* <div id="preview-container">
             {loadingIcon}
             {imageUrl ?
@@ -163,6 +144,38 @@ const CreateSightingForm = () => {
 
 
       </form>
+      <div className="form-category-image-container">
+        <div>
+
+          <input
+            type="text"
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                if (regex.test(e.target.value) && e.target.value[0] !== " ") setTags(current => [...current, e.target.value]);
+              }
+            }}
+            onKeyUp={(e) => {
+              if (e.key === "Enter") e.target.value = "";
+            }}
+            className="tags-input"
+            placeholder="Add a tag..."
+          />
+          <p>
+
+            <i>Press nter to add a tag.</i>
+          </p>
+        </div>
+        <div>
+          {tags.map((tag, index) => {
+            return (
+              <p key={index}>
+                {tag}
+              </p>
+
+            )
+          })}
+        </div>
+      </div>
     </>
   )
 }

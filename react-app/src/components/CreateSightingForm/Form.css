@@ -125,6 +125,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 740px;
+  background-color: red;
+  margin: 0 auto;
 }
 
 .tags-input {
