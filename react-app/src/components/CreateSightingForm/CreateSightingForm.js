@@ -21,7 +21,7 @@ const CreateSightingForm = () => {
   const [displayUrl, setDisplayUrl] = useState("")
   const [tags, setTags] = useState([])
   const [displayAddImage, setDisplayAddImage] = useState(true);
-  const [displayTagModal, setDisplayTagModal] = useState(true);
+  const [displayTagModal, setDisplayTagModal] = useState(false);
   const regex = /^[a-z]+(\s[a-z]+)?$/i
 
   console.log(tags);
@@ -73,7 +73,7 @@ const CreateSightingForm = () => {
       title: title,
       description: description,
       url: imageUrl,
-      tags: [...tags.split(" ")]
+      tags: [...tags]
     }
 
     const res = await dispatch(sessionActions.createASighting(payload));
@@ -91,7 +91,7 @@ const CreateSightingForm = () => {
       <CreateNav />
       <form onSubmit={createSighting} className="sighting-form">
         <div id="sighting-form-inner">
-          <button className="form-submit-btn sighting-inputs" >Publish</button>
+          <div className="form-submit-btn sighting-inputs" onClick={() => setDisplayTagModal(true)}>Publish</div>
 
           {errors?.map(error => (
             <li className="error-mssg">{error}</li>
@@ -151,6 +151,7 @@ const CreateSightingForm = () => {
       {displayTagModal ?
         <div id="form-category-image-container">
           <div id="form-category-image-container-inner">
+            <p>Add some tags (up to 5) so readers know what your story is about</p>
             <AiOutlineClose id="tag-modal-exit" onClick={() => {
               setDisplayTagModal(false)
             }} />
@@ -180,6 +181,7 @@ const CreateSightingForm = () => {
                 </div>
               ))}
             </ul>
+            <button onClick={createSighting}>Publish</button>
           </div>
         </div>
         : null}
