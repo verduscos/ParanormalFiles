@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import CreateNav from "./CreateNav";
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { AiOutlineLoading3Quarters, AiOutlinePlusCircle } from 'react-icons/ai';
+import { BsPlusCircle } from "react-icons/bs";
 import "./Form.css";
 
 const CreateSightingForm = () => {
@@ -94,9 +95,12 @@ const CreateSightingForm = () => {
             }}
             type="text" value={title} placeholder="Title" />
 
+          <div id="">
+
+          </div>
 
           <label for="image-upload-default-btn" value="Upload Image" id="file-label">
-            <p>Upload Image</p>
+            <BsPlusCircle />
           </label>
           <input
             id="image-upload-default-btn"
