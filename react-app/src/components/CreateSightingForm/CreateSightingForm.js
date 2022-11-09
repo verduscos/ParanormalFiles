@@ -147,8 +147,9 @@ const CreateSightingForm = () => {
         </div>
       </form>
       <div id="form-category-image-container">
-        <div>
-
+        <div id="form-category-image-container-inner">
+          <TiDeleteOutline
+          />
           <input
             type="text"
             onKeyPress={(e) => {
@@ -162,19 +163,15 @@ const CreateSightingForm = () => {
             className="tags-input"
             placeholder="Add a tag..."
           />
-          <p>
-            <i>Press enter to add a tag.</i>
-          </p>
+          <ul id="tag-container">
+            {tags.map(tag => (
+              <li
+                className="categories-list-item"
+                key={tag}
+              >{tag}</li>
+            ))}
+          </ul>
         </div>
-
-        <ul id="tag-container">
-          {tags.map(tag => (
-            <li
-              className="categories-list-item"
-              key={tag}
-            >{tag}</li>
-          ))}
-        </ul>
       </div>
     </>
   )
