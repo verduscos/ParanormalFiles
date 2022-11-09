@@ -154,6 +154,17 @@
   align-items: center;
   justify-content: center;
   margin: 25px 0;
+  /* background-color: red; */
+
+}
+
+#preview-delete {
+  color: rgba(0, 0, 0, 0.555);
+  float: left;
+  font-size: 25px;
+  /* margin-top: 10px; */
+  margin-left: calc(100% - 29px);
+  /* position: absolute; */
 }
 
 #form-display-image-url {

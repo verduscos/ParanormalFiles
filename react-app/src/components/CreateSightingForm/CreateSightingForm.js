@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import CreateNav from "./CreateNav";
-import { AiOutlineLoading3Quarters, AiOutlinePlusCircle } from 'react-icons/ai';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { BsPlusCircle } from "react-icons/bs";
+import { TiDeleteOutline } from "react-icons/ti";
 import "./Form.css";
 
 const CreateSightingForm = () => {
@@ -19,9 +20,8 @@ const CreateSightingForm = () => {
   const [imageUrl, setImageUrl] = useState(null)
   const [displayUrl, setDisplayUrl] = useState("")
   const [tags, setTags] = useState([])
-  // const regex = /^(([a-z]+\s*)+)[a-z]+$/i;
+  const [displayAddImage, setDisplayAddImage] = useState(true);
   const regex = /^[a-z]+(\s[a-z]+)?$/i
-  console.log(tags)
 
 
   useEffect(async () => {
@@ -40,6 +40,14 @@ const CreateSightingForm = () => {
   }, [image, dispatch])
 
 
+  const removeImage = (e) => {
+    e.preventDefault();
+    setDisplayUrl("");
+    setImageUrl(null);
+    setImage("");
+    setLoading(false);
+    setDisplayAddImage(true);
+  }
   const loadingIcon = (
     loading ?
       <div id="loading-container">
@@ -51,7 +59,10 @@ const CreateSightingForm = () => {
   const updateImage = (e) => {
     const file = e.target.files[0];
     setImage(file);
-    setDisplayUrl(file["name"])
+    if (file !== undefined) {
+      setDisplayUrl(file["name"]);
+      setDisplayAddImage(false);
+    }
   }
 
   const createSighting = async (e) => {
@@ -72,8 +83,6 @@ const CreateSightingForm = () => {
   const autosize = (e) => {
     e.target.style.height = 'inherit';
     e.target.style.height = `${e.target.scrollHeight}px`;
-    // In case you have a limitation
-    // e.target.style.height = `${Math.min(e.target.scrollHeight, limit)}px`;
   }
 
   return (
@@ -95,27 +104,30 @@ const CreateSightingForm = () => {
             }}
             type="text" value={title} placeholder="Title" />
 
-          <div id="">
-
-          </div>
-
-          <label for="image-upload-default-btn" value="Upload Image" id="file-label">
-            <BsPlusCircle />
-          </label>
-          <input
-            id="image-upload-default-btn"
-            className="image-upload-default-btn"
-            name="file"
-            type="file"
-            accept="image/*"
-            onChange={updateImage}
-          />
+          {displayAddImage ?
+            <>
+              <label for="image-upload-default-btn" value="Upload Image" id="file-label">
+                <BsPlusCircle />
+              </label>
+              <input
+                id="image-upload-default-btn"
+                className="image-upload-default-btn"
+                name="file"
+                type="file"
+                accept="image/*"
+                onChange={updateImage}
+              />
+            </>
+            : null
+          }
           {imageUrl ?
             <div id="preview-container">
-              <>
-                {/* <p className="image-title">Image preview:</p> */}
-                <img className="image-preview" src={imageUrl} alt="sighting preview" />
-              </>
+              <TiDeleteOutline
+                onClick={(e) => {
+                  removeImage(e);
+                }}
+                id="preview-delete" />
+              <img className="image-preview" src={imageUrl} alt="sighting preview" />
             </div>
             :
             loadingIcon
@@ -132,21 +144,7 @@ const CreateSightingForm = () => {
               setDescription(e.target.value)
             }}
             type="text" value={description} placeholder="Tell your story...." />
-
-
-          {/* <div id="preview-container">
-            {loadingIcon}
-            {imageUrl ?
-              <>
-                <p className="image-title">Image preview:</p>
-                <img className="image-preview" src={imageUrl} alt="sighting preview" />
-              </>
-              : null}
-          </div> */}
         </div>
-
-
-
       </form>
       <div className="form-category-image-container">
         <div>
@@ -177,16 +175,6 @@ const CreateSightingForm = () => {
             >{tag}</li>
           ))}
         </ul>
-
-        {/* <div id="tag-container">
-          {tags.map((tag, index) => {
-            return (
-              <p key={index}>
-                {tag}
-              </p>
-            )
-          })}
-        </div> */}
       </div>
     </>
   )
