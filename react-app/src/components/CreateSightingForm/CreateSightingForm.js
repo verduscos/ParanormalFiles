@@ -146,7 +146,7 @@ const CreateSightingForm = () => {
             type="text" value={description} placeholder="Tell your story...." />
         </div>
       </form>
-      <div className="form-category-image-container">
+      <div id="form-category-image-container">
         <div>
 
           <input

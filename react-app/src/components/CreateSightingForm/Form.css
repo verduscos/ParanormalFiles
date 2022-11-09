@@ -69,7 +69,7 @@
   color: rgba(0,0,0,.68);
   font-size: 28px;
   cursor: pointer;
-  position: fixed;
+  position: absolute;
   margin-left: -52px;
   margin-top: 5px;
 }
@@ -116,13 +116,16 @@
   padding: 10px 0;
 }
 
-.form-category-image-container {
+#form-category-image-container {
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
-  max-width: 740px;
-  /* background-color: red; */
-  margin: 0 auto;
+  width: 500px;
+  background-color: gray;
+  position: fixed;
+  width: 50vw;
+  height: 70vh;
+  top: 10%;
+  left: calc(50% - 25vw);
 }
 
 .tags-input {
@@ -146,25 +149,20 @@
   color: #f3f3f3;
 }
 
-
-
 #preview-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 25px 0;
-  /* background-color: red; */
-
 }
 
 #preview-delete {
   color: rgba(0, 0, 0, 0.555);
   float: left;
   font-size: 25px;
-  /* margin-top: 10px; */
-  margin-left: calc(100% - 29px);
-  /* position: absolute; */
+  margin-left: calc(100% - 20px);
+  cursor: pointer;
 }
 
 #form-display-image-url {
