@@ -23,7 +23,7 @@ const CreateSightingForm = () => {
   const [displayAddImage, setDisplayAddImage] = useState(true);
   const regex = /^[a-z]+(\s[a-z]+)?$/i
 
-
+  console.log(tags);
   useEffect(async () => {
     if (displayUrl !== "") setLoading(true);
     const formData = new FormData();
@@ -154,7 +154,7 @@ const CreateSightingForm = () => {
             type="text"
             onKeyPress={(e) => {
               if (e.key === 'Enter') {
-                if (regex.test(e.target.value) && !tags.includes(e.target.value)) setTags(current => [...current, e.target.value]);
+                if (regex.test(e.target.value) && !tags.includes(e.target.value) && tags.length < 5) setTags(current => [...current, e.target.value]);
               }
             }}
             onKeyUp={(e) => {
@@ -164,11 +164,16 @@ const CreateSightingForm = () => {
             placeholder="Add a tag..."
           />
           <ul id="tag-container">
-            {tags.map(tag => (
-              <li
-                className="categories-list-item"
-                key={tag}
-              >{tag}</li>
+            {tags.map((tag, index) => (
+              <div className="categories-list-item tag-item" key={index}>
+                <li className="tag-title">{tag}</li>
+                <TiDeleteOutline
+                  className="tag-item-delete"
+                  onClick={() => {
+                    tags.splice(index, 1)
+                    setTags(current => [...current])
+                  }} />
+              </div>
             ))}
           </ul>
         </div>
