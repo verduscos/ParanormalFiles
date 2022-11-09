@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import CreateNav from "./CreateNav";
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { AiOutlineLoading3Quarters, AiOutlineClose } from 'react-icons/ai';
 import { BsPlusCircle } from "react-icons/bs";
 import { TiDeleteOutline } from "react-icons/ti";
 import "./Form.css";
@@ -21,6 +21,7 @@ const CreateSightingForm = () => {
   const [displayUrl, setDisplayUrl] = useState("")
   const [tags, setTags] = useState([])
   const [displayAddImage, setDisplayAddImage] = useState(true);
+  const [displayTagModal, setDisplayTagModal] = useState(true);
   const regex = /^[a-z]+(\s[a-z]+)?$/i
 
   console.log(tags);
@@ -146,38 +147,43 @@ const CreateSightingForm = () => {
             type="text" value={description} placeholder="Tell your story...." />
         </div>
       </form>
-      <div id="form-category-image-container">
-        <div id="form-category-image-container-inner">
-          <TiDeleteOutline
-          />
-          <input
-            type="text"
-            onKeyPress={(e) => {
-              if (e.key === 'Enter') {
-                if (regex.test(e.target.value) && !tags.includes(e.target.value) && tags.length < 5) setTags(current => [...current, e.target.value]);
-              }
-            }}
-            onKeyUp={(e) => {
-              if (e.key === "Enter") e.target.value = "";
-            }}
-            className="tags-input"
-            placeholder="Add a tag..."
-          />
-          <ul id="tag-container">
-            {tags.map((tag, index) => (
-              <div className="categories-list-item tag-item" key={index}>
-                <li className="tag-title">{tag}</li>
-                <TiDeleteOutline
-                  className="tag-item-delete"
-                  onClick={() => {
-                    tags.splice(index, 1)
-                    setTags(current => [...current])
-                  }} />
-              </div>
-            ))}
-          </ul>
+
+      {displayTagModal ?
+        <div id="form-category-image-container">
+          <div id="form-category-image-container-inner">
+            <AiOutlineClose id="tag-modal-exit" onClick={() => {
+              setDisplayTagModal(false)
+            }} />
+            <input
+              type="text"
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  if (regex.test(e.target.value) && !tags.includes(e.target.value) && tags.length < 5) setTags(current => [...current, e.target.value]);
+                }
+              }}
+              onKeyUp={(e) => {
+                if (e.key === "Enter") e.target.value = "";
+              }}
+              className="tags-input"
+              placeholder="Add a tag..."
+            />
+            <ul id="tag-container">
+              {tags.map((tag, index) => (
+                <div className="categories-list-item tag-item" key={index}>
+                  <li className="tag-title">{tag}</li>
+                  <TiDeleteOutline
+                    className="tag-item-delete"
+                    onClick={() => {
+                      tags.splice(index, 1)
+                      setTags(current => [...current])
+                    }} />
+                </div>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+        : null}
+
     </>
   )
 }
