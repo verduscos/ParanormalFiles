@@ -94,7 +94,6 @@ const CreateSightingForm = () => {
       <form onSubmit={createSighting} className="sighting-form">
         <div id="sighting-form-inner">
           <button
-            // disabled={description && title ? "true" : "false"}
             className="form-submit-btn sighting-inputs"
             onClick={(e) => {
               e.preventDefault();
@@ -163,7 +162,7 @@ const CreateSightingForm = () => {
       {displayTagModal ?
         <div id="form-category-image-container">
           <div id="form-category-image-container-inner">
-            <p>Publishing to: <b>{currentUser.username}</b></p>
+            <p id="tag-header">Publishing to: <b>{currentUser.username}</b></p>
             <p>Add some tags (up to 5) so readers know what your story is about</p>
             <AiOutlineClose id="tag-modal-exit" onClick={() => {
               setDisplayTagModal(false)
@@ -194,7 +193,7 @@ const CreateSightingForm = () => {
                 </div>
               ))}
             </ul>
-            <button onClick={createSighting}>Publish</button>
+            <button onClick={createSighting} id="submit-btn" className="form-submit-btn sighting-inputs">Publish now</button>
           </div>
         </div>
         : null}

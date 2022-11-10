@@ -127,15 +127,21 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 #form-category-image-container-inner {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: column;
+  width: 400px;
+  font-family: medium-content-sans-serif-font,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+}
+
+#tag-header {
+  margin: 0;
+  font-size: 19px;
 }
 
 .tags-input {
@@ -192,7 +198,13 @@
   cursor: pointer;
 }
 
-
+#submit-btn {
+  /* color: red !important; */
+  /* float: right !important; */
+  /* margin-left: calc(50% - 48px); */
+  background: #1a8917 !important;
+  margin-top: 15px;
+}
 
 #preview-container {
   display: flex;
