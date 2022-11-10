@@ -76,9 +76,10 @@ const CreateSightingForm = () => {
       tags: [...tags]
     }
 
+    if (!tags.length) return setErrors(["Please add at least one tag."])
     const res = await dispatch(sessionActions.createASighting(payload));
     if (!res.errors) navigate("/mysightings");
-    else setErrors(res.errors.map(error => error.split(":")[1]));
+    if (res.errors) setErrors(res.errors.map(error => error.split(":")[1]));
   }
 
   const autosize = (e) => {
@@ -93,6 +94,7 @@ const CreateSightingForm = () => {
       <CreateNav />
       <form onSubmit={createSighting} className="sighting-form">
         <div id="sighting-form-inner">
+
           <button
             className="form-submit-btn sighting-inputs"
             onClick={(e) => {
@@ -119,7 +121,9 @@ const CreateSightingForm = () => {
           {displayAddImage ?
             <>
               <label for="image-upload-default-btn" value="Upload Image" id="file-label">
-                <BsPlusCircle />
+                <span title="Add an image.">
+                  <BsPlusCircle />
+                </span>
               </label>
               <input
                 id="image-upload-default-btn"
@@ -162,6 +166,9 @@ const CreateSightingForm = () => {
       {displayTagModal ?
         <div id="form-category-image-container">
           <div id="form-category-image-container-inner">
+            {errors?.map(error => (
+              <li className="error-mssg">{error}</li>
+            ))}
             <p id="tag-header">Publishing to: <b>{currentUser.username}</b></p>
             <p>Add some tags (up to 5) so readers know what your story is about</p>
             <AiOutlineClose id="tag-modal-exit" onClick={() => {
@@ -180,6 +187,7 @@ const CreateSightingForm = () => {
               className="tags-input"
               placeholder="Add a tag..."
             />
+            <p id="tag-instruc"><i>Press enter to add tag.</i></p>
             <ul id="tag-container">
               {tags.map((tag, index) => (
                 <div className="categories-list-item tag-item" key={index}>
@@ -193,7 +201,7 @@ const CreateSightingForm = () => {
                 </div>
               ))}
             </ul>
-            <button onClick={createSighting} id="submit-btn" className="form-submit-btn sighting-inputs">Publish now</button>
+            <button onClick={(e) => createSighting(e)} id="submit-btn" className="form-submit-btn sighting-inputs">Publish now</button>
           </div>
         </div>
         : null}

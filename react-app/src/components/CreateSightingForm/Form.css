@@ -140,7 +140,7 @@
 }
 
 #tag-header {
-  margin: 0;
+  margin: 15px 0 0 0;
   font-size: 19px;
 }
 
@@ -176,6 +176,12 @@
   cursor: pointer;
 }
 
+#tag-instruc {
+  color: rgba(0, 0, 0, 0.514);
+  margin: 0;
+  font-size: 14px;
+}
+
 .tag-item {
   display: flex;
   align-items: center;
@@ -199,9 +205,6 @@
 }
 
 #submit-btn {
-  /* color: red !important; */
-  /* float: right !important; */
-  /* margin-left: calc(50% - 48px); */
   background: #1a8917 !important;
   margin-top: 15px;
 }
