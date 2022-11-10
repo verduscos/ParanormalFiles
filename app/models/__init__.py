@@ -6,3 +6,5 @@ from .sighting_images import SightingImage
 from .like import Like
 from .dislike import Dislike
 from .bookmark import Bookmark
+from .tag import Tag
+from .sighting_tag import SightingTag

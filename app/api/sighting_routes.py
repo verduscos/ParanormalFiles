@@ -3,7 +3,7 @@ import sqlalchemy
 from flask import Blueprint, session, request
 from sqlalchemy import desc, asc, or_, func
 from app.forms import SightingForm
-from app.models import Sighting, SightingImage, User, db
+from app.models import Sighting, SightingImage, User, db, Tag, SightingTag
 # likes
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -73,7 +73,7 @@ def get_sighting_by_id(id):
     Return a sighting by id.
     """
     sighting = Sighting.query.get(id)
-    return {"sighting": sighting.to_dict() }
+    return {"sighting": sighting.to_dict()}
 
 
 @sighting_routes.route("/<int:id>/images")
@@ -97,11 +97,28 @@ def create_sighting():
             user_id=request.json["user_id"],
             title=request.json["title"],
             description=request.json["description"],
-            category=request.json["category"],
-            image_url=request.json["image_url"]
+            image_url=request.json["image_url"],
         )
+        tag_ids = []
         db.session.add(sighting)
         db.session.commit()
+        for tag in request.json["tags"]:
+          tag_res = Tag.query.filter(Tag.title == tag).first()
+          if tag_res:
+              tag_ids.append(tag_res.id)
+          else:
+              new_tag = Tag(title=tag)
+              db.session.add(new_tag)
+              db.session.commit()
+              tag_id = Tag.query.filter(Tag.title == tag).first()
+              tag_ids.append(tag_id.id)
+        for id in tag_ids:
+          test = SightingTag(
+            sighting_id=sighting.id,
+            tag_id=id
+          )
+          db.session.add(test)
+          db.session.commit()
         return sighting.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
@@ -120,13 +137,44 @@ def update_sighting(id):
             sighting=sighting,
             title=request.json["title"],
             description=request.json["description"],
-            category=request.json["category"],
             image_url=request.json["image_url"]
         )
 
         db.session.add(updated_sighting)
         db.session.commit()
 
+        if len(request.json["removeTags"]):
+          # get the Id of each tag title
+          for tag in request.json["removeTags"]:
+            tag_obj = Tag.query.filter(Tag.title == tag).first()
+            sighting_tag_record = SightingTag.query.filter(SightingTag.sighting_id == id, SightingTag.tag_id == tag_obj.id).first()
+          # by tag_id and sighting_id, delete that row in SightingTags
+            db.session.delete(sighting_tag_record)
+            db.session.commit()
+        if len(request.json["tags"]):
+          # check if tag exists in Tags
+          for tag in request.json["tags"]:
+            tag_exists = Tag.query.filter(Tag.title == tag).first()
+            if tag_exists:
+              new_sighting_tag = SightingTag(
+                sighting_id=id,
+                tag_id=tag_exists.id
+              )
+              db.session.add(new_sighting_tag)
+              db.session.commit()
+              # or
+            # create a tag entry
+            else:
+              new_tag = Tag(title=tag)
+              db.session.add(new_tag)
+              db.session.commit()
+            # # create record using tag_id and sighting_id
+              new_sighting_tag = SightingTag(
+                sighting_id=id,
+                tag_id=new_tag.id
+              )
+              db.session.add(new_sighting_tag)
+              db.session.commit()
         return sighting.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
@@ -138,7 +186,6 @@ def delete_sighting(id):
     """
     sighting = Sighting.query.get(id)
     if sighting:
-
         db.session.delete(sighting)
         db.session.commit()
 
@@ -181,10 +228,20 @@ def searching_sightings(searchstr, methods=["GET", "POST"]):
   search_results = Sighting.query.filter(
     or_(
       func.lower(Sighting.title).contains(func.lower(searchstr)),
-      func.lower(Sighting.category).contains(func.lower(searchstr)),
       func.lower(Sighting.description).contains(func.lower(searchstr))
       )
     ).all()
+
+  # find tag id for searchstr
+  tag = Tag.query.filter(Tag.title == searchstr.lower()).first()
+  # find all instances of our target tag being used in our join table
+  tagged_sightings = []
+  if tag:
+    tagged = SightingTag.query.filter(SightingTag.tag_id == tag.id).all()
+    tagged_sightings = [id.to_dict_all() for id in tagged]
+    for tag in tagged_sightings:
+      current = Sighting.query.get(tag["sighting_id"])
+      search_results.append(current)
 
   results = { "sightings": [ search.to_dict() for search in  search_results]}
   if len(results['sightings']) > 0:

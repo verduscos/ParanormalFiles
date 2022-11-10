@@ -91,12 +91,10 @@ export const createASighting = (payload) => async (dispatch) => {
     },
     body: JSON.stringify({
       user_id: payload.user_id,
-      date: payload.date,
       title: payload.title,
       description: payload.description,
-      category: payload.category,
-      location: payload.location,
-      image_url: payload.url
+      image_url: payload.url,
+      tags: payload.tags
     })
   })
   const data = await response.json()
@@ -119,7 +117,9 @@ export const updateSighting = (payload) => async (dispatch) => {
       title: payload.title,
       description: payload.description,
       category: payload.category,
-      image_url: payload.image_url
+      image_url: payload.image_url,
+      tags: payload.tags,
+      removeTags: payload.removeTags
     })
   })
 

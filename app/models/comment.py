@@ -14,15 +14,15 @@ class Comment(db.Model):
     sighting = db.relationship("Sighting", back_populates="comments")
 
     def to_dict(self):
-        return {
-            "id": self.id,
-            "comment": self.comment,
-            "user_id": self.user_id,
-            "sighting_id": self.sighting_id,
-            "updated_at": self.updated_at,
-            "created_at": self.created_at,
-            "username": self.user.username
-        }
+      return {
+          "id": self.id,
+          "comment": self.comment,
+          "user_id": self.user_id,
+          "sighting_id": self.sighting_id,
+          "updated_at": self.updated_at,
+          "created_at": self.created_at,
+          "username": self.user.username
+      }
 
     @staticmethod
     def update(comment, **kwargs):
