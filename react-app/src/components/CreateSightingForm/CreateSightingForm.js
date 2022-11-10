@@ -86,12 +86,24 @@ const CreateSightingForm = () => {
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
 
+  console.log(errors)
+
   return (
     <>
       <CreateNav />
       <form onSubmit={createSighting} className="sighting-form">
         <div id="sighting-form-inner">
-          <div className="form-submit-btn sighting-inputs" onClick={() => setDisplayTagModal(true)}>Publish</div>
+          <button
+            // disabled={description && title ? "true" : "false"}
+            className="form-submit-btn sighting-inputs"
+            onClick={(e) => {
+              e.preventDefault();
+              const currentErrors = [];
+              if (title.length < 4 || title.length > 100) currentErrors.push("Title must be between 5-100 characters.");
+              if (description.length < 4 || description.length > 3000) currentErrors.push("Description must be between 5-3000 characters.");
+              setErrors(currentErrors);
+              if (!currentErrors.length) setDisplayTagModal(true);
+            }}>Publish</button>
 
           {errors?.map(error => (
             <li className="error-mssg">{error}</li>
@@ -151,6 +163,7 @@ const CreateSightingForm = () => {
       {displayTagModal ?
         <div id="form-category-image-container">
           <div id="form-category-image-container-inner">
+            <p>Publishing to: <b>{currentUser.username}</b></p>
             <p>Add some tags (up to 5) so readers know what your story is about</p>
             <AiOutlineClose id="tag-modal-exit" onClick={() => {
               setDisplayTagModal(false)

@@ -4,16 +4,6 @@ from wtforms.validators import DataRequired, Length
 
 
 class SightingForm(FlaskForm):
-    # date = StringField(
-    #     "Date"
-    # )
-    # location = StringField(
-    #     "Location"
-    #     # ,
-    #     # validators=[
-    #     #     Length(min=5, max=25 , message="Please provide valid coordinates")
-    #     # ]
-    # )
     title = StringField(
         "Title",
         validators=[
