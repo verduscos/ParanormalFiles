@@ -7,7 +7,7 @@ import "../CreateSightingForm/Form.css"
 import * as sessionActions from "../../store/sighting"
 
 import { validateContent } from "../CreateSightingForm/FormFuncs";
-import Tags from "./Tags";
+import Tags from "../CreateSightingForm/Tags";
 
 const EditForm = () => {
   const params = useParams()
@@ -67,7 +67,7 @@ const EditForm = () => {
     const addTags = []
     const errorsArr = [];
     let includesOldTags = true;
-    const uniqueTags = new Set(tags.split(" "))
+    const uniqueTags = new Set(tags)
     let uniqueTagsArr = Array.from(uniqueTags)
     uniqueTagsArr = uniqueTagsArr.join(" ")
 

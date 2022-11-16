@@ -154,7 +154,7 @@ def update_sighting(id):
         if len(request.json["tags"]):
           # check if tag exists in Tags
           for tag in request.json["tags"]:
-            tag_exists = Tag.query.filter(Tag.title == tag).first()
+            tag_exists = Tag.query.filter(Tag.title == tag.lower()).first()
             if tag_exists:
               new_sighting_tag = SightingTag(
                 sighting_id=id,
@@ -165,7 +165,8 @@ def update_sighting(id):
               # or
             # create a tag entry
             else:
-              new_tag = Tag(title=tag)
+              lower_case_tag = tag.lower()
+              new_tag = Tag(title=lower_case_tag)
               db.session.add(new_tag)
               db.session.commit()
             # # create record using tag_id and sighting_id
