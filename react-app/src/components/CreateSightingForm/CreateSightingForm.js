@@ -18,11 +18,13 @@ const CreateSightingForm = () => {
   const [errors, setErrors] = useState([])
   const [image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState(null)
-  const [displayUrl, setDisplayUrl] = useState("")
   const [tags, setTags] = useState([])
-  const [displayAddImage, setDisplayAddImage] = useState(true);
+  const [displayImgBtn, setDisplayImgBtn] = useState(true);
+  const [displayUrl, setDisplayUrl] = useState("")
   const [displayTagModal, setDisplayTagModal] = useState(false);
   const regex = /^[a-z]+(\s[a-z]+)?$/i
+
+  console.log(displayUrl)
 
   useEffect(async () => {
     if (displayUrl !== "") setLoading(true);
@@ -46,7 +48,7 @@ const CreateSightingForm = () => {
     setImageUrl(null);
     setImage("");
     setLoading(false);
-    setDisplayAddImage(true);
+    setDisplayImgBtn(true);
   }
   const loadingIcon = (
     loading ?
@@ -61,7 +63,7 @@ const CreateSightingForm = () => {
     setImage(file);
     if (file !== undefined) {
       setDisplayUrl(file["name"]);
-      setDisplayAddImage(false);
+      setDisplayImgBtn(false);
     }
   }
 
@@ -86,37 +88,37 @@ const CreateSightingForm = () => {
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
 
+  const validateContent = (e) => {
+    e.preventDefault();
+    const currentErrors = [];
+    if (title.length < 4 || title.length > 100) currentErrors.push("Title must be between 5-100 characters.");
+    if (description.length < 4 || description.length > 3000) currentErrors.push("Description must be between 5-3000 characters.");
+    setErrors(currentErrors);
+    if (!currentErrors.length) setDisplayTagModal(true);
+  }
+
 
   return (
     <>
       <CreateNav />
       <form onSubmit={createSighting} className="sighting-form">
         <div id="sighting-form-inner">
+          <button className="form-submit-btn sighting-inputs" onClick={(e) => validateContent(e)}>
+            Publish
+          </button>
 
-          <button
-            className="form-submit-btn sighting-inputs"
-            onClick={(e) => {
-              e.preventDefault();
-              const currentErrors = [];
-              if (title.length < 4 || title.length > 100) currentErrors.push("Title must be between 5-100 characters.");
-              if (description.length < 4 || description.length > 3000) currentErrors.push("Description must be between 5-3000 characters.");
-              setErrors(currentErrors);
-              if (!currentErrors.length) setDisplayTagModal(true);
-            }}>Publish</button>
-
-          {errors?.map(error => (
-            <li className="error-mssg">{error}</li>
-          ))}
+          {errors?.map(error => <li className="error-mssg">{error}</li>)}
 
           <input
             id="form-title"
             className="sighting-inputs"
-            onChange={(e) => {
-              setTitle(e.target.value)
-            }}
-            type="text" value={title} placeholder="Title" />
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
 
-          {displayAddImage ?
+          {displayImgBtn ?
             <>
               <label for="image-upload-default-btn" value="Upload Image" id="file-label">
                 <span title="Add an image.">
@@ -129,11 +131,12 @@ const CreateSightingForm = () => {
                 name="file"
                 type="file"
                 accept="image/*"
-                onChange={updateImage}
+                onChange={(e) => updateImage(e)}
               />
             </>
             : null
           }
+
           {imageUrl ?
             <div id="preview-container">
               <TiDeleteOutline
