@@ -24,7 +24,6 @@ const CreateSightingForm = () => {
   const [displayTagModal, setDisplayTagModal] = useState(false);
   const regex = /^[a-z]+(\s[a-z]+)?$/i
 
-  console.log(tags);
   useEffect(async () => {
     if (displayUrl !== "") setLoading(true);
     const formData = new FormData();
@@ -87,7 +86,6 @@ const CreateSightingForm = () => {
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
 
-  console.log(errors)
 
   return (
     <>
@@ -147,7 +145,6 @@ const CreateSightingForm = () => {
             </div>
             :
             loadingIcon
-
           }
 
           <textarea

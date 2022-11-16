@@ -63,7 +63,7 @@ const EditForm = () => {
     const errorsArr = [];
     let includesOldTags = true;
     const uniqueTags = new Set(tags.split(" "))
-    let  uniqueTagsArr = Array.from(uniqueTags)
+    let uniqueTagsArr = Array.from(uniqueTags)
     uniqueTagsArr = uniqueTagsArr.join(" ")
 
     uniqueTagsArr.split(" ").forEach(tag => {
@@ -115,6 +115,13 @@ const EditForm = () => {
             value={title}
             type="text"
             placeholder="Title" />
+
+          {imageUrl ?
+            <div id="preview-container">
+              <img className="image-preview" src={imageUrl} alt="sighting preview" />
+            </div>
+            : loadingIcon }
+
           <textarea
             id="form-description"
             className="sighting-inputs"
@@ -130,6 +137,8 @@ const EditForm = () => {
               value={tags}
               className="tags-input"
             />
+
+
             <label htmlFor="image-upload-default-btn" value="Upload Image" id="file-label">
               <p>Upload Image</p>
             </label>
@@ -142,16 +151,6 @@ const EditForm = () => {
               onChange={updateImage}
             />
           </div>
-          <div id="preview-container">
-            {loadingIcon}
-            {imageUrl ?
-              <>
-                <p className="image-title">Image preview:</p>
-                <img className="image-preview" src={imageUrl} alt="sighting preview" />
-              </>
-              : null}
-          </div>
-          <p id="form-display-image-url">{displayUrl}</p>
         </ul>
       </form>
     </>
