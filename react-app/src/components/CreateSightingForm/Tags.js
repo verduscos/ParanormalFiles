@@ -22,8 +22,8 @@ const Tags = (props) => {
           placeholder="Add a tag..."
           onKeyPress={(e) => {
             if (e.key === 'Enter') {
-              if (regex.test(e.target.value) && !props.tags.includes(e.target.value) && props.tags.length < 5) {
-                props.setTags(current => [...current, e.target.value]);
+              if (regex.test(e.target.value) && !props.tags.includes(e.target.value.toLowerCase()) && props.tags.length < 5) {
+                props.setTags(current => [...current, e.target.value.toLowerCase()]);
               }
             }
           }}
@@ -37,7 +37,7 @@ const Tags = (props) => {
         <ul id="tag-container">
           {props.tags?.map((tag, index) => (
             <div className="categories-list-item tag-item" key={index}>
-              <li className="tag-title">{tag}</li>
+              <li className="tag-title" key={`li-${index}`}>{tag}</li>
               <TiDeleteOutline
                 className="tag-item-delete"
                 onClick={() => {

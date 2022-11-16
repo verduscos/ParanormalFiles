@@ -3,36 +3,31 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import CreateNav from "../CreateSightingForm/CreateNav";
 import { BsPlusCircle } from "react-icons/bs";
-
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import "../CreateSightingForm/Form.css"
 import * as sessionActions from "../../store/sighting"
 
 import { validateContent, autosize, loadingIcon, updateImage, removeImg } from "../CreateSightingForm/FormFuncs";
 import Tags from "../CreateSightingForm/Tags";
-
 import { TiDeleteOutline } from "react-icons/ti";
 
 
 const EditForm = () => {
-  const params = useParams()
-  const { sightingId } = params
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const params = useParams()
+  const { sightingId } = params
   const currentUser = useSelector(state => state.session.user)
   const currentSighting = JSON.parse(window.localStorage.getItem("currentSighting"));
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState([])
   const [title, setTitle] = useState(currentSighting.title);
   const [description, setDescription] = useState(currentSighting.description);
+  const [imgFile, setImgFile] = useState("")
   const [imgUrl, setImgUrl] = useState(currentSighting.image_url);
-  const [errors, setErrors] = useState([])
+  const [displayImgBtn, setDisplayImgBtn] = useState(imgUrl ? false : true);
   const [tags, setTags] = useState(currentSighting.sighting_tags)
   const [removeTags, setRemoveTags] = useState([]);
-
   const [displayTagModal, setDisplayTagModal] = useState(false);
-  const [displayImgBtn, setDisplayImgBtn] = useState(imgUrl ? false : true);
-  const [imgFile, setImgFile] = useState("")
-
 
   useEffect(() => {
     if (imgFile !== "") setLoading(true);
@@ -53,7 +48,6 @@ const EditForm = () => {
     res();
   }, [imgFile])
 
-  console.log("TAGS", tags)
 
   const editSighting = async (e) => {
     e.preventDefault()
@@ -73,9 +67,9 @@ const EditForm = () => {
       tags: tags,
       removeTags: removeTags
     }
-    console.log("REMOVE", removeTags)
-      // navigate(`/sightings/${sightingId}`);
-      // dispatch(sessionActions.updateSighting(payload));
+    if (!tags.length) return setErrors(["Please add at least one tag."])
+    navigate(`/sightings/${sightingId}`);
+    dispatch(sessionActions.updateSighting(payload));
   }
 
   return (
@@ -131,10 +125,12 @@ const EditForm = () => {
           <textarea
             id="form-description"
             className="sighting-inputs"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
+            placeholder="Tell your story...."
             type="text"
-            placeholder="description" />
+            value={description}
+            onKeyDown={(e) => autosize(e)}
+            onChange={(e) => setDescription(e.target.value)}
+          />
         </ul>
       </form>
 
