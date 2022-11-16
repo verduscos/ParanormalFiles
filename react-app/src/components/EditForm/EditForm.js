@@ -2,12 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import CreateNav from "../CreateSightingForm/CreateNav";
+import { BsPlusCircle } from "react-icons/bs";
+
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import "../CreateSightingForm/Form.css"
 import * as sessionActions from "../../store/sighting"
 
-import { validateContent } from "../CreateSightingForm/FormFuncs";
+import { validateContent, autosize, loadingIcon, updateImage, removeImg } from "../CreateSightingForm/FormFuncs";
 import Tags from "../CreateSightingForm/Tags";
+
+import { TiDeleteOutline } from "react-icons/ti";
+
 
 const EditForm = () => {
   const params = useParams()
@@ -19,48 +24,36 @@ const EditForm = () => {
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState(currentSighting.title);
   const [description, setDescription] = useState(currentSighting.description);
-  const [imageUrl, setImageUrl] = useState(currentSighting.image_url);
-  const [image, setImage] = useState(null);
+  const [imgUrl, setImgUrl] = useState(currentSighting.image_url);
   const [errors, setErrors] = useState([])
-  const [displayUrl, setDisplayUrl] = useState("")
   const [tags, setTags] = useState(currentSighting.sighting_tags)
   const [removeTags, setRemoveTags] = useState([]);
 
   const [displayTagModal, setDisplayTagModal] = useState(false);
+  const [displayImgBtn, setDisplayImgBtn] = useState(imgUrl ? false : true);
+  const [imgFile, setImgFile] = useState("")
 
 
   useEffect(() => {
-    if (image === null) return;
-    if (displayUrl !== "") setLoading(true);
+    if (imgFile !== "") setLoading(true);
+    else return;
     const formData = new FormData();
-    formData.append("image", image);
-    const fetchData = async () => {
+    formData.append("image", imgFile);
+    const res = async () => {
       const res = await fetch(`/api/sightings/image`, {
         method: "POST",
         body: formData,
       });
       if (res.ok) {
-        const data = await res.json();
-        setImageUrl(data.url)
+        const image = await res.json();
+        setImgUrl(image.url)
         setLoading(false);
       }
     }
-    fetchData();
-  }, [image])
+    res();
+  }, [imgFile])
 
-  const loadingIcon = (
-    loading ?
-      <div id="loading-container">
-        < AiOutlineLoading3Quarters />
-      </div >
-      : null
-  )
 
-  const updateImage = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
-    setDisplayUrl(file["name"]);
-  }
 
   const editSighting = async (e) => {
     e.preventDefault()
@@ -88,7 +81,7 @@ const EditForm = () => {
       user_id: currentUser.id,
       title: title,
       description: description,
-      image_url: imageUrl,
+      image_url: imgUrl,
       tags: addTags,
       removeTags: removeTags
     }
@@ -109,22 +102,48 @@ const EditForm = () => {
       <CreateNav />
       <form className="sighting-form">
         <ul>
-          <button onClick={(e) => validateContent(e, title, description, setErrors, setDisplayTagModal)} className="form-submit-btn sighting-inputs">Update</button>
+          <button onClick={(e) => validateContent(e, title, description, setErrors, setDisplayTagModal)} className="form-submit-btn sighting-inputs">
+            Update
+          </button>
 
           {errors?.map((error, index) => <li className="error-mssg" key={index}>{error}</li>)}
-
 
           <input
             id="form-title"
             className="sighting-inputs"
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
             type="text"
-            placeholder="Title" />
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
 
-          {imageUrl ?
+          {displayImgBtn ?
+            <>
+              <label htmlFor="image-upload-default-btn" value="Upload Image" id="file-label">
+                <span title="Add an image.">
+                  <BsPlusCircle />
+                </span>
+              </label>
+              <input
+                // not displayed to UI, using above icon
+                id="image-upload-default-btn"
+                className="image-upload-default-btn"
+                name="file"
+                type="file"
+                accept="image/*"
+                onChange={(e) => updateImage(e, setImgFile, setDisplayImgBtn)}
+              />
+            </>
+            : null}
+
+
+          {imgUrl ?
             <div id="preview-container">
-              <img className="image-preview" src={imageUrl} alt="sighting preview" />
+              <TiDeleteOutline
+                id="preview-delete"
+                onClick={(e) => (removeImg(e, setImgFile, setImgUrl, setDisplayImgBtn))}
+              />
+              <img className="image-preview" src={imgUrl} alt="sighting preview" />
             </div>
             : loadingIcon(loading)}
 
@@ -135,18 +154,13 @@ const EditForm = () => {
             value={description}
             type="text"
             placeholder="description" />
-
-
-
-
         </ul>
       </form>
 
-
-
       {displayTagModal ?
         <Tags errors={errors} currentUser={currentUser} tags={tags} setTags={setTags} setDisplayTagModal={setDisplayTagModal} submit={editSighting} />
-        : null}    </>
+        : null}
+    </>
   )
 }
 
