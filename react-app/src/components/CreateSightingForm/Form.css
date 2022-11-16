@@ -119,10 +119,11 @@
   width: 500px;
   background-color: white;
   position: fixed;
-  width: 50vw;
+  min-width: 900px;
   height: 70vh;
+  min-height: 350px;
   top: 10%;
-  left: calc(50% - 25vw);
+  left: calc(50% - 450px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -264,5 +265,16 @@
 
   #form-submit-btn {
     margin-top: -20px;
+  }
+
+  #form-category-image-container {
+    width: 90%;
+    left: calc(50% - 45%);
+  }
+  #form-category-image-container-inner {
+    width: inherit;
+  }
+  .tags-input {
+    width: 175px;
   }
 }
