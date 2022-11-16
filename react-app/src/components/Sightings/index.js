@@ -48,7 +48,7 @@ const Sightings = () => {
       dispatch(sessionActions.getBookmarks(currentUser.id));
       setDisplayFetchBtn(false);
     } else if (path === "/mysightings") {
-      dispatch(sessionActions.getAllUserSightings(currentUser?.id));
+      dispatch(sessionActions.getAllUserSightings(currentUser.id));
       setDisplayFetchBtn(false);
     } else {
       setDisplayFetchBtn(false);
