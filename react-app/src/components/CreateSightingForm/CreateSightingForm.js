@@ -8,6 +8,8 @@ import { BsPlusCircle } from "react-icons/bs";
 import { TiDeleteOutline } from "react-icons/ti";
 import "./Form.css";
 
+import { loadingIcon, autosize, updateImage, removeImg } from "./FormFuncs";
+
 const CreateSightingForm = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -17,7 +19,7 @@ const CreateSightingForm = () => {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [imgFile, setImgFile] = useState("")
-  const [imageUrl, setImageUrl] = useState("")
+  const [imgUrl, setImgUrl] = useState("")
   const [displayImgBtn, setDisplayImgBtn] = useState(true);
   const [tags, setTags] = useState([])
   const [displayTagModal, setDisplayTagModal] = useState(false);
@@ -37,38 +39,10 @@ const CreateSightingForm = () => {
 
     if (res.ok) {
       const image = await res.json();
-      setImageUrl(image.url);
+      setImgUrl(image.url);
       setLoading(false);
     }
   }, [imgFile])
-
-  const loadingIcon = (
-    loading ?
-      <div id="loading-container">
-        < AiOutlineLoading3Quarters />
-      </div >
-      : null
-  )
-
-  const autosize = (e) => {
-    e.target.style.height = 'inherit';
-    e.target.style.height = `${e.target.scrollHeight}px`;
-  }
-
-  const removeImage = (e) => {
-    e.preventDefault();
-    setImgFile("");
-    setImageUrl("");
-    setDisplayImgBtn(true);
-  }
-
-  const updateImage = (e) => {
-    const file = e.target.files[0];
-    if (file !== undefined) {
-      setImgFile(file);
-      setDisplayImgBtn(false);
-    }
-  }
 
   const validateContent = (e) => {
     e.preventDefault();
@@ -85,7 +59,7 @@ const CreateSightingForm = () => {
       user_id: currentUser.id,
       title: title,
       description: description,
-      url: imageUrl,
+      url: imgUrl,
       tags: [...tags]
     }
 
@@ -124,67 +98,66 @@ const CreateSightingForm = () => {
                 </span>
               </label>
               <input
+                // not displayed to UI, using above icon
                 id="image-upload-default-btn"
                 className="image-upload-default-btn"
                 name="file"
                 type="file"
                 accept="image/*"
-                onChange={(e) => updateImage(e)}
+                onChange={(e) => updateImage(e, setImgFile, setDisplayImgBtn)}
               />
             </>
-            : null
-          }
+            : null}
 
-          {imageUrl ?
+          {imgUrl ?
             <div id="preview-container">
               <TiDeleteOutline
-                onClick={(e) => {
-                  removeImage(e);
-                }}
-                id="preview-delete" />
-              <img className="image-preview" src={imageUrl} alt="sighting preview" />
+                id="preview-delete"
+                onClick={(e) => (removeImg(e, setImgFile, setImgUrl, setDisplayImgBtn))}
+              />
+              <img className="image-preview" src={imgUrl} alt="sighting preview" />
             </div>
-            :
-            loadingIcon
-          }
+            : loadingIcon(loading)}
 
           <textarea
             id="form-description"
             className="sighting-inputs"
-            onKeyDown={(e) => {
-              autosize(e)
-            }}
-            onChange={(e) => {
-              setDescription(e.target.value)
-            }}
-            type="text" value={description} placeholder="Tell your story...." />
+            placeholder="Tell your story...."
+            type="text"
+            value={description}
+            onKeyDown={(e) => autosize(e)}
+            onChange={(e) => setDescription(e.target.value)}
+          />
         </div>
       </form>
 
       {displayTagModal ?
         <div id="form-category-image-container">
           <div id="form-category-image-container-inner">
-            {errors?.map(error => (
-              <li className="error-mssg">{error}</li>
-            ))}
+            {errors?.map(error => <li className="error-mssg">{error}</li>)}
             <p id="tag-header">Publishing to: <b>{currentUser.username}</b></p>
             <p>Add some tags (up to 5) so readers know what your story is about</p>
-            <AiOutlineClose id="tag-modal-exit" onClick={() => {
-              setDisplayTagModal(false)
-            }} />
+            <AiOutlineClose
+              id="tag-modal-exit"
+              onClick={() => setDisplayTagModal(false)}
+            />
+
             <input
+              className="tags-input"
               type="text"
+              placeholder="Add a tag..."
               onKeyPress={(e) => {
                 if (e.key === 'Enter') {
-                  if (regex.test(e.target.value) && !tags.includes(e.target.value) && tags.length < 5) setTags(current => [...current, e.target.value]);
+                  if (regex.test(e.target.value) && !tags.includes(e.target.value) && tags.length < 5) {
+                    setTags(current => [...current, e.target.value]);
+                  }
                 }
               }}
               onKeyUp={(e) => {
                 if (e.key === "Enter") e.target.value = "";
               }}
-              className="tags-input"
-              placeholder="Add a tag..."
             />
+
             <p id="tag-instruc"><i>Press enter to add tag.</i></p>
             <ul id="tag-container">
               {tags.map((tag, index) => (
@@ -195,11 +168,19 @@ const CreateSightingForm = () => {
                     onClick={() => {
                       tags.splice(index, 1)
                       setTags(current => [...current])
-                    }} />
+                    }}
+                  />
                 </div>
               ))}
             </ul>
-            <button onClick={(e) => createSighting(e)} id="submit-btn" className="form-submit-btn sighting-inputs">Publish now</button>
+
+            <button
+              id="submit-btn"
+              className="form-submit-btn sighting-inputs"
+              onClick={(e) => createSighting(e)}
+            >
+              Publish now
+            </button>
           </div>
         </div>
         : null}
