@@ -6,6 +6,9 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import "../CreateSightingForm/Form.css"
 import * as sessionActions from "../../store/sighting"
 
+import { validateContent } from "../CreateSightingForm/FormFuncs";
+import Tags from "./Tags";
+
 const EditForm = () => {
   const params = useParams()
   const { sightingId } = params
@@ -20,8 +23,10 @@ const EditForm = () => {
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState([])
   const [displayUrl, setDisplayUrl] = useState("")
-  const [tags, setTags] = useState(currentSighting.sighting_tags.join(" "))
+  const [tags, setTags] = useState(currentSighting.sighting_tags)
   const [removeTags, setRemoveTags] = useState([]);
+
+  const [displayTagModal, setDisplayTagModal] = useState(false);
 
 
   useEffect(() => {
@@ -104,10 +109,11 @@ const EditForm = () => {
       <CreateNav />
       <form className="sighting-form">
         <ul>
-          <button onClick={editSighting} className="form-submit-btn sighting-inputs">Update</button>
-          {errors?.map(error => (
-            <li className="error-mssg" key={error}>{error}</li>
-          ))}
+          <button onClick={(e) => validateContent(e, title, description, setErrors, setDisplayTagModal)} className="form-submit-btn sighting-inputs">Update</button>
+
+          {errors?.map((error, index) => <li className="error-mssg" key={index}>{error}</li>)}
+
+
           <input
             id="form-title"
             className="sighting-inputs"
@@ -120,7 +126,7 @@ const EditForm = () => {
             <div id="preview-container">
               <img className="image-preview" src={imageUrl} alt="sighting preview" />
             </div>
-            : loadingIcon }
+            : loadingIcon(loading)}
 
           <textarea
             id="form-description"
@@ -129,31 +135,18 @@ const EditForm = () => {
             value={description}
             type="text"
             placeholder="description" />
-          <div className="form-category-image-container">
-            <input type="text"
-              onChange={(e) => {
-                setTags(e.target.value)
-              }}
-              value={tags}
-              className="tags-input"
-            />
 
 
-            <label htmlFor="image-upload-default-btn" value="Upload Image" id="file-label">
-              <p>Upload Image</p>
-            </label>
-            <input
-              id="image-upload-default-btn"
-              className="image-upload-default-btn"
-              name="file"
-              type="file"
-              accept="image/*"
-              onChange={updateImage}
-            />
-          </div>
+
+
         </ul>
       </form>
-    </>
+
+
+
+      {displayTagModal ?
+        <Tags errors={errors} currentUser={currentUser} tags={tags} setTags={setTags} setDisplayTagModal={setDisplayTagModal} submit={editSighting} />
+        : null}    </>
   )
 }
 

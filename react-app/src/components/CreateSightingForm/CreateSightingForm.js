@@ -121,7 +121,7 @@ const CreateSightingForm = () => {
       </form>
 
       {displayTagModal ?
-        <Tags errors={errors} currentUser={currentUser} tags={tags} setTags={setTags} setDisplayTagModal={setDisplayTagModal} createSighting={createSighting} />
+        <Tags errors={errors} currentUser={currentUser} tags={tags} setTags={setTags} setDisplayTagModal={setDisplayTagModal} submit={createSighting} />
         : null}
     </>
   )

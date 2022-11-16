@@ -5,7 +5,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 
 const Tags = (props) => {
   const regex = /^[a-z]+(\s[a-z]+)?$/i
-  console.log("TEST IN EDIT FORM", props)
+  console.log("TESTISJKETJKL", props)
 
   return (
     <div id="form-category-image-container">
