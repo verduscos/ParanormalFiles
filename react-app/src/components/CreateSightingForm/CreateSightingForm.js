@@ -13,43 +13,35 @@ const CreateSightingForm = () => {
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.session.user)
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState([])
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
-  const [errors, setErrors] = useState([])
-  const [image, setImage] = useState("");
-  const [imageUrl, setImageUrl] = useState(null)
-  const [tags, setTags] = useState([])
+  const [imgFile, setImgFile] = useState("")
+  const [imageUrl, setImageUrl] = useState("")
   const [displayImgBtn, setDisplayImgBtn] = useState(true);
-  const [displayUrl, setDisplayUrl] = useState("")
+  const [tags, setTags] = useState([])
   const [displayTagModal, setDisplayTagModal] = useState(false);
   const regex = /^[a-z]+(\s[a-z]+)?$/i
 
-  console.log(displayUrl)
 
   useEffect(async () => {
-    if (displayUrl !== "") setLoading(true);
+    if (imgFile !== "") setLoading(true);
+    // avoids posting with empty files
+    else return;
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append("image", imgFile);
     const res = await fetch(`/api/sightings/image`, {
       method: "POST",
       body: formData,
     });
+
     if (res.ok) {
-      const data = await res.json();
-      setImageUrl(data.url);
+      const image = await res.json();
+      setImageUrl(image.url);
       setLoading(false);
     }
-  }, [image, dispatch])
+  }, [imgFile])
 
-
-  const removeImage = (e) => {
-    e.preventDefault();
-    setDisplayUrl("");
-    setImageUrl(null);
-    setImage("");
-    setLoading(false);
-    setDisplayImgBtn(true);
-  }
   const loadingIcon = (
     loading ?
       <div id="loading-container">
@@ -58,13 +50,33 @@ const CreateSightingForm = () => {
       : null
   )
 
+  const autosize = (e) => {
+    e.target.style.height = 'inherit';
+    e.target.style.height = `${e.target.scrollHeight}px`;
+  }
+
+  const removeImage = (e) => {
+    e.preventDefault();
+    setImgFile("");
+    setImageUrl("");
+    setDisplayImgBtn(true);
+  }
+
   const updateImage = (e) => {
     const file = e.target.files[0];
-    setImage(file);
     if (file !== undefined) {
-      setDisplayUrl(file["name"]);
+      setImgFile(file);
       setDisplayImgBtn(false);
     }
+  }
+
+  const validateContent = (e) => {
+    e.preventDefault();
+    const currentErrors = [];
+    if (title.length < 4 || title.length > 100) currentErrors.push("Title must be between 5-100 characters.");
+    if (description.length < 4 || description.length > 3000) currentErrors.push("Description must be between 5-3000 characters.");
+    setErrors(currentErrors);
+    if (!currentErrors.length) setDisplayTagModal(true);
   }
 
   const createSighting = async (e) => {
@@ -83,25 +95,11 @@ const CreateSightingForm = () => {
     if (res.errors) setErrors(res.errors.map(error => error.split(":")[1]));
   }
 
-  const autosize = (e) => {
-    e.target.style.height = 'inherit';
-    e.target.style.height = `${e.target.scrollHeight}px`;
-  }
-
-  const validateContent = (e) => {
-    e.preventDefault();
-    const currentErrors = [];
-    if (title.length < 4 || title.length > 100) currentErrors.push("Title must be between 5-100 characters.");
-    if (description.length < 4 || description.length > 3000) currentErrors.push("Description must be between 5-3000 characters.");
-    setErrors(currentErrors);
-    if (!currentErrors.length) setDisplayTagModal(true);
-  }
-
 
   return (
     <>
       <CreateNav />
-      <form onSubmit={createSighting} className="sighting-form">
+      <form onSubmit={(e) => createSighting(e)} className="sighting-form">
         <div id="sighting-form-inner">
           <button className="form-submit-btn sighting-inputs" onClick={(e) => validateContent(e)}>
             Publish
@@ -120,7 +118,7 @@ const CreateSightingForm = () => {
 
           {displayImgBtn ?
             <>
-              <label for="image-upload-default-btn" value="Upload Image" id="file-label">
+              <label htmlFor="image-upload-default-btn" value="Upload Image" id="file-label">
                 <span title="Add an image.">
                   <BsPlusCircle />
                 </span>
