@@ -28,12 +28,6 @@
   display: none;
 }
 
-#user-nav-home-logo > img {
-  color: rgb(212, 212, 212);
-  height: 75px;
-  user-select: none;
-}
-
 .user-nav-btn {
   color: rgba(117, 117, 117, 1);
   font-size: 25px;
@@ -75,7 +69,6 @@
   }
 
   #user-nav-home-logo > * > img {
-    height: 75px;
-    margin-right: -25px;
+    height: 43px;
   }
 }
