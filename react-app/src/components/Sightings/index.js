@@ -86,6 +86,8 @@ const Sightings = () => {
             </>
             : null}
           {sightingsArray.map((sighting, i) => (
+            <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
+
             <div id="sighting-card" key={i}>
               <ul id="sighting-details" key={sighting?.id}>
                 <li key={`date-${sighting?.id}`}>
@@ -112,11 +114,12 @@ const Sightings = () => {
                 </li>
               </ul>
               {sighting?.image_url !== null ?
-                <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
                   <img className="sighting-img" src={sighting?.image_url} alt="sighting-img"></img>
-                </Link>
                 : null}
             </div>
+
+            </Link>
+
           ))}
           {fetchBtn}
         </div>
