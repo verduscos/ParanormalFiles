@@ -1,11 +1,9 @@
-import { useSelector } from "react-redux";
 import { AiOutlineClose } from 'react-icons/ai';
 import { TiDeleteOutline } from "react-icons/ti";
 
 
 const Tags = (props) => {
   const regex = /^[a-z]+(\s[a-z]+)?$/i
-  console.log("TEST IN EDIT FORM", props)
 
   return (
     <div id="form-category-image-container">
