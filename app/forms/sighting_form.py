@@ -18,9 +18,9 @@ class SightingForm(FlaskForm):
             Length(min=5, max=3000, message="Description must be between 5-3000 characters.")
         ]
     )
-    image_url = StringField(
-      "Image",
-      validators=[
-        DataRequired("Please upload an image.")
-      ]
-    )
+    # image_url = StringField(
+    #   "Image",
+    #   validators=[
+    #     DataRequired("Please upload an image.")
+    #   ]
+    # )

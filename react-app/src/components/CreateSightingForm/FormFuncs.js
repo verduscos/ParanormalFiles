@@ -29,3 +29,12 @@ export const updateImage = (e, setImgFile, setDisplayImgBtn) => {
     setDisplayImgBtn(false);
   }
 }
+
+export const validateContent = (e, title, description, setErrors, setDisplayTagModal) => {
+  e.preventDefault();
+  const currentErrors = [];
+  if (title.length < 4 || title.length > 100) currentErrors.push("Title must be between 5-100 characters.");
+  if (description.length < 4 || description.length > 3000) currentErrors.push("Description must be between 5-3000 characters.");
+  setErrors(currentErrors);
+  if (!currentErrors.length) setDisplayTagModal(true);
+}

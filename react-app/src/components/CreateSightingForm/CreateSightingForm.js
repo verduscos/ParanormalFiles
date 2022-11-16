@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
-import CreateNav from "./CreateNav";
-import { AiOutlineLoading3Quarters, AiOutlineClose } from 'react-icons/ai';
 import { BsPlusCircle } from "react-icons/bs";
 import { TiDeleteOutline } from "react-icons/ti";
+import { loadingIcon, autosize, updateImage, removeImg, validateContent } from "./FormFuncs";
+import CreateNav from "./CreateNav";
+import Tags from "./Tags";
 import "./Form.css";
-
-import { loadingIcon, autosize, updateImage, removeImg } from "./FormFuncs";
 
 const CreateSightingForm = () => {
   const navigate = useNavigate()
@@ -19,11 +18,10 @@ const CreateSightingForm = () => {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [imgFile, setImgFile] = useState("")
-  const [imgUrl, setImgUrl] = useState("")
+  const [imgUrl, setImgUrl] = useState(null)
   const [displayImgBtn, setDisplayImgBtn] = useState(true);
   const [tags, setTags] = useState([])
   const [displayTagModal, setDisplayTagModal] = useState(false);
-  const regex = /^[a-z]+(\s[a-z]+)?$/i
 
 
   useEffect(async () => {
@@ -43,15 +41,6 @@ const CreateSightingForm = () => {
       setLoading(false);
     }
   }, [imgFile])
-
-  const validateContent = (e) => {
-    e.preventDefault();
-    const currentErrors = [];
-    if (title.length < 4 || title.length > 100) currentErrors.push("Title must be between 5-100 characters.");
-    if (description.length < 4 || description.length > 3000) currentErrors.push("Description must be between 5-3000 characters.");
-    setErrors(currentErrors);
-    if (!currentErrors.length) setDisplayTagModal(true);
-  }
 
   const createSighting = async (e) => {
     e.preventDefault()
@@ -75,7 +64,7 @@ const CreateSightingForm = () => {
       <CreateNav />
       <form onSubmit={(e) => createSighting(e)} className="sighting-form">
         <div id="sighting-form-inner">
-          <button className="form-submit-btn sighting-inputs" onClick={(e) => validateContent(e)}>
+          <button className="form-submit-btn sighting-inputs" onClick={(e) => validateContent(e, title, description, setErrors, setDisplayTagModal)}>
             Publish
           </button>
 
@@ -132,59 +121,8 @@ const CreateSightingForm = () => {
       </form>
 
       {displayTagModal ?
-        <div id="form-category-image-container">
-          <div id="form-category-image-container-inner">
-            {errors?.map(error => <li className="error-mssg">{error}</li>)}
-            <p id="tag-header">Publishing to: <b>{currentUser.username}</b></p>
-            <p>Add some tags (up to 5) so readers know what your story is about</p>
-            <AiOutlineClose
-              id="tag-modal-exit"
-              onClick={() => setDisplayTagModal(false)}
-            />
-
-            <input
-              className="tags-input"
-              type="text"
-              placeholder="Add a tag..."
-              onKeyPress={(e) => {
-                if (e.key === 'Enter') {
-                  if (regex.test(e.target.value) && !tags.includes(e.target.value) && tags.length < 5) {
-                    setTags(current => [...current, e.target.value]);
-                  }
-                }
-              }}
-              onKeyUp={(e) => {
-                if (e.key === "Enter") e.target.value = "";
-              }}
-            />
-
-            <p id="tag-instruc"><i>Press enter to add tag.</i></p>
-            <ul id="tag-container">
-              {tags.map((tag, index) => (
-                <div className="categories-list-item tag-item" key={index}>
-                  <li className="tag-title">{tag}</li>
-                  <TiDeleteOutline
-                    className="tag-item-delete"
-                    onClick={() => {
-                      tags.splice(index, 1)
-                      setTags(current => [...current])
-                    }}
-                  />
-                </div>
-              ))}
-            </ul>
-
-            <button
-              id="submit-btn"
-              className="form-submit-btn sighting-inputs"
-              onClick={(e) => createSighting(e)}
-            >
-              Publish now
-            </button>
-          </div>
-        </div>
+        <Tags errors={errors} currentUser={currentUser} tags={tags} setTags={setTags} setDisplayTagModal={setDisplayTagModal} createSighting={createSighting} />
         : null}
-
     </>
   )
 }
