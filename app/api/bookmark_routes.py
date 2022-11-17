@@ -10,6 +10,8 @@ def get_bookmarks(userId):
   """
   Get all user favorites.
   """
+
+  print("HERERRE IN DA BACK")
   bookmarks = Bookmark.query.filter(Bookmark.user_id == userId).all()
 
   return {"bookmarks": [bookmark.to_dict() for bookmark in bookmarks]}

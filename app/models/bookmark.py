@@ -21,7 +21,7 @@ class Bookmark(db.Model):
         "title":  self.sighting.title,
         "description": self.sighting.description,
         "created_at": self.sighting.created_at,
-        "category": self.sighting.category,
         "image_url": self.sighting.image_url,
-        "username": self.sighting.user.username
+        "username": self.sighting.user.username,
+        "sighting_tags": [tag.to_dict() for tag in self.sighting.sighting_tags]
       }
