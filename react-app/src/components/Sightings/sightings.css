@@ -86,8 +86,6 @@
   padding: 0 0 4px 0;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-
-  background-color: red;
 }
 
 .no-img {
@@ -150,9 +148,6 @@
   #sighting-card {
     border-bottom: 0.5px solid rgba(230, 230, 230, 1);
     height: 100%;
-  /* todo
-    card overlapping with right col around 1000px vw
-  */
   }
 
   #sighting-title {
