@@ -6,6 +6,7 @@ import { deleteBookmark, createBookmark } from "../../store/bookmark";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { likeSighting, removeLikeSighting, dislikeSighting, removeDislikeSighting } from "../../store/like";
+import { getAllUserSightings } from "../../store/sighting";
 import { BsHandThumbsUp, BsHandThumbsDown, BsFillHandThumbsDownFill, BsHandThumbsUpFill } from "react-icons/bs";
 import * as sessions from "../../store/sighting"
 import "./SingleSighting.css"
@@ -26,7 +27,7 @@ const SingleSighting = ({ scrollToTop }) => {
   const isLiked = window.localStorage.getItem("liked")
   const isDisliked = window.localStorage.getItem("disliked")
   const payload = { userId: currentUser?.id, sightingId };
-  
+
   const like = (e) => {
     e.preventDefault();
     if (userDisliked) removeDislike(e);
@@ -77,7 +78,9 @@ const SingleSighting = ({ scrollToTop }) => {
   const deleteSighting = (e) => {
     e.preventDefault();
     dispatch(deleteASighting(sightingId));
-    navigate("/mysightings");
+    setTimeout(() => {
+      navigate("/mysightings");
+    }, [1000])
   }
 
   const editSighting = () => {

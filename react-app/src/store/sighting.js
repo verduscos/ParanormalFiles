@@ -229,7 +229,7 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
       return bookmarks;
 
     case GET_USER_SIGHTINGS:
-      const userSightings = { ...state }
+      const userSightings = { all: {} }
       action.payload.forEach(sighting => {
         userSightings.all[sighting.id] = sighting
       })
@@ -248,7 +248,8 @@ const sightingReducer = (state = { all: {}, exhausted: false }, action) => {
       let updatedSightings = { ...state }
       let id = (action.payload["found"])
       const idN = parseInt(id)
-      delete updatedSightings["all"][idN];
+      delete updatedSightings.all[idN];
+      updatedSightings["deleted"] = true;
       return updatedSightings
 
       case GET_CURRENT_SIGHTING: {
