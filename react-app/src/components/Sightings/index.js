@@ -102,7 +102,7 @@ const Sightings = () => {
                         setCurrentSighting(e, sighting?.id);
                       }}>
                       <h2 id="sighting-title">{sighting.title}</h2>
-                      <p className="sighting-story">{sighting.description}</p>
+                      <p className={`sighting-story ${sighting.image_url ? "" : "no-img"}`}>{sighting.description}</p>
                     </div>
                   </div>
                 </li>

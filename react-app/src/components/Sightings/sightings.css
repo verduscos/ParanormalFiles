@@ -90,6 +90,10 @@
   background-color: red;
 }
 
+.no-img {
+  -webkit-line-clamp: 4;
+}
+
 .tag {
   display: none;
 }
