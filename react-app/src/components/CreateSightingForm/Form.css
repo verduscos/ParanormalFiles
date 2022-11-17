@@ -243,7 +243,7 @@
 }
 
 .error-mssg {
-  color: #D10606;
+  color: #D10606 !important;
   letter-spacing: .5px;
 }
 
