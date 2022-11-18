@@ -6,9 +6,7 @@ import { deleteBookmark, createBookmark } from "../../store/bookmark";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { likeSighting, removeLikeSighting, dislikeSighting, removeDislikeSighting } from "../../store/like";
-import { getAllUserSightings } from "../../store/sighting";
 import { BsHandThumbsUp, BsHandThumbsDown, BsFillHandThumbsDownFill, BsHandThumbsUpFill } from "react-icons/bs";
-import * as sessions from "../../store/sighting"
 import "./SingleSighting.css"
 
 
@@ -94,7 +92,7 @@ const SingleSighting = ({ scrollToTop }) => {
     if (isLiked === sightingId) setUserLiked(true);
     if (isDisliked === sightingId) setUserDisliked(true);
     dispatch(getSighting(sightingId));
-  }, [])
+  }, [dispatch])
 
 
   const Bookmark = (

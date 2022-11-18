@@ -1,11 +1,8 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import * as sessions from "../../store/sighting"
 import './Tags.css';
 
 const Tags = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const tagList = ["UFOs", "Angels", "Reincarnation", "Ghosts", "Monsters", "Demons", 'Synchronicity'];
 
@@ -19,11 +16,11 @@ const Tags = () => {
       <div id="tags-wrapper">
         <h2 id="tags-header">DISCOVER MORE OF WHAT MATTERS TO YOU</h2>
         <ul id="categories-list">
-          {tagList.map(tag => (
+          {tagList.map((tag, index) => (
             <li
-              onClick={(e) => search(e, tag)}
+              key={index}
               className="categories-list-item"
-              key={tag}
+              onClick={(e) => search(e, tag)}
             >{tag}</li>
           ))}
         </ul>
