@@ -144,12 +144,14 @@ const SingleSighting = ({ scrollToTop }) => {
             <li key="sighting-title">
               <h1 id="single-sighting-title">{currentSighting.title}</h1>
             </li>
-            <li key="sighting-date">
+            <li class={currentSighting.image_url ? null : "sighting-date-no-img"} key="sighting-date">
               <p id="single-sighting-date">{`${currentSighting.created_at.split(' ')[2]} ${currentSighting.created_at.split(' ')[1]}, ${currentSighting.created_at.split(' ')[3]}`}</p>
             </li>
-            <li key="sighting-image">
-              <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
-            </li>
+            {currentSighting.image_url ?
+              <li key="sighting-image">
+                <img src={currentSighting.image_url} id="single-sighting-img" alt="article-img"></img>
+              </li>
+              : null}
             <div id="sighting-likes-container">
               <div id="like-actions">
 

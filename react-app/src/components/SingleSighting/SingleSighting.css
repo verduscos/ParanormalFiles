@@ -44,6 +44,17 @@
   padding-bottom: 24px;
 }
 
+.sighting-date-no-img {
+  display: flex;
+  align-items: center;
+  float: left;
+  height: 37px;
+}
+
+.sighting-date-no-img > * {
+  padding: 0 !important;
+}
+
 #single-sighting-img {
   width: 100%;
   user-select: none;
