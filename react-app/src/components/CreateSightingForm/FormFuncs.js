@@ -1,4 +1,4 @@
-import { AiOutlineLoading3Quarters, AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 
 export const loadingIcon = (loading) => (
@@ -13,7 +13,6 @@ export const autosize = (e) => {
   e.target.style.height = 'inherit';
   e.target.style.height = `${e.target.scrollHeight}px`;
 }
-
 
 export const removeImg = (e, setImgFile, setImgUrl, setDisplayImgBtn) => {
   e.preventDefault();

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AiOutlineClose } from 'react-icons/ai';
 import { TiDeleteOutline } from "react-icons/ti";
 
@@ -6,8 +6,6 @@ import { TiDeleteOutline } from "react-icons/ti";
 const Tags = (props) => {
   const [tagErrorMsg, setTagErrorMsg] = useState(null);
   const regex = /^[a-z]+(\s[a-z]+)?$/i
-
-
 
   return (
     <div id="form-category-image-container">
