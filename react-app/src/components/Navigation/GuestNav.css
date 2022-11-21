@@ -32,12 +32,11 @@
 }
 
 #guest-nav > ul > li {
-  /* fixes li tag height and alignment issue */
   display: flex;
 }
 
 #guest-nav-logo {
-  height: 75px;
+  height: 43px;
   user-select: none;
 }
 
