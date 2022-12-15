@@ -25,19 +25,30 @@ Paranormal Files is built on a React frontend and a Flask backend with a Postgre
    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" height=40 />
 </div>
 
-# Features
+## Features
+ * Post, update, and delete sightings.
+<img src="https://user-images.githubusercontent.com/89158442/207747715-3ba9718a-7166-402f-a1bc-a7ecf8fed472.png" />
 
-<img src="https://media.giphy.com/media/MKihzXfL9HuvwjSK84/giphy.gif" width=600 />
+ * Users should include Tags to help other members find their sighting.
+<img src="https://user-images.githubusercontent.com/89158442/207747729-a95bdf38-dc73-4db2-8e54-6c0e98a7100d.png" />
 
- * [Sightings](https://github.com/verduscos/medium-clone/wiki/Feature-List) 
- * [Commenting on sightings](https://github.com/verduscos/medium-clone/wiki/Feature-List)
- * [Bookmarks](https://github.com/verduscos/medium-clone/wiki/Feature-List#bookmarks)
- * [Search](https://github.com/verduscos/medium-clone/wiki/Feature-List#search)
+ * Sighting Page:
+<img src="https://user-images.githubusercontent.com/89158442/207747736-fc38e20a-9013-42ae-9b81-4cc9776cbb9b.png" />
+
+ * Users are able to post, update, or delete their own comments.
+<img src="https://user-images.githubusercontent.com/89158442/207751090-6cae53ee-02b7-4150-be5d-75e9d32975d9.png" />
+
+ * Users can like or dislike a sighting and track sightings they may want revisit by bookmarking.
+<img src="https://user-images.githubusercontent.com/89158442/207751588-4c059d43-e28a-4d54-8def-8e5600f9c328.png" />
+
+ * Search all sightings.
+<img src="https://user-images.githubusercontent.com/89158442/207752000-056e11a7-99b6-4253-85e0-cc60f87b76b4.png" />
+
+ * Mobile view:
+<img src="https://user-images.githubusercontent.com/89158442/207755722-260ada6c-2478-4977-a35c-8752f7bba8f0.png" height=667 width=375 />
 
 Upcoming featues:
  * Follows and feed
- * Likes
- * Tags/categories
 
 ## Getting started
 
