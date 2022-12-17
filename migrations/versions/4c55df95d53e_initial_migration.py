@@ -1,8 +1,8 @@
-"""empty message
+"""Initial migration.
 
-Revision ID: 55a65b450476
-Revises: 00edb2d1faec
-Create Date: 2022-10-31 10:17:20.483351
+Revision ID: 4c55df95d53e
+Revises: 
+Create Date: 2022-12-01 17:13:59.484922
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '55a65b450476'
-down_revision = '00edb2d1faec'
+revision = '4c55df95d53e'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -40,7 +40,6 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=100), nullable=False),
     sa.Column('description', sa.String(length=5000), nullable=False),
-    sa.Column('category', sa.String(length=50), nullable=False),
     sa.Column('image_url', sa.String(length=1000), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
@@ -101,7 +100,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('sighting_id', sa.Integer(), nullable=False),
     sa.Column('tag_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['sighting_id'], ['sightings.id'], ),
+    sa.ForeignKeyConstraint(['sighting_id'], ['sightings.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['tag_id'], ['tags.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
