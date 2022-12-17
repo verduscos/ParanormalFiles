@@ -81,44 +81,40 @@ const Sightings = () => {
     <>
       {loading ? loadingIcon :
         <div id="sightings-container">
-          {!sightingsArray.length ?
-            <>
-              <h2>No results found.</h2>
-            </>
-            : null}
-            { path.includes("search") && sightingsArray.length ? <h2> <span id="search-header">Results for</span> {path.split("/")[3]}</h2> : null }
+          {!sightingsArray.length ? <h2>No results found.</h2> : null}
+          {path.includes("search") && sightingsArray.length ? <h2> <span id="search-header">Results for</span> {path.split("/")[3]}</h2> : null}
           {sightingsArray.map((sighting, i) => (
             <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
 
-            <div id="sighting-card" key={i}>
-              <ul id="sighting-details" key={sighting?.id}>
-                <li key={`date-${sighting?.id}`}>
-                  <h4 id="sighting-author">
-                    {sighting?.username}
-                  </h4>
-                </li>
-                <li key={`link-${i}`}>
-                  <div className="link">
-                    <div key={`title-${sighting?.id}`}
-                      onClick={(e) => {
-                        setCurrentSighting(e, sighting?.id);
-                      }}>
-                      <h2 id="sighting-title">{sighting.title}</h2>
-                      <p className={`sighting-story ${sighting.image_url ? "" : "no-img"}`}>{sighting.description}</p>
+              <div id="sighting-card" key={i}>
+                <ul id="sighting-details" key={sighting?.id}>
+                  <li key={`date-${sighting?.id}`}>
+                    <h4 id="sighting-author">
+                      {sighting?.username}
+                    </h4>
+                  </li>
+                  <li key={`link-${i}`}>
+                    <div className="link">
+                      <div key={`title-${sighting?.id}`}
+                        onClick={(e) => {
+                          setCurrentSighting(e, sighting?.id);
+                        }}>
+                        <h2 id="sighting-title">{sighting.title}</h2>
+                        <p className={`sighting-story ${sighting.image_url ? "" : "no-img"}`}>{sighting.description}</p>
+                      </div>
                     </div>
-                  </div>
-                </li>
-                <li id="sighting-tag-container" key={`tag-${i}`}>
-                  <span id="sighting-date">{`${sighting?.created_at?.split(' ')[2]} ${sighting?.created_at?.split(' ')[1]}`}</span>
-                  <Link className="link tag" to={`/sightings/search/${sighting.sighting_tags[0]}`}>
-                    <p className="category-link" key={`category-${sighting?.id}`} >{sighting.sighting_tags[0]}</p>
-                  </Link>
-                </li>
-              </ul>
-              {sighting?.image_url !== null ?
+                  </li>
+                  <li id="sighting-tag-container" key={`tag-${i}`}>
+                    <span id="sighting-date">{`${sighting?.created_at?.split(' ')[2]} ${sighting?.created_at?.split(' ')[1]}`}</span>
+                    <Link className="link tag" to={`/sightings/search/${sighting.sighting_tags[0]}`}>
+                      <p className="category-link" key={`category-${sighting?.id}`} >{sighting.sighting_tags[0]}</p>
+                    </Link>
+                  </li>
+                </ul>
+                {sighting?.image_url !== null ?
                   <img className="sighting-img" src={sighting?.image_url} alt="sighting-img"></img>
-                : null}
-            </div>
+                  : null}
+              </div>
 
             </Link>
 

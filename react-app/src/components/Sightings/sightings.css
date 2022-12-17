@@ -33,6 +33,10 @@
   padding-top: 40px;
 }
 
+#search-header {
+  color: #7f7f7f;
+}
+
 #sighting-card {
   display: flex;
   height: 100px;
