@@ -86,7 +86,7 @@ const Sightings = () => {
               <h2>No results found.</h2>
             </>
             : null}
-            { path.includes("search") ? <h2>Results for {path.split("/")[3]}</h2> : null }
+            { path.includes("search") && sightingsArray.length ? <h2> <span id="search-header">Results for</span> {path.split("/")[3]}</h2> : null }
           {sightingsArray.map((sighting, i) => (
             <Link className="link" to={`/sightings/${sighting?.id}`} key={`link-${i}-img`}>
 
