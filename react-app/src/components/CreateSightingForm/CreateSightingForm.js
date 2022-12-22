@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import { BsPlusCircle } from "react-icons/bs";
 import { TiDeleteOutline } from "react-icons/ti";
+
+import {Editor, EditorState} from 'draft-js';
+import 'draft-js/dist/Draft.css';
+
 import { loadingIcon, autosize, updateImage, removeImg, validateContent } from "./FormFuncs";
 import CreateNav from "./CreateNav";
 import Tags from "./Tags";
@@ -22,6 +26,8 @@ const CreateSightingForm = () => {
   const [displayImgBtn, setDisplayImgBtn] = useState(true);
   const [tags, setTags] = useState([])
   const [displayTagModal, setDisplayTagModal] = useState(false);
+
+  const [editorState, setEditorState] = useState(() => EditorState.createEmpty(),);
 
 
   useEffect(async () => {
@@ -63,6 +69,10 @@ const CreateSightingForm = () => {
     <>
       <CreateNav />
       <form onSubmit={(e) => createSighting(e)} className="sighting-form">
+
+      <button onClick={this._onBoldClick.bind(this)}>Bold</button>
+      <Editor editorState={editorState} onChange={setEditorState} />
+
         <div id="sighting-form-inner">
           <button className="form-submit-btn sighting-inputs" onClick={(e) => validateContent(e, title, description, setErrors, setDisplayTagModal)}>
             Publish
