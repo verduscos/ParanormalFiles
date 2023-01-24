@@ -7,6 +7,7 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { likeSighting, removeLikeSighting, dislikeSighting, removeDislikeSighting } from "../../store/like";
 import { BsHandThumbsUp, BsHandThumbsDown, BsFillHandThumbsDownFill, BsHandThumbsUpFill } from "react-icons/bs";
+import parse from 'html-react-parser';
 import "./SingleSighting.css"
 
 
@@ -183,6 +184,8 @@ const SingleSighting = ({ scrollToTop }) => {
             </div>
             <li key="sighting-body">
               <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>
+              <p id="single-sighting-body">{parse(currentSighting.description)}</p>
+
             </li>
           </>
           : null}

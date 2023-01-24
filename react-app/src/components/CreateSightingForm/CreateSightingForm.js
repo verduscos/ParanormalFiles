@@ -4,11 +4,9 @@ import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import { BsPlusCircle } from "react-icons/bs";
 import { TiDeleteOutline } from "react-icons/ti";
-
-import {Editor, EditorState} from 'draft-js';
-import 'draft-js/dist/Draft.css';
-
 import { loadingIcon, autosize, updateImage, removeImg, validateContent } from "./FormFuncs";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import CreateNav from "./CreateNav";
 import Tags from "./Tags";
 import "./Form.css";
@@ -26,8 +24,6 @@ const CreateSightingForm = () => {
   const [displayImgBtn, setDisplayImgBtn] = useState(true);
   const [tags, setTags] = useState([])
   const [displayTagModal, setDisplayTagModal] = useState(false);
-
-  const [editorState, setEditorState] = useState(() => EditorState.createEmpty(),);
 
 
   useEffect(async () => {
@@ -64,14 +60,13 @@ const CreateSightingForm = () => {
     if (res.errors) setErrors(res.errors.map(error => error.split(":")[1]));
   }
 
+  console.log(description, "DESCRIPTION HERE");
 
   return (
     <>
       <CreateNav />
       <form onSubmit={(e) => createSighting(e)} className="sighting-form">
 
-      <button onClick={this._onBoldClick.bind(this)}>Bold</button>
-      <Editor editorState={editorState} onChange={setEditorState} />
 
         <div id="sighting-form-inner">
           <button className="form-submit-btn sighting-inputs" onClick={(e) => validateContent(e, title, description, setErrors, setDisplayTagModal)}>
@@ -117,6 +112,9 @@ const CreateSightingForm = () => {
               <img className="image-preview" src={imgUrl} alt="sighting preview" />
             </div>
             : loadingIcon(loading)}
+
+
+          <ReactQuill theme="snow" value={description} onChange={setDescription} />
 
           <textarea
             id="form-description"
