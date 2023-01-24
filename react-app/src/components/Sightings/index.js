@@ -25,7 +25,6 @@ const Sightings = () => {
 
   const location = useLocation();
   let path = location.pathname;
-  console.log(path, "PAHTHTHTTHHT")
 
   const resetLoading = () => {
     setLoading(true);

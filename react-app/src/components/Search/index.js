@@ -11,15 +11,13 @@ const Search = () => {
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState("");
 
-  // todo
-  // reset value for search input when changing pages.
-
   useEffect(() => {
     if (string !== undefined) dispatch(searchAllSightings(string));
   }, [dispatch, string])
 
   const search = async (e) => {
     e.preventDefault();
+    e.target.reset();
     navigate(`/sightings/search/${searchInput}`);
   }
 
