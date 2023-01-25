@@ -60,13 +60,6 @@ const CreateSightingForm = () => {
     if (res.errors) setErrors(res.errors.map(error => error.split(":")[1]));
   }
 
-  console.log(description, "DESCRIPTION HERE");
-  // todo
-  // style react quill in create *
-  // add html parser to sighting page *
-  // add quill to edit form
-
-
   return (
     <>
       <CreateNav />

@@ -131,6 +131,12 @@ def update_sighting(id):
     form = SightingForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     sighting = Sighting.query.get(id)
+    sighting_tags = SightingTag.query.filter(SightingTag.sighting_id == id).all()
+    sighting_tag_list = [sighting.to_dict() for sighting in sighting_tags]
+    # print("--------------------------------------------------------------------")
+    # print(sighting_tags)
+    # print(tags)
+    # print("--------------------------------------------------------------------")
 
     if form.validate_on_submit():
         updated_sighting = Sighting.update(
@@ -144,6 +150,7 @@ def update_sighting(id):
         db.session.commit()
 
         if len(request.json["removeTags"]):
+          print("IN REMOVE TAG")
           # get the Id of each tag title
           for tag in request.json["removeTags"]:
             tag_obj = Tag.query.filter(Tag.title == tag).first()
@@ -154,28 +161,29 @@ def update_sighting(id):
         if len(request.json["tags"]):
           # check if tag exists in Tags
           for tag in request.json["tags"]:
-            tag_exists = Tag.query.filter(Tag.title == tag.lower()).first()
-            if tag_exists:
-              new_sighting_tag = SightingTag(
-                sighting_id=id,
-                tag_id=tag_exists.id
-              )
-              db.session.add(new_sighting_tag)
-              db.session.commit()
-              # or
-            # create a tag entry
-            else:
-              lower_case_tag = tag.lower()
-              new_tag = Tag(title=lower_case_tag)
-              db.session.add(new_tag)
-              db.session.commit()
-            # # create record using tag_id and sighting_id
-              new_sighting_tag = SightingTag(
-                sighting_id=id,
-                tag_id=new_tag.id
-              )
-              db.session.add(new_sighting_tag)
-              db.session.commit()
+            if tag not in sighting_tag_list:
+              tag_exists = Tag.query.filter(Tag.title == tag.lower()).first()
+              if tag_exists:
+                new_sighting_tag = SightingTag(
+                  sighting_id=id,
+                  tag_id=tag_exists.id
+                )
+                db.session.add(new_sighting_tag)
+                db.session.commit()
+                # or
+              # create a tag entry
+              else:
+                lower_case_tag = tag.lower()
+                new_tag = Tag(title=lower_case_tag)
+                db.session.add(new_tag)
+                db.session.commit()
+              # # create record using tag_id and sighting_id
+                new_sighting_tag = SightingTag(
+                  sighting_id=id,
+                  tag_id=new_tag.id
+                )
+                db.session.add(new_sighting_tag)
+                db.session.commit()
         return sighting.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
