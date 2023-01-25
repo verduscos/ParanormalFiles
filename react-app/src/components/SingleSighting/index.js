@@ -183,7 +183,6 @@ const SingleSighting = ({ scrollToTop }) => {
               <meter max={String(parseInt(currentSighting.dislikes) + parseInt(currentSighting.likes))} value={String(parseInt(currentSighting.likes))}></meter>
             </div>
             <li key="sighting-body">
-              <p id="single-sighting-body">{currentSighting.description.replace(/\n+/g, '\n\n')}</p>
               <p id="single-sighting-body">{parse(currentSighting.description)}</p>
 
             </li>

@@ -62,8 +62,8 @@ const CreateSightingForm = () => {
 
   console.log(description, "DESCRIPTION HERE");
   // todo
-  // style react quill in create &
-  // add html parser to sighting page
+  // style react quill in create *
+  // add html parser to sighting page *
   // add quill to edit form
 
 
