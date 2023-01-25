@@ -5,8 +5,9 @@ import CreateNav from "../CreateSightingForm/CreateNav";
 import { BsPlusCircle } from "react-icons/bs";
 import "../CreateSightingForm/Form.css"
 import * as sessionActions from "../../store/sighting"
-
-import { validateContent, autosize, loadingIcon, updateImage, removeImg } from "../CreateSightingForm/FormFuncs";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { validateContent, formats, loadingIcon, updateImage, removeImg } from "../CreateSightingForm/FormFuncs";
 import Tags from "../CreateSightingForm/Tags";
 import { TiDeleteOutline } from "react-icons/ti";
 
@@ -122,7 +123,9 @@ const EditForm = () => {
             </div>
             : loadingIcon(loading)}
 
-          <textarea
+<ReactQuill formats={formats} theme="snow" value={description} onChange={setDescription} />
+
+          {/* <textarea
             id="form-description"
             className="sighting-inputs"
             placeholder="Tell your story...."
@@ -130,7 +133,7 @@ const EditForm = () => {
             value={description}
             onKeyDown={(e) => autosize(e)}
             onChange={(e) => setDescription(e.target.value)}
-          />
+          /> */}
         </ul>
       </form>
 

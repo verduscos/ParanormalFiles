@@ -55,6 +55,7 @@
 /* QUILL */
 .ql-container.ql-snow {
   border: none;
+  max-width: 740px;
 }
 
 #file-label {
@@ -257,6 +258,10 @@
     width: 90%;
     margin: 0 auto;
   }
+
+.ql-container.ql-snow {
+  max-width: 90%;
+}
 
   #form-submit-btn {
     margin-top: -20px;

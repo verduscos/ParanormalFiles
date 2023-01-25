@@ -38,3 +38,28 @@ export const validateContent = (e, title, description, setErrors, setDisplayTagM
   setErrors(currentErrors);
   if (!currentErrors.length) setDisplayTagModal(true);
 }
+
+// disable video and image pasting for quill
+export const formats = [
+  'background',
+  'bold',
+  'color',
+  'font',
+  'code',
+  'italic',
+  'link',
+  'size',
+  'strike',
+  'script',
+  'underline',
+  'blockquote',
+  'header',
+  'indent',
+  'list',
+  'align',
+  'direction',
+  'code-block',
+  'formula'
+  // 'image'
+  // 'video'
+]
