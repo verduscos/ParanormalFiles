@@ -52,14 +52,9 @@
   border-bottom: .5px solid rgba(230, 230, 230, 1);
 }
 
-#form-description {
-  color: black !important;
-  font-family: medium-content-title-font,Georgia,Cambria,"Times New Roman",Times,serif !important;
-  min-height: 50px;
-  height: 150px;
-  resize: none;
-  overflow: hidden;
-  padding: 10px 0;
+/* QUILL */
+.ql-container.ql-snow {
+  border: none;
 }
 
 #file-label {

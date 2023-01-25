@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/sighting"
 import { BsPlusCircle } from "react-icons/bs";
 import { TiDeleteOutline } from "react-icons/ti";
-import { loadingIcon, autosize, updateImage, removeImg, validateContent } from "./FormFuncs";
+import { loadingIcon, updateImage, removeImg, validateContent } from "./FormFuncs";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import CreateNav from "./CreateNav";
@@ -61,13 +61,16 @@ const CreateSightingForm = () => {
   }
 
   console.log(description, "DESCRIPTION HERE");
+  // todo
+  // style react quill in create &
+  // add html parser to sighting page
+  // add quill to edit form
+
 
   return (
     <>
       <CreateNav />
       <form onSubmit={(e) => createSighting(e)} className="sighting-form">
-
-
         <div id="sighting-form-inner">
           <button className="form-submit-btn sighting-inputs" onClick={(e) => validateContent(e, title, description, setErrors, setDisplayTagModal)}>
             Publish
@@ -113,18 +116,7 @@ const CreateSightingForm = () => {
             </div>
             : loadingIcon(loading)}
 
-
-          <ReactQuill theme="snow" value={description} onChange={setDescription} />
-
-          <textarea
-            id="form-description"
-            className="sighting-inputs"
-            placeholder="Tell your story...."
-            type="text"
-            value={description}
-            onKeyDown={(e) => autosize(e)}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          <ReactQuill theme="snow" placeholder="Tell your story...." value={description} onChange={setDescription} />
         </div>
       </form>
 

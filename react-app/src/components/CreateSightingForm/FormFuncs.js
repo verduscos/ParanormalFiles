@@ -9,6 +9,7 @@ export const loadingIcon = (loading) => (
     : null
 )
 
+// rezie
 export const autosize = (e) => {
   e.target.style.height = 'inherit';
   e.target.style.height = `${e.target.scrollHeight}px`;
