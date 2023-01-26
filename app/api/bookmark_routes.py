@@ -38,7 +38,7 @@ def post_bookmark():
       db.session.add(bookmark)
       db.session.commit()
 
-      return { "bookmarks" : bookmark.to_dict() }
+      return { "id" : bookmark.sighting_id }
 
   return { "bookmarks" : "post to bookmarks failed." }
 
@@ -52,6 +52,6 @@ def delete_bookmark():
   if searchExists is not None:
     db.session.delete(searchExists)
     db.session.commit()
-    return { "deleted" : searchExists.sighting_id }
+    return { "id" : searchExists.sighting_id }
 
   return { "bookmarks" : "bookmark delete failed." }

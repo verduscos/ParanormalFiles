@@ -66,13 +66,17 @@ const SingleSighting = ({ scrollToTop }) => {
   const addBookmark = (e) => {
     e.preventDefault();
     dispatch(createBookmark(payload));
-    setUserBookmarked(true);
+    dispatch(fetchBookmarks(currentUser.id));
+
+    setUserBookmarked(!userBookmarked);
     localStorage.setItem(sightingId, sightingId);
   }
 
   const removeBookmark = () => {
     dispatch(deleteBookmark(payload));
-    setUserBookmarked(false);
+    dispatch(fetchBookmarks(currentUser.id));
+
+    setUserBookmarked(!userBookmarked);
     localStorage.removeItem(sightingId);
   }
 
@@ -91,7 +95,7 @@ const SingleSighting = ({ scrollToTop }) => {
 
   useEffect(() => {
     scrollToTop();
-    if (isBookmarked) setUserBookmarked(true);
+    // if (isBookmarked) setUserBookmarked(true);
     if (isLiked === sightingId) setUserLiked(true);
     if (isDisliked === sightingId) setUserDisliked(true);
     dispatch(getSighting(sightingId));
@@ -101,7 +105,7 @@ const SingleSighting = ({ scrollToTop }) => {
 
   const Bookmark = (
     <>
-      {currentSighting?.id in test && userBookmarked ?
+      {currentSighting?.id in test ?
         <div onClick={(e) => { removeBookmark(e) }} className="favorite-btns" >
           <MdOutlineBookmarkAdd size={25} />
           <p>Remove Bookmark</p>

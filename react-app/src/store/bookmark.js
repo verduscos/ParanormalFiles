@@ -18,12 +18,8 @@ const getBookmarks = (bookmarks) => ({
 })
 
 export const fetchBookmarks = (id) =>  async (dispatch) => {
-  console.log("INDE BOOKS BAKREKLFGJSDKLFJ_-----")
   const res = await fetch(`/api/bookmarks/ids/${id}`);
-
   const data = await res.json();
-
-  console.log("DATA ----------------", data);
   dispatch(getBookmarks(data));
   return data;
 }
@@ -69,10 +65,13 @@ const bookmarksReducer = (state = {}, action) => {
     }
     case CREATE_BOOKMARK : {
       const bookmarks = { ...state };
+      bookmarks[action.bookmark.id] = action.bookmark.id;
       return bookmarks;
     }
     case REMOVE_BOOKMARK : {
       const bookmarks = { ...state };
+      console.log("---------------------", action.bookmark.id)
+      delete bookmarks[action.bookmark.id];
       return bookmarks;
     }
     default:
