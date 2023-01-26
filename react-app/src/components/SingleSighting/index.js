@@ -7,6 +7,7 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { likeSighting, removeLikeSighting, dislikeSighting, removeDislikeSighting } from "../../store/like";
 import { BsHandThumbsUp, BsHandThumbsDown, BsFillHandThumbsDownFill, BsHandThumbsUpFill } from "react-icons/bs";
+import { fetchBookmarks } from "../../store/bookmark";
 import parse from 'html-react-parser';
 import "./SingleSighting.css"
 
@@ -17,6 +18,7 @@ const SingleSighting = ({ scrollToTop }) => {
   const params = useParams();
   const currentUser = useSelector(state => state.session.user);
   const currentSighting = useSelector(state => state.sightings.current);
+  const test = useSelector(state => state.bookmarks)
   const [userBookmarked, setUserBookmarked] = useState(false);
   const [userLiked, setUserLiked] = useState(false);
   const [userDisliked, setUserDisliked] = useState(false);
@@ -93,12 +95,13 @@ const SingleSighting = ({ scrollToTop }) => {
     if (isLiked === sightingId) setUserLiked(true);
     if (isDisliked === sightingId) setUserDisliked(true);
     dispatch(getSighting(sightingId));
+    dispatch(fetchBookmarks(currentUser.id));
   }, [dispatch])
 
 
   const Bookmark = (
     <>
-      {userBookmarked ?
+      {currentSighting?.id in test && userBookmarked ?
         <div onClick={(e) => { removeBookmark(e) }} className="favorite-btns" >
           <MdOutlineBookmarkAdd size={25} />
           <p>Remove Bookmark</p>

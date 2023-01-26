@@ -10,11 +10,16 @@ def get_bookmarks(userId):
   """
   Get all user favorites.
   """
-
-  print("HERERRE IN DA BACK")
   bookmarks = Bookmark.query.filter(Bookmark.user_id == userId).all()
-
   return {"bookmarks": [bookmark.to_dict() for bookmark in bookmarks]}
+
+@bookmark_routes.route("/ids/<int:userId>")
+def get_bookmark_ids(userId):
+  """
+  Get all bookmark ids.
+  """
+  bookmarks = Bookmark.query.filter(Bookmark.user_id == userId).all()
+  return {"bookmarked_ids": [bookmark.get_id() for bookmark in bookmarks]}
 
 @bookmark_routes.route("/", methods=["POST"])
 def post_bookmark():

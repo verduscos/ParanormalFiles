@@ -55,7 +55,9 @@
 /* QUILL */
 .ql-container.ql-snow {
   border: none;
-  max-width: 740px;
+  /* min-width: 740PX;
+  max-width: 740px; */
+  width: 740px !important;
 }
 
 #file-label {
@@ -260,7 +262,7 @@
   }
 
 .ql-container.ql-snow {
-  max-width: 90%;
+  width: 90% !important;
 }
 
   #form-submit-btn {

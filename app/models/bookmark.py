@@ -25,3 +25,8 @@ class Bookmark(db.Model):
         "username": self.sighting.user.username,
         "sighting_tags": [tag.to_dict() for tag in self.sighting.sighting_tags]
       }
+
+    def get_id(self):
+      return {
+        "id": self.sighting.id
+      }
