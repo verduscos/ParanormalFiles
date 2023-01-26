@@ -70,7 +70,6 @@ const bookmarksReducer = (state = {}, action) => {
     }
     case REMOVE_BOOKMARK : {
       const bookmarks = { ...state };
-      console.log("---------------------", action.bookmark.id)
       delete bookmarks[action.bookmark.id];
       return bookmarks;
     }

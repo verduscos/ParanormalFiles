@@ -133,10 +133,6 @@ def update_sighting(id):
     sighting = Sighting.query.get(id)
     sighting_tags = SightingTag.query.filter(SightingTag.sighting_id == id).all()
     sighting_tag_list = [sighting.to_dict() for sighting in sighting_tags]
-    # print("--------------------------------------------------------------------")
-    # print(sighting_tags)
-    # print(tags)
-    # print("--------------------------------------------------------------------")
 
     if form.validate_on_submit():
         updated_sighting = Sighting.update(
@@ -150,7 +146,6 @@ def update_sighting(id):
         db.session.commit()
 
         if len(request.json["removeTags"]):
-          print("IN REMOVE TAG")
           # get the Id of each tag title
           for tag in request.json["removeTags"]:
             tag_obj = Tag.query.filter(Tag.title == tag).first()

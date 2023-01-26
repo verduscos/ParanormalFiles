@@ -18,13 +18,11 @@ const SingleSighting = ({ scrollToTop }) => {
   const params = useParams();
   const currentUser = useSelector(state => state.session.user);
   const currentSighting = useSelector(state => state.sightings.current);
-  const test = useSelector(state => state.bookmarks)
-  const [userBookmarked, setUserBookmarked] = useState(false);
+  const userBookmarks = useSelector(state => state.bookmarks)
   const [userLiked, setUserLiked] = useState(false);
   const [userDisliked, setUserDisliked] = useState(false);
   const [userBtns, setUserBtns] = useState(false);
   const { sightingId } = params;
-  const isBookmarked = window.localStorage.getItem(sightingId);
   const isLiked = window.localStorage.getItem("liked")
   const isDisliked = window.localStorage.getItem("disliked")
   const payload = { userId: currentUser?.id, sightingId };
@@ -67,17 +65,11 @@ const SingleSighting = ({ scrollToTop }) => {
     e.preventDefault();
     dispatch(createBookmark(payload));
     dispatch(fetchBookmarks(currentUser.id));
-
-    setUserBookmarked(!userBookmarked);
-    localStorage.setItem(sightingId, sightingId);
   }
 
   const removeBookmark = () => {
     dispatch(deleteBookmark(payload));
     dispatch(fetchBookmarks(currentUser.id));
-
-    setUserBookmarked(!userBookmarked);
-    localStorage.removeItem(sightingId);
   }
 
   const deleteSighting = (e) => {
@@ -95,7 +87,6 @@ const SingleSighting = ({ scrollToTop }) => {
 
   useEffect(() => {
     scrollToTop();
-    // if (isBookmarked) setUserBookmarked(true);
     if (isLiked === sightingId) setUserLiked(true);
     if (isDisliked === sightingId) setUserDisliked(true);
     dispatch(getSighting(sightingId));
@@ -105,7 +96,7 @@ const SingleSighting = ({ scrollToTop }) => {
 
   const Bookmark = (
     <>
-      {currentSighting?.id in test ?
+      {currentSighting?.id in userBookmarks ?
         <div onClick={(e) => { removeBookmark(e) }} className="favorite-btns" >
           <MdOutlineBookmarkAdd size={25} />
           <p>Remove Bookmark</p>
