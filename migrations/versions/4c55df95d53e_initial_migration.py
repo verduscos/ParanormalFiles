@@ -1,12 +1,17 @@
 """Initial migration.
 
 Revision ID: 4c55df95d53e
-Revises: 
+Revises:
 Create Date: 2022-12-01 17:13:59.484922
 
 """
 from alembic import op
 import sqlalchemy as sa
+
+# render
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
@@ -105,6 +110,10 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
+
+    # render
+    if environment == "production":
+        op.execute(f"ALTER TABLE <table_name> SET SCHEMA {SCHEMA};")
 
 
 def downgrade():
