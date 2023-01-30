@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
+// import { browserHistory, Router, Route } from 'react-router'
 import { useDispatch } from "react-redux";
 import CreateSightingForm from "./components/CreateSightingForm/CreateSightingForm"
 import EditForm from "./components/EditForm/EditForm";
@@ -23,18 +24,20 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="bookmarks" element={<Main />} />
-        <Route path="/sightings/:sightingId" element={<Main />} />
-        <Route path="/mysightings" element={<Main />} />
-        <Route path="/report" element={<CreateSightingForm />} />
-        <Route path="/sightings/edit/:sightingId" element={<EditForm />} />
-        <Route path="/sightings/search/:string" element={<Main />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <HashRouter>
+      {/* <BrowserRouter> */}
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="bookmarks" element={<Main />} />
+          <Route path="/sightings/:sightingId" element={<Main />} />
+          <Route path="/mysightings" element={<Main />} />
+          <Route path="/report" element={<CreateSightingForm />} />
+          <Route path="/sightings/edit/:sightingId" element={<EditForm />} />
+          <Route path="/sightings/search/:string" element={<Main />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      {/* </BrowserRouter> */}
+    </HashRouter>
   );
 }
 
