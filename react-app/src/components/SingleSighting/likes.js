@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { likeSighting, removeLikeSighting, dislikeSighting, removeDislikeSighting } from "../../store/like";
 import { BsHandThumbsUp, BsHandThumbsDown, BsFillHandThumbsDownFill, BsHandThumbsUpFill } from "react-icons/bs";
 import "./SingleSighting.css"
@@ -8,7 +8,6 @@ import "./SingleSighting.css"
 
 const Likes = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const params = useParams();
   const currentUser = useSelector(state => state.session.user);
   const currentSighting = useSelector(state => state.sightings.current);

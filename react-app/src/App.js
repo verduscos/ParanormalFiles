@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
-// import { browserHistory, Router, Route } from 'react-router'
 import { useDispatch } from "react-redux";
 import CreateSightingForm from "./components/CreateSightingForm/CreateSightingForm"
 import EditForm from "./components/EditForm/EditForm";
