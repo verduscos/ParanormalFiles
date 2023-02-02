@@ -90,7 +90,7 @@ const SingleSighting = ({ scrollToTop }) => {
     if (isLiked === sightingId) setUserLiked(true);
     if (isDisliked === sightingId) setUserDisliked(true);
     dispatch(getSighting(sightingId));
-    dispatch(fetchBookmarks(currentUser.id));
+    dispatch(fetchBookmarks(currentUser?.id));
   }, [dispatch])
 
 
