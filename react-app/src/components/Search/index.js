@@ -7,7 +7,7 @@ import "./Search.css";
 
 const Search = () => {
   const navigate = useNavigate();
-  const { string } = useParams();
+  let { string } = useParams();
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState("");
 

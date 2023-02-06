@@ -20,7 +20,7 @@
   z-index: 1;
 }
 
-#guest-nav > ul {
+#guest-nav>ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,7 +31,7 @@
   width: 90%;
 }
 
-#guest-nav > ul > li {
+#guest-nav>ul>li {
   display: flex;
 }
 
@@ -53,6 +53,18 @@
   position: relative;
   margin: 75px auto 0 auto;
   min-height: 500px;
+}
+
+/* nav splash off */
+#guest-nav-off {
+  margin-bottom: 80px;
+  background-image: none;
+  height: none;
+  width: 100%;
+}
+
+#headings-off {
+  display: none;
 }
 
 #guest-header {
@@ -86,6 +98,7 @@
   #guest-header {
     font-size: 85px;
   }
+
   #guest-sub-header {
     font-size: 24px;
   }
@@ -102,7 +115,7 @@
 
 /* DESKTOP */
 @media screen and (min-width: 1024px) {
-  #guest-nav > ul {
+  #guest-nav>ul {
     max-width: 1192px;
   }
 

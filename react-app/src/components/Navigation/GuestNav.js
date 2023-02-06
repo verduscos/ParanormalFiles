@@ -1,13 +1,14 @@
 import React from "react";
 import LoginFormModal from "../auth/LoginFormModal";
 import SignupFormModal from "../auth/SignupFormModal";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import Logo from './pf-logo.png';
 import './GuestNav.css';
 
 const GuestNav = () => {
+  let { sightingId } = useParams();
   return (
-    <div id="guest-nav-container">
+    <div id={ sightingId ? "guest-nav-off" : "guest-nav-container"}>
       <nav id="guest-nav">
         <ul>
           <li>
@@ -21,7 +22,8 @@ const GuestNav = () => {
         </ul>
       </nav>
 
-      <div id="headings-container">
+
+      <div id={ sightingId ? "headings-off" : "headings-container"}>
         <h1 id="guest-header">Stay curious.</h1>
         <h3 id="guest-sub-header">Discuss and share paranormal experiences.</h3>
         <SignupFormModal />
