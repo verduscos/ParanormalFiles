@@ -1,9 +1,9 @@
 # Paranormal Files 
 ![splash page](https://i.imgur.com/2dERcHN.png)
 
-[Live](https://paranormalfiles.herokuapp.com/) | [Project Wiki](https://github.com/verduscos/medium-clone/wiki)
+[Live](https://paranormal-files.onrender.com/) | [Project Wiki](https://github.com/verduscos/medium-clone/wiki)
 
-[Paranormal Files](https://paranormalfiles.herokuapp.com/), a [Medium](https://medium.com/) clone,  is a platform where users can find paranormal reports and where users  can share their experiences by writing on any paranormal topic.
+[Paranormal Files](https://paranormal-files.onrender.com/), a [Medium](https://medium.com/) clone,  is a platform where users can find paranormal reports and where users  can share their experiences by writing on any paranormal topic.
 
 # Application Architecture
 Paranormal Files is built on a React frontend and a Flask backend with a PostgreSQL database. This application utilizes Amazon S3 to allow for image upload.
